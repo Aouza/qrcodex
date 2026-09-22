@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-004 — Implement RLS policies and tenant authorization`
+`TASK-006 — Create public establishment route and data loader`
 
-Task file: `tasks/active/TASK-004-rls-tenant-authorization.md`
+Task file: `tasks/active/TASK-006-public-establishment-route.md`
 
 ## Status
-READY
+IN_PROGRESS
 
 ## Rule
-TASK-004 is prepared but has not been started. Implement it only when explicitly requested in a future run.
+Implement and verify TASK-006. The development seed has been applied to the current Supabase project; production must use a separate project before launch.

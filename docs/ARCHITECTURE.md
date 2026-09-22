@@ -63,10 +63,10 @@ All tenant-owned records use `establishment_id`. Admin authorization must derive
 Product/category tenant integrity is enforced in Postgres with a unique `(id, establishment_id)` constraint on categories and a composite foreign key from products `(category_id, establishment_id)` to categories `(id, establishment_id)`.
 
 ## Supabase clients
-`src/lib/supabase/client.ts` creates the browser client and `src/lib/supabase/server.ts` creates a request-scoped server client with cookie access. Both use the publishable key, so RLS applies to their queries. No privileged Supabase client is part of the MVP foundation. Configure the Next.js Proxy for session refresh before implementing protected admin authentication; the client modules alone do not refresh cookies from Server Components.
+`src/lib/supabase/client.ts` creates the browser client and `src/lib/supabase/server.ts` creates a request-scoped server client with cookie access. `src/lib/supabase/public.ts` creates a cookie-free anonymous server client for public menu reads, so an admin session cannot narrow visibility on another establishment's public route. All three use the publishable key, so RLS applies to their queries. No privileged Supabase client is part of the MVP foundation. Configure the Next.js Proxy for session refresh before implementing protected admin authentication; the browser/server clients alone do not refresh cookies from Server Components.
 
 ## Public menu data
-Public reads may access only active establishments/categories/products appropriate for public display. Unavailable products are public but visibly marked unavailable.
+`src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Unavailable products remain in the result; visual treatment follows in the public-menu tasks.
 
 ## Images
 Product images live in Supabase Storage. Store paths/URLs in the product record according to the storage implementation chosen in the relevant task. Images are optional and should be optimized in delivery.

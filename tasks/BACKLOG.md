@@ -10,13 +10,13 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-001 | Bootstrap Next.js application and quality scripts | DONE | — |
 | TASK-002 | Add environment contract and Supabase clients | DONE | TASK-001 |
 | TASK-003 | Create initial database schema migration | DONE | TASK-002 |
-| TASK-004 | Implement RLS policies and tenant authorization | READY | TASK-003 |
-| TASK-005 | Add Relica's development seed data | PLANNED | TASK-003 |
+| TASK-004 | Implement RLS policies and tenant authorization | DONE | TASK-003 |
+| TASK-005 | Add Relica's development seed data | DONE | TASK-003, TASK-004 |
 
 ## EPIC 02 — Public Menu
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-006 | Create public establishment route and data loader | PLANNED | TASK-004, TASK-005 |
+| TASK-006 | Create public establishment route and data loader | IN_PROGRESS | TASK-004, TASK-005 |
 | TASK-007 | Build public menu shell/header and visual tokens | PLANNED | TASK-006 |
 | TASK-008 | Build category navigation | PLANNED | TASK-007 |
 | TASK-009 | Render products grouped by category | PLANNED | TASK-008 |
