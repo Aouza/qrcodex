@@ -12,6 +12,14 @@ export type PublicProduct = {
   position: number;
 };
 
+export type PublicCategory = {
+  id: string;
+  name: string;
+  slug: string;
+  position: number;
+  products: PublicProduct[];
+};
+
 export async function loadPublicMenu(slug: string) {
   const supabase = createPublicClient();
   const { data: establishment, error: establishmentError } = await supabase
@@ -58,11 +66,10 @@ export async function loadPublicMenu(slug: string) {
     productsByCategory.set(product.category_id, products);
   }
 
-  return {
-    establishment,
-    categories: (categoryResult.data ?? []).map((category) => ({
+  const categories: PublicCategory[] = (categoryResult.data ?? []).map((category) => ({
       ...category,
       products: productsByCategory.get(category.id) ?? [],
-    })),
-  };
+    }));
+
+  return { establishment, categories };
 }

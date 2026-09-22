@@ -21,13 +21,13 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-008 | Build category navigation | DONE | TASK-007 |
 | TASK-009 | Render products grouped by category | DONE | TASK-008 |
 | TASK-010 | Add featured and unavailable states | DONE | TASK-009 |
-| TASK-011 | Add client-side menu search | READY | TASK-009 |
-| TASK-012 | Add loading/empty/error states and mobile polish | PLANNED | TASK-010, TASK-011 |
+| TASK-011 | Add client-side menu search | DONE | TASK-009 |
+| TASK-012 | Add loading/empty/error states and mobile polish | DONE | TASK-010, TASK-011 |
 
 ## EPIC 03 — Authentication & Admin Shell
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-013 | Implement admin login/logout | PLANNED | TASK-004 |
+| TASK-013 | Implement admin login/logout | READY | TASK-004 |
 | TASK-014 | Protect admin routes and resolve current establishment | PLANNED | TASK-013 |
 | TASK-015 | Build admin dashboard/navigation shell | PLANNED | TASK-014 |
 

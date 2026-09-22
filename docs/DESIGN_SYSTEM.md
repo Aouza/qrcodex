@@ -272,9 +272,9 @@ Evitar arredondamento excessivo em todos os elementos.
 ``` text
 Header
 ↓
-Busca
-↓
 Hero / destaque editorial
+↓
+Busca
 ↓
 Categorias
 ↓
@@ -351,6 +351,11 @@ Pesquisa por:
 
 O campo deve ser visualmente evidente e possuir botão para limpar o
 texto.
+
+A busca é local sobre os produtos públicos já carregados. Os resultados
+continuam agrupados por categoria, e a navegação mostra apenas as
+categorias com correspondências enquanto houver consulta. Destaques e
+indisponibilidade acompanham o filtro.
 
 Não incluir ícone de filtros enquanto não existirem filtros reais.
 
@@ -639,6 +644,10 @@ O cardápio deve continuar útil em conexão móvel ruim.
 
 Preferir skeletons que preservem a estrutura da página.
 
+O skeleton da rota pública reserva espaço para header, hero, busca,
+categorias e início da listagem. A animação é discreta e desativada com
+`prefers-reduced-motion`.
+
 Evitar spinner bloqueando toda a tela.
 
 Objetivos:
@@ -662,6 +671,11 @@ Botão:
 ### Categoria vazia
 
 > Nenhum item disponível nesta categoria no momento.
+
+### Cardápio vazio
+
+Sem categorias e com categorias sem nenhum produto são estados distintos;
+mostrar uma mensagem factual para cada um, sem campo de busca inútil.
 
 Nunca exibir mensagens técnicas de Next.js, Supabase ou banco para
 clientes.

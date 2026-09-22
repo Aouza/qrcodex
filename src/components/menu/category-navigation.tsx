@@ -37,7 +37,9 @@ export function CategoryNavigation({
       const target = window.location.hash.slice(1);
       if (categories.some((category) => `category-${category.id}` === target)) {
         setActiveId(target);
+        return true;
       }
+      return false;
     };
 
     const syncFromScroll = () => {
@@ -57,12 +59,14 @@ export function CategoryNavigation({
       if (current) setActiveId(`category-${current}`);
     };
 
-    if (window.location.hash) syncFromHash();
-    else syncFromScroll();
-    window.addEventListener("hashchange", syncFromHash);
+    if (!syncFromHash()) syncFromScroll();
+    const onHashChange = () => {
+      if (!syncFromHash()) syncFromScroll();
+    };
+    window.addEventListener("hashchange", onHashChange);
     window.addEventListener("scroll", syncFromScroll, { passive: true });
     return () => {
-      window.removeEventListener("hashchange", syncFromHash);
+      window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("scroll", syncFromScroll);
     };
   }, [categories]);

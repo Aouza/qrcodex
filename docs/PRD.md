@@ -31,6 +31,8 @@ The MVP is a menu presentation/management system, not a restaurant operations pl
 - responsive/mobile-first experience;
 - loading, empty, search-empty and error states.
 
+The public menu distinguishes an establishment with no active categories, one with categories but no active products, and an individual category without products. Loading preserves the page structure; data failures show a customer-friendly retry without technical details.
+
 ### Admin
 - email/password authentication;
 - protected admin routes;
@@ -72,7 +74,7 @@ Categories are data, not code constants. Admin can create, edit, order and activ
 The public category navigation presents an illustrative image or icon above each category name. Relica's initial categories may use local default artwork; newly created categories use a neutral illustration until category image management is available in the admin. Names and order always come from category data, not the artwork mapping.
 
 ## 9. Search
-Search should be case-insensitive and match product name and description. Only public/active products should appear. Search UX must not require a page reload.
+Search should be case-insensitive and match product name and description. Only public/active products should appear. Search UX must not require a page reload. Matching products remain grouped by category, with their featured and unavailable states preserved. Clearing the query restores the full menu; a query with no matches has an explicit empty state.
 
 ## 10. QR behavior
 The QR stores only a permanent menu URL. Product/price changes must never require generating a new QR.

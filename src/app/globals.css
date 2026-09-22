@@ -160,6 +160,70 @@ a {
   font-size: 11px;
 }
 
+.public-menu__search {
+  padding-top: 20px;
+}
+
+.public-menu__search label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.public-menu__search-field {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.public-menu__search-field:focus-within {
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent-soft);
+  outline-offset: 2px;
+}
+
+.public-menu__search input {
+  flex: 1;
+  min-width: 0;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 16px;
+}
+
+.public-menu__search input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.public-menu__search button {
+  flex: none;
+  min-height: 44px;
+  padding-inline: 14px;
+  border: 0;
+  background: transparent;
+  color: var(--color-accent-hover);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.public-menu__search button:focus-visible,
+.public-menu__no-results button:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: -3px;
+}
+
 .public-menu__intro {
   display: flex;
   align-items: baseline;
@@ -208,7 +272,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  min-height: 110px;
+  min-height: 126px;
   padding: 8px 6px;
   border: 1px solid var(--color-border-strong);
   border-radius: 8px;
@@ -240,11 +304,11 @@ a {
 
 .public-menu__category-label {
   display: -webkit-box;
-  min-height: 29px;
+  min-height: 44px;
   overflow: hidden;
   overflow-wrap: anywhere;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .public-menu__category-nav a:hover,
@@ -285,10 +349,43 @@ a {
   padding-block: 12px 80px;
 }
 
+.public-menu__no-results,
+.public-menu__empty-menu {
+  padding-block: 36px 80px;
+  border-top: 1px solid var(--color-border);
+}
+
+.public-menu__no-results h3,
+.public-menu__empty-menu h3 {
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.public-menu__no-results p,
+.public-menu__empty-menu p {
+  margin-top: 6px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.public-menu__no-results button {
+  min-height: 44px;
+  margin-top: 12px;
+  padding-inline: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-accent-hover);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .public-menu__category-section {
   padding-block: 20px 28px;
   border-bottom: 1px solid var(--color-border);
-  scroll-margin-top: 144px;
+  scroll-margin-top: 164px;
 }
 
 .public-menu__category-heading {
@@ -309,6 +406,13 @@ a {
   font-size: 12px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+}
+
+.public-menu__category-empty {
+  margin-top: 12px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .public-menu__category-section:target .public-menu__category-number {
@@ -419,6 +523,155 @@ a {
   line-height: 1.3;
 }
 
+.public-menu__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.public-menu__skeleton {
+  display: block;
+  flex: none;
+  border-radius: 6px;
+  background: var(--color-surface-hover);
+  animation: menu-skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+.public-menu__skeleton-brand {
+  width: 176px;
+  height: 26px;
+}
+
+.public-menu__skeleton-hero {
+  height: 200px;
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+.public-menu__skeleton-label {
+  width: 120px;
+  height: 14px;
+  margin-top: 20px;
+}
+
+.public-menu__skeleton-search {
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+}
+
+.public-menu__skeleton-title {
+  width: 152px;
+  height: 29px;
+  margin-block: 28px 20px;
+}
+
+.public-menu__skeleton-nav {
+  overflow: hidden;
+  background: var(--color-bg-soft);
+}
+
+.public-menu__skeleton-nav-inner {
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  padding-block: 8px;
+}
+
+.public-menu__skeleton-nav-inner .public-menu__skeleton {
+  width: 104px;
+  height: 134px;
+}
+
+.public-menu__skeleton-content {
+  padding-top: 32px;
+}
+
+.public-menu__skeleton-heading {
+  width: 156px;
+  height: 28px;
+  margin-bottom: 12px;
+}
+
+.public-menu__skeleton-row {
+  display: flex;
+  gap: 12px;
+  padding-block: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.public-menu__skeleton-thumbnail {
+  width: 80px;
+  height: 80px;
+}
+
+.public-menu__skeleton-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding-top: 5px;
+}
+
+.public-menu__skeleton-line {
+  width: min(100%, 240px);
+  height: 17px;
+}
+
+.public-menu__skeleton-line--short {
+  width: min(65%, 160px);
+}
+
+.public-menu__error {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.public-menu__error h1 {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.public-menu__error p {
+  margin-top: 12px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.public-menu__error button {
+  min-height: 44px;
+  margin-top: 24px;
+  padding-inline: 20px;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.public-menu__error button:hover {
+  background: var(--color-accent-hover);
+}
+
+.public-menu__error button:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 3px;
+}
+
+@keyframes menu-skeleton-pulse {
+  50% { opacity: 0.58; }
+}
+
 @media (max-width: 359px) {
   .public-menu__hero-copy {
     width: 68%;
@@ -432,6 +685,10 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .public-menu__category-nav a {
     transition: none;
+  }
+
+  .public-menu__skeleton {
+    animation: none;
   }
 }
 
@@ -451,6 +708,10 @@ a {
   .public-menu__hero,
   .public-menu__hero-copy {
     min-height: 220px;
+  }
+
+  .public-menu__skeleton-hero {
+    height: 220px;
   }
 
   .public-menu__hero-copy {

@@ -68,6 +68,8 @@ Product/category tenant integrity is enforced in Postgres with a unique `(id, es
 ## Public menu data
 `src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
 
+The server page passes this public, active-only menu data to `MenuCatalog`, a Client Component that filters in memory by normalized product name or description. Search makes no new Supabase request. The category navigation and featured area derive from the same filtered categories, so status and grouping remain consistent; an empty query restores the original data.
+
 ## Images
 Product images live in Supabase Storage. Store paths/URLs in the product record according to the storage implementation chosen in the relevant task. Images are optional and should be optimized in delivery.
 
@@ -82,6 +84,8 @@ Category navigation uses optimized local illustrations in `public/images/categor
 ## Error handling
 Expected validation/auth failures should produce user-friendly UI. Unexpected failures should not expose secrets or raw database errors to users.
 
+`src/app/[slug]/loading.tsx` renders a route-level skeleton while the server resolves the establishment and menu. `src/app/[slug]/error.tsx` catches menu-load failures and offers `reset()` without rendering the underlying error. `MenuCatalog` distinguishes no categories, no products across all categories, an individual empty category, and search with no matches. These states do not require database writes or a public account.
+
 ## Testing strategy
 Minimum MVP checks:
 - lint;
@@ -92,4 +96,4 @@ Minimum MVP checks:
 
 Do not introduce a heavy testing stack before a task needs it; when test tooling is added, document the command here.
 
-The public-menu featured selection has focused tests in `tests/get-featured-products.test.mjs`, run with `node --test tests/get-featured-products.test.mjs` on the workspace Node 24 runtime.
+The public-menu featured selection and search filtering have focused tests in `tests/get-featured-products.test.mjs` and `tests/filter-menu-categories.test.mjs`, run with `node --test tests/get-featured-products.test.mjs tests/filter-menu-categories.test.mjs` on the workspace Node 24 runtime.
