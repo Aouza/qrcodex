@@ -71,6 +71,8 @@ Product/category tenant integrity is enforced in Postgres with a unique `(id, es
 ## Images
 Product images live in Supabase Storage. Store paths/URLs in the product record according to the storage implementation chosen in the relevant task. Images are optional and should be optimized in delivery.
 
+The public product list uses `next/image` with a remote pattern limited to the configured Supabase Storage origin (`/storage/v1/object/**`). If the storage task adopts a different delivery URL, update that pattern alongside the storage contract. The establishment logo still uses its existing unrestricted URL path until settings/storage define its source.
+
 ## Error handling
 Expected validation/auth failures should produce user-friendly UI. Unexpected failures should not expose secrets or raw database errors to users.
 

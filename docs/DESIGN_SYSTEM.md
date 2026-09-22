@@ -1,36 +1,1096 @@
-# Design System — MVP
+# Relica's --- Design System & UI/UX Specification
 
-## Direction
-Preserve the bar's recognizable dark rock-bar identity while making the digital menu cleaner than the printed menu.
+**Versão:** 1.0\
+**Produto:** Cardápio digital via QR Code\
+**Plataforma:** Web responsiva, mobile-first\
+**Objetivo:** consulta e apresentação de produtos\
+**Fora do escopo:** pedidos, carrinho, checkout, pagamentos e comandas
 
-## Principles
-- dark-first interface;
-- warm yellow/amber accent inspired by current menu;
-- high-contrast text;
-- restrained decorative elements;
-- product content dominates the interface;
-- no visual clutter for the sake of a "rock" aesthetic.
+------------------------------------------------------------------------
 
-Do not lock exact color tokens until the first UI task; once chosen, document the tokens here and implement them centrally.
+## 1. Conceito do produto
 
-## Public menu
-- designed first at 320–430px widths;
-- category navigation easy to horizontally scroll/tap;
-- price highly scannable;
-- `Esgotado` uses text/icon treatment, not color alone;
-- product image is optional;
-- touch targets should be comfortable (~44px where applicable);
-- avoid nested navigation.
+O Relica's Menu é um cardápio digital pensado para uso dentro do bar. O
+cliente escaneia um QR Code e deve conseguir entender o cardápio,
+navegar entre categorias, pesquisar itens, comparar preços e visualizar
+detalhes com o mínimo possível de esforço.
 
-## Admin
-Admin prioritizes operational speed over branding.
-- mobile usable;
-- prominent availability toggle/action;
-- clear destructive action confirmation;
-- simple forms and validation messages;
-- product/category lists remain usable with many entries.
+A experiência não deve se comportar como e-commerce ou aplicativo de
+delivery.
 
-## Content conventions
-Currency display: `R$ 19,90`.  
-Unavailable label: `Esgotado`.  
-Avoid emoji as required semantic indicators; decorative emoji may be added sparingly only if consistent with the final design.
+Fluxo principal:
+
+``` text
+QR Code
+   ↓
+Cardápio
+   ↓
+Busca / Categorias / Destaques
+   ↓
+Produto
+   ↓
+Detalhes opcionais
+   ↓
+Pedido realizado diretamente com a equipe do bar
+```
+
+A principal métrica de qualidade da interface é: **quão rapidamente
+alguém consegue encontrar o que deseja consumir.**
+
+------------------------------------------------------------------------
+
+## 2. Princípios de UX
+
+### 2.1 Consulta primeiro
+
+Toda decisão deve favorecer descoberta e leitura do cardápio.
+
+O usuário deve responder rapidamente:
+
+-   O que tem?
+-   Quanto custa?
+-   Em qual categoria está?
+-   Está disponível?
+-   O que a casa destaca?
+-   Quais são os ingredientes ou características principais?
+
+### 2.2 Mobile-first real
+
+O QR Code será normalmente aberto pelo celular. O design deve funcionar
+primeiro em 320--430 px e depois expandir para tablet e desktop.
+
+### 2.3 Uma mão, pouca atenção
+
+O contexto real inclui música, conversa, pouca iluminação e atenção
+dividida. Controles devem ser grandes, previsíveis e facilmente
+alcançáveis.
+
+### 2.4 Conteúdo acima de decoração
+
+Fotografia e identidade são importantes, mas nunca devem dificultar
+busca, leitura, preço ou navegação.
+
+### 2.5 Sem falsas affordances
+
+Não utilizar elementos que sugiram funcionalidades inexistentes.
+
+**Proibidos no MVP:**
+
+-   botão `+` em produtos;
+-   carrinho;
+-   quantidade;
+-   "Adicionar";
+-   "Comprar";
+-   "Pedir agora";
+-   checkout;
+-   pagamento;
+-   subtotal;
+-   conta do consumidor;
+-   histórico de pedidos;
+-   delivery;
+-   endereço de entrega.
+
+------------------------------------------------------------------------
+
+## 3. Personalidade visual
+
+O conceito é **rock bar contemporâneo**.
+
+A interface deve parecer:
+
+-   noturna;
+-   urbana;
+-   moderna;
+-   direta;
+-   premium sem parecer sofisticada demais;
+-   levemente underground;
+-   confortável em ambiente escuro.
+
+A identidade rock deve aparecer por meio de marca, fotografia,
+contraste, pequenos detalhes gráficos e tom visual. Não devemos
+transformar cada componente em uma referência a metal ou rock.
+
+------------------------------------------------------------------------
+
+## 4. Paleta --- Design Tokens
+
+### Background
+
+``` css
+--color-bg: #0B0B0B;
+--color-bg-soft: #101010;
+--color-surface: #151515;
+--color-surface-elevated: #1C1C1C;
+--color-surface-hover: #242424;
+```
+
+### Texto
+
+``` css
+--color-text-primary: #F5F5F5;
+--color-text-secondary: #B3B3B3;
+--color-text-muted: #7D7D7D;
+--color-text-inverse: #111111;
+```
+
+### Accent
+
+O amarelo/dourado funciona como assinatura visual e deve ser usado
+seletivamente.
+
+``` css
+--color-accent: #F4B400;
+--color-accent-hover: #FFC329;
+--color-accent-soft: #2A230D;
+--color-accent-foreground: #111111;
+```
+
+### Bordas
+
+``` css
+--color-border: #292929;
+--color-border-strong: #3A3A3A;
+```
+
+### Estados
+
+``` css
+--color-success: #22C55E;
+--color-warning: #F4B400;
+--color-danger: #E5484D;
+```
+
+O vermelho não deve ser a única indicação de erro ou indisponibilidade.
+
+------------------------------------------------------------------------
+
+## 5. Regra 80/15/5 de cor
+
+A interface deve permanecer predominantemente neutra:
+
+-   \~80% preto/cinza/surfaces;
+-   \~15% branco/cinza de conteúdo;
+-   \~5% amarelo de destaque.
+
+O accent não deve pintar tudo. Seu valor vem justamente da escassez.
+
+Usos apropriados:
+
+-   categoria ativa;
+-   pequenos detalhes;
+-   badges selecionados;
+-   foco;
+-   elementos importantes da marca.
+
+------------------------------------------------------------------------
+
+## 6. Tipografia
+
+Fonte recomendada para UI:
+
+**Inter**, ou outra sans-serif altamente legível.
+
+A tipografia própria do Relica's deve ficar restrita à marca ou títulos
+especiais.
+
+### Escala
+
+``` css
+--font-xs: 12px;
+--font-sm: 14px;
+--font-md: 16px;
+--font-lg: 18px;
+--font-xl: 24px;
+--font-2xl: 32px;
+```
+
+### Pesos
+
+``` text
+400 — texto
+500 — labels
+600 — produtos/preços
+700 — títulos
+```
+
+### Hierarquia
+
+**H1:** 30--32 / 700\
+**H2:** 22--24 / 700\
+**H3:** 18 / 600\
+**Body:** 14--16 / 400\
+**Price:** 16--18 / 700\
+**Caption:** 12--13 / 400--500
+
+Preço precisa ser imediatamente legível.
+
+------------------------------------------------------------------------
+
+## 7. Espaçamento
+
+Grid base de 4 px.
+
+``` css
+--space-1: 4px;
+--space-2: 8px;
+--space-3: 12px;
+--space-4: 16px;
+--space-5: 20px;
+--space-6: 24px;
+--space-8: 32px;
+--space-10: 40px;
+--space-12: 48px;
+--space-16: 64px;
+```
+
+Margem mobile padrão: **16 px**.
+
+Separação entre grandes seções: **32--40 px**.
+
+------------------------------------------------------------------------
+
+## 8. Radius
+
+``` css
+--radius-sm: 8px;
+--radius-md: 12px;
+--radius-lg: 16px;
+--radius-xl: 20px;
+--radius-pill: 999px;
+```
+
+Cards principais: 12--16 px.\
+Hero: 16--20 px.\
+Chips: pill.
+
+Evitar arredondamento excessivo em todos os elementos.
+
+------------------------------------------------------------------------
+
+## 9. Estrutura da página
+
+``` text
+Header
+↓
+Busca
+↓
+Hero / destaque editorial
+↓
+Categorias
+↓
+Destaques
+↓
+Seções do cardápio
+↓
+Informações do estabelecimento
+```
+
+Não criar uma homepage extensa antes do cardápio. O usuário escaneou o
+QR para consultar produtos.
+
+------------------------------------------------------------------------
+
+## 10. Header
+
+Deve conter apenas informações úteis:
+
+-   logo;
+-   nome do estabelecimento, quando necessário;
+-   acesso à busca, se a busca não estiver imediatamente abaixo.
+
+Não utilizar avatar, carrinho, notificações ou endereço de entrega.
+
+Altura aproximada: **56--64 px**.
+
+------------------------------------------------------------------------
+
+## 11. Hero
+
+O hero dá personalidade ao cardápio, mas não deve dominar a primeira
+viewport.
+
+Altura mobile recomendada: **180--220 px**.
+
+Pode apresentar:
+
+-   fotografia do bar/produto;
+-   frase da marca;
+-   especial real;
+-   evento;
+-   promoção configurada pelo estabelecimento.
+
+Exemplo:
+
+> Boa comida. Música boa.
+
+Evitar carrossel automático.
+
+Uma única peça editorial forte tende a funcionar melhor.
+
+------------------------------------------------------------------------
+
+## 12. Busca
+
+Placeholder recomendado:
+
+> Buscar cerveja, drink, lanche...
+
+Pesquisa por:
+
+-   nome;
+-   descrição;
+-   categoria quando útil.
+
+O campo deve ser visualmente evidente e possuir botão para limpar o
+texto.
+
+Não incluir ícone de filtros enquanto não existirem filtros reais.
+
+### Sem resultados
+
+> Nenhum item encontrado para "IPA".
+
+Ação:
+
+> Limpar busca
+
+------------------------------------------------------------------------
+
+## 13. Categorias
+
+Exemplo:
+
+``` text
+Porções
+Lanches
+Cervejas
+Drinks
+Doses
+Cachaças
+Vinhos
+Whiskies
+```
+
+Categorias devem ser horizontalmente roláveis.
+
+Estado ativo:
+
+-   background accent;
+-   texto escuro;
+-   contraste alto.
+
+Estado normal:
+
+-   surface;
+-   borda discreta;
+-   texto secundário/primário.
+
+------------------------------------------------------------------------
+
+## 14. Navegação sticky
+
+Depois que o usuário entra no conteúdo, a navegação de categorias pode
+ficar sticky.
+
+Comportamento:
+
+1.  toca em Cervejas;
+2.  scroll para a seção;
+3.  chip Cervejas fica ativo;
+4.  conforme o scroll manual avança, a categoria ativa acompanha a
+    seção;
+5.  o chip ativo permanece visível horizontalmente.
+
+Respeitar `prefers-reduced-motion`.
+
+------------------------------------------------------------------------
+
+## 15. Estratégia de densidade
+
+Não utilizar cards fotográficos gigantes para todos os produtos.
+
+O cardápio de bar pode possuir dezenas de bebidas. Uma grade de cards
+grandes aumentaria excessivamente o scroll.
+
+Usar densidade conforme o conteúdo:
+
+``` text
+Destaques        → card grande
+Porções          → card/lista com imagem
+Lanches          → card/lista com imagem
+Drinks autorais  → card visual
+Cervejas         → lista compacta
+Doses            → lista compacta
+Whiskies         → lista compacta
+Água/refrigerante→ lista muito compacta
+```
+
+Essa é uma diferença importante entre um conceito bonito de delivery e
+uma boa UX de cardápio real.
+
+------------------------------------------------------------------------
+
+## 16. Featured Product Card
+
+Uso exclusivo para destaques.
+
+Conteúdo:
+
+-   imagem;
+-   nome;
+-   descrição curta opcional;
+-   preço;
+-   badge real opcional.
+
+O card inteiro pode abrir detalhes.
+
+**Não possuir botão `+`.**
+
+------------------------------------------------------------------------
+
+## 17. Product List Item
+
+Componente principal das listas.
+
+Estrutura:
+
+``` text
+[imagem] Nome do produto
+         descrição curta
+         R$ 34,90
+```
+
+Imagem opcional: 72--88 px.
+
+Nome: máximo recomendado de duas linhas.
+
+Descrição: máximo de duas linhas na listagem.
+
+Preço sempre visível.
+
+Todo o item pode ser clicável quando existir página de detalhe.
+
+------------------------------------------------------------------------
+
+## 18. Produto sem imagem
+
+A UI deve funcionar perfeitamente sem fotografia.
+
+Exemplo:
+
+``` text
+Heineken 600ml
+Cerveja • 600ml                         R$ 19,90
+```
+
+ou:
+
+``` text
+Heineken 600ml                          R$ 19,90
+```
+
+Não usar imagens genéricas apenas para preencher espaço.
+
+------------------------------------------------------------------------
+
+## 19. Produtos indisponíveis
+
+Produtos normalmente vendidos podem continuar visíveis.
+
+Tratamento:
+
+-   redução moderada de contraste;
+-   badge textual `Esgotado`;
+-   preço preservado, se desejado;
+-   nenhuma aparência de ação de compra.
+
+Nunca comunicar indisponibilidade apenas por cor.
+
+------------------------------------------------------------------------
+
+## 20. Badges
+
+Permitidos:
+
+-   Destaque
+-   Novo
+-   Promoção
+-   Esgotado
+
+Somente quando representam estado real.
+
+Evitar poluição como:
+
+`HOT • TOP • BEST • CHEF • FAVORITO`.
+
+------------------------------------------------------------------------
+
+## 21. Preço
+
+Padrão brasileiro:
+
+``` text
+R$ 34,90
+```
+
+O preço nunca deve exigir abertura do detalhe.
+
+Em listas muito compactas:
+
+``` text
+Heineken 600ml                     R$ 19,90
+```
+
+------------------------------------------------------------------------
+
+## 22. Página de detalhe
+
+Detalhes são opcionais. A listagem deve resolver a maior parte da
+decisão.
+
+Estrutura:
+
+``` text
+← Voltar
+
+[imagem]
+
+Nome do produto
+R$ 34,90
+
+Descrição factual.
+
+Informações
+Serve 2–3 pessoas
+```
+
+Mostrar somente dados realmente cadastrados.
+
+Não inventar ingredientes, alergênicos, tamanho, avaliações ou
+informações nutricionais.
+
+Não existe CTA de compra.
+
+Uma orientação geral pode informar:
+
+> Faça seu pedido diretamente com nossa equipe.
+
+------------------------------------------------------------------------
+
+## 23. Favoritos
+
+Fora do MVP.
+
+Apesar de comum em referências de food apps, cria estado persistente sem
+benefício claro para uma visita ao bar.
+
+Reavaliar somente com evidência de uso.
+
+------------------------------------------------------------------------
+
+## 24. Fotografia
+
+Direção recomendada:
+
+-   iluminação quente;
+-   fundo escuro/neutro;
+-   comida reconhecível;
+-   enquadramento consistente;
+-   boa resolução;
+-   pouca poluição;
+-   proporções padronizadas.
+
+Uma foto ruim é pior do que nenhuma foto.
+
+Evitar imagens que não representem o produto realmente servido.
+
+------------------------------------------------------------------------
+
+## 25. Performance de imagens
+
+Utilizar:
+
+-   `next/image`;
+-   dimensões corretas;
+-   formatos modernos;
+-   lazy loading;
+-   placeholder;
+-   otimização de tamanho;
+-   prioridade apenas para imagens acima da dobra.
+
+O cardápio deve continuar útil em conexão móvel ruim.
+
+------------------------------------------------------------------------
+
+## 26. Loading
+
+Preferir skeletons que preservem a estrutura da página.
+
+Evitar spinner bloqueando toda a tela.
+
+Objetivos:
+
+-   evitar layout shift;
+-   transmitir progresso;
+-   permitir percepção rápida da estrutura.
+
+------------------------------------------------------------------------
+
+## 27. Estados de erro
+
+### Erro geral
+
+> Não foi possível carregar o cardápio.
+
+Botão:
+
+> Tentar novamente
+
+### Categoria vazia
+
+> Nenhum item disponível nesta categoria no momento.
+
+Nunca exibir mensagens técnicas de Next.js, Supabase ou banco para
+clientes.
+
+------------------------------------------------------------------------
+
+## 28. Interação
+
+Todos os elementos interativos precisam de:
+
+-   default;
+-   hover quando aplicável;
+-   pressed;
+-   focus-visible;
+-   disabled quando aplicável.
+
+Área mínima recomendada para controles: **44 × 44 px**.
+
+------------------------------------------------------------------------
+
+## 29. Motion
+
+Permitido:
+
+-   150--250 ms;
+-   feedback de toque;
+-   transições de chips;
+-   pequenas mudanças de estado;
+-   scroll suave quando apropriado.
+
+Evitar:
+
+-   parallax;
+-   animação de entrada de todos os cards;
+-   carrossel automático;
+-   animações decorativas pesadas.
+
+------------------------------------------------------------------------
+
+## 30. Acessibilidade
+
+Meta: WCAG AA quando aplicável.
+
+Obrigatório:
+
+-   contraste adequado;
+-   foco visível;
+-   HTML semântico;
+-   alt em imagens relevantes;
+-   controles nomeados;
+-   não depender somente de cor;
+-   zoom permitido;
+-   suporte a teclado;
+-   `prefers-reduced-motion`;
+-   tipografia confortável.
+
+A legibilidade é especialmente importante porque o produto será usado em
+ambiente noturno.
+
+------------------------------------------------------------------------
+
+## 31. Responsividade
+
+### Mobile --- prioridade
+
+320 px em diante.
+
+Uma coluna.
+
+### Tablet
+
+Conteúdo centralizado; cards de destaque podem utilizar duas colunas.
+
+### Desktop
+
+Não esticar o cardápio indefinidamente.
+
+``` css
+max-width: 1080px;
+margin-inline: auto;
+```
+
+O desktop continua sendo cardápio, não dashboard.
+
+------------------------------------------------------------------------
+
+## 32. Informações do bar
+
+No final ou em área secundária:
+
+-   endereço;
+-   horário;
+-   Instagram;
+-   contato;
+-   Wi-Fi, caso configurado;
+-   observações gerais.
+
+Não competir visualmente com produtos.
+
+------------------------------------------------------------------------
+
+## 33. Design do admin
+
+O painel administrativo prioriza produtividade e não precisa copiar a
+estética pública.
+
+Exemplo:
+
+``` text
+Produtos
+
+Buscar produto...
+
+Cervejas
+
+Heineken 600ml
+R$ 19,90
+Disponível ●
+Editar
+```
+
+Ações frequentes --- principalmente disponibilidade --- devem exigir
+poucos passos.
+
+------------------------------------------------------------------------
+
+## 34. Componentes sugeridos
+
+``` text
+components/
+├── ui/
+│   ├── button
+│   ├── badge
+│   ├── input
+│   ├── skeleton
+│   └── icon-button
+│
+└── menu/
+    ├── menu-header
+    ├── menu-hero
+    ├── search-field
+    ├── category-chip
+    ├── category-navigation
+    ├── category-section
+    ├── product-list-item
+    ├── featured-product-card
+    ├── product-image
+    ├── unavailable-badge
+    ├── empty-state
+    └── bar-information
+```
+
+Criar abstrações apenas quando houver repetição real.
+
+------------------------------------------------------------------------
+
+## 35. Conteúdo
+
+Nomes devem ser curtos e reconhecíveis.
+
+Bom:
+
+> Batata Frita Completa
+
+Descrição boa:
+
+> Batata frita com cheddar e bacon.
+
+Evitar copy publicitária genérica:
+
+> Uma incrível explosão de sabores que vai surpreender você!
+
+O objetivo é informar.
+
+------------------------------------------------------------------------
+
+## 36. Hierarquia do produto
+
+Prioridade:
+
+1.  nome;
+2.  preço;
+3.  imagem quando útil;
+4.  descrição;
+5.  disponibilidade;
+6.  informações complementares.
+
+O usuário nunca deve precisar abrir detalhes para descobrir preço.
+
+------------------------------------------------------------------------
+
+## 37. Orientação sobre pedidos
+
+Como a aplicação é somente consulta, pode existir uma mensagem única e
+discreta:
+
+> Consulte nosso cardápio e faça seu pedido diretamente com a equipe.
+
+Não repetir em todos os produtos.
+
+------------------------------------------------------------------------
+
+## 38. O que aproveitar das referências
+
+Aproveitar:
+
+-   fotografia forte;
+-   cards limpos;
+-   categorias visuais;
+-   chips;
+-   busca evidente;
+-   bom espaçamento;
+-   hierarquia;
+-   dark theme;
+-   preços claros;
+-   seções bem definidas.
+
+Não copiar:
+
+-   carrinho;
+-   botão +;
+-   checkout;
+-   delivery;
+-   perfil;
+-   rewards;
+-   quantidade;
+-   subtotal;
+-   avaliações fictícias.
+
+------------------------------------------------------------------------
+
+## 39. Estrutura conceitual mobile
+
+``` text
+┌──────────────────────────────┐
+│          RELICA'S            │
+│         ROCK & BAR           │
+│                              │
+│ 🔍 Buscar cerveja, drink...  │
+│                              │
+│ ┌──────────────────────────┐ │
+│ │ FOTO                     │ │
+│ │ Boa comida. Música boa.  │ │
+│ └──────────────────────────┘ │
+│                              │
+│ [Porções][Lanches][Cervejas]→│
+│                              │
+│ DESTAQUES                    │
+│                              │
+│ ┌────────────┐ ┌───────────┐ │
+│ │ foto       │ │ foto      │ │
+│ │ Batata     │ │ X-Burger  │ │
+│ │ R$ 34,90   │ │ R$ 27,00  │ │
+│ └────────────┘ └───────────┘ │
+│                              │
+│ PORÇÕES                      │
+│                              │
+│ [img] Batata Completa        │
+│       Cheddar + bacon        │
+│       R$ 34,90               │
+│ ──────────────────────────── │
+│                              │
+│ CERVEJAS                     │
+│                              │
+│ Heineken 600ml      R$ 19,90 │
+│ Spaten 600ml        R$ 16,00 │
+│ Original 600ml      R$ 16,00 │
+└──────────────────────────────┘
+```
+
+------------------------------------------------------------------------
+
+## 40. Regras para o Codex
+
+Antes de implementar qualquer UI pública, consultar este documento.
+
+### Não fazer
+
+-   criar carrinho;
+-   criar pedido;
+-   criar pagamento;
+-   adicionar botão `+`;
+-   criar quantidade;
+-   criar perfil do consumidor;
+-   inventar promoções;
+-   inventar avaliações;
+-   inventar informações dos produtos;
+-   criar filtros sem requisito;
+-   priorizar efeitos sobre performance.
+
+### Fazer
+
+-   mobile-first;
+-   utilizar tokens;
+-   manter acessibilidade;
+-   suportar produtos sem imagem;
+-   suportar listas grandes;
+-   preço sempre legível;
+-   respeitar disponibilidade;
+-   testar 320 px;
+-   preservar identidade do estabelecimento;
+-   manter interface focada em consulta.
+
+------------------------------------------------------------------------
+
+## 41. Conceitos explicitamente fora do domínio MVP
+
+Nenhum componente, rota, tabela ou estado relacionado aos conceitos
+abaixo deve ser criado sem alteração explícita do PRD:
+
+``` text
+Cart
+Basket
+Order
+OrderItem
+Checkout
+Payment
+PaymentMethod
+Quantity
+Delivery
+DeliveryAddress
+OrderHistory
+CustomerAccount
+Rewards
+Loyalty
+Coupon
+TableOrder
+KitchenTicket
+```
+
+------------------------------------------------------------------------
+
+## 42. Ordem de implementação visual
+
+1.  tokens globais;
+2.  tipografia;
+3.  container/layout;
+4.  header;
+5.  busca;
+6.  categorias;
+7.  ProductListItem;
+8.  CategorySection;
+9.  FeaturedProductCard;
+10. loading/empty/error;
+11. detalhe;
+12. informações do bar;
+13. responsividade;
+14. acessibilidade;
+15. performance.
+
+A fundação é:
+
+**categorias + produtos + busca + preços.**
+
+------------------------------------------------------------------------
+
+## 43. Teste de usabilidade no bar
+
+Testar com usuários reais sem explicar a interface.
+
+Exemplos:
+
+> Encontre o preço da Heineken.
+
+> Veja quais porções existem.
+
+> Encontre uma caipirinha.
+
+> Descubra quanto custa determinado whisky.
+
+> Encontre um item sem saber sua categoria.
+
+Observar:
+
+-   tempo;
+-   taps;
+-   scroll;
+-   hesitações;
+-   erros;
+-   busca;
+-   entendimento das categorias.
+
+------------------------------------------------------------------------
+
+## 44. Critérios de aceite UX
+
+O cardápio deve permitir que o usuário:
+
+-   abra diretamente pelo QR;
+-   não precise de login;
+-   reconheça o Relica's;
+-   veja conteúdo útil rapidamente;
+-   encontre busca;
+-   navegue categorias com uma mão;
+-   veja preço sem abrir detalhes;
+-   entenda produtos sem imagem;
+-   identifique indisponibilidade;
+-   navegue cardápios longos;
+-   use a interface a partir de 320 px;
+-   não confunda a aplicação com um sistema de pedidos.
+
+------------------------------------------------------------------------
+
+## 45. Definition of Done --- Design
+
+A experiência é considerada pronta quando uma pessoa consegue:
+
+1.  escanear o QR;
+2.  reconhecer o cardápio;
+3.  localizar uma categoria;
+4.  pesquisar;
+5.  comparar produtos e preços;
+6.  identificar indisponibilidade;
+7.  consultar detalhes;
+8.  retornar sem perder contexto.
+
+E principalmente:
+
+> **Em nenhum momento a interface deve fazer o cliente acreditar que
+> está realizando um pedido ou pagamento pelo sistema.**
+
+------------------------------------------------------------------------
+
+## 46. Norte de produto
+
+O objetivo não é criar um "iFood do Relica's".
+
+É criar **um excelente cardápio digital para uma pessoa que já está
+fisicamente no bar**.
+
+A experiência ideal é:
+
+``` text
+QR
+ ↓
+abriu
+ ↓
+entendeu
+ ↓
+encontrou
+ ↓
+escolheu
+```
+
+A simplicidade faz parte do produto.

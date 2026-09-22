@@ -16,13 +16,14 @@ export async function createClient() {
       getAll() {
         return cookieStore.getAll();
       },
-      setAll(cookiesToSet) {
+      setAll(cookiesToSet, _headers) {
         try {
           cookiesToSet.forEach(({ name, value, options }) => {
             cookieStore.set(name, value, options);
           });
         } catch {
-          // Server Components cannot write cookies; auth routes need a Proxy for refresh.
+          // Server Components cannot write cookies or cache headers;
+          // auth routes need a Proxy for session refresh.
         }
       },
     },

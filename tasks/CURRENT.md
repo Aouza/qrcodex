@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-006 — Create public establishment route and data loader`
+`TASK-010 — Add featured and unavailable states`
 
-Task file: `tasks/active/TASK-006-public-establishment-route.md`
+Task file: `tasks/active/TASK-010-featured-unavailable.md`
 
 ## Status
-IN_PROGRESS
+READY
 
 ## Rule
-Implement and verify TASK-006. The development seed has been applied to the current Supabase project; production must use a separate project before launch.
+TASK-010 is prepared but has not been started. The current Supabase project is development-only; production must use a separate project before launch.

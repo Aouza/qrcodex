@@ -16,11 +16,11 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 ## EPIC 02 — Public Menu
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-006 | Create public establishment route and data loader | IN_PROGRESS | TASK-004, TASK-005 |
-| TASK-007 | Build public menu shell/header and visual tokens | PLANNED | TASK-006 |
-| TASK-008 | Build category navigation | PLANNED | TASK-007 |
-| TASK-009 | Render products grouped by category | PLANNED | TASK-008 |
-| TASK-010 | Add featured and unavailable states | PLANNED | TASK-009 |
+| TASK-006 | Create public establishment route and data loader | DONE | TASK-004, TASK-005 |
+| TASK-007 | Build public menu shell/header and visual tokens | DONE | TASK-006 |
+| TASK-008 | Build category navigation | DONE | TASK-007 |
+| TASK-009 | Render products grouped by category | DONE | TASK-008 |
+| TASK-010 | Add featured and unavailable states | READY | TASK-009 |
 | TASK-011 | Add client-side menu search | PLANNED | TASK-009 |
 | TASK-012 | Add loading/empty/error states and mobile polish | PLANNED | TASK-010, TASK-011 |
 
