@@ -73,6 +73,10 @@ Product images live in Supabase Storage. Store paths/URLs in the product record 
 
 The public product list uses `next/image` with a remote pattern limited to the configured Supabase Storage origin (`/storage/v1/object/**`). If the storage task adopts a different delivery URL, update that pattern alongside the storage contract. The establishment logo still uses its existing unrestricted URL path until settings/storage define its source.
 
+The Relica's menu shell currently uses the optimized local `public/images/menu-editorial.webp` as a temporary, explicitly illustrative hero. It is scoped to the `relicas` slug so another tenant never inherits Relica's imagery. A future establishment setting can replace it with approved media; do not add a Storage field or uploader until that task. `tests/fixtures/images/fries.webp` is a development-only image fixture for responsive product-list checks, not public menu data and not an automatic product fallback.
+
+Category navigation uses optimized local illustrations in `public/images/categories/` for Relica's initial category slugs. A neutral image covers new categories and other establishments. Category names and ordering remain database-driven. The category image uploader and persisted media field belong to the later category administration task; no schema or Storage contract is introduced for these defaults.
+
 ## Error handling
 Expected validation/auth failures should produce user-friendly UI. Unexpected failures should not expose secrets or raw database errors to users.
 

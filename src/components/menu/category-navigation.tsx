@@ -1,13 +1,33 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 type CategoryLink = {
   id: string;
   name: string;
+  slug: string;
 };
 
-export function CategoryNavigation({ categories }: { categories: CategoryLink[] }) {
+const relicasCategoryImages: Record<string, string> = {
+  porcoes: "/images/categories/porcoes.webp",
+  lanches: "/images/categories/lanches.webp",
+  bebidas: "/images/categories/bebidas.webp",
+  "drinks-e-doses": "/images/categories/drinks-e-doses.webp",
+  cachacas: "/images/categories/cachacas.webp",
+  cervejas: "/images/categories/cervejas.webp",
+  caipirinhas: "/images/categories/caipirinhas.webp",
+  vinhos: "/images/categories/vinhos.webp",
+  whiskies: "/images/categories/whiskies.webp",
+};
+
+export function CategoryNavigation({
+  categories,
+  establishmentSlug,
+}: {
+  categories: CategoryLink[];
+  establishmentSlug: string;
+}) {
   const [activeId, setActiveId] = useState(`category-${categories[0]?.id}`);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const ignoreScrollUntil = useRef(0);
@@ -67,6 +87,9 @@ export function CategoryNavigation({ categories }: { categories: CategoryLink[] 
       <div ref={scrollerRef} className="public-menu__inner public-menu__category-nav-inner">
         {categories.map((category) => {
           const target = `category-${category.id}`;
+          const imageSrc = establishmentSlug === "relicas"
+            ? relicasCategoryImages[category.slug] ?? "/images/categories/generic.webp"
+            : "/images/categories/generic.webp";
           return (
             <a
               key={category.id}
@@ -77,7 +100,10 @@ export function CategoryNavigation({ categories }: { categories: CategoryLink[] 
                 setActiveId(target);
               }}
             >
-              {category.name}
+              <span className="public-menu__category-image" aria-hidden="true">
+                <Image src={imageSrc} alt="" width={64} height={64} />
+              </span>
+              <span className="public-menu__category-label">{category.name}</span>
             </a>
           );
         })}

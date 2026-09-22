@@ -60,5 +60,9 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 
 > Note: if task IDs are referenced in code/PRs, keep them stable. Correct typos in dependency text without renumbering tasks.
 
+Media follow-up: TASK-021 handles real product image upload/replacement. TASK-025 should define how an approved establishment editorial image replaces the temporary illustrated menu hero.
+
+Category media follow-up: TASK-022 should define a persisted category image field and admin upload/replacement flow for the temporary category illustrations. Until then, the public menu uses local Relica's defaults and a neutral fallback.
+
 ## Post-MVP parking lot
 Not scheduled: multi-establishment selection UI, analytics, search analytics, happy hour automation, promotions, events/shows, call waiter, ordering, commandas, payment, loyalty, commercial SaaS onboarding/billing.

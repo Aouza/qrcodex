@@ -327,6 +327,12 @@ Evitar carrossel automático.
 
 Uma única peça editorial forte tende a funcionar melhor.
 
+Enquanto não houver foto aprovada do estabelecimento, o menu usa uma
+ilustração editorial local, rotulada como `Arte ilustrativa`. Ela não
+representa o local nem um produto específico. A troca por mídia real será
+configurável no admin futuramente. Fotos geradas para testes de produtos
+não devem aparecer automaticamente em itens sem imagem cadastrada.
+
 ------------------------------------------------------------------------
 
 ## 12. Busca
@@ -371,7 +377,11 @@ Vinhos
 Whiskies
 ```
 
-Categorias devem ser horizontalmente roláveis.
+Categorias devem ser horizontalmente roláveis. Cada item tem uma imagem
+ilustrativa quadrada acima do nome, com dimensões fixas para não deslocar
+a navegação durante o carregamento. O nome continua visível e é a fonte
+de identificação acessível; a imagem é decorativa. Categorias novas usam
+uma ilustração neutra até receberem mídia própria no admin.
 
 Estado ativo:
 
@@ -396,10 +406,10 @@ Comportamento:
 
 1.  toca em Cervejas;
 2.  scroll para a seção;
-3.  chip Cervejas fica ativo;
+3.  item Cervejas fica ativo;
 4.  conforme o scroll manual avança, a categoria ativa acompanha a
     seção;
-5.  o chip ativo permanece visível horizontalmente.
+5.  o item ativo permanece visível horizontalmente.
 
 Respeitar `prefers-reduced-motion`.
 

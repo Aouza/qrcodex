@@ -21,6 +21,7 @@ The MVP is a menu presentation/management system, not a restaurant operations pl
 ### Public menu
 - permanent URL reachable by QR code;
 - establishment identity;
+- a compact editorial menu image; an explicitly illustrative default may be used until approved establishment media is available;
 - active categories ordered by position;
 - active products grouped by category;
 - name, optional description, price and optional image;
@@ -63,8 +64,12 @@ Unavailable products remain visible and show `Esgotado` in MVP.
 
 Images are optional. The UI must remain polished without them.
 
+Generated sample product photography is for development tests only, not an automatic fallback for products on the public menu. Product images shown to customers must be attached to real products and may later be replaced through the admin image flow.
+
 ## 8. Category rules
 Categories are data, not code constants. Admin can create, edit, order and activate/deactivate them. Public menu shows active categories in configured order.
+
+The public category navigation presents an illustrative image or icon above each category name. Relica's initial categories may use local default artwork; newly created categories use a neutral illustration until category image management is available in the admin. Names and order always come from category data, not the artwork mapping.
 
 ## 9. Search
 Search should be case-insensitive and match product name and description. Only public/active products should appear. Search UX must not require a page reload.

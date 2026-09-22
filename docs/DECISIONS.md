@@ -31,3 +31,11 @@ Categories guarantee uniqueness for `(id, establishment_id)`. Products reference
 ## ADR-008 — Defer multi-establishment selection
 **Status:** Accepted  
 `establishment_users` permits multiple memberships. During the MVP, a user with exactly one membership operates in that establishment automatically; every admin operation verifies membership server-side and RLS enforces isolation. A user with multiple memberships is not assigned an establishment implicitly. Selection UI is a future capability, not part of the MVP.
+
+## ADR-009 — Separate illustrative defaults from product photography
+**Status:** Accepted
+Use a labeled, generated editorial illustration as a temporary Relica's menu hero while approved establishment media is unavailable. Scope the static fallback to Relica's; other establishments must not inherit it. Keep generated food photos only as development test fixtures; never attach them automatically to public products or imply they depict items sold by Relica's. Product images remain optional and are replaceable through the later admin upload flow. A future establishment setting may replace the editorial hero after its media contract is defined.
+
+## ADR-010 — Illustrative category navigation defaults
+**Status:** Accepted
+Render a compact category illustration above each category name. Relica's seeded categories use local, optimized artwork matched by slug; categories added later and other establishments receive a neutral illustration. Category identity, order and visibility still come from the database. Persisted category images and replacement controls are deferred to category administration, without changing the schema for temporary artwork.

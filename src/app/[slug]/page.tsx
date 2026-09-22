@@ -37,6 +37,25 @@ export default async function PublicMenuPage({
         </div>
       </header>
 
+      {menu.establishment.slug === "relicas" && (
+        <section className="public-menu__inner" aria-labelledby="menu-hero-title">
+          <div className="public-menu__hero">
+            <Image
+              src="/images/menu-editorial.webp"
+              alt="Ilustração de guitarra, amplificador e copo de cerveja"
+              fill
+              sizes="(max-width: 1080px) 100vw, 1080px"
+              className="public-menu__hero-image"
+              fetchPriority="high"
+            />
+            <div className="public-menu__hero-copy">
+              <h2 id="menu-hero-title">Boa comida.<br />Música boa.</h2>
+              <p>Arte ilustrativa</p>
+            </div>
+          </div>
+        </section>
+      )}
+
       <div className="public-menu__inner public-menu__intro">
         <h2 id="menu-categories">Cardápio</h2>
         <span>{menu.categories.length} categorias</span>
@@ -44,7 +63,8 @@ export default async function PublicMenuPage({
 
       {menu.categories.length > 0 && (
         <CategoryNavigation
-          categories={menu.categories.map(({ id, name }) => ({ id, name }))}
+          establishmentSlug={menu.establishment.slug}
+          categories={menu.categories.map(({ id, name, slug }) => ({ id, name, slug }))}
         />
       )}
 
