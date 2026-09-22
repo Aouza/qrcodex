@@ -1,0 +1,214 @@
+.page {
+  flex: 1;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  color-scheme: dark;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.header {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-soft);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(100%, 1080px);
+  min-height: 72px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.context {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.content {
+  width: min(100%, 448px);
+  margin-inline: auto;
+  padding: 72px 16px 48px;
+}
+
+.panel {
+  border-top: 2px solid var(--color-accent);
+  padding-top: 24px;
+}
+
+.eyebrow {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.panel h1 {
+  margin-top: 12px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.description {
+  margin-top: 12px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.description strong {
+  color: var(--color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+:global(.admin-auth__form) {
+  display: flex;
+  flex-direction: column;
+  margin-top: 28px;
+}
+
+:global(.admin-auth__form) label {
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+:global(.admin-auth__form) input {
+  width: 100%;
+  min-height: 46px;
+  margin-bottom: 20px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 16px;
+}
+
+:global(.admin-auth__form) input::placeholder {
+  color: var(--color-text-muted);
+}
+
+:global(.admin-auth__form) input:hover {
+  border-color: var(--color-text-muted);
+}
+
+:global(.admin-auth__form) input:focus-visible {
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+:global(.admin-auth__form) button,
+:global(.admin-auth__signout) button {
+  min-height: 46px;
+  padding: 11px 16px;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+:global(.admin-auth__form) button:hover,
+:global(.admin-auth__signout) button:hover {
+  background: var(--color-accent-hover);
+}
+
+:global(.admin-auth__form) button:focus-visible,
+:global(.admin-auth__signout) button:focus-visible,
+.footerLink:focus-visible,
+.brand:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 3px;
+}
+
+:global(.admin-auth__form) button:disabled,
+:global(.admin-auth__signout) button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+:global(.admin-auth__error) {
+  margin: -4px 0 16px;
+  color: #ff8c90;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+:global(.admin-auth__notice) {
+  margin-top: 24px;
+  padding: 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+:global(.admin-access__session-link) {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--color-accent-hover);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+:global(.admin-access__session-link:focus-visible) {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 3px;
+}
+
+:global(.admin-auth__signout) {
+  margin-top: 28px;
+}
+
+:global(.admin-auth__signout) button {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+:global(.admin-auth__signout) button:hover {
+  border-color: var(--color-text-secondary);
+  background: var(--color-surface-hover);
+}
+
+.footerLink {
+  display: inline-block;
+  margin-top: 40px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.footerLink:hover,
+.brand:hover {
+  color: var(--color-accent-hover);
+}
+
+@media (min-width: 720px) {
+  .headerInner {
+    padding-inline: 32px;
+  }
+
+  .content {
+    padding-top: 104px;
+  }
+}

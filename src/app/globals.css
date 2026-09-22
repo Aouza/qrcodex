@@ -3,6 +3,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-bg: #0b0b0b;
+  --color-bg-soft: #101010;
+  --color-surface: #151515;
+  --color-surface-elevated: #1c1c1c;
+  --color-surface-hover: #242424;
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #b3b3b3;
+  --color-text-muted: #7d7d7d;
+  --color-text-inverse: #111111;
+  --color-accent: #f4b400;
+  --color-accent-hover: #ffc329;
+  --color-accent-soft: #2a230d;
+  --color-accent-foreground: #111111;
+  --color-border: #292929;
+  --color-border-strong: #3a3a3a;
+  --color-danger: #e5484d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,22 +67,6 @@ a {
 }
 
 .public-menu {
-  --color-bg: #0b0b0b;
-  --color-bg-soft: #101010;
-  --color-surface: #151515;
-  --color-surface-elevated: #1c1c1c;
-  --color-surface-hover: #242424;
-  --color-text-primary: #f5f5f5;
-  --color-text-secondary: #b3b3b3;
-  --color-text-muted: #7d7d7d;
-  --color-text-inverse: #111111;
-  --color-accent: #f4b400;
-  --color-accent-hover: #ffc329;
-  --color-accent-soft: #2a230d;
-  --color-accent-foreground: #111111;
-  --color-border: #292929;
-  --color-border-strong: #3a3a3a;
-
   min-height: 100vh;
   background: var(--color-bg);
   color: var(--color-text-primary);

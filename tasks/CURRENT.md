@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-013 — Implement admin login/logout`
+`TASK-015 — Build admin dashboard/navigation shell`
 
-Task file: `tasks/active/TASK-013-admin-auth.md`
+Task file: `tasks/active/TASK-015-admin-dashboard-shell.md`
 
 ## Status
 READY
 
 ## Rule
-TASK-013 is prepared but has not been started. The current Supabase project is development-only; production must use a separate project before launch.
+TASK-014 is complete. TASK-015 may build the authenticated, mobile-friendly admin dashboard and navigation shell using the server-resolved establishment. Do not begin product/category CRUD in this task. Email invitations/custom SMTP and multi-establishment selection remain deferred. The current Supabase project is development-only; production must use a separate project before launch.

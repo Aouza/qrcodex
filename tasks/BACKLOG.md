@@ -27,9 +27,9 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 ## EPIC 03 — Authentication & Admin Shell
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-013 | Implement admin login/logout | READY | TASK-004 |
-| TASK-014 | Protect admin routes and resolve current establishment | PLANNED | TASK-013 |
-| TASK-015 | Build admin dashboard/navigation shell | PLANNED | TASK-014 |
+| TASK-013 | Implement admin login/logout | DONE | TASK-004 |
+| TASK-014 | Protect admin routes and resolve current establishment | DONE | TASK-013 |
+| TASK-015 | Build admin dashboard/navigation shell | READY | TASK-014 |
 
 ## EPIC 04 — Product Administration
 | ID | Task | Status | Depends on |

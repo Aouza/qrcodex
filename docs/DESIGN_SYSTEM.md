@@ -782,6 +782,12 @@ Não competir visualmente com produtos.
 O painel administrativo prioriza produtividade e não precisa copiar a
 estética pública.
 
+A tela de login compartilha os tokens de preto, cinza e dourado do cardápio,
+sem copiar seus elementos editoriais. Usa tipografia compacta, campos de
+toque confortáveis e formulário sem card decorativo. Erros de autenticação
+aparecem junto ao formulário, sem exibir detalhes internos; o estado
+conectado oferece uma ação clara de saída.
+
 Exemplo:
 
 ``` text

@@ -73,6 +73,19 @@ Only `SELECT` is granted to `anon` on establishments, categories and products. A
 ### Authenticated admins
 A user may mutate/read admin data only for establishments linked to their `auth.uid()` in `establishment_users`. `authenticated` has `SELECT`, `INSERT`, `UPDATE` and `DELETE` grants on the four tables, but each operation is restricted by tenant RLS. This includes membership rows: an existing member may manage membership only within that establishment; a client cannot create membership in an unrelated establishment. Initial membership provisioning therefore requires a trusted administrative path.
 
+Creating an Auth user manually does not create an `establishment_users` row. After the identity exists, its initial membership must be provisioned from a trusted database/admin context. Login alone never establishes tenant authorization.
+
+For the initial development administrator, run the parameterized bootstrap script after creating the Auth user. It fails unless the email and establishment slug each resolve exactly once and never stores those values in the repository:
+
+```powershell
+psql $env:DATABASE_URL -X -v ON_ERROR_STOP=1 `
+  -v admin_email='admin@example.com' `
+  -v establishment_slug='relicas' `
+  -f supabase/bootstrap/014_initial_admin_membership.sql
+```
+
+Run this only from a trusted terminal with the direct database connection. It is bootstrap administration, not an application endpoint or public sign-up flow.
+
 The policies call `private.is_establishment_member(uuid)`, a `SECURITY DEFINER` function with an empty search path. It checks only the caller's `auth.uid()` and bypasses RLS on `establishment_users`, avoiding recursive membership policies. Keep `private` out of the API's exposed schemas. Authenticated table reads are membership-scoped, including active public records of other establishments; a public menu for another tenant must use the anonymous read path.
 
 Never trust an `establishment_id` supplied by the browser without authorization enforcement.

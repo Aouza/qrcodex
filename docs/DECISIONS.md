@@ -43,3 +43,7 @@ Render a compact category illustration above each category name. Relica's seeded
 ## ADR-011 — Neutral empty-state thumbnail for products without photos
 **Status:** Accepted
 Show the generic plate illustration when a product has no `image_url`, preserving list alignment without depicting a specific item. Keep `image_url` null in the database; a real uploaded photo replaces the UI-only fallback automatically. Development food photography must never be used as a product default.
+
+## ADR-012 — Bootstrap the initial administrator manually
+**Status:** Accepted
+Do not expose public administrator sign-up. During MVP development, create the initial email/password user manually through Supabase Authentication and provision its `establishment_users` row from a trusted administrative context. Do not add a privileged Auth key to the application for bootstrap. Email invitations and custom SMTP are deferred onboarding capabilities because new Free-tier Supabase projects cannot customize Auth email templates with the default SMTP provider.

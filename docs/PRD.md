@@ -35,6 +35,7 @@ The public menu distinguishes an establishment with no active categories, one wi
 
 ### Admin
 - email/password authentication;
+- no public administrator sign-up;
 - protected admin routes;
 - product list/filter;
 - create/edit product;
@@ -101,4 +102,4 @@ The data model supports users belonging to multiple establishments. The MVP auto
 5. Customer refreshes and sees the same product marked `Esgotado`.
 
 ## 14. Future opportunities — not commitments
-Analytics, happy-hour automation, promotions, events/shows, call-waiter, ordering, tabs, payments, loyalty and multi-tenant commercial plans.
+Analytics, happy-hour automation, promotions, events/shows, call-waiter, ordering, tabs, payments, loyalty, administrator onboarding by email invitation and multi-tenant commercial plans.

@@ -63,7 +63,16 @@ All tenant-owned records use `establishment_id`. Admin authorization must derive
 Product/category tenant integrity is enforced in Postgres with a unique `(id, establishment_id)` constraint on categories and a composite foreign key from products `(category_id, establishment_id)` to categories `(id, establishment_id)`.
 
 ## Supabase clients
-`src/lib/supabase/client.ts` creates the browser client and `src/lib/supabase/server.ts` creates a request-scoped server client with cookie access. `src/lib/supabase/public.ts` creates a cookie-free anonymous server client for public menu reads, so an admin session cannot narrow visibility on another establishment's public route. All three use the publishable key, so RLS applies to their queries. No privileged Supabase client is part of the MVP foundation. Configure the Next.js Proxy for session refresh before implementing protected admin authentication; the browser/server clients alone do not refresh cookies from Server Components.
+`src/lib/supabase/client.ts` creates the browser client and `src/lib/supabase/server.ts` creates a request-scoped server client with cookie access. `src/lib/supabase/public.ts` creates a cookie-free anonymous server client for public menu reads, so an admin session cannot narrow visibility on another establishment's public route. All three use the publishable key, so RLS applies to their queries. No privileged Supabase client is part of the MVP foundation.
+
+`src/proxy.ts` runs only on `/admin/:path*`, refreshes expired sessions and performs an optimistic redirect to `/admin/login` when no signed claim is available. The public menu stays outside this Proxy. Proxy is not an authorization boundary: protected Server Components and every future admin mutation must call the server-only access layer, which validates the user with Supabase Auth, derives membership from `establishment_users` and relies on RLS as the final tenant boundary. The browser never chooses the resolved `establishment_id`.
+
+`src/lib/auth/get-admin-access.ts` permits tenant data only when the authenticated user has exactly one membership. Zero memberships produce an access-not-configured state; multiple memberships produce a future-selection state without selecting either tenant. Multi-establishment selection remains outside the MVP.
+
+### Development administrator bootstrap
+The MVP has no public sign-up. For development, create the initial administrator manually in Supabase Dashboard through `Authentication > Users > Create new user`, with an email and password. Do not add a secret/service-role key to the application for this bootstrap.
+
+The Auth user and its establishment membership are separate records. After the user exists, provision its initial `establishment_users` row from a trusted database/admin context with `supabase/bootstrap/014_initial_admin_membership.sql`. Custom SMTP and email-invitation onboarding are future capabilities because new Free-tier Supabase projects do not support customizing Auth email templates with the default SMTP provider.
 
 ## Public menu data
 `src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
@@ -96,4 +105,4 @@ Minimum MVP checks:
 
 Do not introduce a heavy testing stack before a task needs it; when test tooling is added, document the command here.
 
-The public-menu featured selection and search filtering have focused tests in `tests/get-featured-products.test.mjs` and `tests/filter-menu-categories.test.mjs`, run with `node --test tests/get-featured-products.test.mjs tests/filter-menu-categories.test.mjs` on the workspace Node 24 runtime.
+The public-menu featured selection and search filtering have focused tests in `tests/get-featured-products.test.mjs` and `tests/filter-menu-categories.test.mjs`. Membership cardinality is covered by `tests/resolve-membership.test.mjs`. Run them with `node --test tests/*.test.mjs` on the workspace Node 24 runtime.
