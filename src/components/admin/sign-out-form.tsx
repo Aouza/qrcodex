@@ -2,23 +2,27 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { signOut } from "./actions";
+import { signOut } from "@/app/admin/actions";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
     <button type="submit" disabled={pending}>
-      {pending ? "Saindo..." : "Sair da conta"}
+      {pending ? "Saindo..." : "Sair"}
     </button>
   );
 }
 
-export function LogoutForm() {
+type SignOutFormProps = {
+  className?: string;
+};
+
+export function SignOutForm({ className }: SignOutFormProps) {
   const [message, action] = useActionState(signOut, null);
 
   return (
-    <form action={action} className="admin-auth__signout">
+    <form action={action} className={className}>
       {message && <p className="admin-auth__error" role="alert">{message}</p>}
       <SubmitButton />
     </form>

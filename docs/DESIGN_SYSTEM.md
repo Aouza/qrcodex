@@ -806,6 +806,30 @@ Editar
 Ações frequentes --- principalmente disponibilidade --- devem exigir
 poucos passos.
 
+O shell autenticado usa uma superfície clara e neutra para separar o
+trabalho administrativo da experiência pública escura. Em telas amplas,
+a navegação fica em uma lateral compacta; em telas pequenas, vira uma
+faixa horizontal rolável abaixo do cabeçalho. O estabelecimento atual
+permanece visível na lateral, e acesso ao cardápio e encerramento da sessão
+continuam disponíveis sem competir com a tarefa principal.
+
+Áreas ainda não implementadas devem mostrar um estado pendente intencional,
+sem controles inativos que pareçam funcionais. Painéis e listas evitam
+decoração editorial, priorizando leitura, comparação e ações recorrentes.
+
+A listagem administrativa de produtos usa linhas compactas, com nome e
+categoria como identificação principal, preço alinhado e estados textuais
+de disponibilidade e atividade. Busca e filtro de categoria aparecem antes
+da lista e podem ser combinados. Em telas pequenas, preço e identidade
+ocupam a primeira linha e os estados passam para uma segunda linha, sem
+rolagem horizontal da página.
+
+O formulário de produto mantém rótulos acima dos campos, preço com prefixo
+visual `R$`, seletor de categoria e estados binários em linhas com checkbox,
+título e descrição curta. Erros aparecem junto ao campo correspondente e a
+mensagem geral não expõe detalhes do banco. No celular, ações ocupam a largura
+disponível; em telas maiores, ficam alinhadas ao final do formulário.
+
 ------------------------------------------------------------------------
 
 ## 34. Componentes sugeridos

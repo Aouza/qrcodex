@@ -31,16 +31,5 @@ export async function signIn(
       : "Não foi possível entrar agora. Tente novamente.";
   }
 
-  redirect("/admin/login");
-}
-
-export async function signOut(): Promise<string | null> {
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signOut();
-
-  if (error) {
-    return "Não foi possível sair agora. Tente novamente.";
-  }
-
-  redirect("/admin/login");
+  redirect("/admin");
 }

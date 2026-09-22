@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-015 — Build admin dashboard/navigation shell`
+`TASK-017 — Add create-product flow with validation`
 
-Task file: `tasks/active/TASK-015-admin-dashboard-shell.md`
+Task file: `tasks/active/TASK-017-create-product.md`
 
 ## Status
-READY
+IN_PROGRESS
 
 ## Rule
-TASK-014 is complete. TASK-015 may build the authenticated, mobile-friendly admin dashboard and navigation shell using the server-resolved establishment. Do not begin product/category CRUD in this task. Email invitations/custom SMTP and multi-establishment selection remain deferred. The current Supabase project is development-only; production must use a separate project before launch.
+TASK-017 is implementing a validated create-product flow that derives the establishment server-side. Do not implement product editing, fast availability changes, deactivate/delete or image upload yet. Email invitations/custom SMTP and multi-establishment selection remain deferred. The current Supabase project is development-only; production must use a separate project before launch.

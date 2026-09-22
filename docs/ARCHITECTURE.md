@@ -69,6 +69,8 @@ Product/category tenant integrity is enforced in Postgres with a unique `(id, es
 
 `src/lib/auth/get-admin-access.ts` permits tenant data only when the authenticated user has exactly one membership. Zero memberships produce an access-not-configured state; multiple memberships produce a future-selection state without selecting either tenant. Multi-establishment selection remains outside the MVP.
 
+Protected admin pages live under the URL-neutral `src/app/admin/(protected)` route group. Its shared layout calls `getAdminAccess` before rendering the dashboard shell, so the dashboard and all management destinations inherit the same server-side session and membership boundary. The shell provides navigation only; each later mutation must still perform its own membership check.
+
 ### Development administrator bootstrap
 The MVP has no public sign-up. For development, create the initial administrator manually in Supabase Dashboard through `Authentication > Users > Create new user`, with an email and password. Do not add a secret/service-role key to the application for this bootstrap.
 
@@ -106,3 +108,7 @@ Minimum MVP checks:
 Do not introduce a heavy testing stack before a task needs it; when test tooling is added, document the command here.
 
 The public-menu featured selection and search filtering have focused tests in `tests/get-featured-products.test.mjs` and `tests/filter-menu-categories.test.mjs`. Membership cardinality is covered by `tests/resolve-membership.test.mjs`. Run them with `node --test tests/*.test.mjs` on the workspace Node 24 runtime.
+
+The admin product page resolves authorization again in its server-only loader, explicitly scopes category and product reads to the resolved establishment, and hands the safe result to a Client Component for in-memory name search and category filtering. It accepts no tenant identifier from the browser. Filter behavior is covered by `tests/filter-admin-products.test.mjs`.
+
+Product creation uses a Server Action under `/admin/products/new`. The action resolves admin access independently, validates the form with Zod, parses the textual BRL amount into integer cents, verifies the selected active category against both its ID and the resolved establishment, and inserts with the server-derived `establishment_id`. It then revalidates the admin list and public menu. Money parsing and boundary validation are covered by `tests/product-validation.test.mjs`.

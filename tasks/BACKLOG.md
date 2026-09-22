@@ -29,13 +29,13 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 |---|---|---|---|
 | TASK-013 | Implement admin login/logout | DONE | TASK-004 |
 | TASK-014 | Protect admin routes and resolve current establishment | DONE | TASK-013 |
-| TASK-015 | Build admin dashboard/navigation shell | READY | TASK-014 |
+| TASK-015 | Build admin dashboard/navigation shell | DONE | TASK-014 |
 
 ## EPIC 04 — Product Administration
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-016 | Build admin product list and category filtering | PLANNED | TASK-015 |
-| TASK-017 | Add create-product flow with validation | PLANNED | TASK-016 |
+| TASK-016 | Build admin product list and category filtering | DONE | TASK-015 |
+| TASK-017 | Add create-product flow with validation | IN_PROGRESS | TASK-016 |
 | TASK-018 | Add edit-product flow | PLANNED | TASK-017 |
 | TASK-019 | Add fast availability toggle | PLANNED | TASK-018 |
 | TASK-020 | Add product deactivate/delete flow | PLANNED | TASK-018 |

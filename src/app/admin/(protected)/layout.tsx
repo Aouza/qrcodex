@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { AuthShell } from "@/components/admin/auth-shell";
 import { getAdminAccess } from "@/lib/auth/get-admin-access";
 
-export const metadata: Metadata = {
-  title: "Administração | Relica's",
-};
-
-export default async function AdminPage() {
+export default async function ProtectedAdminLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const access = await getAdminAccess();
 
   if (access.status === "unauthenticated") {
@@ -52,19 +52,8 @@ export default async function AdminPage() {
   }
 
   return (
-    <AuthShell
-      eyebrow="Acesso confirmado"
-      title={access.establishment.name}
-      description="Sua sessão e seu vínculo com o estabelecimento foram confirmados."
-      footerHref="/relicas"
-      footerLabel="Ver cardápio"
-    >
-      <p className="admin-auth__notice" role="status">
-        O painel administrativo será construído na próxima etapa.
-      </p>
-      <Link href="/admin/login" className="admin-access__session-link">
-        Gerenciar sessão
-      </Link>
-    </AuthShell>
+    <AdminShell establishment={access.establishment} email={access.email}>
+      {children}
+    </AdminShell>
   );
 }
