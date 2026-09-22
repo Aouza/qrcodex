@@ -71,6 +71,8 @@ Product/category tenant integrity is enforced in Postgres with a unique `(id, es
 ## Images
 Product images live in Supabase Storage. Store paths/URLs in the product record according to the storage implementation chosen in the relevant task. Images are optional and should be optimized in delivery.
 
+When `products.image_url` is null, the public list displays the local neutral `public/images/categories/generic.webp` thumbnail as an empty state. This does not write a fallback URL to the product record and is replaced automatically by a real product image.
+
 The public product list uses `next/image` with a remote pattern limited to the configured Supabase Storage origin (`/storage/v1/object/**`). If the storage task adopts a different delivery URL, update that pattern alongside the storage contract. The establishment logo still uses its existing unrestricted URL path until settings/storage define its source.
 
 The Relica's menu shell currently uses the optimized local `public/images/menu-editorial.webp` as a temporary, explicitly illustrative hero. It is scoped to the `relicas` slug so another tenant never inherits Relica's imagery. A future establishment setting can replace it with approved media; do not add a Storage field or uploader until that task. `tests/fixtures/images/fries.webp` is a development-only image fixture for responsive product-list checks, not public menu data and not an automatic product fallback.

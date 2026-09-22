@@ -39,3 +39,7 @@ Use a labeled, generated editorial illustration as a temporary Relica's menu her
 ## ADR-010 — Illustrative category navigation defaults
 **Status:** Accepted
 Render a compact category illustration above each category name. Relica's seeded categories use local, optimized artwork matched by slug; categories added later and other establishments receive a neutral illustration. Category identity, order and visibility still come from the database. Persisted category images and replacement controls are deferred to category administration, without changing the schema for temporary artwork.
+
+## ADR-011 — Neutral empty-state thumbnail for products without photos
+**Status:** Accepted
+Show the generic plate illustration when a product has no `image_url`, preserving list alignment without depicting a specific item. Keep `image_url` null in the database; a real uploaded photo replaces the UI-only fallback automatically. Development food photography must never be used as a product default.

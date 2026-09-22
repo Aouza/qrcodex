@@ -331,7 +331,9 @@ Enquanto não houver foto aprovada do estabelecimento, o menu usa uma
 ilustração editorial local, rotulada como `Arte ilustrativa`. Ela não
 representa o local nem um produto específico. A troca por mídia real será
 configurável no admin futuramente. Fotos geradas para testes de produtos
-não devem aparecer automaticamente em itens sem imagem cadastrada.
+não devem aparecer automaticamente em itens sem imagem cadastrada. Esses
+itens mostram uma miniatura ilustrativa neutra de estado vazio, no mesmo
+espaço reservado às fotos reais, sem sugerir a aparência do produto.
 
 ------------------------------------------------------------------------
 

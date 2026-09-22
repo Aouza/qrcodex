@@ -62,7 +62,7 @@ A product has name, optional description, price, category, optional image, avail
 
 Unavailable products remain visible and show `Esgotado` in MVP.
 
-Images are optional. The UI must remain polished without them.
+Images are optional. Products without an image show a neutral illustrative empty-state thumbnail, never a generated representation of the specific item.
 
 Generated sample product photography is for development tests only, not an automatic fallback for products on the public menu. Product images shown to customers must be attached to real products and may later be replaced through the admin image flow.
 

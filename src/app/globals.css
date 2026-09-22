@@ -364,11 +364,11 @@ a {
   white-space: nowrap;
 }
 
-.public-menu__product--with-image .public-menu__product-main {
+.public-menu__product-main {
   display: block;
 }
 
-.public-menu__product--with-image strong {
+.public-menu__product strong {
   display: block;
   margin-top: 8px;
 }
@@ -432,11 +432,11 @@ a {
     font-size: 24px;
   }
 
-  .public-menu__product--with-image .public-menu__product-main {
+  .public-menu__product-main {
     display: flex;
   }
 
-  .public-menu__product--with-image strong {
+  .public-menu__product strong {
     margin-top: 0;
   }
 }
