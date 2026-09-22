@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-010 — Add featured and unavailable states`
+`TASK-011 — Add client-side menu search`
 
-Task file: `tasks/active/TASK-010-featured-unavailable.md`
+Task file: `tasks/active/TASK-011-menu-search.md`
 
 ## Status
 READY
 
 ## Rule
-TASK-010 is prepared but has not been started. The current Supabase project is development-only; production must use a separate project before launch.
+TASK-011 is prepared but has not been started. The current Supabase project is development-only; production must use a separate project before launch.

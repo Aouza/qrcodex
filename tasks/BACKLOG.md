@@ -20,8 +20,8 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-007 | Build public menu shell/header and visual tokens | DONE | TASK-006 |
 | TASK-008 | Build category navigation | DONE | TASK-007 |
 | TASK-009 | Render products grouped by category | DONE | TASK-008 |
-| TASK-010 | Add featured and unavailable states | READY | TASK-009 |
-| TASK-011 | Add client-side menu search | PLANNED | TASK-009 |
+| TASK-010 | Add featured and unavailable states | DONE | TASK-009 |
+| TASK-011 | Add client-side menu search | READY | TASK-009 |
 | TASK-012 | Add loading/empty/error states and mobile polish | PLANNED | TASK-010, TASK-011 |
 
 ## EPIC 03 — Authentication & Admin Shell

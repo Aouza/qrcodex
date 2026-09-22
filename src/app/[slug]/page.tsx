@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CategoryNavigation } from "@/components/menu/category-navigation";
 import { ProductListItem } from "@/components/menu/product-list-item";
+import { getFeaturedProducts } from "@/lib/menu/get-featured-products";
 import { loadPublicMenu } from "@/lib/menu/load-public-menu";
 
 export default async function PublicMenuPage({
@@ -15,6 +16,8 @@ export default async function PublicMenuPage({
   if (!menu) {
     notFound();
   }
+
+  const featuredProducts = getFeaturedProducts(menu.categories);
 
   return (
     <main className="public-menu">
@@ -66,6 +69,17 @@ export default async function PublicMenuPage({
           establishmentSlug={menu.establishment.slug}
           categories={menu.categories.map(({ id, name, slug }) => ({ id, name, slug }))}
         />
+      )}
+
+      {featuredProducts.length > 0 && (
+        <section className="public-menu__inner public-menu__featured" aria-labelledby="menu-featured">
+          <h2 id="menu-featured">Destaques</h2>
+          <ul className="public-menu__featured-products">
+            {featuredProducts.map((product) => (
+              <ProductListItem key={product.id} product={product} featured />
+            ))}
+          </ul>
+        </section>
       )}
 
       <section className="public-menu__inner public-menu__content" aria-labelledby="menu-categories">

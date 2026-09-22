@@ -66,7 +66,7 @@ Product/category tenant integrity is enforced in Postgres with a unique `(id, es
 `src/lib/supabase/client.ts` creates the browser client and `src/lib/supabase/server.ts` creates a request-scoped server client with cookie access. `src/lib/supabase/public.ts` creates a cookie-free anonymous server client for public menu reads, so an admin session cannot narrow visibility on another establishment's public route. All three use the publishable key, so RLS applies to their queries. No privileged Supabase client is part of the MVP foundation. Configure the Next.js Proxy for session refresh before implementing protected admin authentication; the browser/server clients alone do not refresh cookies from Server Components.
 
 ## Public menu data
-`src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Unavailable products remain in the result; visual treatment follows in the public-menu tasks.
+`src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
 
 ## Images
 Product images live in Supabase Storage. Store paths/URLs in the product record according to the storage implementation chosen in the relevant task. Images are optional and should be optimized in delivery.
@@ -91,3 +91,5 @@ Minimum MVP checks:
 - manual mobile smoke test for the MVP acceptance scenario.
 
 Do not introduce a heavy testing stack before a task needs it; when test tooling is added, document the command here.
+
+The public-menu featured selection has focused tests in `tests/get-featured-products.test.mjs`, run with `node --test tests/get-featured-products.test.mjs` on the workspace Node 24 runtime.

@@ -501,7 +501,8 @@ ou:
 Heineken 600ml                          R$ 19,90
 ```
 
-Não usar imagens genéricas apenas para preencher espaço.
+Enquanto não houver foto cadastrada, usar a ilustração neutra de estado
+vazio definida para a listagem; nunca uma foto fictícia do produto.
 
 ------------------------------------------------------------------------
 
