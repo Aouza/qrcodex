@@ -91,6 +91,8 @@ The policies call `private.is_establishment_member(uuid)`, a `SECURITY DEFINER` 
 
 Never trust an `establishment_id` supplied by the browser without authorization enforcement.
 
+`public.reorder_category(tenant_id, category_id, direction)` is an authenticated, security-invoker function used for atomic category ordering. It verifies membership, locks only the selected tenant's category rows and rewrites positions as a contiguous zero-based sequence. Cross-tenant or boundary moves return false. Verify it with `supabase/tests/008_reorder_categories.sql`.
+
 An authenticated user may have multiple rows in `establishment_users`. For the MVP, an admin with exactly one membership operates in that establishment automatically. Every admin operation must resolve and verify membership on the server, and RLS must enforce tenant isolation. If a user has multiple memberships, do not choose one implicitly; establishment selection is a future capability, so the MVP must fail closed with a controlled response.
 
 ## Storage intent

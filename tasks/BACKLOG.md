@@ -46,12 +46,12 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 |---|---|---|---|
 | TASK-022 | Build category list/create/edit flows | DONE | TASK-015 |
 | TASK-023 | Add category active toggle | DONE | TASK-022 |
-| TASK-024 | Add category reordering | READY | TASK-022 |
+| TASK-024 | Add category reordering | DONE | TASK-022 |
 
 ## EPIC 06 — Establishment & Release
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-025 | Build basic establishment settings | PLANNED | TASK-015 |
+| TASK-025 | Build basic establishment settings | READY | TASK-015 |
 | TASK-026 | Import approved real menu content | PLANNED | TASK-021, TASK-024 |
 | TASK-027 | Production deployment and environment setup | PLANNED | TASK-012, TASK-021, TASK-024, TASK-025 |
 | TASK-028 | Generate permanent QR asset and printable test sheet | PLANNED | TASK-027 |

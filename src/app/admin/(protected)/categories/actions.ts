@@ -5,6 +5,7 @@ import { getAdminAccess } from "@/lib/auth/get-admin-access";
 import { createClient } from "@/lib/supabase/server";
 
 export type CategoryActiveState = { status: "idle" | "success" | "error"; message?: string };
+export type CategoryOrderState = CategoryActiveState;
 
 export async function setCategoryActive(categoryId: string, active: boolean, _state: CategoryActiveState): Promise<CategoryActiveState> {
   void _state;
@@ -19,4 +20,18 @@ export async function setCategoryActive(categoryId: string, active: boolean, _st
   revalidatePath("/admin/categories");
   revalidatePath(`/${access.establishment.slug}`);
   return { status: "success", message: active ? "Categoria ativada." : "Categoria desativada." };
+}
+
+export async function moveCategory(categoryId: string, direction: -1 | 1, _state: CategoryOrderState): Promise<CategoryOrderState> {
+  void _state;
+  const access = await getAdminAccess();
+  if (access.status !== "authorized") return { status: "error", message: "Sua sessão não permite reordenar categorias." };
+  if (direction !== -1 && direction !== 1) return { status: "error", message: "Movimento inválido." };
+
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("reorder_category", { tenant_id: access.establishment.id, category_id: categoryId, direction });
+  if (error || data !== true) return { status: "error", message: "Não foi possível mover a categoria." };
+  revalidatePath("/admin/categories");
+  revalidatePath(`/${access.establishment.slug}`);
+  return { status: "success", message: "Ordem atualizada." };
 }
