@@ -45,8 +45,8 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | ID | Task | Status | Depends on |
 |---|---|---|---|
 | TASK-022 | Build category list/create/edit flows | DONE | TASK-015 |
-| TASK-023 | Add category active toggle | READY | TASK-022 |
-| TASK-024 | Add category reordering | PLANNED | TASK-022 |
+| TASK-023 | Add category active toggle | DONE | TASK-022 |
+| TASK-024 | Add category reordering | READY | TASK-022 |
 
 ## EPIC 06 — Establishment & Release
 | ID | Task | Status | Depends on |
