@@ -39,13 +39,13 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-018 | Add edit-product flow | DONE | TASK-017 |
 | TASK-019 | Add fast availability toggle | DONE | TASK-018 |
 | TASK-020 | Add product deactivate/delete flow | DONE | TASK-018 |
-| TASK-021 | Add product image storage/upload | READY | TASK-018 |
+| TASK-021 | Add product image storage/upload | DONE | TASK-018 |
 
 ## EPIC 05 — Category Administration
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-022 | Build category list/create/edit flows | PLANNED | TASK-015 |
-| TASK-023 | Add category active toggle | PLANNED | TASK-022 |
+| TASK-022 | Build category list/create/edit flows | DONE | TASK-015 |
+| TASK-023 | Add category active toggle | READY | TASK-022 |
 | TASK-024 | Add category reordering | PLANNED | TASK-022 |
 
 ## EPIC 06 — Establishment & Release

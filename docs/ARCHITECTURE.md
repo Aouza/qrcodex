@@ -90,7 +90,7 @@ The public product list uses `next/image` with a remote pattern limited to the c
 
 The Relica's menu shell currently uses the optimized local `public/images/menu-editorial.webp` as a temporary, explicitly illustrative hero. It is scoped to the `relicas` slug so another tenant never inherits Relica's imagery. A future establishment setting can replace it with approved media; do not add a Storage field or uploader until that task. `tests/fixtures/images/fries.webp` is a development-only image fixture for responsive product-list checks, not public menu data and not an automatic product fallback.
 
-Category navigation uses optimized local illustrations in `public/images/categories/` for Relica's initial category slugs. A neutral image covers new categories and other establishments. Category names and ordering remain database-driven. The category image uploader and persisted media field belong to the later category administration task; no schema or Storage contract is introduced for these defaults.
+Category navigation prefers nullable `categories.image_url` media from the public `category-images` bucket. When null, it uses optimized local illustrations in `public/images/categories/` for Relica's initial category slugs; a neutral image covers new categories and other establishments. Category names and ordering remain database-driven. Upload, replacement and removal resolve the tenant server-side and use paths containing the establishment and category IDs.
 
 ## Error handling
 Expected validation/auth failures should produce user-friendly UI. Unexpected failures should not expose secrets or raw database errors to users.

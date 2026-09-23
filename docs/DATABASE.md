@@ -31,6 +31,7 @@ After applying the migrations to a development Supabase database, run `supabase/
 - `establishment_id uuid not null references establishments(id)`
 - `name text not null`
 - `slug text not null`
+- `image_url text null`
 - `position integer not null default 0`
 - `active boolean not null default true`
 - timestamps
@@ -93,7 +94,13 @@ Never trust an `establishment_id` supplied by the browser without authorization 
 An authenticated user may have multiple rows in `establishment_users`. For the MVP, an admin with exactly one membership operates in that establishment automatically. Every admin operation must resolve and verify membership on the server, and RLS must enforce tenant isolation. If a user has multiple memberships, do not choose one implicitly; establishment selection is a future capability, so the MVP must fail closed with a controlled response.
 
 ## Storage intent
-Use a product-images bucket. Upload/update/delete policies must be tenant-aware. Public delivery strategy can be public bucket or signed access; choose the simplest secure option during the storage task and record the decision in `DECISIONS.md`.
+`supabase/migrations/20260922000000_product_image_storage.sql` creates the public `product-images` bucket with a 768 KB limit and JPEG, PNG and WebP MIME allowlist. Public delivery is intentional because product photos are customer-facing menu content; upload, update and deletion remain protected by RLS. The limit leaves room for the multipart request envelope within the default Server Action request limit and encourages menu-optimized images.
+
+Object paths use `<establishment_id>/<product_id>/<random-id>.<extension>`. Storage policies parse those first two folders and require both current establishment membership and a matching product row. Application actions independently resolve the same tenant/product before invoking Storage, so paths or ownership are never accepted from browser input.
+
+Replacement uploads a versioned object, updates `products.image_url`, then removes the previous owned object. Failures attempt rollback so an old image remains usable. Removal nulls `image_url` and removes the object, restoring the public neutral fallback. Product deletion removes its owned image before deleting the row because Storage policy ownership depends on that row. Run `supabase/tests/006_product_image_storage.sql` after the migration to verify bucket settings and cross-tenant Storage isolation.
+
+`supabase/migrations/20260923000000_category_image_storage.sql` adds nullable `categories.image_url` and the public `category-images` bucket with the same 768 KB JPEG/PNG/WebP contract. Object paths use `<establishment_id>/<category_id>/<version>.<extension>`. Storage writes require both server-resolved membership and a matching category owned by that establishment. Persisted media takes precedence over local category artwork; null retains the scoped local or neutral fallback. Run `supabase/tests/007_category_image_storage.sql` to verify the schema, bucket and cross-tenant policy boundary.
 
 ## Seed intent
 `supabase/seed.sql` contains development data only: one Relica's establishment and the nine ordered categories from `docs/PRD.md`. It creates no products or prices. The establishment and categories have fixed IDs, and inserts use `ON CONFLICT (id) DO NOTHING`, so repeat runs do not duplicate records or overwrite later admin edits. This file is not a migration and must not be applied to production or a database whose purpose is unknown.

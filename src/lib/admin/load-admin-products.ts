@@ -30,6 +30,7 @@ export type AdminProductForEdit = {
   available: boolean;
   featured: boolean;
   active: boolean;
+  imageUrl: string | null;
 };
 
 export async function loadAdminProductForEdit(productId: string): Promise<{
@@ -43,7 +44,7 @@ export async function loadAdminProductForEdit(productId: string): Promise<{
   const [productResult, categoryResult] = await Promise.all([
     supabase
       .from("products")
-      .select("id, name, description, price_cents, category_id, available, featured, active")
+      .select("id, name, description, price_cents, category_id, available, featured, active, image_url")
       .eq("id", productId)
       .eq("establishment_id", access.establishment.id)
       .maybeSingle(),
@@ -75,6 +76,7 @@ export async function loadAdminProductForEdit(productId: string): Promise<{
         available: productResult.data.available,
         featured: productResult.data.featured,
         active: productResult.data.active,
+        imageUrl: productResult.data.image_url,
       }
     : null;
 

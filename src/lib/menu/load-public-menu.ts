@@ -17,6 +17,7 @@ export type PublicCategory = {
   name: string;
   slug: string;
   position: number;
+  image_url: string | null;
   products: PublicProduct[];
 };
 
@@ -39,7 +40,7 @@ export async function loadPublicMenu(slug: string) {
   const [categoryResult, productResult] = await Promise.all([
     supabase
       .from("categories")
-      .select("id, name, slug, position")
+      .select("id, name, slug, position, image_url")
       .eq("establishment_id", establishment.id)
       .eq("active", true)
       .order("position")

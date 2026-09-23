@@ -6,6 +6,7 @@ import type { ProductFormState } from "@/lib/admin/product-form-state";
 import { getAdminAccess } from "@/lib/auth/get-admin-access";
 import { createClient } from "@/lib/supabase/server";
 import { createProductSchema, parseBrlToCents } from "@/lib/validation/product";
+import { getProductImagePath, PRODUCT_IMAGE_BUCKET } from "@/lib/validation/product-image";
 
 export async function updateProduct(
   productId: string,
@@ -109,7 +110,7 @@ export async function deleteProduct(
   const supabase = await createClient();
   const { data: product, error: productError } = await supabase
     .from("products")
-    .select("id, name")
+    .select("id, name, image_url")
     .eq("id", productId)
     .eq("establishment_id", access.establishment.id)
     .maybeSingle();
@@ -120,6 +121,18 @@ export async function deleteProduct(
   if (!product) {
     return { error: "Produto não encontrado para este estabelecimento." };
   }
+
+  const imagePath = getProductImagePath(
+    product.image_url,
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+  );
+  if (imagePath) {
+    const { error: imageError } = await supabase.storage
+      .from(PRODUCT_IMAGE_BUCKET)
+      .remove([imagePath]);
+    if (imageError) return { error: "Não foi possível remover a imagem do produto." };
+  }
+
   const { data: deletedProduct, error: deleteError } = await supabase
     .from("products")
     .delete()
@@ -129,6 +142,13 @@ export async function deleteProduct(
     .maybeSingle();
 
   if (deleteError) {
+    if (imagePath) {
+      await supabase
+        .from("products")
+        .update({ image_url: null })
+        .eq("id", product.id)
+        .eq("establishment_id", access.establishment.id);
+    }
     return { error: "Não foi possível excluir o produto agora." };
   }
   if (!deletedProduct) {

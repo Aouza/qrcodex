@@ -47,3 +47,11 @@ Show the generic plate illustration when a product has no `image_url`, preservin
 ## ADR-012 — Bootstrap the initial administrator manually
 **Status:** Accepted
 Do not expose public administrator sign-up. During MVP development, create the initial email/password user manually through Supabase Authentication and provision its `establishment_users` row from a trusted administrative context. Do not add a privileged Auth key to the application for bootstrap. Email invitations and custom SMTP are deferred onboarding capabilities because new Free-tier Supabase projects cannot customize Auth email templates with the default SMTP provider.
+
+## ADR-013 — Public product-image bucket with tenant-protected writes
+**Status:** Accepted
+Product photos are public menu content, so `product-images` uses public CDN delivery. Storage RLS still protects every write and delete through establishment membership plus product ownership encoded in the object path. Versioned object names avoid stale CDN replacement; application rollback and delete cleanup prevent abandoned owned objects where possible without a privileged service-role client.
+
+## ADR-014 — Persist optional category media without removing scoped defaults
+**Status:** Accepted
+Category images use nullable `categories.image_url` and public CDN delivery from `category-images`, while Storage writes remain protected by membership plus category ownership. A persisted image wins; otherwise Relica's known slugs retain their local illustrations and every other category receives the neutral fallback. This preserves fast defaults without making artwork the source of category identity.

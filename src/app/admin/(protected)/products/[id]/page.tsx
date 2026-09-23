@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductForm } from "@/components/admin/create-product-form";
 import { DeleteProductForm } from "@/components/admin/delete-product-form";
+import { ProductImageForm } from "@/components/admin/product-image-form";
 import styles from "@/components/admin/admin-content.module.css";
 import { loadAdminProductForEdit } from "@/lib/admin/load-admin-products";
 import { updateProduct } from "./actions";
@@ -30,6 +31,11 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
         categories={result.categories}
         submitLabel="Salvar alterações"
         values={result.product}
+      />
+      <ProductImageForm
+        productId={result.product.id}
+        productName={result.product.name}
+        imageUrl={result.product.imageUrl}
       />
       <DeleteProductForm productId={result.product.id} productName={result.product.name} />
     </>

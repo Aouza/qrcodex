@@ -63,7 +63,7 @@ export function MenuCatalog({
         <CategoryNavigation
           key={visibleCategories.map((category) => category.id).join(":")}
           establishmentSlug={establishmentSlug}
-          categories={visibleCategories.map(({ id, name, slug }) => ({ id, name, slug }))}
+          categories={visibleCategories.map(({ id, name, slug, image_url }) => ({ id, name, slug, image_url }))}
         />
       )}
 

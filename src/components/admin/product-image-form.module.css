@@ -1,0 +1,20 @@
+.section { max-width: 760px; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d8d8d2; }
+.eyebrow { color: #777772; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+.section h2 { margin-top: 5px; font-size: 17px; }
+.section > div:first-child > p:last-child { margin-top: 6px; color: #696965; font-size: 12px; }
+.editor { display: grid; gap: 18px; margin-top: 18px; }
+.preview { width: 160px; height: 160px; border: 1px solid #d8d8d2; border-radius: 8px; background: #fff; object-fit: cover; }
+.controls { min-width: 0; }
+.controls label { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 750; }
+.controls input { display: block; width: 100%; min-height: 44px; padding: 8px; border: 1px solid #c9c9c3; border-radius: 6px; background: #fff; font: inherit; font-size: 12px; }
+.controls button { min-height: 42px; margin-top: 10px; padding: 9px 13px; border: 1px solid #b27e00; border-radius: 6px; background: #c58b00; color: #17130a; cursor: pointer; font: inherit; font-size: 12px; font-weight: 750; }
+.controls button:focus-visible, .controls input:focus-visible { outline: 2px solid #c58b00; outline-offset: 2px; }
+.controls button:disabled { cursor: wait; opacity: .6; }
+.remove { display: inline-block; margin-left: 8px; }
+.remove button { border-color: #c9c9c3; background: #fff; color: #4f4f4b; }
+.controls p { margin-top: 10px; color: #356e42; font-size: 11px; line-height: 1.4; }
+.controls p[data-error] { color: #a1282d; }
+
+@media (min-width: 560px) {
+  .editor { grid-template-columns: 160px minmax(0, 1fr); align-items: start; }
+}

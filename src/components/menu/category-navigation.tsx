@@ -2,23 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { getCategoryImage } from "@/lib/menu/get-category-image";
 
 type CategoryLink = {
   id: string;
   name: string;
   slug: string;
-};
-
-const relicasCategoryImages: Record<string, string> = {
-  porcoes: "/images/categories/porcoes.webp",
-  lanches: "/images/categories/lanches.webp",
-  bebidas: "/images/categories/bebidas.webp",
-  "drinks-e-doses": "/images/categories/drinks-e-doses.webp",
-  cachacas: "/images/categories/cachacas.webp",
-  cervejas: "/images/categories/cervejas.webp",
-  caipirinhas: "/images/categories/caipirinhas.webp",
-  vinhos: "/images/categories/vinhos.webp",
-  whiskies: "/images/categories/whiskies.webp",
+  image_url: string | null;
 };
 
 export function CategoryNavigation({
@@ -91,9 +81,7 @@ export function CategoryNavigation({
       <div ref={scrollerRef} className="public-menu__inner public-menu__category-nav-inner">
         {categories.map((category) => {
           const target = `category-${category.id}`;
-          const imageSrc = establishmentSlug === "relicas"
-            ? relicasCategoryImages[category.slug] ?? "/images/categories/generic.webp"
-            : "/images/categories/generic.webp";
+          const imageSrc = getCategoryImage(category.image_url, category.slug, establishmentSlug);
           return (
             <a
               key={category.id}

@@ -830,6 +830,12 @@ título e descrição curta. Erros aparecem junto ao campo correspondente e a
 mensagem geral não expõe detalhes do banco. No celular, ações ocupam a largura
 disponível; em telas maiores, ficam alinhadas ao final do formulário.
 
+A administração de categorias usa linhas compactas com miniatura, nome, slug,
+posição e estado. Criação e edição mantêm nome e slug como campos explícitos;
+a imagem opcional é gerenciada na edição e sempre mostra o fallback vigente
+quando não há mídia persistida. Ativação rápida e ordenação são controles
+separados, introduzidos apenas nas tarefas correspondentes.
+
 Disponibilidade é uma ação operacional frequente e permanece acessível na
 listagem por meio de um switch compacto com o texto `Disponível` ou
 `Esgotado`. O controle informa seu estado também semanticamente, bloqueia
