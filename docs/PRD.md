@@ -62,6 +62,8 @@ The seed data should support the current Relica's structure without hardcoding c
 - Vinhos
 - Whiskies
 
+The approved initial catalog is transcribed from both printed-menu images stored in `docs/cardapio/`. This source governs initial product names, descriptions and prices; later changes are made through the admin.
+
 ## 7. Product rules
 A product has name, optional description, price, category, optional image, availability, featured state, active state and display position.
 

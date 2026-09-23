@@ -110,3 +110,6 @@ Replacement uploads a versioned object, updates `products.image_url`, then remov
 The seed was applied to the current Supabase project after it was designated as the development environment. Keep production in a separate Supabase project and apply only approved production content there.
 
 After applying the versioned migrations to a confirmed development database, set `DATABASE_URL` in your shell and run `psql $env:DATABASE_URL -X -v ON_ERROR_STOP=1 -f supabase/seed.sql` from PowerShell at the repository root. Run `psql $env:DATABASE_URL -X -v ON_ERROR_STOP=1 -f supabase/tests/005_development_seed.sql` to check creation and idempotence without persisting test data; the test ends with `ROLLBACK`. Keep the connection string out of commits and shell history.
+
+## Approved menu content
+`supabase/content/relicas_menu.sql` transcribes the 91 products and prices shown on both sides of the approved printed menu in `docs/cardapio/`. IDs are deterministic from category and product name, and `ON CONFLICT (id) DO NOTHING` makes reruns additive without overwriting later admin edits. Product photography remains null because the printed illustrations are not item-specific approved media. Run `supabase/tests/009_relicas_menu_content.sql` to verify count, representative prices, tenant integrity and idempotence before applying the content script.
