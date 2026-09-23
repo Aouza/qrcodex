@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-027 — Production deployment and environment setup`
+`TASK-028 — Generate permanent QR asset and printable test sheet`
 
-Task file: `tasks/active/TASK-027-production-deployment.md`
+Task file: `tasks/active/TASK-028-permanent-qr.md`
 
 ## Status
 READY
 
 ## Rule
-TASK-027 prepares and performs production deployment using a separate Supabase project and production environment variables. Email invitations/custom SMTP and multi-establishment selection remain deferred.
+TASK-028 generates the permanent QR asset for the production menu URL and a printable sheet for physical scanning tests. Do not begin implementation until this task becomes IN_PROGRESS.

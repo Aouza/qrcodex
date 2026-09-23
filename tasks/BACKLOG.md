@@ -53,8 +53,8 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 |---|---|---|---|
 | TASK-025 | Build basic establishment settings | DONE | TASK-015 |
 | TASK-026 | Import approved real menu content | DONE | TASK-021, TASK-024 |
-| TASK-027 | Production deployment and environment setup | READY | TASK-012, TASK-021, TASK-024, TASK-025 |
-| TASK-028 | Generate permanent QR asset and printable test sheet | PLANNED | TASK-027 |
+| TASK-027 | Production deployment and environment setup | DONE | TASK-012, TASK-021, TASK-024, TASK-025 |
+| TASK-028 | Generate permanent QR asset and printable test sheet | READY | TASK-027 |
 | TASK-029 | Run MVP end-to-end acceptance and mobile smoke test | PLANNED | TASK-028 |
 | TASK-030 | Fix launch blockers and release MVP | PLANNED | TASK-029 |
 
