@@ -1,14 +1,17 @@
 # TASK-028 — Generate permanent QR asset and printable test sheet
 
 **Epic:** Establishment & Release
-**Status:** READY
+**Status:** BLOCKED
 **Dependencies:** TASK-027
 
 ## Objective
-Generate durable QR assets for the production menu URL and a printable validation sheet for real-device tests.
+Generate durable QR assets for the definitive production menu URL and a printable validation sheet for real-device tests.
+
+## Blocker
+Paused by product decision until the definitive custom domain is configured and validated. The current Vercel URL is provisional and must not be printed as the permanent QR destination.
 
 ## Requirements
-- Encode the permanent production menu URL `https://qrcodex-eight.vercel.app/relicas`.
+- Encode the definitive custom-domain menu URL. Do not encode the provisional Vercel URL as a permanent asset.
 - Generate a high-resolution raster asset and a scalable print asset.
 - Create a simple A4 test sheet with the Relica's name, QR code and human-readable fallback URL.
 - Keep sufficient quiet zone and contrast for reliable scanning.

@@ -1,12 +1,10 @@
 # Current Development
 
 ## Active task
-`TASK-028 — Generate permanent QR asset and printable test sheet`
-
-Task file: `tasks/active/TASK-028-permanent-qr.md`
+No task is active.
 
 ## Status
-READY
+BLOCKED
 
 ## Rule
-TASK-028 generates the permanent QR asset for the production menu URL and a printable sheet for physical scanning tests. Do not begin implementation until this task becomes IN_PROGRESS.
+TASK-028 is paused until the definitive custom domain is configured and validated. The provisional Vercel URL must not be used for a permanent printed QR code. TASK-029 remains dependent on TASK-028.
