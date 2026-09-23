@@ -11,6 +11,12 @@ export function parseBrlToCents(value: string) {
   return Number.isSafeInteger(cents) ? cents : null;
 }
 
+export function formatCentsForInput(priceCents: number) {
+  const whole = Math.floor(priceCents / 100);
+  const fraction = String(priceCents % 100).padStart(2, "0");
+  return `${whole},${fraction}`;
+}
+
 export const createProductSchema = z.object({
   name: z.string().trim().min(2, "Informe um nome com pelo menos 2 caracteres.").max(120, "Use no máximo 120 caracteres."),
   description: z.string().trim().max(500, "Use no máximo 500 caracteres.").transform((value) => value || null),

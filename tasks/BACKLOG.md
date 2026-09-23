@@ -35,11 +35,11 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | ID | Task | Status | Depends on |
 |---|---|---|---|
 | TASK-016 | Build admin product list and category filtering | DONE | TASK-015 |
-| TASK-017 | Add create-product flow with validation | IN_PROGRESS | TASK-016 |
-| TASK-018 | Add edit-product flow | PLANNED | TASK-017 |
-| TASK-019 | Add fast availability toggle | PLANNED | TASK-018 |
-| TASK-020 | Add product deactivate/delete flow | PLANNED | TASK-018 |
-| TASK-021 | Add product image storage/upload | PLANNED | TASK-018 |
+| TASK-017 | Add create-product flow with validation | DONE | TASK-016 |
+| TASK-018 | Add edit-product flow | DONE | TASK-017 |
+| TASK-019 | Add fast availability toggle | DONE | TASK-018 |
+| TASK-020 | Add product deactivate/delete flow | DONE | TASK-018 |
+| TASK-021 | Add product image storage/upload | READY | TASK-018 |
 
 ## EPIC 05 — Category Administration
 | ID | Task | Status | Depends on |

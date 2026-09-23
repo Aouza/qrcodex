@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { filterAdminProducts } from "@/lib/admin/filter-admin-products";
 import type { AdminCategory, AdminProduct } from "@/lib/admin/load-admin-products";
+import { AvailabilityForm } from "./availability-form";
 import styles from "./admin-products.module.css";
 
 const currency = new Intl.NumberFormat("pt-BR", {
@@ -84,19 +86,23 @@ export function AdminProductList({
         <ul className={styles.list} aria-label="Produtos">
           {visibleProducts.map((product) => (
             <li key={product.id} className={styles.product}>
-              <div className={styles.productMain}>
-                <strong>{product.name}</strong>
-                <span>{product.categoryName}</span>
-              </div>
-              <strong className={styles.price}>{currency.format(product.priceCents / 100)}</strong>
-              <div className={styles.statuses}>
-                <span data-tone={product.available ? "positive" : "warning"}>
-                  {product.available ? "Disponível" : "Esgotado"}
-                </span>
-                <span data-tone={product.active ? "neutral" : "muted"}>
-                  {product.active ? "Ativo" : "Inativo"}
-                </span>
-              </div>
+              <Link href={`/admin/products/${product.id}`} className={styles.productDetails}>
+                <div className={styles.productMain}>
+                  <strong>{product.name}</strong>
+                  <span>{product.categoryName}</span>
+                </div>
+                <strong className={styles.price}>{currency.format(product.priceCents / 100)}</strong>
+                <div className={styles.statuses}>
+                  <span data-tone={product.available ? "positive" : "warning"}>
+                    {product.available ? "Disponível" : "Esgotado"}
+                  </span>
+                  <span data-tone={product.active ? "neutral" : "muted"}>
+                    {product.active ? "Ativo" : "Inativo"}
+                  </span>
+                </div>
+                <span className={styles.editLabel}>Editar</span>
+              </Link>
+              <AvailabilityForm productId={product.id} available={product.available} />
             </li>
           ))}
         </ul>

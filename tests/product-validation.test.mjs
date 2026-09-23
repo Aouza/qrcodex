@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { createProductSchema, parseBrlToCents } from "../src/lib/validation/product.ts";
+import { createProductSchema, formatCentsForInput, parseBrlToCents } from "../src/lib/validation/product.ts";
 
 test("parses BRL text into integer cents without floating point math", () => {
   assert.equal(parseBrlToCents("19,90"), 1990);
@@ -14,6 +14,11 @@ test("rejects malformed or oversized prices", () => {
   assert.equal(parseBrlToCents("R$ 19,90"), null);
   assert.equal(parseBrlToCents("-1,00"), null);
   assert.equal(parseBrlToCents("1000000,00"), null);
+});
+
+test("formats stored cents for the edit form", () => {
+  assert.equal(formatCentsForInput(3290), "32,90");
+  assert.equal(formatCentsForInput(5), "0,05");
 });
 
 test("validates and normalizes create-product input", () => {

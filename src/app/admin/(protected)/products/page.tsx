@@ -11,11 +11,18 @@ export const metadata: Metadata = {
 export default async function AdminProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ created?: string }>;
+  searchParams: Promise<{ created?: string; edited?: string; deleted?: string }>;
 }) {
   const catalog = await loadAdminProducts();
   if (!catalog) return null;
-  const created = (await searchParams).created === "1";
+  const query = await searchParams;
+  const successMessage = query.created === "1"
+    ? "Produto criado com sucesso."
+    : query.edited === "1"
+      ? "Produto atualizado com sucesso."
+      : query.deleted === "1"
+        ? "Produto excluído permanentemente."
+      : null;
 
   return (
     <>
@@ -27,7 +34,7 @@ export default async function AdminProductsPage({
       <div className="admin-products__toolbar">
         <Link href="/admin/products/new">Novo produto</Link>
       </div>
-      {created && <p className="admin-products__success" role="status">Produto criado com sucesso.</p>}
+      {successMessage && <p className="admin-products__success" role="status">{successMessage}</p>}
       <AdminProductList {...catalog} />
     </>
   );

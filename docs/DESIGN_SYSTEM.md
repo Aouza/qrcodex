@@ -830,6 +830,18 @@ título e descrição curta. Erros aparecem junto ao campo correspondente e a
 mensagem geral não expõe detalhes do banco. No celular, ações ocupam a largura
 disponível; em telas maiores, ficam alinhadas ao final do formulário.
 
+Disponibilidade é uma ação operacional frequente e permanece acessível na
+listagem por meio de um switch compacto com o texto `Disponível` ou
+`Esgotado`. O controle informa seu estado também semanticamente, bloqueia
+novos envios enquanto salva e só muda depois da confirmação do servidor.
+
+Desativação é a opção recomendada para retirar um produto do cardápio e
+permanece no formulário de edição. Exclusão permanente aparece somente em
+uma seção separada, depois das ações normais. Um diálogo convencional mostra
+o nome do produto, explica que a ação é irreversível e oferece `Cancelar` com
+foco inicial e `Excluir permanentemente`. A ação destrutiva usa vermelho sem
+se tornar o elemento visual dominante da página.
+
 ------------------------------------------------------------------------
 
 ## 34. Componentes sugeridos

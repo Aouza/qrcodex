@@ -2,6 +2,7 @@ import "server-only";
 
 import { getAdminAccess } from "@/lib/auth/get-admin-access";
 import { createClient } from "@/lib/supabase/server";
+import { formatCentsForInput } from "@/lib/validation/product";
 
 export type AdminCategory = { id: string; name: string; active: boolean };
 
@@ -19,6 +20,66 @@ export type AdminProductCatalog = {
   categories: AdminCategory[];
   products: AdminProduct[];
 };
+
+export type AdminProductForEdit = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  categoryId: string;
+  available: boolean;
+  featured: boolean;
+  active: boolean;
+};
+
+export async function loadAdminProductForEdit(productId: string): Promise<{
+  product: AdminProductForEdit | null;
+  categories: AdminCategory[];
+} | null> {
+  const access = await getAdminAccess();
+  if (access.status !== "authorized") return null;
+
+  const supabase = await createClient();
+  const [productResult, categoryResult] = await Promise.all([
+    supabase
+      .from("products")
+      .select("id, name, description, price_cents, category_id, available, featured, active")
+      .eq("id", productId)
+      .eq("establishment_id", access.establishment.id)
+      .maybeSingle(),
+    supabase
+      .from("categories")
+      .select("id, name, active, position")
+      .eq("establishment_id", access.establishment.id)
+      .eq("active", true)
+      .order("position")
+      .order("id"),
+  ]);
+
+  if (productResult.error || categoryResult.error) {
+    throw new Error("Failed to load product for editing.");
+  }
+
+  const categories = (categoryResult.data ?? []).map(({ id, name, active }) => ({
+    id,
+    name,
+    active,
+  }));
+  const product = productResult.data
+    ? {
+        id: productResult.data.id,
+        name: productResult.data.name,
+        description: productResult.data.description ?? "",
+        price: formatCentsForInput(productResult.data.price_cents),
+        categoryId: productResult.data.category_id,
+        available: productResult.data.available,
+        featured: productResult.data.featured,
+        active: productResult.data.active,
+      }
+    : null;
+
+  return { product, categories };
+}
 
 export async function loadAdminProductCategories(): Promise<AdminCategory[] | null> {
   const access = await getAdminAccess();

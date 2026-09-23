@@ -3,18 +3,14 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getAdminAccess } from "@/lib/auth/get-admin-access";
+import type { ProductFormState } from "@/lib/admin/product-form-state";
 import { createClient } from "@/lib/supabase/server";
 import { createProductSchema, parseBrlToCents } from "@/lib/validation/product";
 
-export type CreateProductState = {
-  formError?: string;
-  fieldErrors?: Partial<Record<"name" | "description" | "price" | "categoryId", string>>;
-};
-
 export async function createProduct(
-  _previousState: CreateProductState,
+  _previousState: ProductFormState,
   formData: FormData,
-): Promise<CreateProductState> {
+): Promise<ProductFormState> {
   const access = await getAdminAccess();
   if (access.status !== "authorized") {
     return { formError: "Sua sessão não permite criar produtos." };
