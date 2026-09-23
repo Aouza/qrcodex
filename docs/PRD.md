@@ -45,6 +45,8 @@ The public menu distinguishes an establishment with no active categories, one wi
 - create/edit/reorder/activate categories;
 - basic establishment settings.
 
+Basic settings include the public establishment name and optional Instagram/WhatsApp contacts. The public slug remains permanent and read-only so printed QR codes continue to work.
+
 ## 5. Explicitly out of scope
 Cart, orders from tables, payments/Pix, commandas, kitchen workflow, stock management, fiscal issuance, loyalty, reservations, customer accounts, native apps and delivery integrations.
 

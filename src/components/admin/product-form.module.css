@@ -98,6 +98,8 @@
   color: #a1282d;
 }
 
+.success { margin-bottom: 20px; padding: 12px; border-left: 3px solid #3d8a50; background: #edf6ef; color: #245f32; font-size: 12px; line-height: 1.45; }
+
 .formError {
   margin-bottom: 20px;
   padding: 12px;

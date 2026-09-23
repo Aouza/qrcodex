@@ -33,6 +33,10 @@ export default async function PublicMenuPage({
             <h1>{menu.establishment.name}</h1>
             <p>Cardápio digital</p>
           </div>
+          {(menu.establishment.instagram || menu.establishment.whatsapp) && <div className="public-menu__contacts">
+            {menu.establishment.instagram && <a href={`https://instagram.com/${menu.establishment.instagram}`} target="_blank" rel="noreferrer">Instagram</a>}
+            {menu.establishment.whatsapp && <a href={`https://wa.me/${menu.establishment.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a>}
+          </div>}
         </div>
       </header>
 

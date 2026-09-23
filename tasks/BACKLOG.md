@@ -51,8 +51,8 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 ## EPIC 06 — Establishment & Release
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-025 | Build basic establishment settings | READY | TASK-015 |
-| TASK-026 | Import approved real menu content | PLANNED | TASK-021, TASK-024 |
+| TASK-025 | Build basic establishment settings | DONE | TASK-015 |
+| TASK-026 | Import approved real menu content | READY | TASK-021, TASK-024 |
 | TASK-027 | Production deployment and environment setup | PLANNED | TASK-012, TASK-021, TASK-024, TASK-025 |
 | TASK-028 | Generate permanent QR asset and printable test sheet | PLANNED | TASK-027 |
 | TASK-029 | Run MVP end-to-end acceptance and mobile smoke test | PLANNED | TASK-028 |

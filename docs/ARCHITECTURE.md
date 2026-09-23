@@ -76,6 +76,8 @@ The MVP has no public sign-up. For development, create the initial administrator
 
 The Auth user and its establishment membership are separate records. After the user exists, provision its initial `establishment_users` row from a trusted database/admin context with `supabase/bootstrap/014_initial_admin_membership.sql`. Custom SMTP and email-invitation onboarding are future capabilities because new Free-tier Supabase projects do not support customizing Auth email templates with the default SMTP provider.
 
+Basic establishment settings load and update only the server-resolved membership record. Name and normalized optional Instagram/WhatsApp contacts are editable; the slug remains read-only because it is the permanent QR destination. Public contact links are constructed from normalized values rather than accepting arbitrary URLs.
+
 ## Public menu data
 `src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
 
