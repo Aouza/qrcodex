@@ -806,6 +806,11 @@ Editar
 Ações frequentes --- principalmente disponibilidade --- devem exigir
 poucos passos.
 
+A página de conta segue o mesmo shell administrativo e formulário claro.
+Troca de senha apresenta senha atual, nova senha e confirmação, requisitos
+curtos junto ao campo e uma única ação principal. Mensagens nunca revelam
+credenciais ou detalhes internos de autenticação.
+
 O shell autenticado usa uma superfície clara e neutra para separar o
 trabalho administrativo da experiência pública escura. Em telas amplas,
 a navegação fica em uma lateral compacta; em telas pequenas, vira uma

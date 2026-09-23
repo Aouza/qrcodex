@@ -32,6 +32,7 @@ Admin:
 - `/admin/products/[id]`
 - `/admin/categories`
 - `/admin/settings`
+- `/admin/account`
 
 Exact route grouping may use App Router route groups without changing public URLs.
 
@@ -75,6 +76,8 @@ Protected admin pages live under the URL-neutral `src/app/admin/(protected)` rou
 The MVP has no public sign-up. For development, create the initial administrator manually in Supabase Dashboard through `Authentication > Users > Create new user`, with an email and password. Do not add a secret/service-role key to the application for this bootstrap.
 
 The Auth user and its establishment membership are separate records. After the user exists, provision its initial `establishment_users` row from a trusted database/admin context with `supabase/bootstrap/014_initial_admin_membership.sql`. Custom SMTP and email-invitation onboarding are future capabilities because new Free-tier Supabase projects do not support customizing Auth email templates with the default SMTP provider.
+
+The protected account page changes passwords without email delivery. Its Server Action resolves authorized admin access, validates the current password through `signInWithPassword`, applies the new password with `updateUser`, and revokes other refresh-token sessions while preserving the current session. Application validation requires letters, numbers and at least 12 characters; hosted Supabase Auth independently enforces the 12-character minimum. Password values are never persisted or returned in action state. Self-service recovery remains deferred until production SMTP is configured.
 
 Basic establishment settings load and update only the server-resolved membership record. Name and normalized optional Instagram/WhatsApp contacts are editable; the slug remains read-only because it is the permanent QR destination. Public contact links are constructed from normalized values rather than accepting arbitrary URLs.
 

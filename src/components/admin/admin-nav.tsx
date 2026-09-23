@@ -9,6 +9,7 @@ const items = [
   { href: "/admin/products", label: "Produtos", detail: "Itens e preços" },
   { href: "/admin/categories", label: "Categorias", detail: "Organização" },
   { href: "/admin/settings", label: "Configurações", detail: "Estabelecimento" },
+  { href: "/admin/account", label: "Conta", detail: "Senha e segurança" },
 ];
 
 export function AdminNav() {

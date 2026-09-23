@@ -1,10 +1,12 @@
 # Current Development
 
 ## Active task
-No task is active.
+`TASK-031 — Add authenticated password security`
+
+Task file: `tasks/active/TASK-031-account-password-security.md`
 
 ## Status
-BLOCKED
+IN_PROGRESS
 
 ## Rule
-TASK-028 is paused until the definitive custom domain is configured and validated. The provisional Vercel URL must not be used for a permanent printed QR code. TASK-029 remains dependent on TASK-028.
+TASK-031 adds authenticated password change and strengthens the password policy without depending on email delivery. Recovery and invitations remain deferred until production SMTP is configured. TASK-028 remains blocked pending the definitive domain.
