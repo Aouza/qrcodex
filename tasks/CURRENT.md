@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-045 — Build public Hub UI foundation`
+`TASK-046 — Integrate Hub and menu navigation`
 
-Task file: `tasks/active/TASK-045-public-hub-ui-foundation.md`
+Task file: `tasks/active/TASK-046-integrate-hub-menu-navigation.md`
 
 ## Status
 READY
 
 ## Rule
-TASK-044 gave `/[slug]` a focused establishment-only public loader. TASK-045 now owns the finished Hub visual and interaction foundation; domain acquisition remains independent.
+TASK-045 delivered and production-verified the establishment-first Hub. TASK-046 will connect the menu back to that Hub while preserving direct menu access and natural browser history; no custom domain is required.

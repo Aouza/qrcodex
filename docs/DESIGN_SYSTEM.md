@@ -1232,7 +1232,11 @@ Instagram e informações aprovadas do estabelecimento
 Regras:
 
 - preservar os tokens escuros do rock bar contemporâneo;
+- para o Relica's, usar a arte editorial aprovada em tela cheia no hero, com uma camada escura uniforme para manter a identidade legível;
+- posicionar logo, nome e contexto na base do hero, preservando o estabelecimento como primeiro sinal visual;
 - usar um destino primário forte sem transformar toda ação em card;
+- apresentar Cardápio como uma faixa de largura total, com conteúdo alinhado ao mesmo limite interno do hero;
+- manter contatos reais em uma faixa terciária discreta, quando cadastrados;
 - nunca exibir módulos futuros como placeholders clicáveis desabilitados;
 - manter alvos de toque de pelo menos 44 px e foco completo por teclado;
 - funcionar desde 320 px e deixar conteúdo útil seguinte parcialmente visível;
