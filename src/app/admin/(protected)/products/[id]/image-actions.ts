@@ -89,7 +89,7 @@ export async function uploadProductImage(
 
   revalidatePath(`/admin/products/${productId}`);
   revalidatePath("/admin/products");
-  revalidatePath(`/${owned.access.establishment.slug}`);
+  revalidatePath(`/${owned.access.establishment.slug}/cardapio`);
   return { status: "success", message: "Imagem atualizada com sucesso." };
 }
 
@@ -127,6 +127,6 @@ export async function removeProductImage(
 
   revalidatePath(`/admin/products/${productId}`);
   revalidatePath("/admin/products");
-  revalidatePath(`/${owned.access.establishment.slug}`);
+  revalidatePath(`/${owned.access.establishment.slug}/cardapio`);
   return { status: "success", message: "Imagem removida com sucesso." };
 }

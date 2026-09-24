@@ -2,9 +2,8 @@
 
 ## Endpoints
 - Application: `https://qrcodex-eight.vercel.app`
-- Current public menu: `https://qrcodex-eight.vercel.app/relicas`
-- Temporary Hub target: `https://qrcodex-eight.vercel.app/relicas`
-- Temporary menu target after Hub migration: `https://qrcodex-eight.vercel.app/relicas/cardapio`
+- Current public Hub: `https://qrcodex-eight.vercel.app/relicas`
+- Current public menu: `https://qrcodex-eight.vercel.app/relicas/cardapio`
 - Future canonical domain: `https://relicas.com.br` (not yet acquired/configured)
 - Supabase project: `qrcodex-production` (`xybkiiuekjjchxxoxlyi`)
 
@@ -21,4 +20,4 @@ The initial administrator is created through a trusted Supabase administrative p
 The production Auth site URL is `https://qrcodex-eight.vercel.app`; the same origin is allow-listed for redirects. Custom SMTP and email invitations remain future onboarding capabilities.
 
 ## Release verification
-Before a production release, run `npm run lint`, `npm run typecheck` and `npm run build`, then verify the public menu, unauthenticated admin redirect, authenticated owner access and responsive layouts over HTTPS.
+Before a production release, run `npm run lint`, `npm run typecheck` and `npm run build`, then verify the public Hub, direct menu route, unauthenticated admin redirect, authenticated owner access and responsive layouts over HTTPS.

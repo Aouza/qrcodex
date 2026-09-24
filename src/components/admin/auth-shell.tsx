@@ -16,7 +16,7 @@ export function AuthShell({
   title,
   description,
   children,
-  footerHref = "/relicas",
+  footerHref = "/relicas/cardapio",
   footerLabel = "Ver cardápio",
 }: AuthShellProps) {
   return (

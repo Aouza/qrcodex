@@ -85,7 +85,7 @@ export async function updateProduct(
 
   revalidatePath("/admin/products");
   revalidatePath(`/admin/products/${productId}`);
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
   redirect("/admin/products?edited=1");
 }
 
@@ -156,6 +156,6 @@ export async function deleteProduct(
   }
 
   revalidatePath("/admin/products");
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
   redirect("/admin/products?deleted=1");
 }

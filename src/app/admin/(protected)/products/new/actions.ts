@@ -76,6 +76,6 @@ export async function createProduct(
   }
 
   revalidatePath("/admin/products");
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
   redirect("/admin/products?created=1");
 }

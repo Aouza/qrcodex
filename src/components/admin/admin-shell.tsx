@@ -22,7 +22,7 @@ export function AdminShell({ establishment, email, children }: AdminShellProps) 
             <span>Relica&apos;s</span>
             <small>Administração</small>
           </Link>
-          <Link href={`/${establishment.slug}`} className={styles.menuLink}>
+          <Link href={`/${establishment.slug}/cardapio`} className={styles.menuLink}>
             Ver cardápio
           </Link>
         </div>

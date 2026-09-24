@@ -18,6 +18,6 @@ export async function updateEstablishmentSettings(_state: EstablishmentSettingsS
   const { data, error } = await supabase.from("establishments").update(parsed.data).eq("id", access.establishment.id).select("id").maybeSingle();
   if (error) return { formError: "Não foi possível atualizar as configurações agora." };
   if (!data) return { formError: "Estabelecimento não encontrado para esta conta." };
-  revalidatePath("/admin"); revalidatePath("/admin/settings"); revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath("/admin"); revalidatePath("/admin/settings"); revalidatePath(`/${access.establishment.slug}`); revalidatePath(`/${access.establishment.slug}/cardapio`);
   return { success: "Configurações atualizadas com sucesso." };
 }

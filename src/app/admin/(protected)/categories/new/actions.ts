@@ -26,6 +26,6 @@ export async function createCategory(_state: CategoryFormState, formData: FormDa
   if (error) return { formError: "Não foi possível criar a categoria agora." };
 
   revalidatePath("/admin/categories");
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
   redirect("/admin/categories?created=1");
 }

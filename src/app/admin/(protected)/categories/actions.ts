@@ -18,7 +18,7 @@ export async function setCategoryActive(categoryId: string, active: boolean, _st
   if (!data) return { status: "error", message: "Categoria não encontrada para este estabelecimento." };
 
   revalidatePath("/admin/categories");
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
   return { status: "success", message: active ? "Categoria ativada." : "Categoria desativada." };
 }
 
@@ -32,6 +32,6 @@ export async function moveCategory(categoryId: string, direction: -1 | 1, _state
   const { data, error } = await supabase.rpc("reorder_category", { tenant_id: access.establishment.id, category_id: categoryId, direction });
   if (error || data !== true) return { status: "error", message: "Não foi possível mover a categoria." };
   revalidatePath("/admin/categories");
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
   return { status: "success", message: "Ordem atualizada." };
 }

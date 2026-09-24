@@ -37,7 +37,7 @@ export async function setProductAvailability(
   }
 
   revalidatePath("/admin/products");
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
 
   return {
     status: "success",

@@ -25,6 +25,6 @@ export async function updateCategory(categoryId: string, _state: CategoryFormSta
   if (!data) return { formError: "Categoria não encontrada para esta conta." };
 
   revalidatePath("/admin/categories");
-  revalidatePath(`/${access.establishment.slug}`);
+  revalidatePath(`/${access.establishment.slug}/cardapio`);
   redirect("/admin/categories?updated=1");
 }

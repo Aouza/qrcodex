@@ -45,7 +45,7 @@ export async function uploadCategoryImage(categoryId: string, _state: CategoryIm
     }
   }
 
-  revalidatePath(`/admin/categories/${categoryId}`); revalidatePath("/admin/categories"); revalidatePath(`/${owned.access.establishment.slug}`);
+  revalidatePath(`/admin/categories/${categoryId}`); revalidatePath("/admin/categories"); revalidatePath(`/${owned.access.establishment.slug}/cardapio`);
   return { status: "success", message: "Imagem atualizada com sucesso." };
 }
 
@@ -63,6 +63,6 @@ export async function removeCategoryImage(categoryId: string, _state: CategoryIm
     await owned.supabase.from("categories").update({ image_url: owned.category.image_url }).eq("id", owned.category.id).eq("establishment_id", owned.access.establishment.id);
     return failure("Não foi possível remover o arquivo da imagem.");
   }
-  revalidatePath(`/admin/categories/${categoryId}`); revalidatePath("/admin/categories"); revalidatePath(`/${owned.access.establishment.slug}`);
+  revalidatePath(`/admin/categories/${categoryId}`); revalidatePath("/admin/categories"); revalidatePath(`/${owned.access.establishment.slug}/cardapio`);
   return { status: "success", message: "Imagem removida; o padrão voltou a ser usado." };
 }

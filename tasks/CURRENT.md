@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-043 — Introduce Hub route and relocate menu`
+`TASK-044 — Add focused public Hub data loader`
 
-Task file: `tasks/active/TASK-043-introduce-hub-route-relocate-menu.md`
+Task file: `tasks/active/TASK-044-public-hub-data-loader.md`
 
 ## Status
 READY
 
 ## Rule
-TASK-042 made the Bar Hub roadmap canonical. TASK-043 can proceed on the shared host without the custom domain; TASK-028 remains blocked until `relicas.com.br`, DNS and production routing are complete.
+TASK-043 introduced `/[slug]` as the Hub and moved the menu to `/[slug]/cardapio`. TASK-044 removes the temporary full-menu query from the Hub; domain acquisition remains independent.

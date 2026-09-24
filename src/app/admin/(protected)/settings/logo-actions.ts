@@ -83,6 +83,7 @@ export async function uploadEstablishmentLogo(
 
   revalidatePath("/admin/settings");
   revalidatePath(`/${owned.establishment.slug}`);
+  revalidatePath(`/${owned.establishment.slug}/cardapio`);
   return { status: "success", message: "Logo atualizada com sucesso." };
 }
 
@@ -121,5 +122,6 @@ export async function removeEstablishmentLogo(
 
   revalidatePath("/admin/settings");
   revalidatePath(`/${owned.establishment.slug}`);
+  revalidatePath(`/${owned.establishment.slug}/cardapio`);
   return { status: "success", message: "Logo removida; o padrão voltou a ser usado." };
 }

@@ -112,7 +112,9 @@ Category navigation prefers nullable `categories.image_url` media from the publi
 ## Error handling
 Expected validation/auth failures should produce user-friendly UI. Unexpected failures should not expose secrets or raw database errors to users.
 
-`src/app/[slug]/loading.tsx` renders a route-level skeleton while the server resolves the establishment and menu. `src/app/[slug]/error.tsx` catches menu-load failures and offers `reset()` without rendering the underlying error. `MenuCatalog` distinguishes no categories, no products across all categories, an individual empty category, and search with no matches. These states do not require database writes or a public account.
+`src/app/[slug]/loading.tsx` and `error.tsx` cover establishment Hub loading/failure. The nested `src/app/[slug]/cardapio/` route owns the menu skeleton and retry state. `MenuCatalog` distinguishes no categories, no products across all categories, an individual empty category, and search with no matches. These states do not require database writes or a public account.
+
+The initial route migration reuses `loadPublicMenu` in both public pages to preserve behavior. TASK-044 replaces the Hub call with a focused establishment-only loader so `/[slug]` does not fetch category/product data.
 
 ## Testing strategy
 Minimum MVP checks:

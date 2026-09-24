@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MenuCatalog } from "@/components/menu/menu-catalog";
 import { getEstablishmentLogo } from "@/lib/menu/get-establishment-logo";
 import { loadPublicMenu } from "@/lib/menu/load-public-menu";
 
-export default async function PublicMenuPage({
+export default async function PublicHubPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -19,49 +19,42 @@ export default async function PublicMenuPage({
   const logoUrl = getEstablishmentLogo(menu.establishment.logo_url, menu.establishment.slug);
 
   return (
-    <main className="public-menu">
-      <header className="public-menu__header">
-        <div className="public-menu__inner public-menu__identity">
+    <main className="public-hub">
+      <header className="public-hub__header">
+        <div className="public-hub__inner public-hub__identity">
           {logoUrl && (
             <Image
               src={logoUrl}
               alt={`Logo de ${menu.establishment.name}`}
-              width={80}
-              height={80}
-              className="public-menu__logo"
+              width={96}
+              height={96}
+              className="public-hub__logo"
+              priority
             />
           )}
-          <div className="public-menu__brand">
+          <div>
+            <p className="public-hub__eyebrow">Bem-vindo ao</p>
             <h1>{menu.establishment.name}</h1>
-            <p>Cardápio digital</p>
           </div>
-          {(menu.establishment.instagram || menu.establishment.whatsapp) && <div className="public-menu__contacts">
-            {menu.establishment.instagram && <a href={`https://instagram.com/${menu.establishment.instagram}`} target="_blank" rel="noreferrer">Instagram</a>}
-            {menu.establishment.whatsapp && <a href={`https://wa.me/${menu.establishment.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a>}
-          </div>}
         </div>
       </header>
-
-      {menu.establishment.slug === "relicas" && (
-        <section className="public-menu__inner" aria-labelledby="menu-hero-title">
-          <div className="public-menu__hero">
-            <Image
-              src="/images/menu-editorial.webp"
-              alt="Ilustração de guitarra, amplificador e copo de cerveja"
-              fill
-              sizes="(max-width: 1080px) 100vw, 1080px"
-              className="public-menu__hero-image"
-              fetchPriority="high"
-            />
-            <div className="public-menu__hero-copy">
-              <h2 id="menu-hero-title">Boa comida.<br />Música boa.</h2>
-              <p>Arte ilustrativa</p>
-            </div>
-          </div>
-        </section>
+      <section className="public-hub__inner public-hub__destinations" aria-labelledby="hub-destinations-title">
+        <h2 id="hub-destinations-title" className="public-hub__section-title">O que você procura?</h2>
+        <Link className="public-hub__menu-link" href={`/${slug}/cardapio`}>
+          <span className="public-hub__menu-copy">
+            <span className="public-hub__menu-label">Principal</span>
+            <strong>Cardápio</strong>
+            <span>Comidas, bebidas e preços atualizados</span>
+          </span>
+          <span className="public-hub__menu-arrow" aria-hidden="true">→</span>
+        </Link>
+      </section>
+      {(menu.establishment.instagram || menu.establishment.whatsapp) && (
+        <footer className="public-hub__inner public-hub__contacts">
+          {menu.establishment.instagram && <a href={`https://instagram.com/${menu.establishment.instagram}`} target="_blank" rel="noreferrer">Instagram</a>}
+          {menu.establishment.whatsapp && <a href={`https://wa.me/${menu.establishment.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a>}
+        </footer>
       )}
-
-      <MenuCatalog categories={menu.categories} establishmentSlug={menu.establishment.slug} />
     </main>
   );
 }
