@@ -1,7 +1,7 @@
-# AGENTS.md — Relica's Digital Menu
+# AGENTS.md — Relica's Bar Hub
 
 ## Mission
-Build the MVP defined in `docs/PRD.md`: a mobile-first digital menu accessed by QR code, with a simple admin area for the bar owner to manage categories, products, prices, images, featured status and availability.
+Build the product defined in `docs/PRD.md`: a mobile-first establishment Hub accessed by one permanent QR code. The digital menu is its first and primary module; Agenda and Music follow as explicit phases. Preserve the existing admin and tenant-security foundation.
 
 ## Mandatory reading order
 Before changing code:
@@ -15,9 +15,9 @@ Before changing code:
 8. `docs/DECISIONS.md`
 
 ## Scope guardrails
-MVP includes public menu, search, categories, featured/unavailable products, admin authentication, product/category CRUD, image upload, ordering and basic establishment settings.
+The implemented baseline includes the public menu, search, categories, featured/unavailable products, admin authentication, product/category CRUD, image upload, ordering and basic establishment settings. New Hub, Agenda and Music work must be introduced only through their active backlog tasks.
 
-Do NOT implement unless a task explicitly adds them: cart, table ordering, payments/Pix, tabs/commandas, kitchen workflow, inventory, fiscal features, loyalty, reservations, native apps, delivery integrations, customer accounts.
+Do NOT implement unless a task explicitly adds them: cart, table ordering, payments/Pix, tabs/commandas, kitchen workflow, inventory, fiscal features, loyalty, reservations, native apps, delivery integrations, customer accounts, generic module builders or speculative integrations.
 
 ## Technical baseline
 - Next.js App Router + TypeScript strict mode

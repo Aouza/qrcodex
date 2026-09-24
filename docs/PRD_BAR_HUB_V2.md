@@ -1,7 +1,7 @@
 # PRD --- Relica's Bar Hub
 
 **Version:** 2.0\
-**Status:** Proposed evolution of the current MVP\
+**Status:** Source proposal incorporated into the canonical project docs\
 **Product:** Digital experience hub for bars accessed by a permanent QR
 Code\
 **Platform:** Responsive web, mobile-first\
@@ -20,8 +20,14 @@ database work already implemented.
 The menu becomes the first and most important module of a broader
 establishment experience.
 
-This PRD also acts as the development tracking contract for Codex. It
-separates:
+This document preserves the detailed source proposal. The canonical
+product contract is now `docs/PRD.md`, and executable task status lives
+only in `tasks/BACKLOG.md` and `tasks/CURRENT.md`. The historical task IDs
+in sections 17--22 are not authoritative because they overlap with
+completed project history. The official collision-free mapping starts at
+`TASK-042` in `tasks/BACKLOG.md`.
+
+This proposal separates:
 
 1.  **existing foundation that must be preserved;**
 2.  **existing menu/admin work that still belongs to the product;**

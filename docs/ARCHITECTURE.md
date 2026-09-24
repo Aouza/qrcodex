@@ -1,7 +1,7 @@
 # Architecture
 
 ## Goals
-Keep the MVP simple, secure, mobile-first and ready for a second establishment without prematurely building a SaaS platform.
+Keep the Bar Hub concrete, secure, mobile-first and ready for a second establishment without prematurely building a generic CMS or SaaS module platform. Preserve the existing menu and admin foundation as the first module.
 
 ## Stack
 This is the target stack. Add dependencies only when the active backlog task needs them; documented future dependencies do not belong in the bootstrap by default.
@@ -22,7 +22,11 @@ This is the target stack. Add dependencies only when the active backlog task nee
 
 ## Route plan
 Public:
-- `/[slug]` — public menu for an establishment
+- shared host `/[slug]` — establishment Hub
+- shared host `/[slug]/cardapio` — public menu
+- shared host `/[slug]/agenda` — Agenda when implemented
+- shared host `/[slug]/musicas` — Music Requests when implemented
+- custom host `/`, `/cardapio`, `/agenda`, `/musicas` — equivalent clean routes after domain cutover
 
 Admin:
 - `/admin/login`
@@ -35,6 +39,10 @@ Admin:
 - `/admin/account`
 
 Exact route grouping may use App Router route groups without changing public URLs.
+
+Until `relicas.com.br` is acquired and configured, development continues on the shared-host `/relicas` routes. Domain acquisition blocks only canonical-host cutover and permanent QR generation, not Hub, Agenda or Music implementation.
+
+Custom-domain tenant resolution must happen server-side from a normalized, allow-listed host associated uniquely with an active establishment. Unknown hosts fail closed. Shared-host routes resolve by slug. Neither host headers supplied through client forms nor arbitrary establishment IDs are authorization boundaries; admin authorization continues to derive from authenticated membership and RLS.
 
 ## Suggested source organization
 ```text
@@ -81,7 +89,9 @@ The protected account page changes passwords without email delivery. Its Server 
 
 Basic establishment settings load and update only the server-resolved membership record. Name, logo and normalized optional Instagram/WhatsApp contacts are editable; the slug remains read-only because it is the permanent QR destination. Public contact links are constructed from normalized values rather than accepting arbitrary URLs.
 
-## Public menu data
+## Public Hub and menu data
+The Hub loads only active public establishment identity and already-supported public links. It must not fetch the full menu merely to render its landing experience. Module links appear only when their implementation and required data are genuinely available.
+
 `src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
 
 The server page passes this public, active-only menu data to `MenuCatalog`, a Client Component that filters in memory by normalized product name or description. Search makes no new Supabase request. The category navigation and featured area derive from the same filtered categories, so status and grouping remain consistent; an empty query restores the original data.

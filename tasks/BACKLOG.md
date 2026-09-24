@@ -62,6 +62,35 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-033 | Add establishment logo management | DONE | TASK-004, TASK-015, TASK-025 |
 | TASK-034 | Refine unavailable product state | DONE | TASK-008 |
 
+## EPIC 07 — Bar Hub Foundation
+| ID | Task | Status | Depends on |
+|---|---|---|---|
+| TASK-042 | Adopt Bar Hub product architecture | DONE | TASK-027, TASK-033 |
+| TASK-043 | Introduce Hub route and relocate menu | READY | TASK-042 |
+| TASK-044 | Add focused public Hub data loader | PLANNED | TASK-043 |
+| TASK-045 | Build public Hub UI foundation | PLANNED | TASK-044 |
+| TASK-046 | Integrate Hub and menu navigation | PLANNED | TASK-045 |
+| TASK-047 | Run Hub production migration | PLANNED | TASK-046; custom domain optional for shared-host release |
+
+## EPIC 08 — Agenda
+| ID | Task | Status | Depends on |
+|---|---|---|---|
+| TASK-048 | Design Agenda domain and add migration/RLS | PLANNED | TASK-047 |
+| TASK-049 | Build public Agenda | PLANNED | TASK-048 |
+| TASK-050 | Build Agenda admin CRUD | PLANNED | TASK-048 |
+| TASK-051 | Add event image storage | PLANNED | TASK-050 |
+| TASK-052 | Activate Agenda on Hub | PLANNED | TASK-049, TASK-050 |
+
+## EPIC 09 — Music Requests
+| ID | Task | Status | Depends on |
+|---|---|---|---|
+| TASK-053 | Design Music lifecycle, security and abuse controls | PLANNED | TASK-052 |
+| TASK-054 | Add Music database schema and RLS | PLANNED | TASK-053 |
+| TASK-055 | Build public Music request UI | PLANNED | TASK-054 |
+| TASK-056 | Build admin Music queue | PLANNED | TASK-054 |
+| TASK-057 | Validate Music abuse controls | PLANNED | TASK-055, TASK-056 |
+| TASK-058 | Activate Music on Hub | PLANNED | TASK-057 |
+
 > Note: if task IDs are referenced in code/PRs, keep them stable. Correct typos in dependency text without renumbering tasks.
 
 Media follow-up: TASK-021 handles real product image upload/replacement. TASK-025 should define how an approved establishment editorial image replaces the temporary illustrated menu hero.
@@ -69,4 +98,4 @@ Media follow-up: TASK-021 handles real product image upload/replacement. TASK-02
 Category media follow-up: TASK-022 should define a persisted category image field and admin upload/replacement flow for the temporary category illustrations. Until then, the public menu uses local Relica's defaults and a neutral fallback.
 
 ## Post-MVP parking lot
-Not scheduled: multi-establishment selection UI, analytics, search analytics, happy hour automation, promotions, events/shows, call waiter, ordering, commandas, payment, loyalty, commercial SaaS onboarding/billing.
+Not scheduled: generic module configuration UI, multi-establishment selection UI, analytics, search analytics, happy hour automation, promotions, Wi-Fi helper, polls/quizzes, now-playing integration, call waiter, ordering, commandas, payment, loyalty, commercial SaaS onboarding/billing.

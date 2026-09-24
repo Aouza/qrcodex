@@ -1187,3 +1187,37 @@ escolheu
 ```
 
 A simplicidade faz parte do produto.
+
+------------------------------------------------------------------------
+
+## 47. Bar Hub page type
+
+O Hub é a porta de entrada do estabelecimento, não uma lista genérica de
+links nem uma landing page de e-commerce. A primeira viewport deve
+comunicar identidade e tornar a próxima ação óbvia.
+
+Hierarquia:
+
+``` text
+Logo / identidade do estabelecimento
+Contexto breve
+
+PRIMÁRIO
+Cardápio — grande, inequívoco e acessível em um toque
+
+SECUNDÁRIO
+Somente módulos implementados, como Agenda ou Música
+
+TERCIÁRIO
+Instagram e informações aprovadas do estabelecimento
+```
+
+Regras:
+
+- preservar os tokens escuros do rock bar contemporâneo;
+- usar um destino primário forte sem transformar toda ação em card;
+- nunca exibir módulos futuros como placeholders clicáveis desabilitados;
+- manter alvos de toque de pelo menos 44 px e foco completo por teclado;
+- funcionar desde 320 px e deixar conteúdo útil seguinte parcialmente visível;
+- manter o cardápio denso e orientado à consulta após a navegação;
+- a aquisição do domínio não altera o contrato visual ou de interação.

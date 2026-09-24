@@ -2,10 +2,15 @@
 
 ## Endpoints
 - Application: `https://qrcodex-eight.vercel.app`
-- Public menu: `https://qrcodex-eight.vercel.app/relicas`
+- Current public menu: `https://qrcodex-eight.vercel.app/relicas`
+- Temporary Hub target: `https://qrcodex-eight.vercel.app/relicas`
+- Temporary menu target after Hub migration: `https://qrcodex-eight.vercel.app/relicas/cardapio`
+- Future canonical domain: `https://relicas.com.br` (not yet acquired/configured)
 - Supabase project: `qrcodex-production` (`xybkiiuekjjchxxoxlyi`)
 
 Production uses a Supabase project distinct from development. Vercel receives only `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`; database passwords and administrative keys must never be configured in the application deployment.
+
+Hub, Agenda and Music development may continue before domain acquisition. Do not generate the permanent QR, declare `relicas.com.br` canonical, redirect the shared-host route or change Auth production URLs until domain ownership, DNS, TLS and Vercel routing are verified.
 
 ## Database rollout
 Apply versioned migrations first, followed by `supabase/content/relicas_establishment.sql` and `supabase/content/relicas_menu.sql`. Never apply `supabase/seed.sql` to production.

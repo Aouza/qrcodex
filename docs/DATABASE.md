@@ -19,6 +19,8 @@ After applying the migrations to a development Supabase database, run `supabase/
 - `created_at timestamptz not null`
 - `updated_at timestamptz not null`
 
+The Bar Hub custom-domain phase may add nullable unique `custom_domain` through a future versioned migration. It is not part of the current executable schema. Host values must be normalized, mapped server-side only to active establishments and tested for uniqueness and unknown-host fail-closed behavior before custom-domain routing is activated.
+
 ## establishment_users
 - `id uuid primary key`
 - `establishment_id uuid not null references establishments(id)`

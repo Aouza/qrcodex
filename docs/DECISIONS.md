@@ -59,3 +59,7 @@ Category images use nullable `categories.image_url` and public CDN delivery from
 ## ADR-015 — Scope the local establishment logo fallback
 **Status:** Accepted
 Use the approved local Relica's logo only when the `relicas` establishment has no persisted `logo_url`. Uploaded logos use a public Storage bucket with membership-protected writes and take precedence over the fallback. Other establishments receive no Relica's branding and can add their own logo through protected settings.
+
+## ADR-016 — Make the establishment Hub the permanent QR destination
+**Status:** Accepted
+The menu becomes the first and primary module of a broader establishment Hub. Before custom-domain cutover, the shared host uses `/[slug]` for the Hub and `/[slug]/cardapio` for the menu. After `relicas.com.br` is acquired and verified, `/` and `/cardapio` become canonical for Relica's while shared-host slug routes remain controlled fallbacks. Domain acquisition blocks only cutover and permanent QR generation. Agenda and Music are concrete later phases; do not build a generic module engine.
