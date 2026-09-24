@@ -35,6 +35,10 @@ Admin:
 - `/admin/products/new`
 - `/admin/products/[id]`
 - `/admin/categories`
+- `/admin/events` — Agenda list when implemented
+- `/admin/events/new` — event creation when implemented
+- `/admin/events/[id]` — event editing when implemented
+- `/admin/music` — operational Music queue when implemented
 - `/admin/settings`
 - `/admin/account`
 
@@ -79,6 +83,20 @@ Product/category tenant integrity is enforced in Postgres with a unique `(id, es
 `src/lib/auth/get-admin-access.ts` permits tenant data only when the authenticated user has exactly one membership. Zero memberships produce an access-not-configured state; multiple memberships produce a future-selection state without selecting either tenant. Multi-establishment selection remains outside the MVP.
 
 Protected admin pages live under the URL-neutral `src/app/admin/(protected)` route group. Its shared layout calls `getAdminAccess` before rendering the dashboard shell, so the dashboard and all management destinations inherit the same server-side session and membership boundary. The shell provides navigation only; each later mutation must still perform its own membership check.
+
+### Unified admin information architecture
+Menu, Agenda and Music share one authenticated Admin shell and one server-resolved establishment context. They do not share domain models or become one generic CRUD surface. Organize navigation into:
+
+- Overview — status summaries and shortcuts, never every module's forms;
+- Menu — Products and Categories;
+- Agenda — Events;
+- Music — live request/moderation queue;
+- Establishment — public identity and appearance;
+- Account — personal authentication and security.
+
+On desktop, groups live in the existing compact sidebar. On mobile, the shell exposes a compact navigational surface while preserving the current work area and establishment identity. Module links are added only after the corresponding feature is implemented.
+
+Each domain owns its loaders, validation schemas, Server Actions, database tables and focused tests. Shared infrastructure is limited to the admin shell, UI primitives, `getAdminAccess`, Supabase clients and common error conventions. Every mutation resolves membership independently and relies on its resource RLS policy. Do not create separate logins, separate admin applications, a generic modules table, a page builder or an all-in-one management screen.
 
 ### Development administrator bootstrap
 The MVP has no public sign-up. For development, create the initial administrator manually in Supabase Dashboard through `Authentication > Users > Create new user`, with an email and password. Do not add a secret/service-role key to the application for this bootstrap.

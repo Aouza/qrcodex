@@ -91,6 +91,11 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-057 | Validate Music abuse controls | PLANNED | TASK-055, TASK-056 |
 | TASK-058 | Activate Music on Hub | PLANNED | TASK-057 |
 
+## EPIC 10 — Administration Architecture
+| ID | Task | Status | Depends on |
+|---|---|---|---|
+| TASK-059 | Document unified admin information architecture | DONE | TASK-015, TASK-042 |
+
 > Note: if task IDs are referenced in code/PRs, keep them stable. Correct typos in dependency text without renumbering tasks.
 
 Media follow-up: TASK-021 handles real product image upload/replacement. TASK-025 should define how an approved establishment editorial image replaces the temporary illustrated menu hero.

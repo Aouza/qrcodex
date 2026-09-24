@@ -71,6 +71,19 @@ Basic settings include the public establishment name, replaceable logo and optio
 
 The MVP account area lets an authenticated administrator replace their password without email delivery. Public sign-up remains disabled. Self-service password recovery and administrator invitations require production SMTP and remain future onboarding capabilities.
 
+The product uses one authenticated Admin per resolved establishment, organized into independent work areas rather than separate admin applications or a single all-in-one management page:
+
+```text
+Visão geral
+Cardápio -> Produtos, Categorias
+Agenda -> Eventos
+Música -> Fila de pedidos
+Estabelecimento -> Perfil e aparência
+Conta -> Senha e segurança
+```
+
+The overview provides summaries and shortcuts only. Each module owns its routes, loaders, validation and mutations while reusing the shared shell, membership resolution and RLS boundary. Agenda and Music navigation appears only when those modules are implemented.
+
 ## 6. Public routing and domain strategy
 Before the custom domain is acquired and configured, the shared production host uses:
 

@@ -63,3 +63,7 @@ Use the approved local Relica's logo only when the `relicas` establishment has n
 ## ADR-016 — Make the establishment Hub the permanent QR destination
 **Status:** Accepted
 The menu becomes the first and primary module of a broader establishment Hub. Before custom-domain cutover, the shared host uses `/[slug]` for the Hub and `/[slug]/cardapio` for the menu. After `relicas.com.br` is acquired and verified, `/` and `/cardapio` become canonical for Relica's while shared-host slug routes remain controlled fallbacks. Domain acquisition blocks only cutover and permanent QR generation. Agenda and Music are concrete later phases; do not build a generic module engine.
+
+## ADR-017 — Use one modular Admin shell
+**Status:** Accepted
+Use one authenticated Admin and one server-resolved establishment context for Menu, Agenda, Music, Establishment and Account. Separate these capabilities into domain-specific routes, loaders, actions, tables and RLS policies; do not combine them into one management screen or create separate admin applications/logins. The overview is summaries plus shortcuts. Navigation exposes a module only after it is implemented. Shared code is limited to the shell, UI primitives, access resolution and common conventions; do not introduce a generic module engine or page builder.

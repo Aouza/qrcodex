@@ -831,6 +831,23 @@ faixa horizontal rolável abaixo do cabeçalho. O estabelecimento atual
 permanece visível na lateral, e acesso ao cardápio e encerramento da sessão
 continuam disponíveis sem competir com a tarefa principal.
 
+O Admin cresce como um único ambiente dividido em áreas de trabalho:
+`Visão geral`, `Cardápio`, `Agenda`, `Música`, `Estabelecimento` e `Conta`.
+No desktop, a lateral agrupa destinos relacionados e destaca área e página
+atuais. No celular, a navegação permanece compacta e não tenta exibir todos
+os módulos e ações simultaneamente.
+
+A Visão geral usa resumos curtos e atalhos, por exemplo quantidade de
+produtos, próximo evento ou pedidos de música aguardando. Formulários,
+listas extensas e ações operacionais permanecem dentro de suas áreas. Isso
+evita um dashboard decorativo ou uma tela única sobrecarregada.
+
+Agenda e Música só entram na navegação quando estiverem implementadas. A
+fila de músicas é uma superfície operacional própria, adequada a atualização
+frequente; ela não deve ser apresentada como mais um formulário de conteúdo.
+Todas as áreas preservam o nome do estabelecimento e os mesmos padrões de
+feedback, foco, erro e ações destrutivas.
+
 Áreas ainda não implementadas devem mostrar um estado pendente intencional,
 sem controles inativos que pareçam funcionais. Painéis e listas evitam
 decoração editorial, priorizando leitura, comparação e ações recorrentes.
