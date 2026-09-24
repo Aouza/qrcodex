@@ -811,6 +811,11 @@ Troca de senha apresenta senha atual, nova senha e confirmação, requisitos
 curtos junto ao campo e uma única ação principal. Mensagens nunca revelam
 credenciais ou detalhes internos de autenticação.
 
+A navegação pública de categorias usa itens compactos, com imagem acima do
+nome e aproximadamente quatro opções visíveis em um celular comum. O estado
+ativo destaca borda e texto, sem preencher todo o card com a cor de acento.
+Nomes ocupam no máximo duas linhas e a rolagem horizontal continua explícita.
+
 O shell autenticado usa uma superfície clara e neutra para separar o
 trabalho administrativo da experiência pública escura. Em telas amplas,
 a navegação fica em uma lateral compacta; em telas pequenas, vira uma

@@ -1,11 +1,14 @@
 # TASK-031 — Add authenticated password security
 
 **Epic:** Authentication & Admin Shell
-**Status:** IN_PROGRESS
+**Status:** BLOCKED
 **Dependencies:** TASK-014, TASK-027
 
 ## Objective
 Allow an authenticated administrator to replace an initial or compromised password securely without depending on email delivery.
+
+## Blocker
+Implementation is deployed and awaits the administrator's manual password-change and new-login acceptance test.
 
 ## Requirements
 - Add a protected account page to the existing admin shell.

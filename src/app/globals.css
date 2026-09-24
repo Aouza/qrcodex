@@ -261,7 +261,7 @@ a {
 
 .public-menu__category-nav-inner {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scrollbar-width: none;
@@ -274,16 +274,16 @@ a {
 
 .public-menu__category-nav a {
   display: flex;
-  flex: 0 0 104px;
+  flex: 0 0 84px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-height: 126px;
-  padding: 8px 6px;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 8px;
-  background: var(--color-surface);
+  gap: 6px;
+  min-height: 96px;
+  padding: 5px 4px 7px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
   color: var(--color-text-secondary);
   font-size: 12px;
   font-weight: 500;
@@ -294,12 +294,14 @@ a {
 
 .public-menu__category-image {
   display: block;
-  flex: 0 0 64px;
-  width: 64px;
-  height: 64px;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
   overflow: hidden;
-  border-radius: 6px;
-  background: #0b0b0b;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 7px;
+  background: var(--color-bg);
+  transition: border-color 180ms, box-shadow 180ms;
 }
 
 .public-menu__category-image img {
@@ -311,24 +313,31 @@ a {
 
 .public-menu__category-label {
   display: -webkit-box;
-  min-height: 44px;
+  min-height: 29px;
   overflow: hidden;
   overflow-wrap: anywhere;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
 }
 
 .public-menu__category-nav a:hover,
 .public-menu__category-nav a:focus-visible {
-  border-color: var(--color-accent);
   color: var(--color-text-primary);
 }
 
-.public-menu__category-nav a[aria-current="location"] {
+.public-menu__category-nav a:hover .public-menu__category-image,
+.public-menu__category-nav a:focus-visible .public-menu__category-image {
   border-color: var(--color-accent);
-  background: var(--color-accent);
-  color: var(--color-accent-foreground);
+}
+
+.public-menu__category-nav a[aria-current="location"] {
+  color: var(--color-accent);
   font-weight: 700;
+}
+
+.public-menu__category-nav a[aria-current="location"] .public-menu__category-image {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 28%, transparent);
 }
 
 .public-menu__category-nav a:focus-visible {

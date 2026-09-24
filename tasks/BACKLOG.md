@@ -30,7 +30,8 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-013 | Implement admin login/logout | DONE | TASK-004 |
 | TASK-014 | Protect admin routes and resolve current establishment | DONE | TASK-013 |
 | TASK-015 | Build admin dashboard/navigation shell | DONE | TASK-014 |
-| TASK-031 | Add authenticated password security | IN_PROGRESS | TASK-014, TASK-027 |
+| TASK-031 | Add authenticated password security | BLOCKED | TASK-014, TASK-027; manual acceptance pending |
+| TASK-032 | Compact public category navigation | DONE | TASK-008, TASK-022 |
 
 ## EPIC 04 — Product Administration
 | ID | Task | Status | Depends on |

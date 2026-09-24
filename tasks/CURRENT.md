@@ -1,12 +1,10 @@
 # Current Development
 
 ## Active task
-`TASK-031 — Add authenticated password security`
-
-Task file: `tasks/active/TASK-031-account-password-security.md`
+No task is active.
 
 ## Status
-IN_PROGRESS
+BLOCKED
 
 ## Rule
-TASK-031 adds authenticated password change and strengthens the password policy without depending on email delivery. Recovery and invitations remain deferred until production SMTP is configured. TASK-028 remains blocked pending the definitive domain.
+TASK-031 awaits manual password-change acceptance. TASK-028 remains blocked pending the definitive domain, and TASK-029 depends on it.
