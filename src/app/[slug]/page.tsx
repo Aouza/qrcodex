@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { loadPublicHub } from "@/lib/hub/load-public-hub";
 import { getEstablishmentLogo } from "@/lib/menu/get-establishment-logo";
-import { loadPublicMenu } from "@/lib/menu/load-public-menu";
 
 export default async function PublicHubPage({
   params,
@@ -10,13 +10,13 @@ export default async function PublicHubPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const menu = await loadPublicMenu(slug);
+  const establishment = await loadPublicHub(slug);
 
-  if (!menu) {
+  if (!establishment) {
     notFound();
   }
 
-  const logoUrl = getEstablishmentLogo(menu.establishment.logo_url, menu.establishment.slug);
+  const logoUrl = getEstablishmentLogo(establishment.logo_url, establishment.slug);
 
   return (
     <main className="public-hub">
@@ -25,7 +25,7 @@ export default async function PublicHubPage({
           {logoUrl && (
             <Image
               src={logoUrl}
-              alt={`Logo de ${menu.establishment.name}`}
+              alt={`Logo de ${establishment.name}`}
               width={96}
               height={96}
               className="public-hub__logo"
@@ -34,7 +34,7 @@ export default async function PublicHubPage({
           )}
           <div>
             <p className="public-hub__eyebrow">Bem-vindo ao</p>
-            <h1>{menu.establishment.name}</h1>
+            <h1>{establishment.name}</h1>
           </div>
         </div>
       </header>
@@ -49,10 +49,10 @@ export default async function PublicHubPage({
           <span className="public-hub__menu-arrow" aria-hidden="true">→</span>
         </Link>
       </section>
-      {(menu.establishment.instagram || menu.establishment.whatsapp) && (
+      {(establishment.instagram || establishment.whatsapp) && (
         <footer className="public-hub__inner public-hub__contacts">
-          {menu.establishment.instagram && <a href={`https://instagram.com/${menu.establishment.instagram}`} target="_blank" rel="noreferrer">Instagram</a>}
-          {menu.establishment.whatsapp && <a href={`https://wa.me/${menu.establishment.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a>}
+          {establishment.instagram && <a href={`https://instagram.com/${establishment.instagram}`} target="_blank" rel="noreferrer">Instagram</a>}
+          {establishment.whatsapp && <a href={`https://wa.me/${establishment.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a>}
         </footer>
       )}
     </main>

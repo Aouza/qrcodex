@@ -108,7 +108,7 @@ The protected account page changes passwords without email delivery. Its Server 
 Basic establishment settings load and update only the server-resolved membership record. Name, logo and normalized optional Instagram/WhatsApp contacts are editable; the slug remains read-only because it is the permanent QR destination. Public contact links are constructed from normalized values rather than accepting arbitrary URLs.
 
 ## Public Hub and menu data
-The Hub loads only active public establishment identity and already-supported public links. It must not fetch the full menu merely to render its landing experience. Module links appear only when their implementation and required data are genuinely available.
+`src/lib/hub/load-public-hub.ts` loads only active public establishment identity and already-supported public links through the cookie-free anonymous client. It selects name, slug, logo and approved contacts from `establishments`; it does not query categories or products. Module links appear only when their implementation and required data are genuinely available.
 
 `src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
 
@@ -132,7 +132,7 @@ Expected validation/auth failures should produce user-friendly UI. Unexpected fa
 
 `src/app/[slug]/loading.tsx` and `error.tsx` cover establishment Hub loading/failure. The nested `src/app/[slug]/cardapio/` route owns the menu skeleton and retry state. `MenuCatalog` distinguishes no categories, no products across all categories, an individual empty category, and search with no matches. These states do not require database writes or a public account.
 
-The initial route migration reuses `loadPublicMenu` in both public pages to preserve behavior. TASK-044 replaces the Hub call with a focused establishment-only loader so `/[slug]` does not fetch category/product data.
+The Hub and menu loaders intentionally remain separate: Hub reads must stay lightweight as Agenda and Music destinations are added, while the menu loader owns catalog composition.
 
 ## Testing strategy
 Minimum MVP checks:
