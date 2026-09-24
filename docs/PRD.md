@@ -46,7 +46,7 @@ The public menu distinguishes an establishment with no active categories, one wi
 - create/edit/reorder/activate categories;
 - basic establishment settings.
 
-Basic settings include the public establishment name and optional Instagram/WhatsApp contacts. The public slug remains permanent and read-only so printed QR codes continue to work.
+Basic settings include the public establishment name, replaceable logo and optional Instagram/WhatsApp contacts. The public slug remains permanent and read-only so printed QR codes continue to work.
 
 The MVP account area lets an authenticated administrator replace their password without email delivery. Public sign-up remains disabled. Self-service password recovery and administrator invitations require production SMTP and remain future onboarding capabilities.
 

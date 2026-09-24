@@ -4,6 +4,7 @@
 .section > div:first-child > p:last-child { margin-top: 6px; color: #696965; font-size: 12px; }
 .editor { display: grid; gap: 18px; margin-top: 18px; }
 .preview { width: 160px; height: 160px; border: 1px solid #d8d8d2; border-radius: 8px; background: #fff; object-fit: cover; }
+.placeholder { display: grid; width: 160px; height: 160px; place-items: center; border: 1px dashed #b8b8b2; border-radius: 8px; background: #f6f6f3; color: #696965; font-size: 12px; font-weight: 700; }
 .controls { min-width: 0; }
 .controls label { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 750; }
 .controls input { display: block; width: 100%; min-height: 44px; padding: 8px; border: 1px solid #c9c9c3; border-radius: 6px; background: #fff; font: inherit; font-size: 12px; }

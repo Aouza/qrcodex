@@ -816,6 +816,12 @@ nome e aproximadamente quatro opções visíveis em um celular comum. O estado
 ativo destaca borda e texto, sem preencher todo o card com a cor de acento.
 Nomes ocupam no máximo duas linhas e a rolagem horizontal continua explícita.
 
+No cabeçalho público, a logo do estabelecimento aparece centralizada acima
+do nome e do rótulo `Cardápio digital`. Para a Relica's, a identidade local é
+o fallback quando nenhuma logo persistida foi cadastrada. A administração
+mostra uma prévia quadrada e controles explícitos para substituir ou voltar
+ao padrão.
+
 O shell autenticado usa uma superfície clara e neutra para separar o
 trabalho administrativo da experiência pública escura. Em telas amplas,
 a navegação fica em uma lateral compacta; em telas pequenas, vira uma

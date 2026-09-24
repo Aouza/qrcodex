@@ -55,3 +55,7 @@ Product photos are public menu content, so `product-images` uses public CDN deli
 ## ADR-014 — Persist optional category media without removing scoped defaults
 **Status:** Accepted
 Category images use nullable `categories.image_url` and public CDN delivery from `category-images`, while Storage writes remain protected by membership plus category ownership. A persisted image wins; otherwise Relica's known slugs retain their local illustrations and every other category receives the neutral fallback. This preserves fast defaults without making artwork the source of category identity.
+
+## ADR-015 — Scope the local establishment logo fallback
+**Status:** Accepted
+Use the approved local Relica's logo only when the `relicas` establishment has no persisted `logo_url`. Uploaded logos use a public Storage bucket with membership-protected writes and take precedence over the fallback. Other establishments receive no Relica's branding and can add their own logo through protected settings.

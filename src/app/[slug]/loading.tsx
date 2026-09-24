@@ -4,6 +4,7 @@ export default function PublicMenuLoading() {
       <p className="public-menu__sr-only">Carregando cardápio...</p>
       <header className="public-menu__header" aria-hidden="true">
         <div className="public-menu__inner public-menu__identity">
+          <span className="public-menu__skeleton public-menu__skeleton-logo" />
           <span className="public-menu__skeleton public-menu__skeleton-brand" />
         </div>
       </header>

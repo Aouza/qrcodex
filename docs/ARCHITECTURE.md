@@ -79,7 +79,7 @@ The Auth user and its establishment membership are separate records. After the u
 
 The protected account page changes passwords without email delivery. Its Server Action resolves authorized admin access, validates the current password through `signInWithPassword`, applies the new password with `updateUser`, and revokes other refresh-token sessions while preserving the current session. Application validation requires letters, numbers and at least 12 characters; hosted Supabase Auth independently enforces the 12-character minimum. Password values are never persisted or returned in action state. Self-service recovery remains deferred until production SMTP is configured.
 
-Basic establishment settings load and update only the server-resolved membership record. Name and normalized optional Instagram/WhatsApp contacts are editable; the slug remains read-only because it is the permanent QR destination. Public contact links are constructed from normalized values rather than accepting arbitrary URLs.
+Basic establishment settings load and update only the server-resolved membership record. Name, logo and normalized optional Instagram/WhatsApp contacts are editable; the slug remains read-only because it is the permanent QR destination. Public contact links are constructed from normalized values rather than accepting arbitrary URLs.
 
 ## Public menu data
 `src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
@@ -91,7 +91,9 @@ Product images live in Supabase Storage. Store paths/URLs in the product record 
 
 When `products.image_url` is null, the public list displays the local neutral `public/images/categories/generic.webp` thumbnail as an empty state. This does not write a fallback URL to the product record and is replaced automatically by a real product image.
 
-The public product list uses `next/image` with a remote pattern limited to the configured Supabase Storage origin (`/storage/v1/object/**`). If the storage task adopts a different delivery URL, update that pattern alongside the storage contract. The establishment logo still uses its existing unrestricted URL path until settings/storage define its source.
+The public product list uses `next/image` with a remote pattern limited to the configured Supabase Storage origin (`/storage/v1/object/**`). Establishment logos use the same restricted Storage origin. Relica's uses `public/images/logo/relicas-logo.jpg` only when `logo_url` is null; other tenants never inherit that asset.
+
+Uploaded establishment logos live in the public `establishment-images` bucket at `<establishment_id>/logo/<version>.<extension>`. Storage writes require current membership for the path tenant, while the settings Server Actions independently resolve the establishment and handle replacement/removal rollback. Removing a persisted Relica's logo restores its local fallback.
 
 The Relica's menu shell currently uses the optimized local `public/images/menu-editorial.webp` as a temporary, explicitly illustrative hero. It is scoped to the `relicas` slug so another tenant never inherits Relica's imagery. A future establishment setting can replace it with approved media; do not add a Storage field or uploader until that task. `tests/fixtures/images/fries.webp` is a development-only image fixture for responsive product-list checks, not public menu data and not an automatic product fallback.
 

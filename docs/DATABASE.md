@@ -104,6 +104,8 @@ Replacement uploads a versioned object, updates `products.image_url`, then remov
 
 `supabase/migrations/20260923000000_category_image_storage.sql` adds nullable `categories.image_url` and the public `category-images` bucket with the same 768 KB JPEG/PNG/WebP contract. Object paths use `<establishment_id>/<category_id>/<version>.<extension>`. Storage writes require both server-resolved membership and a matching category owned by that establishment. Persisted media takes precedence over local category artwork; null retains the scoped local or neutral fallback. Run `supabase/tests/007_category_image_storage.sql` to verify the schema, bucket and cross-tenant policy boundary.
 
+`supabase/migrations/20260924000000_establishment_logo_storage.sql` creates the public `establishment-images` bucket with the same 768 KB JPEG/PNG/WebP contract. Logo paths use `<establishment_id>/logo/<version>.<extension>`, and Storage policies require membership in that path's establishment. Application actions resolve the establishment server-side before upload, replacement or removal. Run `supabase/tests/010_establishment_logo_storage.sql` to verify the bucket, path shape and cross-tenant isolation.
+
 ## Seed intent
 `supabase/seed.sql` contains development data only: one Relica's establishment and the nine ordered categories from `docs/PRD.md`. It creates no products or prices. The establishment and categories have fixed IDs, and inserts use `ON CONFLICT (id) DO NOTHING`, so repeat runs do not duplicate records or overwrite later admin edits. This file is not a migration and must not be applied to production or a database whose purpose is unknown.
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MenuCatalog } from "@/components/menu/menu-catalog";
+import { getEstablishmentLogo } from "@/lib/menu/get-establishment-logo";
 import { loadPublicMenu } from "@/lib/menu/load-public-menu";
 
 export default async function PublicMenuPage({
@@ -15,17 +16,18 @@ export default async function PublicMenuPage({
     notFound();
   }
 
+  const logoUrl = getEstablishmentLogo(menu.establishment.logo_url, menu.establishment.slug);
+
   return (
     <main className="public-menu">
       <header className="public-menu__header">
         <div className="public-menu__inner public-menu__identity">
-          {menu.establishment.logo_url && (
+          {logoUrl && (
             <Image
-              src={menu.establishment.logo_url}
-              alt=""
-              width={48}
-              height={48}
-              unoptimized
+              src={logoUrl}
+              alt={`Logo de ${menu.establishment.name}`}
+              width={80}
+              height={80}
               className="public-menu__logo"
             />
           )}
