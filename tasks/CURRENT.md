@@ -7,4 +7,4 @@ No implementation task is active.
 BLOCKED
 
 ## Rule
-TASK-033 is complete. TASK-031 awaits manual password-change acceptance; TASK-028 remains blocked pending the definitive domain.
+TASK-034 is complete. TASK-031 awaits manual password-change acceptance; TASK-028 remains blocked pending the definitive domain.

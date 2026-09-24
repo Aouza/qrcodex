@@ -519,6 +519,8 @@ Tratamento:
 
 -   redução moderada de contraste;
 -   badge textual `Esgotado`;
+-   nome, preço e descrição em tons neutros apagados para comunicar estado desabilitado sem remover legibilidade;
+-   imagem com opacidade reduzida, preservando o badge como indicação textual explícita;
 -   preço preservado, se desejado;
 -   nenhuma aparência de ação de compra.
 

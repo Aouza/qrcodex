@@ -524,7 +524,17 @@ a {
 }
 
 .public-menu__product--unavailable .public-menu__product-image {
-  opacity: 0.6;
+  opacity: 0.45;
+  filter: grayscale(0.35);
+}
+
+.public-menu__product--unavailable h4,
+.public-menu__product--unavailable strong {
+  color: var(--color-text-muted);
+}
+
+.public-menu__product--unavailable p {
+  color: #666;
 }
 
 .public-menu__product-status {

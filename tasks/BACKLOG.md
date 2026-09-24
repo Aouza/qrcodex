@@ -60,6 +60,7 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-029 | Run MVP end-to-end acceptance and mobile smoke test | PLANNED | TASK-028 |
 | TASK-030 | Fix launch blockers and release MVP | PLANNED | TASK-029 |
 | TASK-033 | Add establishment logo management | DONE | TASK-004, TASK-015, TASK-025 |
+| TASK-034 | Refine unavailable product state | DONE | TASK-008 |
 
 > Note: if task IDs are referenced in code/PRs, keep them stable. Correct typos in dependency text without renumbering tasks.
 
