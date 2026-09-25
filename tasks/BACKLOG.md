@@ -77,9 +77,9 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 |---|---|---|---|
 | TASK-048 | Design Agenda domain and add migration/RLS | DONE | TASK-047 |
 | TASK-049 | Build public Agenda | DONE | TASK-048, TASK-051 |
-| TASK-050 | Build Agenda admin CRUD | READY | TASK-048, TASK-051 |
+| TASK-050 | Build Agenda admin CRUD | DONE | TASK-048, TASK-051 |
 | TASK-051 | Add event image storage | DONE | TASK-048 |
-| TASK-052 | Activate Agenda on Hub | PLANNED | TASK-049, TASK-050 |
+| TASK-052 | Activate Agenda on Hub | READY | TASK-049, TASK-050 |
 
 ## EPIC 09 — Music Requests
 | ID | Task | Status | Depends on |

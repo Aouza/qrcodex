@@ -35,9 +35,9 @@ Admin:
 - `/admin/products/new`
 - `/admin/products/[id]`
 - `/admin/categories`
-- `/admin/events` — Agenda list when implemented
-- `/admin/events/new` — event creation when implemented
-- `/admin/events/[id]` — event editing when implemented
+- `/admin/events` — Agenda list
+- `/admin/events/new` — event creation
+- `/admin/events/[id]` — event editing, flyer and delete
 - `/admin/music` — operational Music queue when implemented
 - `/admin/settings`
 - `/admin/account`

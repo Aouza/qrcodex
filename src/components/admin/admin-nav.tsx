@@ -8,6 +8,7 @@ const items = [
   { href: "/admin", label: "Início", detail: "Visão geral" },
   { href: "/admin/products", label: "Produtos", detail: "Itens e preços" },
   { href: "/admin/categories", label: "Categorias", detail: "Organização" },
+  { href: "/admin/events", label: "Eventos", detail: "Agenda" },
   { href: "/admin/settings", label: "Configurações", detail: "Estabelecimento" },
   { href: "/admin/account", label: "Conta", detail: "Senha e segurança" },
 ];
