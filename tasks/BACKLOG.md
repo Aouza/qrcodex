@@ -70,12 +70,12 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-044 | Add focused public Hub data loader | DONE | TASK-043 |
 | TASK-045 | Build public Hub UI foundation | DONE | TASK-044 |
 | TASK-046 | Integrate Hub and menu navigation | DONE | TASK-045 |
-| TASK-047 | Run Hub production migration | READY | TASK-046; custom domain optional for shared-host release |
+| TASK-047 | Run Hub production migration | DONE | TASK-046; custom domain optional for shared-host release |
 
 ## EPIC 08 — Agenda
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-048 | Design Agenda domain and add migration/RLS | PLANNED | TASK-047 |
+| TASK-048 | Design Agenda domain and add migration/RLS | READY | TASK-047 |
 | TASK-049 | Build public Agenda | PLANNED | TASK-048 |
 | TASK-050 | Build Agenda admin CRUD | PLANNED | TASK-048 |
 | TASK-051 | Add event image storage | PLANNED | TASK-050 |

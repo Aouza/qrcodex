@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-047 — Run Hub production migration`
+`TASK-048 — Design Agenda domain and add migration/RLS`
 
-Task file: `tasks/active/TASK-047-run-hub-production-migration.md`
+Task file: `tasks/active/TASK-048-design-agenda-domain-migration-rls.md`
 
 ## Status
 READY
 
 ## Rule
-TASK-046 completed and production-verified bidirectional Hub/menu navigation. TASK-047 will close the shared-host Hub migration and explicitly leave custom-domain cutover plus permanent QR generation deferred until `relicas.com.br` is acquired.
+TASK-047 closed the shared-host Hub release with production evidence and no database migration. The next unblocked product phase is Agenda; it is prepared but was not started as part of the completed cardápio-focused cycle.
