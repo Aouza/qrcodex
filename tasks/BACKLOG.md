@@ -75,8 +75,8 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 ## EPIC 08 — Agenda
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-048 | Design Agenda domain and add migration/RLS | READY | TASK-047 |
-| TASK-049 | Build public Agenda | PLANNED | TASK-048 |
+| TASK-048 | Design Agenda domain and add migration/RLS | DONE | TASK-047 |
+| TASK-049 | Build public Agenda | READY | TASK-048 |
 | TASK-050 | Build Agenda admin CRUD | PLANNED | TASK-048 |
 | TASK-051 | Add event image storage | PLANNED | TASK-050 |
 | TASK-052 | Activate Agenda on Hub | PLANNED | TASK-049, TASK-050 |

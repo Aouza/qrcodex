@@ -6,6 +6,8 @@ The initial executable schema is `supabase/migrations/20260921000000_initial_sch
 
 Both migrations were applied to the configured Supabase database and recorded as versions `20260921000000` and `20260921000001` in Supabase's migration history. Apply future schema changes through versioned migrations to keep remote history synchronized.
 
+The Agenda migration `20260924000001` is also applied and recorded remotely. It introduces only the `events` domain described below; public and admin Agenda interfaces remain separate follow-up tasks.
+
 After applying the migrations to a development Supabase database, run `supabase/tests/003_schema_integrity.sql` and `supabase/tests/004_rls_tenant_authorization.sql` with `psql -v ON_ERROR_STOP=1 -f`. Both tests wrap sample data in a transaction and roll it back. The RLS test requires a privileged database connection to create auth fixtures and switch into `anon` and `authenticated` roles.
 
 ## establishments
@@ -57,6 +59,21 @@ The Bar Hub custom-domain phase may add nullable unique `custom_domain` through 
 
 `price_cents` is intentional: never store currency as float.
 
+## events
+- `id uuid primary key`
+- `establishment_id uuid not null references establishments(id)`
+- `title text not null` with a database check rejecting blank titles
+- `description text null`
+- `starts_at timestamptz not null`
+- `ends_at timestamptz null` with `ends_at >= starts_at` when present
+- `image_url text null`
+- `external_url text null`
+- `active boolean not null default true`
+- timestamps
+- unique `(id, establishment_id)` for tenant-safe event media ownership in TASK-051
+
+`supabase/migrations/20260924000001_agenda_events.sql` creates the Agenda domain independently from menu tables. Events are ordered through the `(establishment_id, active, starts_at, id)` index. Time values are absolute instants stored as `timestamptz`; future forms may collect local establishment time but must convert it at the server boundary. `external_url` and `image_url` are nullable storage fields whose boundary validation belongs to their application/storage tasks.
+
 ## Referential rule
 The database must prevent assigning a product to a category from another establishment. The composite foreign key above enforces this invariant even when application validation is bypassed. Keep the composite relationship in the migration; a foreign key on `category_id` alone is insufficient.
 
@@ -70,6 +87,8 @@ Anonymous users may read only:
 - active products belonging to active establishments/categories.
 
 Availability does not restrict public visibility; unavailable active products remain readable.
+
+Anonymous users may read events only when both the event and its owning establishment are active. Event date does not participate in RLS: upcoming/history filtering is presentation behavior, while `active` is the explicit publication control.
 
 Only `SELECT` is granted to `anon` on establishments, categories and products. Anonymous users cannot read `establishment_users` or write to these tables. Public product visibility checks both the active category and active establishment, including when the product itself is active.
 
@@ -91,6 +110,8 @@ Run this only from a trusted terminal with the direct database connection. It is
 
 The policies call `private.is_establishment_member(uuid)`, a `SECURITY DEFINER` function with an empty search path. It checks only the caller's `auth.uid()` and bypasses RLS on `establishment_users`, avoiding recursive membership policies. Keep `private` out of the API's exposed schemas. Authenticated table reads are membership-scoped, including active public records of other establishments; a public menu for another tenant must use the anonymous read path.
 
+Agenda writes use the same helper and are permitted only when `events.establishment_id` belongs to the current authenticated member. Cross-tenant reads, inserts, updates and deletes fail closed under RLS. Run `supabase/tests/011_agenda_events.sql` with a privileged test connection after applying the Agenda migration; it verifies schema checks, anonymous publication rules and authenticated tenant isolation inside a rolled-back transaction.
+
 Never trust an `establishment_id` supplied by the browser without authorization enforcement.
 
 `public.reorder_category(tenant_id, category_id, direction)` is an authenticated, security-invoker function used for atomic category ordering. It verifies membership, locks only the selected tenant's category rows and rewrites positions as a contiguous zero-based sequence. Cross-tenant or boundary moves return false. Verify it with `supabase/tests/008_reorder_categories.sql`.
@@ -107,6 +128,8 @@ Replacement uploads a versioned object, updates `products.image_url`, then remov
 `supabase/migrations/20260923000000_category_image_storage.sql` adds nullable `categories.image_url` and the public `category-images` bucket with the same 768 KB JPEG/PNG/WebP contract. Object paths use `<establishment_id>/<category_id>/<version>.<extension>`. Storage writes require both server-resolved membership and a matching category owned by that establishment. Persisted media takes precedence over local category artwork; null retains the scoped local or neutral fallback. Run `supabase/tests/007_category_image_storage.sql` to verify the schema, bucket and cross-tenant policy boundary.
 
 `supabase/migrations/20260924000000_establishment_logo_storage.sql` creates the public `establishment-images` bucket with the same 768 KB JPEG/PNG/WebP contract. Logo paths use `<establishment_id>/logo/<version>.<extension>`, and Storage policies require membership in that path's establishment. Application actions resolve the establishment server-side before upload, replacement or removal. Run `supabase/tests/010_establishment_logo_storage.sql` to verify the bucket, path shape and cross-tenant isolation.
+
+Agenda event images remain nullable metadata only in TASK-048. Do not reuse product/category buckets. TASK-051 must introduce a dedicated public event-image bucket and membership-plus-event ownership policies before any event image uploader is exposed.
 
 ## Seed intent
 `supabase/seed.sql` contains development data only: one Relica's establishment and the nine ordered categories from `docs/PRD.md`. It creates no products or prices. The establishment and categories have fixed IDs, and inserts use `ON CONFLICT (id) DO NOTHING`, so repeat runs do not duplicate records or overwrite later admin edits. This file is not a migration and must not be applied to production or a database whose purpose is unknown.

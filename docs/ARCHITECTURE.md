@@ -98,6 +98,13 @@ On desktop, groups live in the existing compact sidebar. On mobile, the shell ex
 
 Each domain owns its loaders, validation schemas, Server Actions, database tables and focused tests. Shared infrastructure is limited to the admin shell, UI primitives, `getAdminAccess`, Supabase clients and common error conventions. Every mutation resolves membership independently and relies on its resource RLS policy. Do not create separate logins, separate admin applications, a generic modules table, a page builder or an all-in-one management screen.
 
+### Agenda domain
+Agenda owns `public.events` and does not reuse categories, products or a generic content table. Each event belongs directly to one establishment and carries title, optional description, start/end instants, optional media/CTA references and explicit publication state. Postgres rejects blank titles and inverted time ranges.
+
+Anonymous Agenda reads use the cookie-free public client and rely on RLS to expose only active events of active establishments. Date filtering and chronological grouping belong to the public Agenda loader, not to the RLS policy. Admin loaders and every event mutation must resolve membership server-side, scope by both event and establishment IDs where applicable, and retain RLS as the final tenant boundary.
+
+TASK-048 creates no public route, admin navigation item or Storage bucket. Those surfaces remain owned respectively by TASK-049, TASK-050 and TASK-051, so an unfinished Agenda module never appears in the Hub or Admin.
+
 ### Development administrator bootstrap
 The MVP has no public sign-up. For development, create the initial administrator manually in Supabase Dashboard through `Authentication > Users > Create new user`, with an email and password. Do not add a secret/service-role key to the application for this bootstrap.
 
