@@ -3,9 +3,12 @@ export default function PublicMenuLoading() {
     <main className="public-menu public-menu__loading" role="status" aria-busy="true">
       <p className="public-menu__sr-only">Carregando cardápio...</p>
       <header className="public-menu__header" aria-hidden="true">
-        <div className="public-menu__inner public-menu__identity">
-          <span className="public-menu__skeleton public-menu__skeleton-logo" />
-          <span className="public-menu__skeleton public-menu__skeleton-brand" />
+        <div className="public-menu__inner">
+          <div className="public-menu__skeleton public-menu__skeleton-hub-link" />
+          <div className="public-menu__identity">
+            <span className="public-menu__skeleton public-menu__skeleton-logo" />
+            <span className="public-menu__skeleton public-menu__skeleton-brand" />
+          </div>
         </div>
       </header>
       <div className="public-menu__inner" aria-hidden="true">

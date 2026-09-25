@@ -1241,4 +1241,5 @@ Regras:
 - manter alvos de toque de pelo menos 44 px e foco completo por teclado;
 - funcionar desde 320 px e deixar conteúdo útil seguinte parcialmente visível;
 - manter o cardápio denso e orientado à consulta após a navegação;
+- no Cardápio, exibir no topo um retorno compacto `Início` para o Hub, com alvo de toque de 44 px e sem substituir o histórico natural do navegador;
 - a aquisição do domínio não altera o contrato visual ou de interação.

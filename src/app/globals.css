@@ -364,6 +364,39 @@ a {
   padding-inline: 16px;
 }
 
+.public-menu__hub-navigation {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.public-menu__hub-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.public-menu__hub-link span {
+  color: var(--color-accent);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.public-menu__hub-link:hover {
+  color: var(--color-text-primary);
+}
+
+.public-menu__hub-link:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .public-menu__identity {
   display: flex;
   flex-direction: column;
@@ -371,7 +404,7 @@ a {
   justify-content: center;
   gap: 8px;
   min-height: 64px;
-  padding-block: 14px 12px;
+  padding-block: 4px 12px;
 }
 
 .public-menu__logo {
@@ -849,6 +882,13 @@ a {
 .public-menu__skeleton-brand {
   width: 176px;
   height: 26px;
+}
+
+.public-menu__skeleton-hub-link {
+  width: 76px;
+  height: 20px;
+  margin-top: 16px;
+  border-radius: 4px;
 }
 
 .public-menu__skeleton-logo {

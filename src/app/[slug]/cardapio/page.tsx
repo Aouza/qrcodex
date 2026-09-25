@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MenuCatalog } from "@/components/menu/menu-catalog";
 import { getEstablishmentLogo } from "@/lib/menu/get-establishment-logo";
@@ -21,34 +22,42 @@ export default async function PublicMenuPage({
   return (
     <main className="public-menu">
       <header className="public-menu__header">
-        <div className="public-menu__inner public-menu__identity">
-          {logoUrl && (
-            <Image
-              src={logoUrl}
-              alt={`Logo de ${menu.establishment.name}`}
-              width={80}
-              height={80}
-              className="public-menu__logo"
-            />
-          )}
-          <div className="public-menu__brand">
-            <h1>{menu.establishment.name}</h1>
-            <p>Cardápio digital</p>
-          </div>
-          {(menu.establishment.instagram || menu.establishment.whatsapp) && (
-            <div className="public-menu__contacts">
-              {menu.establishment.instagram && (
-                <a href={`https://instagram.com/${menu.establishment.instagram}`} target="_blank" rel="noreferrer">
-                  Instagram
-                </a>
-              )}
-              {menu.establishment.whatsapp && (
-                <a href={`https://wa.me/${menu.establishment.whatsapp}`} target="_blank" rel="noreferrer">
-                  WhatsApp
-                </a>
-              )}
+        <div className="public-menu__inner">
+          <nav className="public-menu__hub-navigation" aria-label="Navegação do estabelecimento">
+            <Link className="public-menu__hub-link" href={`/${menu.establishment.slug}`}>
+              <span aria-hidden="true">←</span>
+              Início
+            </Link>
+          </nav>
+          <div className="public-menu__identity">
+            {logoUrl && (
+              <Image
+                src={logoUrl}
+                alt={`Logo de ${menu.establishment.name}`}
+                width={80}
+                height={80}
+                className="public-menu__logo"
+              />
+            )}
+            <div className="public-menu__brand">
+              <h1>{menu.establishment.name}</h1>
+              <p>Cardápio digital</p>
             </div>
-          )}
+            {(menu.establishment.instagram || menu.establishment.whatsapp) && (
+              <div className="public-menu__contacts">
+                {menu.establishment.instagram && (
+                  <a href={`https://instagram.com/${menu.establishment.instagram}`} target="_blank" rel="noreferrer">
+                    Instagram
+                  </a>
+                )}
+                {menu.establishment.whatsapp && (
+                  <a href={`https://wa.me/${menu.establishment.whatsapp}`} target="_blank" rel="noreferrer">
+                    WhatsApp
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </header>
 

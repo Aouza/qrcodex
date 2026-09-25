@@ -69,8 +69,8 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-043 | Introduce Hub route and relocate menu | DONE | TASK-042 |
 | TASK-044 | Add focused public Hub data loader | DONE | TASK-043 |
 | TASK-045 | Build public Hub UI foundation | DONE | TASK-044 |
-| TASK-046 | Integrate Hub and menu navigation | READY | TASK-045 |
-| TASK-047 | Run Hub production migration | PLANNED | TASK-046; custom domain optional for shared-host release |
+| TASK-046 | Integrate Hub and menu navigation | DONE | TASK-045 |
+| TASK-047 | Run Hub production migration | READY | TASK-046; custom domain optional for shared-host release |
 
 ## EPIC 08 — Agenda
 | ID | Task | Status | Depends on |
