@@ -1,12 +1,12 @@
 # Current Development
 
 ## Active task
-`TASK-049 — Build public Agenda`
+`TASK-050 — Build Agenda admin CRUD`
 
-Task file: `tasks/active/TASK-049-build-public-agenda.md`
+Task file: `tasks/active/TASK-050-build-agenda-admin-crud.md`
 
 ## Status
 READY
 
 ## Rule
-TASK-051 delivered the tenant-safe event image bucket and database-enforced flyer requirement. TASK-049 now owns the public chronological Agenda route and presentation, without exposing it on the Hub before TASK-052.
+TASK-049 delivered and production-verified the direct public Agenda route. TASK-050 now owns membership-scoped event list/create/edit/delete, flyer management and draft/publication controls inside the existing Admin shell.

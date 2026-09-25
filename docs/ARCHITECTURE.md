@@ -103,6 +103,8 @@ Agenda owns `public.events` and does not reuse categories, products or a generic
 
 Anonymous Agenda reads use the cookie-free public client and rely on RLS to expose only active events of active establishments. Date filtering and chronological grouping belong to the public Agenda loader, not to the RLS policy. Admin loaders and every event mutation must resolve membership server-side, scope by both event and establishment IDs where applicable, and retain RLS as the final tenant boundary.
 
+`src/lib/agenda/load-public-agenda.ts` keeps Agenda reads separate from Hub and menu reads. Its pure resolver retains upcoming and currently running events, orders by start time, requires persisted media defensively and strips non-HTTP(S) external links. The direct `/{slug}/agenda` route owns its loading, empty and error states and remains absent from Hub navigation until TASK-052.
+
 TASK-048 creates no public route or admin navigation item. TASK-051 adds the dedicated `event-images` bucket before either interface: event rows begin as drafts, media paths encode tenant plus event ownership, and the database requires a flyer/banner before `active` can become true. Public and admin surfaces remain owned respectively by TASK-049 and TASK-050, so an unfinished Agenda module never appears in the Hub or Admin.
 
 ### Development administrator bootstrap
@@ -152,6 +154,8 @@ Minimum MVP checks:
 Do not introduce a heavy testing stack before a task needs it; when test tooling is added, document the command here.
 
 The public-menu featured selection and search filtering have focused tests in `tests/get-featured-products.test.mjs` and `tests/filter-menu-categories.test.mjs`. Membership cardinality is covered by `tests/resolve-membership.test.mjs`. Run them with `node --test tests/*.test.mjs` on the workspace Node 24 runtime.
+
+Public Agenda result filtering and safe CTA handling are covered by `tests/load-public-agenda.test.mjs`. Event-image validation/path ownership helpers are covered by `tests/event-image-validation.test.mjs`.
 
 The admin product page resolves authorization again in its server-only loader, explicitly scopes category and product reads to the resolved establishment, and hands the safe result to a Client Component for in-memory name search and category filtering. It accepts no tenant identifier from the browser. Filter behavior is covered by `tests/filter-admin-products.test.mjs`.
 

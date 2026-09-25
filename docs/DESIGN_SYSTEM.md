@@ -1243,3 +1243,20 @@ Regras:
 - manter o cardápio denso e orientado à consulta após a navegação;
 - no Cardápio, exibir no topo um retorno compacto `Início` para o Hub, com alvo de toque de 44 px e sem substituir o histórico natural do navegador;
 - a aquisição do domínio não altera o contrato visual ou de interação.
+
+------------------------------------------------------------------------
+
+## 48. Agenda pública
+
+A Agenda é editorial e cronológica, não uma grade operacional. Ela mantém a identidade escura do Hub e usa o flyer real como principal sinal de cada evento.
+
+Regras:
+
+- cabeçalho compacto com identidade do estabelecimento e retorno explícito ao Hub;
+- flyers em proporção estável `4:5`, sem cortes incoerentes ou mídia genérica para eventos publicados;
+- data e horário devem ser imediatamente escaneáveis antes do título;
+- descrição e CTA externo são opcionais e não deixam lacunas quando ausentes;
+- eventos aparecem em uma coluna no celular e até duas colunas em telas amplas;
+- estados vazio, loading e erro preservam a mesma hierarquia visual;
+- alvos interativos têm no mínimo 44 px e foco visível;
+- a rota funciona diretamente a partir de 320 px, sem exigir passagem pelo Hub.
