@@ -29,7 +29,8 @@ The product is an establishment experience Hub, not a restaurant operations plat
 - upcoming establishment events and shows;
 - public chronological agenda;
 - membership-scoped admin CRUD;
-- optional event image and external CTA.
+- required flyer/banner for published events and optional external CTA;
+- drafts may be saved without media, but cannot become public until an event image is attached.
 
 ### Phase C — Music Requests
 - customer song suggestions and voting;

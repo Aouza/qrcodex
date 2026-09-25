@@ -68,7 +68,7 @@ The Bar Hub custom-domain phase may add nullable unique `custom_domain` through 
 - `ends_at timestamptz null` with `ends_at >= starts_at` when present
 - `image_url text null`
 - `external_url text null`
-- `active boolean not null default true`
+- `active boolean not null default false`; active events require a non-null `image_url`
 - timestamps
 - unique `(id, establishment_id)` for tenant-safe event media ownership in TASK-051
 
@@ -129,7 +129,7 @@ Replacement uploads a versioned object, updates `products.image_url`, then remov
 
 `supabase/migrations/20260924000000_establishment_logo_storage.sql` creates the public `establishment-images` bucket with the same 768 KB JPEG/PNG/WebP contract. Logo paths use `<establishment_id>/logo/<version>.<extension>`, and Storage policies require membership in that path's establishment. Application actions resolve the establishment server-side before upload, replacement or removal. Run `supabase/tests/010_establishment_logo_storage.sql` to verify the bucket, path shape and cross-tenant isolation.
 
-Agenda event images remain nullable metadata only in TASK-048. Do not reuse product/category buckets. TASK-051 must introduce a dedicated public event-image bucket and membership-plus-event ownership policies before any event image uploader is exposed.
+`supabase/migrations/20260924000002_event_image_storage.sql` creates the public `event-images` bucket with the same 768 KB JPEG/PNG/WebP delivery contract used by other public media. Paths use `<establishment_id>/<event_id>/<version>.<extension>`, and Storage policies require both establishment membership and a matching event owned by that establishment. The migration also changes events to draft-by-default and enforces `not active or image_url is not null`, so an event cannot be published without its flyer/banner even if application validation is bypassed. Run `supabase/tests/012_event_image_storage.sql` to verify bucket settings, publication rules and cross-tenant Storage isolation.
 
 ## Seed intent
 `supabase/seed.sql` contains development data only: one Relica's establishment and the nine ordered categories from `docs/PRD.md`. It creates no products or prices. The establishment and categories have fixed IDs, and inserts use `ON CONFLICT (id) DO NOTHING`, so repeat runs do not duplicate records or overwrite later admin edits. This file is not a migration and must not be applied to production or a database whose purpose is unknown.

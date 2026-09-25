@@ -9,4 +9,4 @@ Task file: `tasks/active/TASK-049-build-public-agenda.md`
 READY
 
 ## Rule
-TASK-048 established and remotely applied the tenant-safe Agenda schema and RLS boundary. TASK-049 now owns the public chronological Agenda experience; it must not activate the Hub destination before TASK-052.
+TASK-051 delivered the tenant-safe event image bucket and database-enforced flyer requirement. TASK-049 now owns the public chronological Agenda route and presentation, without exposing it on the Hub before TASK-052.
