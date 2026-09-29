@@ -4,6 +4,7 @@
 - Application: `https://qrcodex-eight.vercel.app`
 - Current public Hub: `https://qrcodex-eight.vercel.app/relicas`
 - Current public menu: `https://qrcodex-eight.vercel.app/relicas/cardapio`
+- Current public Agenda: `https://qrcodex-eight.vercel.app/relicas/agenda` (not yet linked from Hub navigation; direct access only until TASK-052)
 - Future canonical domain: `https://relicas.com.br` (not yet acquired/configured)
 - Supabase project: `qrcodex-production` (`xybkiiuekjjchxxoxlyi`)
 
@@ -34,3 +35,13 @@ The Bar Hub migration is live on the current shared Vercel host:
 - deployment `dpl_Evq5g6Y33Npfy5v7ADGWrga37nHT` reached `READY` and was assigned to `qrcodex-eight.vercel.app`.
 
 This route migration required no database change. It does not declare `relicas.com.br` canonical and does not authorize permanent QR generation. Those actions remain blocked on domain ownership, DNS, TLS and Vercel routing verification.
+
+### Agenda admin CRUD release — 2026-09-25
+Commit `3bd2aa3` (TASK-050, admin CRUD for events with flyer management) went live on the current shared Vercel host, on top of the already-live public Agenda experience (TASK-049):
+
+- production Supabase (`qrcodex-production`) already had every committed migration applied — including `20260924000001_agenda_events.sql` and `20260924000002_event_image_storage.sql` — so this release required no `db push` or migration;
+- pre-deploy checks passed: lint, typecheck, 45 focused tests and the production build;
+- post-deploy smoke tests (public, non-destructive) confirmed `/relicas` (200, links to Cardápio), `/relicas/cardapio` (200, Heineken products present), `/relicas/agenda` (200, renders its empty state with no error/failure strings), and `/admin` plus `/admin/events` both redirecting an unauthenticated request to `/admin/login`;
+- deployment `dpl_GTmgPT7jecmykzBRvVeaf2Sp4zd8` reached `READY` and was aliased to `qrcodex-eight.vercel.app`.
+
+Agenda remains intentionally absent from Hub navigation; activating it is TASK-052.

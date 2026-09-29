@@ -103,7 +103,7 @@ Agenda owns `public.events` and does not reuse categories, products or a generic
 
 Anonymous Agenda reads use the cookie-free public client and rely on RLS to expose only active events of active establishments. Date filtering and chronological grouping belong to the public Agenda loader, not to the RLS policy. Admin loaders and every event mutation must resolve membership server-side, scope by both event and establishment IDs where applicable, and retain RLS as the final tenant boundary.
 
-`src/lib/agenda/load-public-agenda.ts` keeps Agenda reads separate from Hub and menu reads. Its pure resolver retains upcoming and currently running events, orders by start time, requires persisted media defensively and strips non-HTTP(S) external links. The direct `/{slug}/agenda` route owns its loading, empty and error states and remains absent from Hub navigation until TASK-052.
+`src/lib/agenda/load-public-agenda.ts` keeps Agenda reads separate from Hub and menu reads. Its pure resolver retains upcoming and currently running events, orders by start time, requires persisted media defensively and strips non-HTTP(S) external links. The direct `/{slug}/agenda` route owns its loading, empty and error states. The Hub uses a lightweight Agenda availability read rather than composing the full public Agenda payload.
 
 TASK-048 creates no public route or admin navigation item. TASK-051 adds the dedicated `event-images` bucket before either interface: event rows begin as drafts, media paths encode tenant plus event ownership, and the database requires a flyer/banner before `active` can become true. Public and admin surfaces remain owned respectively by TASK-049 and TASK-050, so an unfinished Agenda module never appears in the Hub or Admin.
 
@@ -117,7 +117,7 @@ The protected account page changes passwords without email delivery. Its Server 
 Basic establishment settings load and update only the server-resolved membership record. Name, logo and normalized optional Instagram/WhatsApp contacts are editable; the slug remains read-only because it is the permanent QR destination. Public contact links are constructed from normalized values rather than accepting arbitrary URLs.
 
 ## Public Hub and menu data
-`src/lib/hub/load-public-hub.ts` loads only active public establishment identity and already-supported public links through the cookie-free anonymous client. It selects name, slug, logo and approved contacts from `establishments`; it does not query categories or products. Module links appear only when their implementation and required data are genuinely available.
+`src/lib/hub/load-public-hub.ts` loads only active public establishment identity and already-supported public links through the cookie-free anonymous client. It selects name, slug, logo and approved contacts from `establishments`; it does not query categories or products. Module links appear only when their implementation and required data are genuinely available. Agenda is exposed from the Hub only when the active establishment has at least one public, current or upcoming published event with media.
 
 `src/lib/menu/load-public-menu.ts` resolves an active establishment by slug and returns active categories with their active products in position/ID order. The anonymous RLS policies also enforce active parent records. Featured items are selected from those visible category products and repeated in a compact section while remaining in their category lists. Unavailable active products remain visible with an `Esgotado` label in both contexts.
 

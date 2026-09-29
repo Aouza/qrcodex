@@ -66,6 +66,18 @@ export default async function PublicHubPage({
             <span className="public-hub__menu-arrow" aria-hidden="true">→</span>
           </span>
         </Link>
+        {establishment.hasPublicAgenda && (
+          <div className="public-hub__inner public-hub__secondary-destinations">
+            <Link className="public-hub__secondary-link" href={`/${slug}/agenda`}>
+              <span>
+                <span className="public-hub__secondary-label">Programacao</span>
+                <strong>Agenda</strong>
+                <span>Shows e eventos publicados</span>
+              </span>
+              <span aria-hidden="true">â†’</span>
+            </Link>
+          </div>
+        )}
       </section>
       {(establishment.instagram || establishment.whatsapp) && (
         <footer className="public-hub__contacts">

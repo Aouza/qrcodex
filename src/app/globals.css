@@ -181,6 +181,7 @@ a {
 }
 
 .public-hub__menu-link:focus-visible,
+.public-hub__secondary-link:focus-visible,
 .public-hub__contacts a:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
@@ -217,6 +218,64 @@ a {
   flex: none;
   color: var(--color-accent);
   font-size: 34px;
+  line-height: 1;
+}
+
+.public-hub__secondary-destinations {
+  display: grid;
+  gap: 12px;
+  padding-block: 18px 28px;
+}
+
+.public-hub__secondary-link {
+  display: flex;
+  min-height: 84px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  background: var(--color-bg-soft);
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.public-hub__secondary-link:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface);
+}
+
+.public-hub__secondary-link > span:first-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.public-hub__secondary-label {
+  color: var(--color-accent);
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.public-hub__secondary-link strong {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.public-hub__secondary-link span span:last-child {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.public-hub__secondary-link > span:last-child {
+  flex: none;
+  color: var(--color-accent);
+  font-size: 24px;
   line-height: 1;
 }
 

@@ -12,16 +12,65 @@ const establishment = {
 };
 
 test("returns the focused public establishment result", () => {
-  assert.equal(resolvePublicHubResult({ data: establishment, error: null }), establishment);
+  assert.deepEqual(
+    resolvePublicHubResult({ establishmentResult: { data: establishment, error: null }, agendaResult: { data: [], error: null } }),
+    { ...establishment, hasPublicAgenda: false },
+  );
 });
 
 test("returns null when no active establishment matches", () => {
-  assert.equal(resolvePublicHubResult({ data: null, error: null }), null);
+  assert.equal(resolvePublicHubResult({ establishmentResult: { data: null, error: null }, agendaResult: null }), null);
 });
 
 test("fails with a safe message when the public read fails", () => {
   assert.throws(
-    () => resolvePublicHubResult({ data: null, error: { message: "database details" } }),
+    () => resolvePublicHubResult({ establishmentResult: { data: null, error: { message: "database details" } }, agendaResult: null }),
+    { message: "Failed to load the public Hub." },
+  );
+});
+
+test("marks Agenda available when an upcoming public event has media", () => {
+  const result = resolvePublicHubResult(
+    {
+      establishmentResult: { data: establishment, error: null },
+      agendaResult: {
+        data: [
+          { id: "event-id", starts_at: "2026-10-02T22:00:00Z", ends_at: null, image_url: "https://example.test/flyer.webp" },
+        ],
+        error: null,
+      },
+    },
+    new Date("2026-09-29T12:00:00Z"),
+  );
+
+  assert.equal(result.hasPublicAgenda, true);
+});
+
+test("keeps Agenda hidden when events are past or missing media", () => {
+  const result = resolvePublicHubResult(
+    {
+      establishmentResult: { data: establishment, error: null },
+      agendaResult: {
+        data: [
+          { id: "past", starts_at: "2026-09-20T22:00:00Z", ends_at: null, image_url: "https://example.test/past.webp" },
+          { id: "no-media", starts_at: "2026-10-02T22:00:00Z", ends_at: null, image_url: null },
+        ],
+        error: null,
+      },
+    },
+    new Date("2026-09-29T12:00:00Z"),
+  );
+
+  assert.equal(result.hasPublicAgenda, false);
+});
+
+test("fails safely when the Agenda availability read fails", () => {
+  assert.throws(
+    () =>
+      resolvePublicHubResult({
+        establishmentResult: { data: establishment, error: null },
+        agendaResult: { data: null, error: { message: "events details" } },
+      }),
     { message: "Failed to load the public Hub." },
   );
 });

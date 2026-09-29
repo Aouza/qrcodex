@@ -79,12 +79,12 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-049 | Build public Agenda | DONE | TASK-048, TASK-051 |
 | TASK-050 | Build Agenda admin CRUD | DONE | TASK-048, TASK-051 |
 | TASK-051 | Add event image storage | DONE | TASK-048 |
-| TASK-052 | Activate Agenda on Hub | READY | TASK-049, TASK-050 |
+| TASK-052 | Activate Agenda on Hub | DONE | TASK-049, TASK-050 |
 
 ## EPIC 09 — Music Requests
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-053 | Design Music lifecycle, security and abuse controls | PLANNED | TASK-052 |
+| TASK-053 | Design Music lifecycle, security and abuse controls | READY | TASK-052 |
 | TASK-054 | Add Music database schema and RLS | PLANNED | TASK-053 |
 | TASK-055 | Build public Music request UI | PLANNED | TASK-054 |
 | TASK-056 | Build admin Music queue | PLANNED | TASK-054 |
