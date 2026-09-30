@@ -91,6 +91,12 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-057 | Validate Music abuse controls | PLANNED | TASK-055, TASK-056 |
 | TASK-058 | Activate Music on Hub | PLANNED | TASK-057 |
 
+## EPIC 11 — Experiments
+| ID | Task | Status | Depends on |
+|---|---|---|---|
+| TASK-060 | YouTube Music Requests POC | BLOCKED | TASK-052; YouTube OAuth/playlist env vars required |
+| TASK-061 | POC YouTube Music Queue & TV Player — READY_FOR_MANUAL_VALIDATION | IN_PROGRESS | TASK-060, TASK-052; manual scenario pending |
+
 ## EPIC 10 — Administration Architecture
 | ID | Task | Status | Depends on |
 |---|---|---|---|

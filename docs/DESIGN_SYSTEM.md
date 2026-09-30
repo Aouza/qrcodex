@@ -1260,3 +1260,6 @@ Regras:
 - estados vazio, loading e erro preservam a mesma hierarquia visual;
 - alvos interativos têm no mínimo 44 px e foco visível;
 - a rota funciona diretamente a partir de 320 px, sem exigir passagem pelo Hub.
+
+## 49. Player de TV experimental (TASK-061)
+Superfície escura de tela cheia, com vídeo como conteúdo principal e identificação discreta de `Tocando agora`. Quando a fila está vazia, mostrar a identidade do estabelecimento centralizada e `Aguardando pedidos...`. Preservar tokens de cor, legibilidade, foco e alvos mínimos de 44 px. Pode haver `INICIAR PLAYER` na ativação inicial quando necessário. Não mostrar lista da fila, navegação administrativa ou controles humanos de gestão. Estados técnicos: BOOTING, WAITING, PLAYING e RECOVERING/ERROR. O contrato funcional é o documento canônico `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`.

@@ -67,3 +67,9 @@ The menu becomes the first and primary module of a broader establishment Hub. Be
 ## ADR-017 — Use one modular Admin shell
 **Status:** Accepted
 Use one authenticated Admin and one server-resolved establishment context for Menu, Agenda, Music, Establishment and Account. Separate these capabilities into domain-specific routes, loaders, actions, tables and RLS policies; do not combine them into one management screen or create separate admin applications/logins. The overview is summaries plus shortcuts. Navigation exposes a module only after it is implemented. Shared code is limited to the shell, UI primitives, access resolution and common conventions; do not introduce a generic module engine or page builder.
+
+## ADR-018 — POC-only playback terminal boundary
+**Status:** Accepted for TASK-061 only
+The TV is a playback terminal, not an admin client. Supabase owns queue ordering/state; server-only lifecycle RPCs serialize on the active establishment and validate current-request technical events. Restrict direct authenticated UPDATE and browser lifecycle execution. Use a server-validated POC key to issue a tenant-bound HttpOnly cookie; it grants only playback-state/event capabilities and never admin access.
+
+A server-only service-role Supabase client is permitted for this experiment's scoped RPC boundary; never send its credential to the TV. Anonymous Realtime receives only empty wake-up broadcasts on opaque, server-issued tenant topics. This avoids exposing queue records or giving the TV an admin/JWT role. An exposed/forged wake-up alone cannot transition anything. Initial IFrame activation may need one gesture; reuse the IFrame between tracks. No fallback music or human queue controls are included. This is not the final production device-auth design; the canonical specification and mandatory manual success scenario remain in `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`.

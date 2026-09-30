@@ -143,6 +143,15 @@ Expected validation/auth failures should produce user-friendly UI. Unexpected fa
 
 The Hub and menu loaders intentionally remain separate: Hub reads must stay lightweight as Agenda and Music destinations are added, while the menu loader owns catalog composition.
 
+## Experimental Music TV player (TASK-061)
+The canonical contract is `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`. Supabase owns the ephemeral queue; the TV at `/{slug}/musicas/player` renders video only. POC 1 playlist/OAuth code remains isolated and preserved.
+
+The setup Server Action verifies `YOUTUBE_POC_PLAYER_KEY` and issues a signed, tenant-bound, 12-hour HttpOnly cookie. `/api/youtube/poc/player` accepts only state, ended and error operations, rejects cross-origin/malformed/unauthorized calls, rechecks the active tenant and returns minimal playback instructions. The TV needs no admin session. A server-only `SUPABASE_SERVICE_ROLE_KEY` client is a deliberate POC exception to the baseline's publishable-only clients; it calls restricted database RPCs and never ships credentials or admin capabilities to the browser.
+
+Lifecycle RPCs serialize on the establishment row. `advance_music_player` validates the current request, transitions it and claims next in one transaction. Public/authenticated browser roles have no lifecycle execution or direct table-update privilege. The TV's independent anonymous Realtime client listens on an opaque topic for empty wake-up broadcasts; the backend remains authoritative. Slow 15-second idle/event-delivery recovery never polls healthy active playback. The same IFrame instance is reused between tracks to preserve initial activation.
+
+Tests: `node --test tests/*.test.mjs`; `node tests/run-music-queue-local.mjs` for isolated PostgreSQL assertions and concurrent claims/events (requires PostgreSQL binaries; models Supabase Auth/Realtime functions locally); `node --env-file=.env.local tests/run-music-queue-sql.mjs` for rolled-back hosted assertions. HTTP boundary smoke checks use `node tests/music-player-http-smoke.mjs` against a production build listening on port 3100. Manual multi-phone/TV validation remains mandatory before POC success.
+
 ## Testing strategy
 Minimum MVP checks:
 - lint;

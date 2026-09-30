@@ -168,3 +168,6 @@ The data model supports users belonging to multiple establishments. The MVP auto
 
 ## 16. Future opportunities — not commitments
 Analytics, happy-hour automation, promotions, polls, quizzes, Wi-Fi helper, now-playing integration, call-waiter, ordering, tabs, payments, loyalty, administrator onboarding by email invitation and multi-tenant commercial plans.
+
+## 17. Experimental Music queue and TV player (TASK-061)
+TASK-061 is an unlinked POC, not production Phase C activation. Its canonical contract is `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`: the backend/Supabase owns an ephemeral FIFO queue and `/{slug}/musicas/player` is a playback-only TV terminal without an admin session. It uses YouTube IFrame playback and restricted technical-event reporting, waits when empty and adds no fallback music, human queue controls or production Hub link. The multi-phone/TV manual scenario must pass before POC success is declared; automated checks alone do not establish success.
