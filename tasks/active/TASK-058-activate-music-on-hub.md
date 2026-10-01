@@ -1,7 +1,7 @@
 # TASK-058 — Activate Music on Hub
 
 **Epic:** Music Requests
-**Status:** IN_PROGRESS
+**Status:** BLOCKED
 **Dependencies:** TASK-057
 
 ## Objective
@@ -19,20 +19,12 @@ Execute Preview/manual/release gates in [MUSIC_PRODUCTION.md](../../docs/MUSIC_P
 Disabling/rollback must not restore insecure POC endpoints or drop queue/history data. No fallback/default music.
 
 ## Handoff / next checkpoint
-User approved committing scoped existing work and publishing only `feat/music-production`. Resume feature-branch publication, branch-only credentials and protected Preview. No merge/push main or Production deployment. Earlier blocker notes below are historical; quota/manual gates remain pending.
+Feature branch published: `61b28cb`, no main merge/push. Protected compatible Preview READY: https://qrcodex-qlcaq2qzw-startrapalhoes.vercel.app. Six branch-only variables configured; Production Vercel environment unchanged. Hosted HTTP: privacy 200, unauthenticated player 401, legacy POC search 404. CLI automation bypass remains server-side; no token output/browser exposure.
 
-Current blocker after Git connection: Vercel confirms the repository is linked, but rejects branch-only credentials because `feat/music-production` does not exist in the connected remote repository. Await approval to commit the scoped existing work and publish this feature branch only (never merge/push main). No environment variables, production migration, Cron job or deployment changed. Backup/restore remains PASS; quota review remains pending.
+Backup: ignored `.release-backups/music-2026-09-30T23-30-16.547Z.dump.dpapi` and manifest. DPAPI CurrentUser hash/encryption roundtrip and isolated full scoped restore PASS; includes public/private/migration history and ACLs, excludes Auth credentials/sessions and Storage files. Provider schemas mocked for rehearsal; requires this Windows user/profile. Not full-platform disaster recovery.
 
-Git blocker resolved: user connected Vercel to Git; read-only confirmation shows `gitLinked=true`, Production branch `main`, protected Preview unchanged. Resume branch-only credential provisioning and compatible Preview. Do not push/merge main or invoke Production deploy. Earlier blocker note below is historical.
+Authorized atomic rollout applied versions `20260930000002`–`00006` plus Supabase Cron after Preview/backup verification. Existing three IDs/statuses/timestamps preserved, one-playing invariant healthy. One owner-only hourly job; real worker succeeded during controlled temporary minute cadence and final hourly restoration verified. No fixtures in production, queue activation or Google API calls.
 
-Current blocker: Vercel project is not connected to Git (`gitLinked=false`). Branch-scoped Preview environment provisioning was rejected HTTP 400; read-only verification confirms no variables changed. Do not broaden production DB/server secrets to every Preview. Await explicit choice: connect the existing Git repository with reviewed deployment triggers/no Production deployment, or isolate this rehearsal in a separate protected Preview project. No deployment, migration or live Cron setup performed. Backup/isolated restore PASS; local SQL/93 tests/HTTP/lint/typecheck PASS. Google quota question remains pending.
+Checks: local SQL boundaries/concurrency/cron contract, 93 tests, built HTTP smoke, lint/typecheck/build PASS. No secrets/backups/.claude committed. Local tooling: guarded rollout, deployment inspector, real Cron verifier.
 
-2026-09-30: Supabase Cron approved; local key provisioned. Scheduler operation is `supabase/operations/music-cleanup-cron.sql`; Vercel has no duplicate job. Optional `CRON_SECRET` protects manual HTTP cleanup only. Next: encrypted backup/isolated restore verification, protected compatible branch Preview, five approved migrations, then enable/configure Cron and verify real executions/monitoring. Actual Google quotas and hosted/manual acceptance remain pending.
-
-Read-only preflight: only POC versions `00000`/`00001`, three requests/one playing and healthy invariant; no production settings or pg_cron. Vercel qrcodex is Hobby, Preview authentication protected, CLI access verified. No remote database/environment write, deployment or Hub activation yet.
-
-Backup evidence: `.release-backups/music-2026-09-30T23-30-16.547Z.dump.dpapi` and its manifest (both ignored/excluded from deploy). Windows DPAPI CurrentUser encryption roundtrip/hash verified. Isolated PostgreSQL restore PASS, queue count three, healthy one-playing invariant, original two Music migration versions. Backup covers public/private/migration history with original ACLs; provider Auth schemas are mocked for rehearsal, Auth credentials/sessions and Storage object files excluded. Requires the same Windows user/profile to decrypt; not a full-platform disaster recovery claim. No production restore performed.
-
-Authorization: protected Preview against production Supabase and migrations `00002`–`00006` after backup/history checks; database scheduler approved. No main merge, public activation, paid upgrade or destructive restore. Deploy compatible application before revoking legacy POC RPCs. Preserve queue/history.
-
-TASK-056/057 are complete locally. Follow `docs/MUSIC_RELEASE_RUNBOOK.md` and security evidence. Never infer commercial/public acceptance from local tests or run fixtures in the production database.
+Next blocker: actual Google search/video quotas and bounded rehearsal budgets must be reviewed before configuring persistent limits. Module/admission remain OFF. Then admin pairing and full physical TV/two-phone, FIFO/non-interruption/ENDED/ERROR/WAITING/refresh/offline/endurance evidence. Confirm ongoing Cron monitoring owner/alerts. Commercial/privacy review and explicit public tenant/Hub activation remain pending. No Production app deploy, paid upgrade or destructive restore; not DONE or POC SUCCESS.

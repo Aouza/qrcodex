@@ -1,6 +1,6 @@
 # Music release gate — TASK-058
 
-Status: user authorized protected Preview using production Supabase and five pending migrations after history/backup checks, keeping Music out of the Hub. Supabase Cron is approved and the YouTube API key is present locally. Backup/restore, hosted provisioning, actual quotas and manual validation remain pending; no database writes or deployment occurred. Main merge/public activation/paid upgrade/destructive restore are not approved. Canonical behavior: `docs/MUSIC_PRODUCTION.md`. Local security evidence: `docs/experiments/MUSIC_PRODUCTION_SECURITY_REVIEW.md`.
+Status: approved feature branch is published; protected compatible Preview READY at https://qrcodex-qlcaq2qzw-startrapalhoes.vercel.app. Backup/isolated restore verified before atomic production DB migrations `00002`–`00006` and Supabase Cron setup. Queue/history preserved, module/admission/quota budgets OFF. Real Cron worker PASS and final hourly schedule verified. Six branch-only Preview variables configured; Production Vercel env unchanged. Actual quotas, monitoring ownership and physical/manual/commercial release gates remain pending. No main merge, Production deployment, public activation, paid upgrade or destructive production restore. Canonical behavior: `docs/MUSIC_PRODUCTION.md`. Security evidence: `docs/experiments/MUSIC_PRODUCTION_SECURITY_REVIEW.md`.
 
 ## Decisions required before external changes
 
@@ -10,7 +10,7 @@ Status: user authorized protected Preview using production Supabase and five pen
 - Confirm remote migration history, backup/restore capability and compatible application rollout. Pending versions are `20260930000002` through `00006`; do not replay the existing POC migrations blindly.
 
 ## Controlled preparation
-Git connection and scoped feature-branch commit/publication are now approved. Publish only `feat/music-production`, configure branch-only Preview credentials and verify compatible protected application before migrations. Do not merge/push main or broaden credentials to every Preview. Backup/isolated restore passed; remote migration/deploy/Cron remain pending.
+Git connection and scoped publication completed (`61b28cb`). Keep all Music credentials branch-only; no main merge/push or Production deployment. CLI generated a provider-side automation bypass for authenticated checks; no token printed, placed in URLs or exposed to browser code. Unauthenticated app-level player is 401, legacy POC search 404, privacy 200. Real pairing/cookies/browser playback remain manual checks. Physical test remains blocked on reviewed quotas/budgets; do not turn admission ON prematurely.
 
 
 1. Run isolated checks and verify no server secret enters browser bundles/logs. Keep public module/admission OFF.
