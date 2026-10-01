@@ -11,6 +11,8 @@ export function MusicRequestForm({slug,consented,accepting}:{slug:string;consent
   const [consent,setConsent]=useState(consented),[checked,setChecked]=useState(false),[query,setQuery]=useState("");
   const [results,setResults]=useState<VideoResult[]>([]),[selected,setSelected]=useState<VideoResult|null>(null);
   const [busy,setBusy]=useState(false),[message,setMessage]=useState(""),[accepted,setAccepted]=useState(false);
+  const [unavailable,setUnavailable]=useState(false);
+  const ready=accepting&&!unavailable;
   const retry=useRef<{videoId:string;id:string}|null>(null),inflight=useRef(false);
   async function send(body:Record<string,unknown>) {
     const response=await fetch("/api/music/public",{method:"POST",headers:{"Content-Type":"application/json"},
@@ -18,7 +20,7 @@ export function MusicRequestForm({slug,consented,accepting}:{slug:string;consent
     return await response.json() as {status:string;results?:VideoResult[]};
   }
   async function run(operation:"consent"|"search"|"request") {
-    if(inflight.current)return;
+    if(inflight.current || (operation!=="consent"&&(!ready||!consent)))return;
     if(operation==="request"&&!selected)return;
     inflight.current=true;setBusy(true);setMessage("");setAccepted(false);
     try {
@@ -28,28 +30,29 @@ export function MusicRequestForm({slug,consented,accepting}:{slug:string;consent
       if(data.status==="consented")setConsent(true);
       else if(data.status==="results"){setResults(data.results??[]);setSelected(null);retry.current=null;if(!data.results?.length)setMessage("Nenhum vídeo encontrado.");}
       else if(data.status==="accepted"){setAccepted(true);setMessage("Pedido recebido! Pedidos não garantem reprodução.");setSelected(null);retry.current=null;}
-      else {setMessage(messages[data.status]??messages.temporarily_unavailable);if(data.status==="consent_required")setConsent(false);}
+      else {setMessage(messages[data.status]??messages.temporarily_unavailable);if(data.status==="consent_required")setConsent(false);
+        if(data.status==="disabled"||data.status==="offline"){setUnavailable(true);setResults([]);setSelected(null);retry.current=null;}}
     } catch {setMessage("Não foi possível confirmar a operação. Tente novamente; o mesmo pedido não será duplicado.");}
     finally {inflight.current=false;setBusy(false);}
   }
   return <section className={styles.panel} aria-label="Pedidos de música">
-    {!accepting&&<p className={styles.notice}>Os pedidos estão pausados ou a TV está offline. Você pode tentar novamente quando o player estiver pronto.</p>}
+    {!ready&&<p className={styles.notice}>Os pedidos estão pausados ou a TV está offline. Atualize esta tela quando o player estiver pronto para buscar e pedir músicas.</p>}
     {!consent?<div className={styles.consent}>
       <p>Usamos o YouTube para buscar e reproduzir vídeos. Cookies identificam temporariamente suas tentativas e protegem a fila contra abuso.</p>
       <label><input type="checkbox" checked={checked} onChange={e=>setChecked(e.target.checked)}/><span>Li e aceito a <Link href={`/${slug}/musicas/privacidade`}>política de privacidade</Link> e os <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">Termos do YouTube</a>.</span></label>
       <button disabled={!checked||busy} onClick={()=>void run("consent")}>{busy?"Aguarde...":"Aceitar e continuar"}</button>
     </div>:<>
-      <form onSubmit={e=>{e.preventDefault();if(query.trim().length>=3)void run("search");}}>
+      <form onSubmit={e=>{e.preventDefault();if(ready&&query.trim().length>=3)void run("search");}}>
         <label htmlFor="music-search">Buscar música ou artista</label>
-        <input id="music-search" value={query} disabled={busy} onChange={e=>{setQuery(e.target.value);setResults([]);setSelected(null);retry.current=null;setMessage("");}} maxLength={100} placeholder="Ex.: Deftones Change" autoComplete="off"/>
-        <button disabled={busy||query.trim().length<3} type="submit">{busy?"Aguarde...":"Buscar"}</button>
+        <input id="music-search" value={query} disabled={!ready||busy} onChange={e=>{setQuery(e.target.value);setResults([]);setSelected(null);retry.current=null;setMessage("");}} maxLength={100} placeholder="Ex.: Deftones Change" autoComplete="off"/>
+        <button disabled={!ready||busy||query.trim().length<3} type="submit">{busy?"Aguarde...":"Buscar"}</button>
       </form>
       <ol className={styles.results}>{results.map(video=><li key={video.videoId}>
-        <button disabled={busy} aria-pressed={selected?.videoId===video.videoId} onClick={()=>{setSelected(video);setAccepted(false);setMessage("");
+        <button disabled={!ready||busy} aria-pressed={selected?.videoId===video.videoId} onClick={()=>{if(!ready||busy)return;setSelected(video);setAccepted(false);setMessage("");
           if(retry.current?.videoId!==video.videoId)retry.current={videoId:video.videoId,id:crypto.randomUUID()};}}>
           <span>{video.title}</span><small>{video.channelTitle}</small>
         </button></li>)}</ol>
-      <button disabled={busy||!selected} onClick={()=>void run("request")}>Pedir música</button>
+      <button disabled={!ready||busy||!selected} onClick={()=>void run("request")}>Pedir música</button>
       <p>Pedidos entram em ordem de chegada e não garantem reprodução.</p>
     </>}
     {message&&<p role={accepted?"status":"alert"}>{message}</p>}

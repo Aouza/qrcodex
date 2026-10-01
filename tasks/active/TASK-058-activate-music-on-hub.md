@@ -1,7 +1,7 @@
 # TASK-058 — Activate Music on Hub
 
 **Epic:** Music Requests
-**Status:** BLOCKED
+**Status:** IN_PROGRESS
 **Dependencies:** TASK-057
 
 ## Objective
@@ -19,6 +19,10 @@ Execute Preview/manual/release gates in [MUSIC_PRODUCTION.md](../../docs/MUSIC_P
 Disabling/rollback must not restore insecure POC endpoints or drop queue/history data. No fallback/default music.
 
 ## Handoff / next checkpoint
+Owner feedback fix: paused/offline customer UI now disables search, result selection and request submission (including handler guards); explicit backend disabled/offline responses clear stale selection and keep controls closed until reload. Privacy remains available. New SSR regression assertions PASS with all 94 tests; no queue/database mutation. Await deployed correction and continue manual pairing/playback validation, not DONE.
+
+READY_FOR_MANUAL_VALIDATION — user explicitly authorized Production and Music in Relica's Hub for today's owner rehearsal (not public-launch acceptance). Production deployment `dpl_GFrrHcAzswVZEwdskRgLtmq2K5Sn`, app commit `bca4967`, alias https://qrcodex-eight.vercel.app. Independent Production signing key and stable origin configured. Tenant enabled through trusted first-release bootstrap; others OFF, existing quota usage not reset. App caps 80 searches/day and 100 metadata calls/day reflect observed Google limits (100 search/day, 10,000 general/day). Public HTTP PASS: Hub Music link, Menu/Agenda/customer/player 200, secure consent cookie, unauthenticated player 401, wrong origin 403, POC 404 and cleanup 401. No music requests, fake lease or Google calls created by smoke checks. 94 tests/lint/typecheck/build PASS. Pairing and actual multi-phone/TV/ENDED/ERROR/refresh/endurance are still manual. No main merge, commercial acceptance, POC SUCCESS or DONE; prior no-Production/no-Hub notes below are historical.
+
 Feature branch published: `61b28cb`, no main merge/push. Protected compatible Preview READY: https://qrcodex-qlcaq2qzw-startrapalhoes.vercel.app. Six branch-only variables configured; Production Vercel environment unchanged. Hosted HTTP: privacy 200, unauthenticated player 401, legacy POC search 404. CLI automation bypass remains server-side; no token output/browser exposure.
 
 Backup: ignored `.release-backups/music-2026-09-30T23-30-16.547Z.dump.dpapi` and manifest. DPAPI CurrentUser hash/encryption roundtrip and isolated full scoped restore PASS; includes public/private/migration history and ACLs, excludes Auth credentials/sessions and Storage files. Provider schemas mocked for rehearsal; requires this Windows user/profile. Not full-platform disaster recovery.

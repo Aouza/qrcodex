@@ -25,6 +25,10 @@ test("consented customer only sees search/request, no TV or queue/admin controls
 });
 test("offline/paused admission is explicit without blocking access to privacy",()=>{
   const html=render({consented:true,accepting:false});assert.match(html,/TV está offline/);assert.match(html,/Privacidade/);
+  assert.match(html,/<input[^>]*id="music-search"[^>]*disabled=""/);
+  assert.match(html,/<button[^>]*disabled=""[^>]*type="submit"/);
+  assert.match(html,/<button[^>]*disabled=""[^>]*>Pedir música/);
+  assert.match(html,/Atualize esta tela/);
 });
 test("mobile styles use wrapping, bounded widths, keyboard focus and 48px actions",async()=>{
   const css=await readFile("src/app/[slug]/musicas/music.module.css","utf8");

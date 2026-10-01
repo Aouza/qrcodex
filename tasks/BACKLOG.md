@@ -89,7 +89,7 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-055 | Build production Music requests and TV boundary | DONE | TASK-054 |
 | TASK-056 | Build admin Music queue | DONE | TASK-054, TASK-055 |
 | TASK-057 | Validate Music abuse controls | DONE | TASK-055, TASK-056 |
-| TASK-058 | Activate Music on Hub | BLOCKED | TASK-057; actual quota/rehearsal budget and hosted/manual release gates |
+| TASK-058 | Activate Music on Hub — READY_FOR_MANUAL_VALIDATION | IN_PROGRESS | TASK-057; owner Production rehearsal active; physical/commercial release gates pending |
 
 Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053 design and TASK-054 local schema/RPC/tests are complete; no production migrations/deploy/activation occurred. TASK-055 is READY; application/release gates remain open. TASK-061 retains pending manual validation rather than being retroactively declared successful. Only one production implementation task should run at a time.
 

@@ -10,6 +10,8 @@ Status: approved feature branch is published; protected compatible Preview READY
 - Confirm remote migration history, backup/restore capability and compatible application rollout. Pending versions are `20260930000002` through `00006`; do not replay the existing POC migrations blindly.
 
 ## Controlled preparation
+Owner rehearsal is deployed by explicit subsequent approval: https://qrcodex-eight.vercel.app, Production `dpl_GFrrHcAzswVZEwdskRgLtmq2K5Sn`, app commit `bca4967`. Relica's Hub Music link ON, others OFF. Production secrets independent from Preview, stable HTTPS origin configured. Trusted first-release bootstrap caps 80 searches/day and 100 metadata calls/day without resetting usage; screenshot confirmed Google search 100/day and general 10,000/day. Public HTTP checks passed (Hub/Menu/Agenda/Music/player, secure consent, authorization/origin/legacy/cleanup); no Google/queue mutation by smoke. Pair via /admin/music and TV /relicas/musicas/player; physical/manual/commercial acceptance remains pending. Public domain is accessible to anyone with its link; owner rehearsal is not private Preview. Roll back availability via authenticated Music admin OFF controls, preserving queue/history. STOP for manual evidence, not TASK DONE.
+
 Git connection and scoped publication completed (`61b28cb`). Keep all Music credentials branch-only; no main merge/push or Production deployment. CLI generated a provider-side automation bypass for authenticated checks; no token printed, placed in URLs or exposed to browser code. Unauthenticated app-level player is 401, legacy POC search 404, privacy 200. Real pairing/cookies/browser playback remain manual checks. Physical test remains blocked on reviewed quotas/budgets; do not turn admission ON prematurely.
 
 
