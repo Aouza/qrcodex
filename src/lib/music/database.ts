@@ -15,8 +15,8 @@ export async function musicRpc(name:string,args:Record<string,unknown>={}) {
   if (error) throw new Error("MUSIC_DATABASE_UNAVAILABLE");
   return data as unknown;
 }
-export async function musicAvailability(slug:string) {
-  const {data,error}=await createPublicClient().rpc("music_availability",{p_slug:slug});
+export async function musicAvailability(slug:string,timeoutMs=10000) {
+  const {data,error}=await createPublicClient().rpc("music_availability",{p_slug:slug}).abortSignal(AbortSignal.timeout(timeoutMs));
   if (error) throw new Error("MUSIC_DATABASE_UNAVAILABLE");
   return data===null ? null : z.object({enabled:z.boolean(),accepting:z.boolean()}).parse(data);
 }

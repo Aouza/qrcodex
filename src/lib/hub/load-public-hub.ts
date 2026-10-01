@@ -1,7 +1,9 @@
 import { createPublicClient } from "@/lib/supabase/public";
-import { resolvePublicHubResult } from "@/lib/hub/resolve-public-hub-result";
+import { hasPublicMusic, resolvePublicHubResult, type PublicHubEstablishment } from "@/lib/hub/resolve-public-hub-result";
+import { musicAvailability } from "@/lib/music/database";
+import { productionMusicEnabled } from "@/lib/music/runtime";
 
-export async function loadPublicHub(slug: string, now = new Date()) {
+export async function loadPublicHub(slug: string, now = new Date()): Promise<PublicHubEstablishment | null> {
   const supabase = createPublicClient();
   const establishmentResult = await supabase
     .from("establishments")
@@ -23,5 +25,9 @@ export async function loadPublicHub(slug: string, now = new Date()) {
     .order("id")
     .limit(24);
 
-  return resolvePublicHubResult({ establishmentResult, agendaResult }, now);
+  const result = resolvePublicHubResult({ establishmentResult, agendaResult }, now);
+  // Optional module failure must never break Menu/Agenda or expose settings.
+  const enabled = productionMusicEnabled();
+  const music = enabled ? await musicAvailability(slug, 2000).catch(() => null) : null;
+  return result ? { ...result, hasPublicMusic: hasPublicMusic(enabled, music) } : null;
 }

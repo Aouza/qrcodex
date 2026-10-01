@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { resolvePublicHubResult } from "../src/lib/hub/resolve-public-hub-result.ts";
+import { hasPublicMusic, resolvePublicHubResult } from "../src/lib/hub/resolve-public-hub-result.ts";
+
+test("Music Hub link requires global and tenant enablement; failure is closed", () => {
+  assert.equal(hasPublicMusic(false, {enabled:true}), false);
+  assert.equal(hasPublicMusic(true, {enabled:false}), false);
+  assert.equal(hasPublicMusic(true, null), false);
+  assert.equal(hasPublicMusic(true, {enabled:true}), true);
+});
 
 const establishment = {
   id: "establishment-id",

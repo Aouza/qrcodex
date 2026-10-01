@@ -6,9 +6,10 @@ export type PublicHubEstablishment = {
   instagram: string | null;
   whatsapp: string | null;
   hasPublicAgenda: boolean;
+  hasPublicMusic?: boolean;
 };
 
-type EstablishmentRow = Omit<PublicHubEstablishment, "hasPublicAgenda">;
+type EstablishmentRow = Omit<PublicHubEstablishment, "hasPublicAgenda" | "hasPublicMusic">;
 
 type PublicHubEstablishmentResult = {
   data: EstablishmentRow | null;
@@ -31,6 +32,10 @@ type PublicHubResult = {
   establishmentResult: PublicHubEstablishmentResult;
   agendaResult: PublicHubAgendaResult | null;
 };
+
+export function hasPublicMusic(featureEnabled: boolean, availability: { enabled: boolean } | null) {
+  return featureEnabled && availability?.enabled === true;
+}
 
 function hasCurrentOrUpcomingEvent(events: PublicHubAgendaEvent[] | null, now: Date) {
   const nowTime = now.getTime();

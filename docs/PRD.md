@@ -33,6 +33,8 @@ The product is an establishment experience Hub, not a restaurant operations plat
 - drafts may be saved without media, but cannot become public until an event image is attached.
 
 ### Phase C — Music Requests
+TASK-058 owner rehearsal exception: user approved Music in Relica's Hub and a Production deployment for testing during construction. This is not public-launch/commercial acceptance or completion. Hub availability is configuration-driven by the global feature flag and anonymous tenant-enabled boolean; backend admission still requires a ready authorized TV. Other tenants default OFF. See the canonical release runbook and recorded decision.
+
 TASK-056 adds local membership-scoped `/admin/music` operations and navigation (pair/replace/revoke, module/admission controls, skip/remove and TV readiness), without enabling Music in the public Hub or changing Menu/Agenda. All production activation gates remain in TASK-058.
 
 - customer YouTube requests in a backend-owned FIFO queue;

@@ -16,12 +16,14 @@ async function get(path, label) {
   return response.json();
 }
 try {
-  const [settings, team, variables] = await Promise.all([
+  const [settings, team, variables, domains] = await Promise.all([
     get(`/v9/projects/${project.projectId}?teamId=${project.orgId}`, "project"),
     get(`/v2/teams/${project.orgId}`, "team"),
     get(`/v9/projects/${project.projectId}/env?teamId=${project.orgId}`, "environment"),
+    get(`/v9/projects/${project.projectId}/domains?teamId=${project.orgId}`, "domains"),
   ]);
   console.log(JSON.stringify({ project: settings.name, plan: team.billing?.plan ?? null, gitLinked: !!settings.link,
+    domains: domains.domains.map(d=>({name:d.name,redirect:d.redirect,gitBranch:d.gitBranch})),
     previewProtection: settings.ssoProtection ?? null, passwordProtection: !!settings.passwordProtection,
     framework: settings.framework, productionBranch: settings.link?.productionBranch ?? null,
     previewEnvironmentNames: variables.envs.filter(e => e.target?.includes("preview")).map(e => ({ key: e.key, branch: e.gitBranch ?? null })),

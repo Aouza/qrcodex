@@ -66,8 +66,19 @@ export default async function PublicHubPage({
             <span className="public-hub__menu-arrow" aria-hidden="true">→</span>
           </span>
         </Link>
-        {establishment.hasPublicAgenda && (
+        {(establishment.hasPublicAgenda || establishment.hasPublicMusic) && (
           <div className="public-hub__inner public-hub__secondary-destinations">
+            {establishment.hasPublicMusic && (
+              <Link className="public-hub__secondary-link" href={`/${slug}/musicas`}>
+                <span>
+                  <span className="public-hub__secondary-label">Participe</span>
+                  <strong>Música</strong>
+                  <span>Peça uma música para tocar no bar</span>
+                </span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            )}
+            {establishment.hasPublicAgenda && (
             <Link className="public-hub__secondary-link" href={`/${slug}/agenda`}>
               <span>
                 <span className="public-hub__secondary-label">Programacao</span>
@@ -76,6 +87,7 @@ export default async function PublicHubPage({
               </span>
               <span aria-hidden="true">â†’</span>
             </Link>
+            )}
           </div>
         )}
       </section>
