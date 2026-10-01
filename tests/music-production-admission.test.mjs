@@ -42,6 +42,19 @@ test("metadata validates exact id, availability, public/processed and embedding"
     {...item,status:{...item.status,privacyStatus:"private"}},{...item,status:{...item.status,uploadStatus:"rejected"}},null])
     await assert.rejects(validateMusicVideo(id,"key",async()=>Response.json({items:changed?[changed]:[]})),/video_unavailable/);
 });
+test("search ignores non-video and malformed items without discarding valid videos",async()=>{
+ const snippet={title:"Thornhill",channelTitle:"Channel"};
+ const valid={id:{kind:"youtube#video",videoId:id},snippet};
+ const result=await searchMusicVideos("Thornhill","key",async()=>Response.json({items:[
+  {id:{kind:"youtube#channel",channelId:"channel"},snippet},
+  {id:{kind:"youtube#playlist",playlistId:"playlist"},snippet},
+  {id:{videoId:"invalid"},snippet},null,{...valid,snippet:{...snippet,title:""}},valid,
+ ]}));
+ assert.deepEqual(result,[{videoId:id,title:"Thornhill",channelTitle:"Channel",thumbnailUrl:null}]);
+ assert.deepEqual(await searchMusicVideos("song","key",async()=>Response.json({items:[{id:{channelId:"channel"},snippet}]})),[]);
+ for(const body of [{},{items:null},{items:Array(51).fill(valid)}])
+  await assert.rejects(searchMusicVideos("song","key",async()=>Response.json(body)),/upstream_unavailable/);
+});
 test("upstream failures are sanitized and cannot be admitted",async()=>{
   await assert.rejects(searchMusicVideos("song","key",async()=>{throw Error("raw sensitive response");}),/^Error: upstream_unavailable$/);
   await assert.rejects(searchMusicVideos("song","key",async()=>Response.json({error:{errors:[{reason:"quotaExceeded"}]}},{status:403})),/quota_exhausted/);
