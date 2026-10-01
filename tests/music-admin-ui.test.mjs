@@ -29,3 +29,11 @@ test("admin mobile uses wrapping, minimum action size and keyboard focus",async(
  const css=await readFile("src/components/admin/admin-music.module.css","utf8");
  for(const check of [/min-width:0/,/overflow-wrap:anywhere/,/flex-wrap:wrap/,/min-height:48px/,/:focus-visible/])assert.match(css,check);
 });
+
+test("music admin uses the shared light admin palette, not public dark tokens",async()=>{
+ const css=await readFile("src/components/admin/admin-music.module.css","utf8");
+ assert.match(css,/\.card \{[^}]*background:#ffffff;[^}]*color:#1b1b1a;/);
+ assert.match(css,/\.card p \{ color:#686865;/);
+ assert.match(css,/outline:2px solid #c58b00/);
+ assert.doesNotMatch(css,/var\(--color-/);
+});
