@@ -1263,3 +1263,8 @@ Regras:
 
 ## 49. Player de TV experimental (TASK-061)
 Superfície escura de tela cheia, com vídeo como conteúdo principal e identificação discreta de `Tocando agora`. Quando a fila está vazia, mostrar a identidade do estabelecimento centralizada e `Aguardando pedidos...`. Preservar tokens de cor, legibilidade, foco e alvos mínimos de 44 px. Pode haver `INICIAR PLAYER` na ativação inicial quando necessário. Não mostrar lista da fila, navegação administrativa ou controles humanos de gestão. Estados técnicos: BOOTING, WAITING, PLAYING e RECOVERING/ERROR. O contrato funcional é o documento canônico `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`.
+
+## 50. Música de produção (TASK-055)
+Admin Música (TASK-056) integra a navegação existente. Apresentar operação/TV, tocando agora e fila FIFO em cartões de coluna única, com títulos longos quebrados, foco visível e ações de 48 px. Diferenciar pausado, offline e sem pareamento. Confirmar pular/remover/revogar/substituir; mostrar código de pareamento somente ao admin, sem URL e com expiração. Não adicionar vídeo, votos ou reordenação no admin.
+
+Tela pública independente, sem link no Hub até TASK-058: consentimento explícito antes de busca/pedido, links de privacidade/YouTube e mensagens claras de pausa, offline, fila cheia e limite. Usar tokens existentes, coluna única a partir de 320 px, quebra de títulos longos, foco visível e controles de pelo menos 48 px. Não exigir conta do cliente. A TV reutiliza a superfície de vídeo e espera, com pareamento separado do admin; revogação, expiração, outra aba e reconexão têm estados técnicos explícitos. A gestão humana nunca aparece na TV. O contrato de produção está em `docs/MUSIC_PRODUCTION.md`.

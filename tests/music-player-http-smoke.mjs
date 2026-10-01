@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+// Historical POC only: local next dev, production Music disabled. Published
+// endpoints are now intentionally closed; use music-production-http-smoke.mjs.
 const origin = process.env.PLAYER_SMOKE_ORIGIN ?? "http://127.0.0.1:3100";
 async function post(body, headers = {}, raw = false) {
   return fetch(`${origin}/api/youtube/poc/player`, {

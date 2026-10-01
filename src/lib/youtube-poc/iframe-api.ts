@@ -3,9 +3,10 @@ export type YouTubePlayer = {
   loadVideoById(videoId: string): void;
   getVideoUrl(): string;
   destroy(): void;
+  stopVideo(): void;
 };
 type PlayerOptions = {
-  videoId: string; width: string; height: string;
+  videoId?: string; width: string; height: string;
   playerVars: { autoplay: number; playsinline: number; origin: string; rel: number };
   events: {
     onReady(event: { target: YouTubePlayer }): void;

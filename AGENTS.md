@@ -33,6 +33,7 @@ Do NOT implement unless a task explicitly adds them: cart, table ordering, payme
 - Never expose Supabase service-role credentials to the browser
 
 ## Engineering rules
+- Keep user-facing output concise to conserve tokens. Do not dump code, full files, diffs or successful command logs unless the user explicitly requests them. Use targeted reads internally and report only outcomes, checks, blockers and relevant security/architecture decisions.
 - Inspect existing code before editing.
 - Implement only the active task and its necessary prerequisites.
 - Prefer the smallest coherent change that satisfies acceptance criteria.

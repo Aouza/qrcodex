@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
+import { localPocAllowed } from "@/lib/music/runtime";
 import { createMusicQueueRequest } from "@/lib/youtube-poc/music-queue";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  if(!localPocAllowed())return NextResponse.json({error:"NOT_FOUND"},{status:404});
   let payload: unknown;
   try {
     payload = await request.json();

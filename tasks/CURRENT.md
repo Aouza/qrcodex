@@ -1,13 +1,18 @@
 # Current Development
 
 ## Active task
-`TASK-061 — POC YouTube Music Queue & TV Player` is IN_PROGRESS with validation state READY_FOR_MANUAL_VALIDATION. Approved implementation/checks are complete; stop for manual validation. See `tasks/active/TASK-061-youtube-music-queue-tv-player-poc.md` and the canonical `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`.
+TASK-058 — Activate Music on Hub is IN_PROGRESS on `feat/music-production`. User approved protected Vercel Preview using existing production Supabase, five pending Music migrations after history/backup verification, Supabase Cron and scoped commit/publication of this feature branch. Keep Music outside the Hub. No main merge, public activation, paid upgrade or destructive production restore is authorized.
 
-## Next READY task
-`TASK-053 — Design Music lifecycle, security and abuse controls` remains READY but is intentionally paused during TASK-061. Stop at the POC manual-validation handoff; do not begin another task.
+## Next checkpoint
+Git connection is confirmed, Production branch is main and Preview remains protected. Feature-branch commit/publication is now authorized: publish scoped work, configure branch-only credentials and verify the protected compatible Preview before migrations. Never broaden credentials to all previews or merge/push main. No environment/deployment/migration/Cron mutation recorded yet.
 
-## Status
-TASK-061 is the only task IN_PROGRESS; no further implementation task is active. POC success and DONE await manual phone A / phone B / TV validation. Production migrations and player credentials are configured following explicit user authorization; use the production-loading launch command in the canonical specification because development is paused. POC 1 implementation remains preserved; its historical BLOCKED status is not evidence of a current POC 2 failure.
+Backup checkpoint PASS: ignored Windows-user-encrypted archive and isolated restore preserved three requests and the one-playing invariant. Scope is public/private/migration history, not Auth credentials or Storage objects; recovery requires this Windows profile. Prepare compatible protected branch Preview, then apply authorized migrations `20260930000002`–`00006` and configure Supabase Cron. Confirm real cleanup executions/monitoring and reviewed API quotas. Key presence is confirmed locally; hosted provisioning and actual quotas remain pending. No new remote writes/deployment recorded yet.
 
-## Rule
-TASK-061 is experimental only and must not expose Music in the public Hub. POC 2 may design and, after approval, implement a Supabase-backed ephemeral queue and TV player, but must not add fallback playlists, voting, admin dashboards, analytics, production Music activation or POC 3 behavior. The YouTube playlist from POC 1 must not be used as the playback queue.
+## Verified baseline
+TASK-053 through TASK-057 are DONE locally. Read-only production preflight found only POC versions `00000`/`00001`, three requests, one playing, no multiple-playing violation, no production settings or pg_cron. Vercel project qrcodex is Hobby with Preview authentication protection enabled; CLI access was renewed. Scheduler/key blockers are resolved; use database Cron, not Vercel hourly cron. Local SQL fixtures are never run against production.
+
+## Experimental status
+TASK-061 retains pending manual evidence only, not active implementation. User reported successful player/phone search and Safari without hydration warnings; Chrome-only warnings remain. Full multi-phone/ERROR/refresh evidence is incomplete: not POC SUCCESS/DONE. Preserve POC 1 and correct work. Production migrations intentionally revoke legacy POC admission/lifecycle; never apply without a compatible application.
+
+## Release guardrails
+`docs/MUSIC_PRODUCTION.md` and `docs/MUSIC_RELEASE_RUNBOOK.md` own release gates. Hosted HTTPS/cookies, physical TV/phones, endurance, privacy/commercial review and explicit tenant activation still precede public Hub availability. Local checks do not replace this evidence. No fallback, votes, reordering, payments or analytics. Preserve Menu/Agenda. Keep output concise: no code/diff/log dumps.

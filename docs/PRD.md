@@ -33,11 +33,15 @@ The product is an establishment experience Hub, not a restaurant operations plat
 - drafts may be saved without media, but cannot become public until an event image is attached.
 
 ### Phase C — Music Requests
-- customer song suggestions and voting;
-- normalized duplicate aggregation;
-- admin moderation queue;
+TASK-056 adds local membership-scoped `/admin/music` operations and navigation (pair/replace/revoke, module/admission controls, skip/remove and TV readiness), without enabling Music in the public Hub or changing Menu/Agenda. All production activation gates remain in TASK-058.
+
+- customer YouTube requests in a backend-owned FIFO queue;
+- dedicated playback-only TV terminal with automatic sequential playback;
+- minimal admin queue operations and revocable device pairing;
 - abuse prevention and rate protection designed before public writes;
 - explicit copy that requests do not guarantee playback.
+
+The first production release follows `docs/MUSIC_PRODUCTION.md` (TASK-053 through TASK-058), reusing the experimental implementation without treating it as production-ready. Voting, duplicate aggregation, queue reordering and fallback music are excluded. Public activation requires hosted/manual and commercial-review gates; the Music module defaults OFF. TASK-055 implements the unlinked production request/privacy routes and paired TV locally; it does not activate Music or replace the Hub's unavailable Music destination.
 
 ## 5. Existing menu contract
 ### Public menu

@@ -1,0 +1,14 @@
+.panel,.card,.card form { display:grid; gap:16px; min-width:0; }
+.card { padding:20px 16px; border:1px solid var(--color-border); background:var(--color-surface); border-radius:12px; }
+.card h2 { font-size:20px; } .card h3,.card p,.card strong { overflow-wrap:anywhere; }
+.card p { color:var(--color-text-secondary); line-height:1.5; }
+.card label { display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
+.card input[type=checkbox] { width:24px; height:24px; flex-shrink:0; }
+.controls { display:flex; flex-wrap:wrap; gap:12px; }
+.card button,.card a { min-height:48px; padding:12px 16px; border-radius:8px; border:1px solid var(--color-border-strong); background:var(--color-bg); color:var(--color-text-primary); cursor:pointer; }
+.card button:disabled { opacity:.5; cursor:not-allowed; }
+.card :focus-visible { outline:2px solid var(--color-accent); outline-offset:3px; }
+.code { width:100%; min-width:0; padding:12px; color:var(--color-text-primary); background:var(--color-bg); border:1px solid var(--color-border); font-family:monospace; }
+.queue { padding-left:24px; display:grid; gap:16px; }
+.queue li { padding:12px 0; border-bottom:1px solid var(--color-border); }
+.queue button { margin-top:12px; }

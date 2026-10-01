@@ -72,7 +72,7 @@ This POC must follow the existing project shape:
 - database concurrency belongs in Postgres functions, following the `reorder_category` pattern;
 - experimental code should stay isolated under `youtube-poc` or similarly explicit POC naming.
 
-POC 2 is a deliberate experiment. It should not silently redefine the final Music Requests module from the PRD. The production Music module still needs TASK-053 lifecycle/security design before public launch.
+POC 2 is a deliberate experiment. It should not silently redefine the final Music Requests module from the PRD. Following explicit approval to advance, TASK-053 defines the separate production contract in `docs/MUSIC_PRODUCTION.md`; implementation and release gates remain pending before public launch.
 
 ## Proposed Routes
 Experimental request route:
@@ -421,7 +421,7 @@ The architecture is approved. Continue from existing drafts; inspect and reconci
    - run the exact phone A / phone B / TV scenario plus playback-error recovery before declaring POC success.
 
 ## Conflicts and Adjustments
-- The production PRD still expects Music abuse controls and moderation design before public launch. POC 2 is experimental and does not replace TASK-053.
+- The production contract still requires implemented abuse controls and minimal administrative operations before public launch. POC 2 remains experimental and does not satisfy TASK-054 through TASK-058 release gates.
 - Public anonymous writes are riskier than previous public reads. Keep the route unlinked, use strict RLS/RPC boundaries and do not promote this to production without abuse controls.
 - Public request creation uses only `create_music_request`; no direct anonymous insert/update/delete is granted on `music_requests`.
 - Player lifecycle transitions are separated from request creation and must not be available to the phone request UI.
@@ -443,11 +443,12 @@ Setup before the manual scenario:
 2. Configure `.env.production.local` with the matching public Supabase configuration, server-only `SUPABASE_SERVICE_ROLE_KEY` (a modern secret key is supported) and a random `YOUTUBE_POC_PLAYER_KEY` of at least 32 characters. Both player values are now configured. Retain POC 1 YouTube search credentials. Restart after configuration changes.
 3. Start the local development UI against production with `node -e "process.loadEnvFile('.env.production.local'); require('node:child_process').spawn(process.execPath,['node_modules/next/dist/bin/next','dev'],{stdio:'inherit',env:process.env});"`. Do not pass `--env-file` to the Next dev CLI; it can propagate the flag into unsupported `NODE_OPTIONS`. Open `http://localhost:3000/relicas/musicas/player` (or the terminal's reported port). Enter the player key only in the setup form; no admin login is needed. Use browser fullscreen if desired.
 4. Activate `INICIAR PLAYER` once if required. If browser policy still requires gestures between tracks, record a failed/manual blocker rather than claiming POC success.
-5. Phones use `http://<TV-computer-LAN-IP>:3000/relicas/musicas/poc` (or the same deployment URL) on the same reachable server. `localhost` on a phone refers to the phone, not the TV computer. Keep local setup limited to the trusted POC environment; deployment uses HTTPS/Secure cookies.
+5. Phones use `http://<TV-computer-LAN-IP>:3000/relicas/musicas/poc` (or the same deployment URL) on the same reachable server. `localhost` on a phone refers to the phone, not the TV computer. `next.config.ts` explicitly allows the current trusted LAN origin `192.168.1.7` through `allowedDevOrigins`; if the computer's IP changes, update that entry and restart Next. After a restart, reload the phone page to discard stale development assets. Keep local setup limited to the trusted POC environment; deployment uses HTTPS/Secure cookies.
 
 ## Verification and Pending Manual Validation
+- User follow-up (2026-09-30): player playback and phone search were reported working; Safari does not show the Chrome-only hydration warning. This is partial manual evidence, not confirmation of the full Success Scenario. The user subsequently authorized separate production tasks under `docs/MUSIC_PRODUCTION.md`; this experiment remains unlinked and its outstanding manual criteria remain open.
 - Application checks: unit tests, lint, typecheck and production build pass. HTTP smoke checks cover missing/forged authorization, cross-origin calls, malformed events, client tenant fields and retired generic lifecycle endpoints.
 - SQL: isolated PostgreSQL passes RLS/grants, lifecycle, FIFO, non-interruption, inactive tenants, stale/cross-tenant events, history exclusion and eight concurrent claim/ENDED calls. Supabase Auth and `realtime.send` are modeled locally; this does not validate hosted WebSocket delivery.
 - Initial hosted SQL inspection targeted the now-paused development project and timed out. Production connection was subsequently confirmed; both migrations were applied atomically on 2026-09-30 after user authorization, with history recorded and cache reloaded. Production table/API and RPC visibility checks pass; anonymous/member direct UPDATE and claim remain denied. Matching server/player keys are configured in `.env.production.local`. This is not yet a manual playback success result.
-- Manual result: NOT RUN. Execute the exact Success Scenario with Phone A, Phone B and the TV, plus an unembeddable/unavailable request followed by a playable request. Confirm database statuses and that no human interaction is needed between tracks. Also refresh once to confirm recovery of the current playing request, then return to the exact scenario from an empty active queue.
+- Manual result: PARTIAL (user reports working playback and phone search). Full scenario evidence is still pending. Execute the exact Success Scenario with Phone A, Phone B and the TV, plus an unembeddable/unavailable request followed by a playable request. Confirm database statuses and that no human interaction is needed between tracks. Also refresh once to confirm recovery of the current playing request, then return to the exact scenario from an empty active queue.
 - Known limits: one intended TV terminal per establishment; no device lease, timestamp resume or stale-playing timeout. Refresh restarts the current video. Session authorization expires after 12 hours. An IFrame API/network loading failure retains the playing row for recovery and may require reopening the terminal. Abuse protection and final device authorization remain later production design work.

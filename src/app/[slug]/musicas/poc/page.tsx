@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { localPocAllowed } from "@/lib/music/runtime";
 import { YouTubePocRequestForm } from "@/components/youtube-poc/youtube-poc-request-form";
 
 export default async function YouTubeMusicPocPage({ params }: { params: Promise<{ slug: string }> }) {
+  if(!localPocAllowed())notFound();
   const { slug } = await params;
 
   return (

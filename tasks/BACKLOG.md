@@ -84,12 +84,14 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 ## EPIC 09 — Music Requests
 | ID | Task | Status | Depends on |
 |---|---|---|---|
-| TASK-053 | Design Music lifecycle, security and abuse controls | READY | TASK-052 |
-| TASK-054 | Add Music database schema and RLS | PLANNED | TASK-053 |
-| TASK-055 | Build public Music request UI | PLANNED | TASK-054 |
-| TASK-056 | Build admin Music queue | PLANNED | TASK-054 |
-| TASK-057 | Validate Music abuse controls | PLANNED | TASK-055, TASK-056 |
-| TASK-058 | Activate Music on Hub | PLANNED | TASK-057 |
+| TASK-053 | Design Music lifecycle, security and abuse controls | DONE | TASK-052 |
+| TASK-054 | Add Music production schema and RLS | DONE | TASK-053 |
+| TASK-055 | Build production Music requests and TV boundary | DONE | TASK-054 |
+| TASK-056 | Build admin Music queue | DONE | TASK-054, TASK-055 |
+| TASK-057 | Validate Music abuse controls | DONE | TASK-055, TASK-056 |
+| TASK-058 | Activate Music on Hub | IN_PROGRESS | TASK-057 |
+
+Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053 design and TASK-054 local schema/RPC/tests are complete; no production migrations/deploy/activation occurred. TASK-055 is READY; application/release gates remain open. TASK-061 retains pending manual validation rather than being retroactively declared successful. Only one production implementation task should run at a time.
 
 ## EPIC 11 — Experiments
 | ID | Task | Status | Depends on |

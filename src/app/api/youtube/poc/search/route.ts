@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
+import { localPocAllowed } from "@/lib/music/runtime";
 import { searchYouTubePocVideos, YouTubePocError } from "@/lib/youtube-poc/client";
 import { parseSearchQuery } from "@/lib/youtube-poc/validation";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  if(!localPocAllowed())return NextResponse.json({error:"NOT_FOUND"},{status:404});
   const url = new URL(request.url);
   const parsedQuery = parseSearchQuery(url.searchParams.get("q"));
 
