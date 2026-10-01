@@ -61,6 +61,7 @@ do $$ begin
 end $$;
 select public.music_admin_settings('54000000-0000-4000-8000-000000000011',true,true);
 select set_config('test.prod.code',public.music_admin_pair('54000000-0000-4000-8000-000000000011'),true);
+select pg_temp.expect(current_setting('test.prod.code') ~ '^[2-9A-HJ-NP-Z]{8}$','short unambiguous pairing code');
 reset role;
 select pg_temp.expect((select length(code_hash)=64 from private.music_pairings where establishment_id='54000000-0000-4000-8000-000000000011'),'pair digest only');
 

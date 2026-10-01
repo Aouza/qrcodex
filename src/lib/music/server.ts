@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { productionMusicEnabled } from "./runtime";
 import { boundedJson,deviceCookieName,digest,equalSecret,issueDevice,issueVisitor,keyedDigest,MUSIC_COOKIE_AGE,
-  networkIdentity,newDeviceToken,sameMusicOrigin,secretReady,verifyDevice,verifyVisitor,visitorCookieName } from "./security";
+  networkIdentity,newDeviceToken,normalizePairingCode,sameMusicOrigin,secretReady,verifyDevice,verifyVisitor,visitorCookieName } from "./security";
 import { musicSlug,playbackSchema,playerInput,publicInput } from "./protocol";
 import { musicAvailability,musicRpc,requestDependencies } from "./database";
 import { requestMusic,searchMusic } from "./request-workflow";
@@ -61,11 +61,11 @@ export async function hasProductionDevice(slug:string) {
 }
 export async function authorizeMusicDevice(slug:string,form:FormData) {
   if (!productionMusicEnabled() || !musicSlug.safeParse(slug).success || !sameMusicOrigin(new Headers(await headers()),configuredOrigin())) return false;
-  const code=form.get("pairingCode");
-  if (typeof code!=="string"||!/^[a-f0-9]{64}$/.test(code.trim())||form.get("consent")!=="on") return false;
+  const code=normalizePairingCode(form.get("pairingCode"));
+  if (!code||form.get("consent")!=="on") return false;
   try {
     const secret=sessionSecret(),network=networkHash(new Headers(await headers()),secret),token=newDeviceToken();
-    const reply=z.object({status:z.string()}).parse(await musicRpc("music_redeem_pair",{p_slug:slug,p_code_hash:digest(code.trim()),p_token_hash:digest(token),p_network_hash:network}));
+    const reply=z.object({status:z.string()}).parse(await musicRpc("music_redeem_pair",{p_slug:slug,p_code_hash:digest(code),p_token_hash:digest(token),p_network_hash:network}));
     if (reply.status!=="authorized") return false;
     const jar=await cookies();
     jar.set(deviceCookieName(slug),issueDevice(token,slug,secret),cookieOptions());

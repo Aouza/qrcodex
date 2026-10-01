@@ -75,7 +75,8 @@ try{
     const name=input[0].match(/\bname="([^"]+)"/),value=input[0].match(/\bvalue="([^"]*)"/);
     if(name?.[1].startsWith("$ACTION"))form.append(htmlDecode(name[1]),htmlDecode(value?.[1]??""));
   }
-  assert.ok([...form.keys()].length,"Native server action fields found");form.set("pairingCode","c".repeat(64));form.set("consent","on");
+  assert.match(html,/placeholder="XXXX-XXXX"/);
+  assert.ok([...form.keys()].length,"Native server action fields found");form.set("pairingCode","k7m4-p9x2");form.set("consent","on");
   const paired=await fetch(origin+"/relicas/musicas/player",{method:"POST",headers:{origin,"x-vercel-forwarded-for":"192.0.2.7"},body:form,redirect:"manual"});
   assert.equal(paired.status,303);assert.ok(paired.headers.getSetCookie().some(v=>v.startsWith(deviceCookieName("relicas")+"=")));
   for(const value of paired.headers.getSetCookie())assert.match(value,/HttpOnly/);

@@ -22,8 +22,8 @@ export async function mutateAdminMusic(input: unknown): Promise<AdminMusicResult
     revalidatePath("/admin/music");
     revalidatePath(`/${access.establishment.slug}/musicas`);
     if (command.operation === "pair") {
-      if (typeof data !== "string" || !/^[a-f0-9]{64}$/.test(data)) return { error: "Não foi possível gerar o código." };
-      return { pairingCode: data, message: "Código de uso único, válido por 10 minutos. Insira-o apenas na TV." };
+      if (typeof data !== "string" || !/^[2-9A-HJ-NP-Z]{8}$/.test(data)) return { error: "Não foi possível gerar o código." };
+      return { pairingCode: `${data.slice(0,4)}-${data.slice(4)}`, message: "Digite estes 8 caracteres na TV. Código de uso único, válido por 10 minutos." };
     }
     if ((command.operation === "skip" || command.operation === "remove") && data !== true)
       return { error: "A fila mudou; este pedido não pode mais receber essa operação. Atualize a tela." };

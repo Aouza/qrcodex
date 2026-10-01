@@ -35,8 +35,8 @@ test("forged tenant, generic status mutation, unconfirmed and malformed requests
  assert.equal(f.calls.length,0);
 });
 test("pair code is returned once in action state, replacement explicit; raw failures sanitized",async()=>{
- const f=fixture({data:"c".repeat(64)});const result=await mutateAdminMusic({operation:"pair",replace:true});
- assert.equal(result.pairingCode,"c".repeat(64));assert.deepEqual(f.calls[0].args,{p_tenant:tenant,p_replace:true});
+ const f=fixture({data:"K7M4P9X2"});const result=await mutateAdminMusic({operation:"pair",replace:true});
+ assert.equal(result.pairingCode,"K7M4-P9X2");assert.deepEqual(f.calls[0].args,{p_tenant:tenant,p_replace:true});
  fixture({error:{message:"raw secret details"}});const failed=await mutateAdminMusic({operation:"pair",replace:false});
  assert.ok(failed.error);assert.equal(JSON.stringify(failed).includes("raw secret"),false);assert.equal(failed.pairingCode,undefined);
 });

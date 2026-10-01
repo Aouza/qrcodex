@@ -17,7 +17,7 @@ globalThis.fetch=async(input,init={})=>{
     if(fn==="music_availability")return Response.json({enabled:true,accepting:true});
     assert.equal(new Headers(init.headers).get("apikey"),"fixture-service-only");
     if(fn==="music_redeem_pair"){
-      assert.equal(args.p_code_hash,digest("c".repeat(64)));assert.match(args.p_token_hash,/^[a-f0-9]{64}$/);
+      assert.equal(args.p_code_hash,digest("K7M4P9X2"));assert.match(args.p_token_hash,/^[a-f0-9]{64}$/);
       assert.match(args.p_network_hash,/^[a-f0-9]{64}$/);authorized.add(args.p_token_hash);
       return Response.json({status:"authorized",tenantId:first});
     }

@@ -14,6 +14,14 @@ export function equalSecret(actual: string, expected: string) {
 export function deviceCookieName(slug: string) { return `music-device-${digest(slug).slice(0,16)}`; }
 export function visitorCookieName(slug: string) { return `music-visitor-${digest(slug).slice(0,16)}`; }
 export function newDeviceToken() { return randomBytes(32).toString("hex"); }
+export function normalizePairingCode(value: unknown): string | null {
+  if (typeof value !== "string" || value.length > 80) return null;
+  const code=value.trim();
+  // Temporary compatibility with outstanding ten-minute codes from older deploys.
+  if (/^[a-f0-9]{64}$/.test(code)) return code;
+  const short=code.toUpperCase();
+  return /^[2-9A-HJ-NP-Z]{4}-?[2-9A-HJ-NP-Z]{4}$/.test(short) ? short.replace("-","") : null;
+}
 export function deviceDigest(token: string | undefined) { return token && /^[a-f0-9]{64}$/.test(token) ? digest(token) : null; }
 export function issueDevice(token: string,slug: string,secret: string) {
   if (!deviceDigest(token)) throw new Error("INVALID_DEVICE_TOKEN");

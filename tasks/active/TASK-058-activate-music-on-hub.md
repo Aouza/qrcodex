@@ -19,6 +19,8 @@ Execute Preview/manual/release gates in [MUSIC_PRODUCTION.md](../../docs/MUSIC_P
 Disabling/rollback must not restore insecure POC endpoints or drop queue/history data. No fallback/default music.
 
 ## Handoff / next checkpoint
+Owner-approved short pairing: eight unambiguous characters grouped XXXX-XXXX; tenant-bound, single-use, ten-minute expiry and existing durable attempt limits. Additive migration 00007 applied atomically after fresh encrypted backup/isolated restore PASS; verified unchanged queue/devices/leases and grants, no pairing code issued by tooling. SQL/concurrency, built HTTP short-code redemption, 96 tests/lint/typecheck/build PASS. Existing ten-minute legacy codes remain accepted during rollout. Commit/deploy authorized; keep READY_FOR_MANUAL_VALIDATION, not DONE. Search error investigation: recent production API had 503 responses without diagnostic details; current reproduction returns offline (no Google call), requiring actual TV readiness before rechecking search.
+
 Owner feedback visual fix: Music admin now uses the existing light admin palette (white cards, dark text, neutral borders and gold keyboard focus), not the public/TV dark tokens. No queue, authorization or operational behavior changed. A CSS regression test protects the palette; physical owner validation remains pending.
 
 Owner feedback fix: paused/offline customer UI now disables search, result selection and request submission (including handler guards); explicit backend disabled/offline responses clear stale selection and keep controls closed until reload. Privacy remains available. New SSR regression assertions PASS with all 94 tests; no queue/database mutation. Await deployed correction and continue manual pairing/playback validation, not DONE.

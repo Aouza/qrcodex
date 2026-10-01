@@ -83,6 +83,7 @@ try {
       "supabase/migrations/20260930000004_music_production_admission.sql",
       "supabase/migrations/20260930000005_music_cleanup_schedule_margin.sql",
       "supabase/migrations/20260930000006_music_admin_snapshot.sql",
+      "supabase/migrations/20260930000007_music_short_pairing.sql",
       "supabase/tests/014_music_production.sql",
       "supabase/tests/015_music_admin_snapshot.sql",
     ]) sql(readFileSync(path, "utf8"));

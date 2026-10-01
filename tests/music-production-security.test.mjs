@@ -1,10 +1,17 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { boundedJson,deviceCookieName,deviceDigest,digest,equalSecret,issueDevice,issueVisitor,keyedDigest,
-  MUSIC_COOKIE_AGE,networkIdentity,newDeviceToken,sameMusicOrigin,verifyDevice,verifyVisitor,visitorCookieName } from "../src/lib/music/security.ts";
+  MUSIC_COOKIE_AGE,networkIdentity,newDeviceToken,normalizePairingCode,sameMusicOrigin,verifyDevice,verifyVisitor,visitorCookieName } from "../src/lib/music/security.ts";
 import { publicInput,playerInput,playbackSchema } from "../src/lib/music/protocol.ts";
 const secret="s".repeat(40),slug="relicas",now=1700000000000;
 const id="55000000-0000-4000-8000-000000000001";
+
+test("short pairing codes accept case and optional hyphen without changing device tokens",()=>{
+ for(const value of ["K7M4P9X2","K7M4-P9X2"," k7m4-p9x2 "])assert.equal(normalizePairingCode(value),"K7M4P9X2");
+ for(const value of [null,"K7M4","K7M4--P9X2","K7M4 P9X2","I7M4P9X2","O7M4P9X2","07M4P9X2","17M4P9X2","x".repeat(81)])assert.equal(normalizePairingCode(value),null);
+ assert.equal(normalizePairingCode("c".repeat(64)),"c".repeat(64));
+ assert.equal(deviceDigest("K7M4P9X2"),null);
+});
 test("visitor consent is signed, tenant/version/expiry bound and invalidated on key rotation",()=>{
   const token=issueVisitor(slug,secret,now),identity=verifyVisitor(token,slug,secret,now);
   assert.match(identity,/^[a-f0-9]{64}$/);

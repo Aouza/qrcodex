@@ -28,7 +28,9 @@ export default async function MusicPlayerPage({ params, searchParams }: {
     return <main className={styles.screen}><section className={styles.center}><h1>{tenant.name}</h1>
       <form action={initializePlayer.bind(null,slug)} className={styles.setup}>
         <label htmlFor="pairingCode">Código de pareamento da TV</label>
-        <input id="pairingCode" name="pairingCode" type="password" required minLength={64} maxLength={64} autoComplete="off"/>
+        <input id="pairingCode" name="pairingCode" type="text" required minLength={8} maxLength={64}
+          placeholder="XXXX-XXXX" autoCapitalize="characters" autoCorrect="off" spellCheck={false} autoComplete="off"/>
+        <p>Digite os 8 caracteres gerados no admin. O hífen é opcional.</p>
         <label><input type="checkbox" name="consent" required/> Li e aceito a <a href={`/${slug}/musicas/privacidade`}>política de privacidade</a> e os <a href="https://www.youtube.com/t/terms">Termos do YouTube</a>.</label>
         <button type="submit">Parear TV</button>
         {failed&&<p role="alert">Código inválido, expirado ou limite de tentativas. Gere um código no admin e verifique a configuração.</p>}

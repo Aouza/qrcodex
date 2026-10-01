@@ -1,5 +1,7 @@
 # Decisions Log
 
+TASK-058 owner-approved TV usability correction (2026-09-30): replace the long manual pairing code with 8 unambiguous base32 characters, displayed XXXX-XXXX (40 bits). This deliberately supersedes the production contract's 128-bit pairing-code minimum, not the 256-bit internal device token. Keep ten-minute expiry, single use, tenant binding, hash-only storage, persistent network/tenant/global attempt caps and authenticated-only issuance. Shorter entropy is accepted for human entry under these bounded online limits; existing paired sessions/queue remain untouched. Migration 00007 changes only issuance; server accepts old outstanding ten-minute codes for rollout compatibility.
+
 ## ADR-001 — Prepare tenant boundary from day one
 **Status:** Accepted  
 All tenant-owned resources reference `establishment_id`. This keeps the Relica's MVP simple while avoiding a database redesign for a second bar. SaaS billing/onboarding remains out of scope.

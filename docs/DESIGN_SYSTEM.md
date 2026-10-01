@@ -781,6 +781,8 @@ Não competir visualmente com produtos.
 
 ## 33. Design do admin
 
+TV pairing codes use eight legible characters grouped `XXXX-XXXX`. The TV input is visible for typing verification, accepts either case and an optional hyphen, and disables spellcheck/autocorrection. This setup code is not the internal device-session token.
+
 O painel administrativo prioriza produtividade e não precisa copiar a
 estética pública.
 
