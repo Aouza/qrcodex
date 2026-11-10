@@ -1,7 +1,18 @@
 # Architecture
 
+## Institutional evolution — current direction (2026-11-10)
+One existing Next.js app and existing Supabase infrastructure. The initial `/` presents the institutional header with links to existing Agenda and menu routes. The target adds URL-neutral `(site)` routes `/`, `/cardapio`, `/agenda`, retaining the single root layout and the `[slug]`, admin, API and Music routes. See ADR-020 in `docs/DECISIONS.md` and [site architecture](site/01-ARCHITECTURE.md).
+
+Resolve the first institutional tenant through explicit server-side host allowlisting, not a speculative domain platform. Check reserved-slug collisions and actual hosting inputs. Unknown institutional hosts fail closed; admin authority stays membership-based. Tenant resolution is not Preview access protection.
+
+Reuse existing menu/agenda/auth/Supabase services and unified admin. Extract shared presentation into `components/menu` and `components/agenda`; pages own route/data composition, not service imports. Add `components/site` and `lib/site` for concrete uses. No second app, monorepo, reverse proxy, parallel CMS or catalog backend.
+
+Begin with explicit dynamic event reads and freshness behavior. Current event actions do not invalidate the future homepage; update the consumer path matrix as routes are added. Filter relevant dates before limits; isolate optional Agenda failures. Any later persistent cache must include tenant context and expire time-sensitive results even without writes. Never cache admin/device/visitor data publicly.
+
+Scope site CSS/fonts/red/paper to its wrapper. Preserve legacy gold menu/Hub, light admin and TV behavior; avoid duplicate main landmarks in shared views. See `site/02-DESIGN-SYSTEM.md`.
+
 ## Goals
-Keep the Bar Hub concrete, secure, mobile-first and ready for a second establishment without prematurely building a generic CMS or SaaS module platform. Preserve the existing menu and admin foundation as the first module.
+Evolve the institutional site while keeping Menu/Hub/Agenda/Music concrete, secure, mobile-first and ready for a second establishment. Preserve contracts without a generic CMS or SaaS module platform.
 
 ## Stack
 This is the target stack. Add dependencies only when the active backlog task needs them; documented future dependencies do not belong in the bootstrap by default.
@@ -26,7 +37,8 @@ Public:
 - shared host `/[slug]/cardapio` — public menu
 - shared host `/[slug]/agenda` — Agenda when implemented
 - shared host `/[slug]/musicas` — Music Requests when implemented
-- custom host `/`, `/cardapio`, `/agenda`, `/musicas` — equivalent clean routes after domain cutover
+- approved institutional host `/` — homepage; `/cardapio`, `/agenda` — existing domains with contextual navigation
+- clean Music routes deferred pending origin/cookie/pairing validation; existing slug routes remain
 
 Admin:
 - `/admin/login`
@@ -44,7 +56,7 @@ Admin:
 
 Exact route grouping may use App Router route groups without changing public URLs.
 
-Until `relicas.com.br` is acquired and configured, development continues on the shared-host `/relicas` routes. Domain acquisition blocks only canonical-host cutover and permanent QR generation, not Hub, Agenda or Music implementation.
+Domain acquisition blocks canonical production cutover and permanent QR generation, not local/Preview site implementation on approved hosts. Shared `/relicas` routes remain supported throughout migration.
 
 Custom-domain tenant resolution must happen server-side from a normalized, allow-listed host associated uniquely with an active establishment. Unknown hosts fail closed. Shared-host routes resolve by slug. Neither host headers supplied through client forms nor arbitrary establishment IDs are authorization boundaries; admin authorization continues to derive from authenticated membership and RLS.
 

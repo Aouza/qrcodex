@@ -56,7 +56,7 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-025 | Build basic establishment settings | DONE | TASK-015 |
 | TASK-026 | Import approved real menu content | DONE | TASK-021, TASK-024 |
 | TASK-027 | Production deployment and environment setup | DONE | TASK-012, TASK-021, TASK-024, TASK-025 |
-| TASK-028 | Generate permanent QR asset and printable test sheet | BLOCKED | TASK-027; relicas.com.br acquisition, DNS and production routing required |
+| TASK-028 | Generate permanent QR asset and printable test sheet | BLOCKED | TASK-027; approved institutional canonical domain, DNS and production routing required |
 | TASK-029 | Run MVP end-to-end acceptance and mobile smoke test | PLANNED | TASK-028 |
 | TASK-030 | Fix launch blockers and release MVP | PLANNED | TASK-029 |
 | TASK-033 | Add establishment logo management | DONE | TASK-004, TASK-015, TASK-025 |
@@ -91,7 +91,7 @@ Update this file whenever a task changes status. Do not reorder IDs after develo
 | TASK-057 | Validate Music abuse controls | DONE | TASK-055, TASK-056 |
 | TASK-058 | Activate Music on Hub — READY_FOR_MANUAL_VALIDATION | IN_PROGRESS | TASK-057; owner Production rehearsal active; physical/commercial release gates pending |
 
-Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053 design and TASK-054 local schema/RPC/tests are complete; no production migrations/deploy/activation occurred. TASK-055 is READY; application/release gates remain open. TASK-061 retains pending manual validation rather than being retroactively declared successful. Only one production implementation task should run at a time.
+Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-058 records the approved Relica's owner rehearsal in production and pending physical/commercial/release gates. TASK-061 retains pending manual evidence. These manual tracks are independent of the current site implementation priority; no change of Music acceptance is implied.
 
 ## EPIC 11 — Experiments
 | ID | Task | Status | Depends on |
@@ -105,6 +105,31 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053 design and TASK-054 lo
 | TASK-059 | Document unified admin information architecture | DONE | TASK-015, TASK-042 |
 
 > Note: if task IDs are referenced in code/PRs, keep them stable. Correct typos in dependency text without renumbering tasks.
+
+## EPIC 12 — Institutional Site
+| ID | Task | Status | Depends on |
+|---|---|---|---|
+| TASK-062 | Reconcile site documentation and plan incremental migration | DONE | TASK-047, TASK-052, TASK-059 |
+| TASK-063 | Proteger e registrar a linha de base do site | DONE | TASK-062 |
+| TASK-064 | Corrigir seleção temporal de eventos | READY | TASK-063 |
+| TASK-065 | Rejeitar datas inexistentes de eventos | PLANNED | TASK-064 |
+| TASK-066 | Proteger exclusão e recuperação de mídia de eventos | PLANNED | TASK-065 |
+| TASK-067 | Definir contexto institucional e navegação | PLANNED | TASK-066 |
+| TASK-068 | Adicionar cardápio institucional compartilhado | PLANNED | TASK-067 |
+| TASK-069 | Adicionar Agenda institucional compartilhada | PLANNED | TASK-068 |
+| TASK-070 | Integrar tokens e inventário de assets | PLANNED | TASK-063 |
+| TASK-071 | Implementar Header Hero e Footer na raiz | PLANNED | TASK-069, TASK-070 |
+| TASK-072 | Integrar eventos reais à homepage | PLANNED | TASK-064, TASK-065, TASK-066, TASK-069, TASK-071 |
+| TASK-073 | Definir e migrar conteúdo institucional tipado | PLANNED | TASK-067 |
+| TASK-074 | Editar conteúdo institucional no admin | PLANNED | TASK-073, TASK-072 |
+| TASK-075 | Implementar Drinks e petiscos e A Casa | PLANNED | TASK-070, TASK-074 |
+| TASK-076 | Implementar Galeria e Localização | PLANNED | TASK-075 |
+| TASK-077 | Preparar SEO e desempenho institucional | PLANNED | TASK-076 |
+| TASK-078 | Validar regressão integrada e acessibilidade | PLANNED | TASK-077 |
+| TASK-079 | Preparar Preview e release institucional | PLANNED | TASK-078 |
+| TASK-080 | Navegação institucional da home | BLOCKED | TASK-063; código e checks concluídos, revisão em navegador pendente |
+
+See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). TASK-064 is the next READY increment. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
 
 Media follow-up: TASK-021 handles real product image upload/replacement. TASK-025 should define how an approved establishment editorial image replaces the temporary illustrated menu hero.
 

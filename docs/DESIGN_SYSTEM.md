@@ -1,5 +1,7 @@
 # Relica's --- Design System & UI/UX Specification
 
+**Atualização 2026-11-10:** este documento preserva as regras do cardápio/Hub/admin/TV. Para a nova homepage institucional, aplicar a seção 51 e [design do site](site/02-DESIGN-SYSTEM.md). A prioridade institucional não transforma o catálogo em experiência de compra e não recolore globalmente os módulos existentes. A implementação visual ainda depende das tarefas do site.
+
 **Versão:** 1.0\
 **Produto:** Cardápio digital via QR Code\
 **Plataforma:** Web responsiva, mobile-first\
@@ -1270,3 +1272,16 @@ Superfície escura de tela cheia, com vídeo como conteúdo principal e identifi
 Admin Música (TASK-056) integra a navegação existente. Apresentar operação/TV, tocando agora e fila FIFO em cartões de coluna única, com títulos longos quebrados, foco visível e ações de 48 px. Diferenciar pausado, offline e sem pareamento. Confirmar pular/remover/revogar/substituir; mostrar código de pareamento somente ao admin, sem URL e com expiração. Não adicionar vídeo, votos ou reordenação no admin.
 
 Tela pública independente, sem link no Hub até TASK-058: consentimento explícito antes de busca/pedido, links de privacidade/YouTube e mensagens claras de pausa, offline, fila cheia e limite. Usar tokens existentes, coluna única a partir de 320 px, quebra de títulos longos, foco visível e controles de pelo menos 48 px. Não exigir conta do cliente. A TV reutiliza a superfície de vídeo e espera, com pareamento separado do admin; revogação, expiração, outra aba e reconexão têm estados técnicos explícitos. A gestão humana nunca aparece na TV. O contrato de produção está em `docs/MUSIC_PRODUCTION.md`.
+
+## 51. Site institucional — Rock Editorial Minimal
+- Ordem: Header/Hero, Agenda, Drinks e petiscos, A Casa, Galeria, Localização, Footer.
+- Hero: texto HTML, foto autorizada, CTA primário `Ver agenda` e secundário `Ver cardápio`.
+- Tema escuro editorial com vermelho contido; papel claro e rasgado somente na Agenda.
+- Tokens propostos no escopo `.institutional-site`: fundo `#101012`, superfície `#19191C`, texto `#F0EDE7`, secundário `#A9A5A3`, destaque `#C52D32`, papel `#E9E3D9`, tinta `#171719`, borda `#353438`. Verificar contraste por uso; não substituir `:root` dourado.
+- Display condensado (família a selecionar na TASK-070), corpo legível, pesos limitados e fallback estável. Não adicionar fontes ao admin/TV sem necessidade.
+- Container 1200–1280 px; padding responsivo aproximado 20/32/48 px; escala 4/8/12/16/24/32/48/64/96.
+- Funcionar desde 320 px; foco/teclado, alvos mínimos de 44 px, redução de movimento e contraste WCAG AA.
+- Fotografias reais aprovadas para lançamento; conceitos somente em revisão identificada. Imagens decorativas sem anúncio; fotos informativas com alt.
+- Agenda: até quatro eventos, flyer real obrigatório para publicado, datas São Paulo, fallback de seção sem quebrar a página. Lista vertical inicial; sem carrossel automático.
+- Galeria limitada, imagens abaixo da dobra sob demanda; localização com direções externas antes de mapa incorporado.
+- Compartilhar dados e componentes sem alterar silenciosamente densidade do menu, shell claro do admin ou reprodução da TV.

@@ -1,5 +1,14 @@
 # Database & Security
 
+## Institutional site boundary (2026-11-10)
+This documentation update creates no tables, columns, policies, buckets or migrations. Existing menu/events/membership/Storage remain authoritative. Site public reads use anonymous clients; editorial admin uses session/membership clients. Do not expand Music's privileged RPC exception to editorial CRUD.
+
+Institutional copy, address and hours are planned requirements (TASK-073/TASK-074). Exact table/columns, public/private field separation, null/default behavior and constraints must be finalized by TASK-073 before an additive migration. Proposed config/types are not existing schema. Public content requires an active establishment; writes require membership plus RLS. Gallery administration remains conditional, not an implemented table/uploader.
+
+Events have `active` publication, not slug/cancelled/admission fields. Preserve flyer-required publication. Public buckets do not make draft media confidential; event RLS does not protect file URLs. A confidentiality requirement needs an approved separate storage change. See `site/03-CONTENT-AND-ADMIN.md`.
+
+Music rollout paragraphs below record historical checkpoints; current rehearsal status is in `tasks/CURRENT.md` and TASK-058, not fresh remote verification. Compare actual history before any release. Scoped Music backups exclude Auth credentials and Storage files; they are not full-platform recovery guarantees.
+
 This document is the intended schema contract. Migrations are the executable source of truth once created. Keep both synchronized.
 
 The initial executable schema is `supabase/migrations/20260921000000_initial_schema.sql`. UUID primary keys default to `gen_random_uuid()`. Timestamp columns default to `now()`, and a trigger refreshes `updated_at` on changes. RLS is enabled on all four tables from creation. `supabase/migrations/20260921000001_rls_tenant_authorization.sql` defines the grants and policies.

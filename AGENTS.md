@@ -1,7 +1,7 @@
-# AGENTS.md — Relica's Bar Hub
+# AGENTS.md — Relica's Rock Bar
 
 ## Mission
-Build the product defined in `docs/PRD.md`: a mobile-first establishment Hub accessed by one permanent QR code. The digital menu is its first and primary module; Agenda and Music follow as explicit phases. Preserve the existing admin and tenant-security foundation.
+Evolve the existing product into the Relica's Rock Bar institutional website, defined in `docs/PRD.md` and `docs/site/README.md`. The target `/` is the institutional homepage; `/cardapio` and `/agenda` reuse existing domains. Preserve shared-host `/[slug]` destinations, printed/shared links, unified admin, tenant security and existing Music. Do not rebuild the app or duplicate its backend.
 
 ## Mandatory reading order
 Before changing code:
@@ -13,9 +13,16 @@ Before changing code:
 6. `docs/DATABASE.md` when data/auth is involved
 7. `docs/DESIGN_SYSTEM.md` when UI is involved
 8. `docs/DECISIONS.md`
+9. For site tasks: `docs/site/README.md`, `docs/site/00-PRODUCT-SPEC.md`, `docs/site/01-ARCHITECTURE.md` and the topic documents referenced by the active task.
+
+The ZIP and `docs/site/reference/` preserve the original proposed baseline. They are historical input, not instructions to scaffold another app, overwrite this file or replace current contracts. Current reconciled site requirements live directly in `docs/site/`. A documented target is not proof of implemented code.
 
 ## Scope guardrails
-The implemented baseline includes the public menu, search, categories, featured/unavailable products, admin authentication, product/category CRUD, image upload, ordering and basic establishment settings. New Hub, Agenda and Music work must be introduced only through their active backlog tasks.
+The implemented baseline includes public menu/search/categories/featured/unavailable products, unified admin, product/category CRUD, image uploads, ordering, basic settings, Hub and Agenda CRUD/publication. Music is implemented with manual/release evidence pending. Institutional work follows its active backlog tasks; no new Music scope is implied.
+
+Use one Next.js app and existing Supabase/Auth/RLS/Storage. Add route groups and domain-specific presentation without a generic CMS. Keep legacy routes functional; no global slug redirects or arbitrary host-to-tenant selection. Site tokens must not recolor menu, admin or TV globally.
+
+Do not fabricate venue facts, events or photography. Concept media is limited to clearly labeled local/Preview review; public release requires approved content/assets. Do not auto-commit, push, deploy, run remote migrations or mutate production under documentation/site preparation authorization.
 
 Do NOT implement unless a task explicitly adds them: cart, table ordering, payments/Pix, tabs/commandas, kitchen workflow, inventory, fiscal features, loyalty, reservations, native apps, delivery integrations, customer accounts, generic module builders or speculative integrations.
 

@@ -1,23 +1,39 @@
-# PRD — Relica's Bar Hub
+# PRD — Relica's Rock Bar
 
-**Version:** 2.0
+**Version:** 3.0 — institutional evolution, 2026-11-10
 **Status:** Approved for implementation  
 **Platform:** Responsive web, mobile-first  
 **Primary users:** bar customers and establishment administrators
 
 ## 1. Product vision
-A single permanent QR code opens a lightweight digital Hub for the establishment. The menu remains the first and most important module; Agenda and Music Requests expand the in-venue experience in later phases. The owner manages establishment content from the existing mobile-friendly admin without replacing the printed QR when content or modules change.
+Evolve the current app into the institutional website of Relica's Rock Bar. Target `/` introduces the venue, shows, drinks/petiscos, gallery and location. The existing menu remains one action away at `/cardapio`; `/agenda` reuses implemented events. Preserve the shared-host Hub and slug routes. Maurício manages menu/events and approved institutional fields through one mobile-friendly admin. No rebuild, parallel catalog or second login.
+
+This direction is authorized for documentation/backlog preparation; site/schema/deploy changes are not claimed implemented. See [site requirements](site/00-PRODUCT-SPEC.md) and [delivery plan](site/06-IMPLEMENTATION-PLAN.md). Original ZIP assumptions are superseded where audited contracts differ.
 
 ## 2. Problem
 The physical menu makes price changes, availability updates and catalog maintenance expensive and slow. Customers also lack one reliable destination for the bar's menu, upcoming events and lightweight participation in the venue experience.
 
 ## 3. Product outcome
-Customer: `scan -> recognize the bar -> choose an experience -> complete the task`.
+Visitor: `discover venue -> check shows/menu -> find location/contact`.
+Existing QR visitor: `open permanent destination -> recognize bar -> choose experience`.
 Admin: `sign in -> manage establishment content -> publish`.
 
 The product is an establishment experience Hub, not a restaurant operations platform. The menu remains a presentation/consultation experience without ordering or payment.
 
 ## 4. Delivery phases
+Phases A–C retain Hub/Menu/Agenda/Music history and contracts. The current delivery track is Phase D; do not repeat completed work or infer Music launch acceptance.
+
+### Phase D — Institutional site (current direction; planned implementation)
+- one existing Next.js app, `(site)` routes and shared domain loaders;
+- section order: Header/Hero, Agenda, Drinks e petiscos, A Casa, Galeria, Localização, Footer;
+- Hero links `Ver agenda` and `Ver cardápio`. The navbar offers `Reserve sua mesa` through the public WhatsApp configured for Relica’s, with the contact section as fallback;
+- up to four relevant published events; empty state and isolated section failure;
+- `/cardapio` and `/agenda` with all existing slug URLs preserved;
+- approved institutional fields editable in existing settings; gallery editing is conditional scope;
+- scoped dark editorial/red/paper theme and approved real media before release;
+- small verifiable tasks across ten fronts in `docs/site/06-IMPLEMENTATION-PLAN.md`;
+- domain/content/assets gate publication, not isolated local work.
+
 ### Phase A — Hub Foundation
 - the QR destination becomes the establishment Hub;
 - the existing menu moves to a dedicated `/cardapio` destination;
@@ -92,25 +108,24 @@ Conta -> Senha e segurança
 The overview provides summaries and shortcuts only. Each module owns its routes, loaders, validation and mutations while reusing the shared shell, membership resolution and RLS boundary. Agenda and Music navigation appears only when those modules are implemented.
 
 ## 6. Public routing and domain strategy
-Before the custom domain is acquired and configured, the shared production host uses:
+Current implemented shared-host routes (preserved):
 
 ```text
 /relicas            -> Hub
 /relicas/cardapio   -> menu
-/relicas/agenda     -> Agenda, when implemented
-/relicas/musicas    -> Music Requests, when implemented
+/relicas/agenda     -> Agenda
+/relicas/musicas    -> Music Requests, controlled owner rehearsal
 ```
 
-After `relicas.com.br` is acquired, connected and verified, canonical routes become:
+Planned institutional routes on explicitly approved hosts (local/Preview may precede domain acquisition):
 
 ```text
-https://relicas.com.br/           -> Hub
-https://relicas.com.br/cardapio   -> menu
-https://relicas.com.br/agenda     -> Agenda
-https://relicas.com.br/musicas    -> Music Requests
+/           -> institutional homepage for Relica's
+/cardapio   -> existing menu, institutional navigation context
+/agenda     -> existing Agenda, institutional navigation context
 ```
 
-Shared-host `/[slug]` routes remain a compatibility/fallback strategy for establishments without a custom domain. The permanent Relica's QR must only be generated after the custom domain, DNS and production routing are verified.
+`relicas.com.br` is the previously proposed domain, not proof of acquisition/DNS. Confirm canonical host before release. Resolve approved hosts server-side; unknown institutional hosts fail closed. Preserve `/[slug]` and check reserved-slug collisions before adding static paths. Initial cutover is additive, without permanent redirects. Later redirects must be host/path-specific and preserve supported query parameters. No global tenant redirect. Music stays on existing slug routes until separate origin/cookie/pairing validation. Verify canonical domain/DNS/routing before permanent QR generation; inventory printed/shared destinations first.
 
 ## 7. Explicitly out of scope
 Cart, orders from tables, payments/Pix, commandas, kitchen workflow, stock management, fiscal issuance, loyalty, reservations, customer accounts, native apps and delivery integrations.
@@ -147,7 +162,7 @@ The public category navigation presents an illustrative image or icon above each
 Search should be case-insensitive and match product name and description. Only public/active products should appear. Search UX must not require a page reload. Matching products remain grouped by category, with their featured and unavailable states preserved. Clearing the query restores the full menu; a query with no matches has an explicit empty state.
 
 ## 12. QR behavior
-The QR stores only the permanent establishment Hub URL, never menu data or a module-specific URL. Product, event, module and content changes must never require generating a new QR.
+The new permanent Relica's QR stores only the verified canonical institutional homepage URL. Existing Hub/menu QR destinations remain compatible and need no replacement solely for content changes. Do not encode menu data or a provisional host as the new permanent asset. TASK-028 stays blocked until domain/routing verification.
 
 ## 13. Multi-establishment readiness
 Relica's is the first establishment, but tenant-owned resources must use `establishment_id`. Do not build SaaS billing/onboarding in MVP.
@@ -163,8 +178,8 @@ The data model supports users belonging to multiple establishments. The MVP auto
 - readable typography and comfortable touch targets;
 - no dependency on color alone for status.
 
-## 15. Hub release acceptance scenario
-1. Customer opens the temporary `/relicas` route or, after cutover, `https://relicas.com.br/`.
+## 15. Legacy Hub regression acceptance scenario
+1. Customer opens the retained shared-host `/relicas` Hub route.
 2. Customer immediately recognizes Relica's and sees `Cardápio` as the dominant action.
 3. Customer opens the existing menu in one tap.
 4. Search, categories, prices, images and availability work as before.
@@ -177,3 +192,12 @@ Analytics, happy-hour automation, promotions, polls, quizzes, Wi-Fi helper, now-
 
 ## 17. Experimental Music queue and TV player (TASK-061)
 TASK-061 is an unlinked POC, not production Phase C activation. Its canonical contract is `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`: the backend/Supabase owns an ephemeral FIFO queue and `/{slug}/musicas/player` is a playback-only TV terminal without an admin session. It uses YouTube IFrame playback and restricted technical-event reporting, waits when empty and adds no fallback music, human queue controls or production Hub link. The multi-phone/TV manual scenario must pass before POC success is declared; automated checks alone do not establish success.
+
+## 18. Institutional acceptance scenario
+1. `/` on an approved host identifies Relica's and follows the seven-section order.
+2. Agenda and menu are reachable in one action.
+3. Current/future published events are consistent across home and Agenda; drafts stay hidden.
+4. Maurício edits approved menu/event/institutional content in one admin; tested public refresh needs no deployment.
+5. Existing slug routes, tenant isolation, image-free product layouts and Music boundaries remain functional.
+6. Record mobile/320px/keyboard, loading/empty/error, SEO and performance evidence.
+7. Publish only verified venue facts/assets, after domain, compatibility and recovery gates pass.

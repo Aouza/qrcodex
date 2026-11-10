@@ -1,5 +1,22 @@
 # Decisions Log
 
+## ADR-020 — Evolve the existing app into the institutional site
+**Status:** Accepted direction for documentation and incremental site backlog, 2026-11-10. No production/schema rollout authorized by this update.
+
+**Context:** the user requests an institutional `/`, integrated menu/Agenda and manageable content. Audit confirms Hub/Menu/Agenda/admin already exist; root remains starter. The ZIP is a proposed baseline and its separate-app recommendation is not implemented.
+
+**Options:** separate site with external menu link is initially simple but duplicates deployment and fragments navigation; proxy/shared external API adds routing/auth/cache contracts; extending this app reuses actual domains and security with less infrastructure.
+
+**Decision:** one Next.js app, one root layout, `(site)` presentation, existing domain loaders, one membership-scoped admin. `/` becomes institutional on approved hosts; `/cardapio` and `/agenda` reuse existing data/UI. Retain `[slug]`, admin/API and Music URLs. Explicit server allowlisted host resolution; no new domain CMS, no arbitrary browser tenant IDs. Site red/paper tokens are scoped; legacy surfaces remain stable.
+
+**Consequences:** shared release requires regression across modules. Correct audited event issues through separate tasks. Extend only approved typed institutional settings, using additive migrations and RLS; gallery admin and event cancellation/pricing/details remain scope decisions. No new ordering/payments/reservations or generic builder.
+
+**Compatibility:** additive routes first, no blanket/permanent redirects. Check reserved slugs and printed QR inventory; confirm canonical domain before SEO cutover/new QR. Music host changes need origin/cookie/pairing tests. New permanent QR targets verified institutional root, superseding ADR-016 root-as-Hub target and TASK-028's old menu wording; existing QR destinations stay supported.
+
+**Rollback:** revert compatible app presentation while retaining legacy routes/data and additive schema. No destructive restore as routine rollback; no reopening Music POC endpoints. Full recovery planning includes Storage/Auth exclusions in existing scoped backup.
+
+**Execution:** TASK-062 documentation completed only after verification; TASK-063 is the next READY work. TASK-058/TASK-061 retain pending manual evidence. Current site authorization supersedes the old blanket STOP for unrelated product preparation, not Music release gates. Original ZIP/extracted references remain historical; reconciled requirements live directly under `docs/site/`.
+
 TASK-058 owner-approved TV usability correction (2026-09-30): replace the long manual pairing code with 8 unambiguous base32 characters, displayed XXXX-XXXX (40 bits). This deliberately supersedes the production contract's 128-bit pairing-code minimum, not the 256-bit internal device token. Keep ten-minute expiry, single use, tenant binding, hash-only storage, persistent network/tenant/global attempt caps and authenticated-only issuance. Shorter entropy is accepted for human entry under these bounded online limits; existing paired sessions/queue remain untouched. Migration 00007 changes only issuance; server accepts old outstanding ten-minute codes for rollout compatibility.
 
 ## ADR-001 — Prepare tenant boundary from day one

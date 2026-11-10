@@ -2,6 +2,8 @@
 
 Read `AGENTS.md` and `tasks/CURRENT.md`, then inspect all documentation required by the active task.
 
+For institutional tasks, start at `docs/site/README.md`; follow reconciled requirements, ADR-020 and the task plan, not the historical ZIP/extracted proposals. Preserve existing Menu/Agenda/admin/Music contracts.
+
 Before editing code, give me a concise execution brief containing:
 1. the active task and its acceptance criteria;
 2. the files/directories you expect to create or change;
