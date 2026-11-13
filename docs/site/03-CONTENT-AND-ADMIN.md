@@ -18,6 +18,8 @@ Maurício usa o admin atual: produtos/categorias para menu, eventos para Agenda,
 
 Fluxo existente: criar rascunho → anexar flyer → publicar → editar/despublicar; exclusão permanente com confirmação. Remover flyer despublica. Prévia autenticada/cancelamento/couvert/slugs/detalhe/reordenação manual ficam fora do primeiro incremento até decisão explícita.
 
+Validação local (TASK-065): início e fim usam o formato `YYYY-MM-DDTHH:mm` e devem existir no calendário, com hora 00–23 e minuto 00–59. Datas impossíveis e `24:00` são rejeitados, não normalizados. O contrato atual de entrada permanece `-03:00` para São Paulo; `2026-10-02T22:00` vira `2026-10-03T01:00:00.000Z`. Fim pode ser igual ao início ou ocorrer na madrugada seguinte, nunca antes. A correção não altera instantes já persistidos nem define uma política nova para outros fusos/datas históricas.
+
 ## Institucional planejado
 TASK-073 define schema tipado para headline/apresentação/textos da casa, endereço e horários. TASK-074 entrega edição em settings e leitura pública. Não duplicar nome/logo/Instagram/WhatsApp já existentes. Definir limites, valores ausentes, campos públicos e defaults antes da migration. Config local pode suportar Preview identificado, mas não substitui a autonomia exigida para os campos aprovados.
 

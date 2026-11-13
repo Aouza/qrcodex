@@ -114,8 +114,8 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-062 | Reconcile site documentation and plan incremental migration | DONE | TASK-047, TASK-052, TASK-059 |
 | TASK-063 | Proteger e registrar a linha de base do site | DONE | TASK-062 |
 | TASK-064 | Corrigir seleção temporal de eventos | DONE | TASK-063 |
-| TASK-065 | Rejeitar datas inexistentes de eventos | READY | TASK-064 |
-| TASK-066 | Proteger exclusão e recuperação de mídia de eventos | PLANNED | TASK-065 |
+| TASK-065 | Rejeitar datas inexistentes de eventos | DONE | TASK-064 |
+| TASK-066 | Proteger exclusão e recuperação de mídia de eventos | READY | TASK-065 |
 | TASK-067 | Definir contexto institucional e navegação | PLANNED | TASK-066 |
 | TASK-068 | Adicionar cardápio institucional compartilhado | PLANNED | TASK-067 |
 | TASK-069 | Adicionar Agenda institucional compartilhada | PLANNED | TASK-068 |
@@ -131,7 +131,7 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-079 | Preparar Preview e release institucional | PLANNED | TASK-078 |
 | TASK-080 | Navegação institucional da home | BLOCKED | TASK-063; código e checks concluídos, revisão em navegador pendente |
 
-See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). The site remains the user's confirmed priority. TASK-064 corrected local event selection; TASK-065 is the next READY increment. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
+See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). The site remains the user's confirmed priority. TASK-064/065 corrected local event selection and calendar validation; TASK-066 is the next READY increment. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
 
 Media follow-up: product and category upload/replacement are implemented. A future scoped task must define how an approved establishment editorial image replaces the temporary illustrated menu hero; do not reinterpret completed TASK-025 as an active uploader requirement.
 

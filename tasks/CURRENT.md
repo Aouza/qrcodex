@@ -2,7 +2,7 @@
 
 ## Próxima implementação
 
-TASK-065 — Rejeitar datas inexistentes de eventos — **READY**. [Tarefa](active/TASK-065-site-event-calendar-validation.md) · [Agenda](../docs/agenda/README.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). O usuário confirmou a criação do site como prioridade. A seleção de eventos foi corrigida localmente na [TASK-064](completed/TASK-064-site-event-selection.md), com regressão reproduzida antes da correção; o próximo passo valida datas reais antes de avançar na integração institucional.
+TASK-066 — Proteger exclusão e recuperação de mídia de eventos — **READY**. [Tarefa](active/TASK-066-site-event-media-recovery.md) · [Agenda](../docs/agenda/README.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site segue como prioridade. [TASK-064](completed/TASK-064-site-event-selection.md) e [TASK-065](completed/TASK-065-site-event-calendar-validation.md) corrigiram localmente a seleção de shows e datas inválidas, com regressões verificadas. O próximo incremento protege publicação e flyers contra falhas parciais antes de avançar no contexto e nas rotas institucionais.
 
 TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e o contexto de host ainda são planejados.
 

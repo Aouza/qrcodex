@@ -81,7 +81,7 @@ There is no `custom_domain` column in the current schema. The old Hub proposal s
 - timestamps
 - unique `(id, establishment_id)` for tenant-safe event media ownership in TASK-051
 
-`supabase/migrations/20260924000001_agenda_events.sql` creates the Agenda domain independently from menu tables. Events are ordered through the `(establishment_id, active, starts_at, id)` index. Time values are absolute instants stored as `timestamptz`; future forms may collect local establishment time but must convert it at the server boundary. `external_url` and `image_url` are nullable storage fields whose boundary validation belongs to their application/storage tasks.
+`supabase/migrations/20260924000001_agenda_events.sql` creates the Agenda domain independently from menu tables. Events are ordered through the `(establishment_id, active, starts_at, id)` index. Time values are absolute instants stored as `timestamptz`; admin forms validate literal calendar/clock values before converting local input at the server boundary. TASK-065 preserves the existing `-03:00` conversion contract and rejects impossible dates instead of silently normalizing them. No stored instants or schema change. `external_url` and `image_url` are nullable storage fields whose boundary validation belongs to their application/storage tasks.
 
 ## Referential rule
 The database must prevent assigning a product to a category from another establishment. The composite foreign key above enforces this invariant even when application validation is bypassed. Keep the composite relationship in the migration; a foreign key on `category_id` alone is insufficient.

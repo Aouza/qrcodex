@@ -1,7 +1,7 @@
 # TASK-066 — Proteger exclusão e recuperação de mídia de eventos
 
 **Epic:** Institutional Site
-**Status:** PLANNED
+**Status:** READY
 **Dependencies:** TASK-065
 **Migration fronts:** 5, 6, 9
 

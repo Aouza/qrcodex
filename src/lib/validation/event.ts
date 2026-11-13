@@ -4,6 +4,10 @@ const dateTimePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
 
 function localDateTimeToIso(value: string) {
   if (!dateTimePattern.test(value)) return null;
+  // Check the literal calendar/clock first: Date otherwise normalizes February
+  // 31 or 24:00. UTC here is only a round-trip check, not the venue's timezone.
+  const calendar = new Date(`${value}:00Z`);
+  if (Number.isNaN(calendar.getTime()) || calendar.toISOString().slice(0, 16) !== value) return null;
   const date = new Date(`${value}:00-03:00`);
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
