@@ -1,4 +1,5 @@
 import { createPublicClient } from "@/lib/supabase/public";
+import { publicEventTimeFilter } from "@/lib/agenda/public-event-time";
 import { hasPublicMusic, resolvePublicHubResult, type PublicHubEstablishment } from "@/lib/hub/resolve-public-hub-result";
 import { musicAvailability } from "@/lib/music/database";
 import { productionMusicEnabled } from "@/lib/music/runtime";
@@ -21,6 +22,7 @@ export async function loadPublicHub(slug: string, now = new Date()): Promise<Pub
     .select("id, starts_at, ends_at, image_url")
     .eq("establishment_id", establishmentResult.data.id)
     .eq("active", true)
+    .or(publicEventTimeFilter(now))
     .order("starts_at")
     .order("id")
     .limit(24);

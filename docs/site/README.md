@@ -23,6 +23,6 @@ Começar pelo `AGENTS.md` da raiz e `tasks/CURRENT.md`. O PRD define visão e li
 `relicas-documentacao-codex.zip` contém 11 Markdown, extraídos sem alteração em `reference/` (README, AGENTS e nove documentos). São o baseline original proposto, com hipóteses anteriores à auditoria. Não instalar seus arquivos na raiz nem seguir a proposta de segundo aplicativo como decisão vigente. O AGENTS extraído documenta o pacote histórico, não substitui o AGENTS deste repositório.
 
 ## Próximo trabalho
-A [linha de base](BASELINE.md) foi registrada. O próximo incremento é a [TASK-064](../../tasks/active/TASK-064-site-event-selection.md). A [TASK-080](../../tasks/active/TASK-080-site-home-navigation.md) registra a navbar e a revisão em navegador pendente.
+A [linha de base](BASELINE.md) foi registrada e a [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md) corrigiu localmente a seleção de shows. O próximo incremento é a [TASK-065](../../tasks/active/TASK-065-site-event-calendar-validation.md), para impedir datas inexistentes. A [TASK-080](../../tasks/active/TASK-080-site-home-navigation.md) registra a navbar e a revisão em navegador pendente. O site segue como prioridade confirmada pelo usuário.
 
-Esta atualização não altera produto em execução, schema, credenciais, DNS ou produção e não faz commit/push/deploy.
+As tarefas distinguem implementação local de publicação. Nenhum schema, credencial, DNS ou estado de produção foi alterado por este incremento.

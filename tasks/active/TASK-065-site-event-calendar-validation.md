@@ -1,7 +1,7 @@
 # TASK-065 — Rejeitar datas inexistentes de eventos
 
 **Epic:** Institutional Site
-**Status:** PLANNED
+**Status:** READY
 **Dependencies:** TASK-064
 **Migration fronts:** 6, 9
 

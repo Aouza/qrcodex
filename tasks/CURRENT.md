@@ -2,7 +2,7 @@
 
 ## Próxima implementação
 
-TASK-064 — Corrigir seleção temporal de eventos — **READY**. [Tarefa](active/TASK-064-site-event-selection.md) · [Agenda](../docs/agenda/README.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). Nenhuma implementação de produto foi iniciada pela revisão documental TASK-081.
+TASK-065 — Rejeitar datas inexistentes de eventos — **READY**. [Tarefa](active/TASK-065-site-event-calendar-validation.md) · [Agenda](../docs/agenda/README.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). O usuário confirmou a criação do site como prioridade. A seleção de eventos foi corrigida localmente na [TASK-064](completed/TASK-064-site-event-selection.md), com regressão reproduzida antes da correção; o próximo passo valida datas reais antes de avançar na integração institucional.
 
 TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e o contexto de host ainda são planejados.
 
@@ -21,7 +21,7 @@ TASK-058/061 conservam IN_PROGRESS histórico como trilhas de aceite; não repre
 
 ## Manutenção documental
 
-[TASK-081](completed/TASK-081-documentation-organization.md) organiza fontes por plataforma/produto, concilia conflitos e define atualização/checks. Comece em [docs/README](../docs/README.md) e siga a [governança](../docs/GOVERNANCE.md). Próxima implementação continua TASK-064; não executar automaticamente nesta sessão.
+[TASK-081](completed/TASK-081-documentation-organization.md) organiza fontes por plataforma/produto, concilia conflitos e define atualização/checks. Comece em [docs/README](../docs/README.md) e siga a [governança](../docs/GOVERNANCE.md). O plano e CURRENT avançam a cada incremento concluído do site.
 
 ## Limites
 

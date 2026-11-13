@@ -1,3 +1,5 @@
+import { isCurrentOrUpcomingEvent } from "@/lib/agenda/public-event-time";
+
 export type PublicHubEstablishment = {
   id: string;
   name: string;
@@ -38,13 +40,10 @@ export function hasPublicMusic(featureEnabled: boolean, availability: { enabled:
 }
 
 function hasCurrentOrUpcomingEvent(events: PublicHubAgendaEvent[] | null, now: Date) {
-  const nowTime = now.getTime();
-
   return (events ?? []).some((event) => {
     if (!event.image_url) return false;
 
-    const lastRelevantTime = new Date(event.ends_at ?? event.starts_at).getTime();
-    return Number.isFinite(lastRelevantTime) && lastRelevantTime >= nowTime;
+    return isCurrentOrUpcomingEvent(event, now);
   });
 }
 
