@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   EVENT_IMAGE_MAX_BYTES,
   getEventImagePath,
+  getOwnedEventImagePath,
   validateEventImage,
 } from "../src/lib/validation/event-image.ts";
 
@@ -19,6 +20,16 @@ test("validates event flyer formats and size", () => {
     ).ok,
     false,
   );
+});
+
+test("media cleanup is restricted to the exact tenant and event folder", () => {
+  const base = "https://project.supabase.co";
+  const url = path => `${base}/storage/v1/object/public/event-images/${path}`;
+  assert.equal(getOwnedEventImagePath(url("tenant/event/flyer.webp"), base, "tenant", "event"), "tenant/event/flyer.webp");
+  for (const path of ["other/event/flyer.webp", "tenant/other/flyer.webp", "tenant/event/nested/flyer.webp", "tenant/event/sub%2Fflyer.webp", "tenant/event/sub%5Cflyer.webp"]) {
+    assert.equal(getOwnedEventImagePath(url(path), base, "tenant", "event"), null);
+  }
+  assert.equal(getOwnedEventImagePath("https://other.example/flyer.webp", base, "tenant", "event"), null);
 });
 
 test("extracts only event-image paths from the configured project", () => {

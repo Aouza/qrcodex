@@ -22,7 +22,7 @@ Preservar: schema/IDs/menu, RLS/Auth, rotas, Music e migrations. Reutilizar: loa
 ## Riscos constatados e tarefas
 - TASK-064 (corrigido localmente): regressão do Hub com 24 passados e um futuro reproduzida no loader antes da correção. Hub/Agenda agora filtram relevância na consulta; o limite de 24 do Hub ocorre depois. Regra compartilhada inclui eventos em andamento, igualdade no fim/início e ausência de término. Não é evidência de deploy.
 - TASK-065 (corrigido localmente): regressões reproduziram 31/02 aceito em início e fim. Validação agora confere calendário/horário antes da conversão, incluindo bissextos e limites de mês/hora; preserva `-03:00`, fim opcional e madrugada seguinte. Não altera dados persistidos nem comprova deploy.
-- TASK-066: exclusão remove flyer antes da linha; falha na segunda operação pode deixar publicado quebrado. Requer teste de falha, não simples inversão de ordem.
+- TASK-066 (corrigido localmente): testes reproduziram DELETE após remoção de flyer e rollback falho apagando mídia nova vinculada. A remoção agora confirma rascunho sem referência antes do Storage/DELETE, e compensação nunca republica. Substituição preserva mídia nova quando limpeza antiga falha. Ausência de linha, sessão/ID cruzado, propriedade de caminho e falhas parciais têm regressão. Órfãos ainda exigem revisão operacional autorizada; sem mudança de RLS ou deploy implícito.
 - TASK-072: ações de eventos não invalidam futura home; Agenda opcional pode derrubar o Hub atual. Isolar na composição institucional.
 - TASK-070: CSS global amplo/gold e assets ilustrativos; tema novo precisa de escopo.
 - TASK-077/078: SEO público genérico, browser/E2E ainda insuficiente para nova experiência.

@@ -2,7 +2,7 @@
 
 ## Próxima implementação
 
-TASK-066 — Proteger exclusão e recuperação de mídia de eventos — **READY**. [Tarefa](active/TASK-066-site-event-media-recovery.md) · [Agenda](../docs/agenda/README.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site segue como prioridade. [TASK-064](completed/TASK-064-site-event-selection.md) e [TASK-065](completed/TASK-065-site-event-calendar-validation.md) corrigiram localmente a seleção de shows e datas inválidas, com regressões verificadas. O próximo incremento protege publicação e flyers contra falhas parciais antes de avançar no contexto e nas rotas institucionais.
+TASK-067 — Definir contexto institucional e navegação — **READY**. [Tarefa](active/TASK-067-site-public-context.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site institucional em `/` segue como prioridade confirmada. [TASK-066](completed/TASK-066-site-event-media-recovery.md) concluiu localmente a proteção dos flyers, com testes de falhas parciais e revisão. O próximo incremento define contexto e links; `/cardapio` e `/agenda` serão integrados nas tarefas seguintes, preservando os destinos por slug.
 
 TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e o contexto de host ainda são planejados.
 

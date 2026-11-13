@@ -33,3 +33,11 @@ export function getEventImagePath(imageUrl: string | null, supabaseUrl: string) 
     return null;
   }
 }
+
+export function getOwnedEventImagePath(imageUrl: string | null, supabaseUrl: string, establishmentId: string, eventId: string) {
+  const path = getEventImagePath(imageUrl, supabaseUrl);
+  if (!path) return null;
+  const parts = path.split("/");
+  return parts.length === 3 && parts[0] === establishmentId && parts[1] === eventId
+    && Boolean(parts[2]) && ![".", ".."].includes(parts[2]) && !parts[2].includes("\\") ? path : null;
+}

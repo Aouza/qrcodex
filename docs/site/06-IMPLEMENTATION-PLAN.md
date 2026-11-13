@@ -49,8 +49,8 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 | [TASK-063](../../tasks/completed/TASK-063-site-baseline-and-recovery.md) | Proteger e registrar a linha de base do site | TASK-062 | DONE |
 | [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md) | Corrigir seleção temporal de eventos | TASK-063 | DONE |
 | [TASK-065](../../tasks/completed/TASK-065-site-event-calendar-validation.md) | Rejeitar datas inexistentes de eventos | TASK-064 | DONE |
-| [TASK-066](../../tasks/active/TASK-066-site-event-media-recovery.md) | Proteger exclusão e recuperação de mídia de eventos | TASK-065 | READY |
-| [TASK-067](../../tasks/planned/TASK-067-site-public-context.md) | Definir contexto institucional e navegação | TASK-066 | PLANNED |
+| [TASK-066](../../tasks/completed/TASK-066-site-event-media-recovery.md) | Proteger exclusão e recuperação de mídia de eventos | TASK-065 | DONE |
+| [TASK-067](../../tasks/active/TASK-067-site-public-context.md) | Definir contexto institucional e navegação | TASK-066 | READY |
 | [TASK-068](../../tasks/planned/TASK-068-site-menu-route.md) | Adicionar cardápio institucional compartilhado | TASK-067 | PLANNED |
 | [TASK-069](../../tasks/planned/TASK-069-site-agenda-route.md) | Adicionar Agenda institucional compartilhada | TASK-068 | PLANNED |
 | [TASK-070](../../tasks/planned/TASK-070-site-design-foundation.md) | Integrar tokens e inventário de assets | TASK-063 | PLANNED |
