@@ -1,5 +1,7 @@
 # Architecture
 
+**Responsabilidade:** contratos técnicos compartilhados; [índices por domínio](README.md) orientam a leitura. Estruturas propostas estão marcadas como destino; código/migrations comprovam implementação local, tarefas registram rollout e aceite.
+
 ## Institutional evolution — current direction (2026-11-10)
 One existing Next.js app and existing Supabase infrastructure. The initial `/` presents the institutional header with links to existing Agenda and menu routes. The target adds URL-neutral `(site)` routes `/`, `/cardapio`, `/agenda`, retaining the single root layout and the `[slug]`, admin, API and Music routes. See ADR-020 in `docs/DECISIONS.md` and [site architecture](site/01-ARCHITECTURE.md).
 
@@ -35,8 +37,8 @@ This is the target stack. Add dependencies only when the active backlog task nee
 Public:
 - shared host `/[slug]` — establishment Hub
 - shared host `/[slug]/cardapio` — public menu
-- shared host `/[slug]/agenda` — Agenda when implemented
-- shared host `/[slug]/musicas` — Music Requests when implemented
+- shared host `/[slug]/agenda` — implemented Agenda
+- shared host `/[slug]/musicas` — implemented Music Requests, environment/tenant gated
 - approved institutional host `/` — homepage; `/cardapio`, `/agenda` — existing domains with contextual navigation
 - clean Music routes deferred pending origin/cookie/pairing validation; existing slug routes remain
 
@@ -50,7 +52,7 @@ Admin:
 - `/admin/events` — Agenda list
 - `/admin/events/new` — event creation
 - `/admin/events/[id]` — event editing, flyer and delete
-- `/admin/music` — operational Music queue when implemented
+- `/admin/music` — implemented membership-scoped Music operations
 - `/admin/settings`
 - `/admin/account`
 
@@ -117,7 +119,7 @@ Anonymous Agenda reads use the cookie-free public client and rely on RLS to expo
 
 `src/lib/agenda/load-public-agenda.ts` keeps Agenda reads separate from Hub and menu reads. Its pure resolver retains upcoming and currently running events, orders by start time, requires persisted media defensively and strips non-HTTP(S) external links. The direct `/{slug}/agenda` route owns its loading, empty and error states. The Hub uses a lightweight Agenda availability read rather than composing the full public Agenda payload.
 
-TASK-048 creates no public route or admin navigation item. TASK-051 adds the dedicated `event-images` bucket before either interface: event rows begin as drafts, media paths encode tenant plus event ownership, and the database requires a flyer/banner before `active` can become true. Public and admin surfaces remain owned respectively by TASK-049 and TASK-050, so an unfinished Agenda module never appears in the Hub or Admin.
+TASK-048 introduced the domain, TASK-051 its dedicated `event-images` bucket, TASK-049/050 public/admin interfaces and TASK-052 Hub availability. All are completed tasks. Events begin as drafts; media paths encode tenant/event ownership and the database requires a flyer/banner before `active` can become true. Availability remains conditional on a relevant published event with media.
 
 ### Development administrator bootstrap
 The MVP has no public sign-up. For development, create the initial administrator manually in Supabase Dashboard through `Authentication > Users > Create new user`, with an email and password. Do not add a secret/service-role key to the application for this bootstrap.
@@ -156,6 +158,8 @@ Expected validation/auth failures should produce user-friendly UI. Unexpected fa
 The Hub and menu loaders intentionally remain separate: Hub reads must stay lightweight as Agenda and Music destinations are added, while the menu loader owns catalog composition.
 
 ## Experimental Music TV player (TASK-061)
+**Historical experimental boundary:** the following describes the POC, not hosted production authentication. TASK-055 closes hosted POC endpoints and later migrations revoke legacy RPCs. Use [production Music](MUSIC_PRODUCTION.md) for current operation; do not replay POC setup against production.
+
 The canonical contract is `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`. Supabase owns the ephemeral queue; the TV at `/{slug}/musicas/player` renders video only. POC 1 playlist/OAuth code remains isolated and preserved.
 
 The setup Server Action verifies `YOUTUBE_POC_PLAYER_KEY` and issues a signed, tenant-bound, 12-hour HttpOnly cookie. `/api/youtube/poc/player` accepts only state, ended and error operations, rejects cross-origin/malformed/unauthorized calls, rechecks the active tenant and returns minimal playback instructions. The TV needs no admin session. A server-only `SUPABASE_SERVICE_ROLE_KEY` client is a deliberate POC exception to the baseline's publishable-only clients; it calls restricted database RPCs and never ships credentials or admin capabilities to the browser.
@@ -165,20 +169,20 @@ Lifecycle RPCs serialize on the establishment row. `advance_music_player` valida
 Tests: `node --test tests/*.test.mjs`; `node tests/run-music-queue-local.mjs` for isolated PostgreSQL assertions and concurrent claims/events (requires PostgreSQL binaries; models Supabase Auth/Realtime functions locally); hosted SQL requires separate confirmed-target approval. Historical POC HTTP checks use `node tests/music-player-http-smoke.mjs` only against local development on port 3100, with production Music disabled. TASK-055 closes all POC endpoints in built/hosted environments. Manual multi-phone/TV validation remains mandatory before POC success.
 
 ## Production Music design (TASK-053)
-The approved direction and implementation contract are in `docs/MUSIC_PRODUCTION.md`. TASK-054 adds local production migrations/RPCs and isolated tests, not remotely deployed capabilities. They extend the existing FIFO/database-owned lifecycle rather than introducing a second queue. Production replaces the POC global key with tenant-scoped pairing, revocable HttpOnly device sessions and a single fenced playback lease. Browser technical events must match both lease and playback generations, including refresh of the same request. The TV never becomes an admin client.
+The approved direction and implementation contract are in `docs/MUSIC_PRODUCTION.md`. TASK-054 introduced additive migrations/RPCs and isolated tests; TASK-058 later records the authorized production rollout through version 00007. This is recorded evidence, not a fresh remote inspection. They extend the existing FIFO/database-owned lifecycle rather than introducing a second queue. Production replaces the POC global key with tenant-scoped pairing, revocable HttpOnly device sessions and a single fenced playback lease. Browser technical events must match both lease and playback generations, including refresh of the same request. The TV never becomes an admin client.
 
 Narrow server-only RPC wrappers may use a privileged client solely for validated Music operations; browser clients never receive that credential. Device/visitor authentication and membership-scoped admin RPCs remain separate. Persistent database limits and revocation of public POC admission execution prevent bypass of the HTTP boundary. Customer INSERT wakes never interrupt active tracks, while authenticated admin instruction wakes must re-resolve state even during playback. Module availability and request admission are separate default-OFF controls.
 
-Release TASK-058 owns HTTPS Preview, manual evidence, commercial/policy review and explicitly approved production deployment. Do not expose the Hub link until those gates pass; preserve Menu/Agenda. POC setup/mutation routes must not remain an alternative public production boundary.
+Release TASK-058 owns HTTPS Preview, manual evidence, commercial/policy review and explicitly approved production deployment. Accepted public launch still requires these gates; the owner-rehearsal exception permits the Relica's Production/Hub link without declaring launch acceptance. Preserve Menu/Agenda. POC setup/mutation routes must not remain an alternative public production boundary.
 
 Database implementation and RPC grants are documented in `docs/DATABASE.md`. TASK-055 implements trusted token/visitor/network digests, cookie/consent checks, server metadata/embeddability validation and reserved quota calls. A stable per-tab instance and new refresh boot nonce fence playback; bootstrap retries retain their boot nonce. Ordinary reads never restart the instruction. Pairing is readiness-independent, but customer admission requires a ready, live TV. Apply production migrations only alongside the compatible application; old POC callers intentionally lose RPC access.
 
-### Production Music application (TASK-055, protected Preview)
+### Production Music application (TASK-055, subsequent TASK-058 rehearsal)
 TASK-058 controlled rehearsal also permits Production deployment by explicit user approval. The Hub reads only anonymous `music_availability` booleans when globally enabled, with a two-second timeout and fail-closed optional Music link; Music outage must not break Menu/Agenda. Tenant enablement, not TV online state, determines the link; admission independently requires a live ready lease. Stable HTTPS Production origin is configured explicitly; Preview and Production signing keys are independent.
 
 TASK-057 adds tenant-bound signed TV cookies (cheap forged-cookie rejection before RPC, authoritative database revocation still mandatory) and five-second stalled-body cancellation. Review evidence and remaining actual-host/manual gates are in `docs/experiments/MUSIC_PRODUCTION_SECURITY_REVIEW.md`; release preparation is `docs/MUSIC_RELEASE_RUNBOOK.md`. This does not replace database fencing or authorize deployment.
 
-`/{slug}/musicas` and `/privacidade` are unlinked, feature-gated routes. `/api/music/public` accepts only consent/search/request, with strict bounded bodies, configured-origin checks, versioned HttpOnly visitor consent and server-authoritative metadata/receipts. Read-only `YOUTUBE_MUSIC_API_KEY` is independent of OAuth/playlist. Signing/network HMAC uses independent `MUSIC_SESSION_SECRET`; trusted network identity comes only from Vercel's dedicated provider header, or an explicit fixed local development identity. Other hosting fails closed until a trusted adapter is approved. Never use browser Host/XFF as authority.
+`/{slug}/musicas` and its nested `/privacidade` are feature-gated; the Hub link is enabled for the approved Relica's rehearsal, not for all tenants. `/api/music/public` accepts only consent/search/request, with strict bounded bodies, configured-origin checks, versioned HttpOnly visitor consent and server-authoritative metadata/receipts. Read-only `YOUTUBE_MUSIC_API_KEY` is independent of OAuth/playlist. Signing/network HMAC uses independent `MUSIC_SESSION_SECRET`; trusted network identity comes only from Vercel's dedicated provider header, or an explicit fixed local development identity. Other hosting fails closed until a trusted adapter is approved. Never use browser Host/XFF as authority.
 
 `/{slug}/musicas/player` pairs through a native Server Action; `/api/music/player` only dispatches validated state/heartbeat/technical events to fixed RPCs. Production replaces the POC cookie/key. HttpOnly Secure SameSite=Strict cookies do not grant admin access. Web Locks prevent cloned tabs sharing an instance; the TV requires HTTPS/localhost and Web Locks support. Heartbeat every 20 seconds, conservative local stop after at most 85 seconds without renewal, serialized exact-generation event retries and 15-second failure recovery preserve database-owned playback. Anonymous opaque Realtime wakes remain hints: INSERT never replaces a playing video; instruction re-resolves even during playback.
 

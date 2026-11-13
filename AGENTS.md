@@ -7,7 +7,7 @@ Evolve the existing product into the Relica's Rock Bar institutional website, de
 Before changing code:
 1. `AGENTS.md`
 2. `tasks/CURRENT.md`
-3. the active task referenced by CURRENT
+3. the active task referenced by CURRENT; then `docs/README.md` and the relevant domain index for its documentation map
 4. `docs/PRD.md` sections relevant to the task
 5. `docs/ARCHITECTURE.md`
 6. `docs/DATABASE.md` when data/auth is involved
@@ -50,6 +50,13 @@ Do NOT implement unless a task explicitly adds them: cart, table ordering, payme
 - The public menu must never require authentication.
 - The layout must work when a product has no image.
 
+## Communication and pull requests
+- Sempre comunicar planos, andamento e entregas da forma mais objetiva possível, em linguagem clara e simples, compreensível para alguém sem contexto técnico, como em uma apresentação a um investidor.
+- Começar pelo resultado ou próximo passo e pelo benefício concreto para o usuário ou negócio. Evitar jargões, detalhes internos desnecessários, repetição e linguagem promocional.
+- Ao planejar, dizer brevemente o que será feito e para quê. Ao entregar, dizer o que mudou, como foi verificado e se existe alguma pendência ou impacto relevante.
+- Aplicar a mesma regra a títulos e descrições de PRs: deixar claro o problema resolvido, o resultado e a validação, com o mínimo de texto necessário.
+- Incluir detalhes técnicos apenas quando ajudarem a revisar uma decisão, entender um risco ou verificar a entrega. Não omitir limitações relevantes nem apresentar trabalho planejado como concluído.
+
 ## Definition of Done
 A task is DONE only when:
 1. all acceptance criteria are satisfied;
@@ -63,9 +70,11 @@ A task is DONE only when:
 ## Status model
 `PLANNED -> READY -> IN_PROGRESS -> BLOCKED -> DONE`
 
-Only one implementation task should normally be `IN_PROGRESS`.
+Only one implementation task should normally be `IN_PROGRESS`. TASK-058/TASK-061 retain historical IN_PROGRESS with manual validation pending; CURRENT identifies these independent acceptance tracks separately from the next implementation. READY_FOR_MANUAL_VALIDATION is a validation qualifier, not an additional official status.
 
 ## Documentation synchronization
+Follow `docs/GOVERNANCE.md` for ownership, evidence versus requirements and cross-domain updates. Product indexes link to canonical contracts and tasks; do not create duplicate backlogs or copy release status into every specification. Preserve dated historical evidence and mark superseded scope explicitly. Run `node scripts/check-docs.mjs` after documentation/task changes.
+
 - Product behavior/scope change -> `docs/PRD.md`
 - Architecture change -> `docs/ARCHITECTURE.md`
 - Schema/RLS/storage change -> `docs/DATABASE.md`

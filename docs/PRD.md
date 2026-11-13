@@ -1,6 +1,6 @@
 # PRD — Relica's Rock Bar
 
-**Version:** 3.0 — institutional evolution, 2026-11-10
+**Version:** 3.1 — visão por produtos e conciliação documental, 2026-11-13
 **Status:** Approved for implementation  
 **Platform:** Responsive web, mobile-first  
 **Primary users:** bar customers and establishment administrators
@@ -8,7 +8,12 @@
 ## 1. Product vision
 Evolve the current app into the institutional website of Relica's Rock Bar. Target `/` introduces the venue, shows, drinks/petiscos, gallery and location. The existing menu remains one action away at `/cardapio`; `/agenda` reuses implemented events. Preserve the shared-host Hub and slug routes. Maurício manages menu/events and approved institutional fields through one mobile-friendly admin. No rebuild, parallel catalog or second login.
 
-This direction is authorized for documentation/backlog preparation; site/schema/deploy changes are not claimed implemented. See [site requirements](site/00-PRODUCT-SPEC.md) and [delivery plan](site/06-IMPLEMENTATION-PLAN.md). Original ZIP assumptions are superseded where audited contracts differ.
+The institutional direction is delivered incrementally: initial root navigation exists (TASK-080, browser acceptance pending); the full home, host context, institutional aliases and editorial schema remain planned. This specification is not deployment evidence. See [site requirements](site/00-PRODUCT-SPEC.md) and [delivery plan](site/06-IMPLEMENTATION-PLAN.md). Original ZIP assumptions are superseded where audited contracts differ.
+
+## Product boundaries and documentation
+The shared platform supports distinct domains in one application: [Site](site/README.md) for venue discovery, [Menu](menu/README.md) for catalog consultation, [Agenda](agenda/README.md) for events, [Hub](hub/README.md) for slug/QR entry and [Music](music/README.md) for requests/playback. [Admin](admin/README.md) is the unified management surface; [Platform](platform/README.md) owns shared tenancy/security/operations. These are not separate backends.
+
+Use [documentation ownership](GOVERNANCE.md) for updates and [tasks/CURRENT](../tasks/CURRENT.md) for execution. Planned behavior, locally implemented code, recorded production rehearsal and accepted launch must be distinguished. Historical proposals do not expand scope.
 
 ## 2. Problem
 The physical menu makes price changes, availability updates and catalog maintenance expensive and slow. Customers also lack one reliable destination for the bar's menu, upcoming events and lightweight participation in the venue experience.
@@ -59,7 +64,7 @@ TASK-056 adds local membership-scoped `/admin/music` operations and navigation (
 - abuse prevention and rate protection designed before public writes;
 - explicit copy that requests do not guarantee playback.
 
-The first production release follows `docs/MUSIC_PRODUCTION.md` (TASK-053 through TASK-058), reusing the experimental implementation without treating it as production-ready. Voting, duplicate aggregation, queue reordering and fallback music are excluded. Public activation requires hosted/manual and commercial-review gates; the Music module defaults OFF. TASK-055 implements the unlinked production request/privacy routes and paired TV locally; it does not activate Music or replace the Hub's unavailable Music destination.
+The production contract is `docs/MUSIC_PRODUCTION.md` (TASK-053 through TASK-058). Voting, duplicate aggregation, queue reordering and fallback music are excluded. Module/admission defaults remain OFF. TASK-055 delivered the initially unlinked routes; subsequent TASK-058 approval enabled the controlled Relica's Production/Hub rehearsal described above. Hosted/manual and commercial-review gates still precede accepted public launch.
 
 ## 5. Existing menu contract
 ### Public menu
@@ -117,7 +122,7 @@ Current implemented shared-host routes (preserved):
 /relicas/musicas    -> Music Requests, controlled owner rehearsal
 ```
 
-Planned institutional routes on explicitly approved hosts (local/Preview may precede domain acquisition):
+Institutional target on explicitly approved hosts (initial root navigation exists locally; aliases and host context remain planned):
 
 ```text
 /           -> institutional homepage for Relica's

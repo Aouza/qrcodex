@@ -1,6 +1,6 @@
 # Integração e auditoria conciliada
 
-Auditoria local realizada nesta conversa; não é inspeção atual da produção. Checks da auditoria: lint/typecheck/build e 97 testes passaram. Registrar nova evidência na TASK-063 antes de implementar; testes SQL remotos, browser visual e recovery completo não foram executados pela auditoria.
+Evidência histórica da auditoria documental TASK-062, anterior à linha de base TASK-063 e à navegação TASK-080; a tabela de rotas incorpora esse incremento posterior. Não é inspeção atual da produção. Checks daquela auditoria: lint/typecheck/build e 97 testes passaram. A TASK-063 registrou a linha de base; novas evidências pertencem à tarefa que as executar. Testes SQL remotos, browser visual e recovery completo não foram executados pela auditoria.
 
 ## Evidência do repositório
 | Item | Estado / decisão |

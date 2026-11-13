@@ -4,6 +4,8 @@ Status: `PLANNED | READY | IN_PROGRESS | BLOCKED | DONE`
 
 Update this file whenever a task changes status. Do not reorder IDs after development starts.
 
+Read [task workflow](README.md) and [documentation governance](../docs/GOVERNANCE.md); product indexes link here rather than maintaining duplicate backlogs. IN_PROGRESS on TASK-058/061 denotes pending manual acceptance, not concurrent product implementation.
+
 ## EPIC 01 — Foundation
 | ID | Task | Status | Depends on |
 |---|---|---|---|
@@ -131,9 +133,16 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 
 See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). TASK-064 is the next READY increment. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
 
-Media follow-up: TASK-021 handles real product image upload/replacement. TASK-025 should define how an approved establishment editorial image replaces the temporary illustrated menu hero.
+Media follow-up: product and category upload/replacement are implemented. A future scoped task must define how an approved establishment editorial image replaces the temporary illustrated menu hero; do not reinterpret completed TASK-025 as an active uploader requirement.
 
-Category media follow-up: TASK-022 should define a persisted category image field and admin upload/replacement flow for the temporary category illustrations. Until then, the public menu uses local Relica's defaults and a neutral fallback.
+Category media: nullable `categories.image_url`, bucket/policies and admin upload/replacement/removal already exist. Persisted media takes precedence; local Relica's illustrations and the neutral fallback apply only when no image is stored. See DATABASE and the Menu index.
+
+## EPIC 13 — Documentation Governance
+| ID | Task | Status | Depends on |
+|---|---|---|---|
+| TASK-081 | Organizar documentação por plataforma/produto e conciliar contratos | DONE | TASK-062, TASK-059 |
+
+[Completion and evidence](completed/TASK-081-documentation-organization.md). Documentation maintenance only; next product implementation remains TASK-064. No changes to pending Music acceptance.
 
 ## Post-MVP parking lot
 Not scheduled: generic module configuration UI, multi-establishment selection UI, analytics, search analytics, happy hour automation, promotions, Wi-Fi helper, polls/quizzes, now-playing integration, call waiter, ordering, commandas, payment, loyalty, commercial SaaS onboarding/billing.
