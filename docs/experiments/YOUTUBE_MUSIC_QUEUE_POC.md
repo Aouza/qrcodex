@@ -7,7 +7,9 @@
 **Hub visibility:** No
 
 ## Context
-POC 1 validated that a customer can search YouTube from the Relica's experimental route and submit a selected video. POC 2 changes the target model: the persistent YouTube playlist is not the queue.
+**Leitura atual:** este contrato descreve a POC 2 e suas evidências históricas. O rollout posterior revoga admissão/lifecycle legados e fecha endpoints POC hosted. O setup antigo contra produção abaixo não é procedimento operacional atual nem autorização reutilizável. Consulte [Música](../music/README.md); não reabra os RPCs antigos para validar este experimento.
+
+POC 1 introduced the experimental search/selection/playlist flow, but its recorded end-to-end playlist result remains partial/blocked on OAuth configuration. POC 2 changes the target model independently: the persistent YouTube playlist is not the queue.
 
 Relica's application owns an ephemeral queue in Supabase. The bar TV opens an experimental player route, claims work from that queue, plays videos through the YouTube IFrame Player API and advances automatically.
 

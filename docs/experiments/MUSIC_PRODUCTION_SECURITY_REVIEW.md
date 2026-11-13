@@ -3,6 +3,8 @@
 2026-09-30, `feat/music-production`. Scope: integrated local TASK-054–056 application and five unapplied production migrations. No live database changes, hosted deployment or external API requests. This is checkpoint evidence, not production/POC SUCCESS or commercial permission.
 
 ## Evidence
+**Historical checkpoint:** references below to unapplied migrations, OFF state or an unscheduled cron describe TASK-057 on its review date. TASK-058 subsequently records an authorized rollout/rehearsal; use the [runbook](../MUSIC_RELEASE_RUNBOOK.md) for pending release gates. This review does not establish present remote state.
+
 
 | Boundary | Reproducible evidence | Local result |
 | --- | --- | --- |

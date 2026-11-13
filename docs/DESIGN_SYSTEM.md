@@ -3,7 +3,7 @@
 **Atualização 2026-11-10:** este documento preserva as regras do cardápio/Hub/admin/TV. Para a nova homepage institucional, aplicar a seção 51 e [design do site](site/02-DESIGN-SYSTEM.md). A prioridade institucional não transforma o catálogo em experiência de compra e não recolore globalmente os módulos existentes. A implementação visual ainda depende das tarefas do site.
 
 **Versão:** 1.0\
-**Produto:** Cardápio digital via QR Code\
+**Escopo base:** Cardápio via QR; Hub §47, Agenda §48, Música §§49–50, site §51 e admin §33\
 **Plataforma:** Web responsiva, mobile-first\
 **Objetivo:** consulta e apresentação de produtos\
 **Fora do escopo:** pedidos, carrinho, checkout, pagamentos e comandas
@@ -287,8 +287,9 @@ Seções do cardápio
 Informações do estabelecimento
 ```
 
-Não criar uma homepage extensa antes do cardápio. O usuário escaneou o
-QR para consultar produtos.
+Na rota do cardápio, não colocar uma homepage extensa antes dos produtos.
+Esta restrição não impede a homepage institucional em sua própria rota;
+ela deve oferecer acesso direto ao catálogo.
 
 ------------------------------------------------------------------------
 
@@ -349,7 +350,9 @@ Pesquisa por:
 
 -   nome;
 -   descrição;
--   categoria quando útil.
+
+Busca por nome de categoria não faz parte do contrato atual. Só adicionar
+com requisito e tarefa específicos.
 
 O campo deve ser visualmente evidente e possuir botão para limpar o
 texto.
@@ -394,9 +397,9 @@ uma ilustração neutra até receberem mídia própria no admin.
 
 Estado ativo:
 
--   background accent;
--   texto escuro;
--   contraste alto.
+-   borda e texto de destaque;
+-   fundo neutro, sem preenchimento integral com accent;
+-   contraste e indicação semântica de categoria ativa.
 
 Estado normal:
 
@@ -523,7 +526,7 @@ Tratamento:
 -   badge textual `Esgotado`;
 -   nome, preço e descrição em tons neutros apagados para comunicar estado desabilitado sem remover legibilidade;
 -   imagem com opacidade reduzida, preservando o badge como indicação textual explícita;
--   preço preservado, se desejado;
+-   preço sempre preservado e legível;
 -   nenhuma aparência de ação de compra.
 
 Nunca comunicar indisponibilidade apenas por cor.
@@ -531,6 +534,10 @@ Nunca comunicar indisponibilidade apenas por cor.
 ------------------------------------------------------------------------
 
 ## 20. Badges
+
+Flags existentes de produto sustentam `Destaque` e `Esgotado`. `Novo` e
+`Promoção` abaixo são possibilidades visuais para uma futura regra aprovada,
+não campos implementados nem autorização para criar promoções.
 
 Permitidos:
 
@@ -566,6 +573,9 @@ Heineken 600ml                     R$ 19,90
 ------------------------------------------------------------------------
 
 ## 22. Página de detalhe
+
+Possibilidade visual futura, não rota implementada nem requisito do MVP
+atual. As orientações abaixo só se aplicam se uma tarefa aprovar detalhe.
 
 Detalhes são opcionais. A listagem deve resolver a maior parte da
 decisão.
@@ -1107,7 +1117,7 @@ KitchenTicket
 8.  CategorySection;
 9.  FeaturedProductCard;
 10. loading/empty/error;
-11. detalhe;
+11. detalhe somente se aprovado em tarefa futura;
 12. informações do bar;
 13. responsividade;
 14. acessibilidade;
@@ -1176,7 +1186,7 @@ A experiência é considerada pronta quando uma pessoa consegue:
 4.  pesquisar;
 5.  comparar produtos e preços;
 6.  identificar indisponibilidade;
-7.  consultar detalhes;
+7.  ler as informações cadastradas na listagem;
 8.  retornar sem perder contexto.
 
 E principalmente:
@@ -1271,7 +1281,7 @@ Superfície escura de tela cheia, com vídeo como conteúdo principal e identifi
 ## 50. Música de produção (TASK-055)
 Admin Música (TASK-056) integra a navegação existente. Apresentar operação/TV, tocando agora e fila FIFO em cartões de coluna única, com títulos longos quebrados, foco visível e ações de 48 px. Diferenciar pausado, offline e sem pareamento. Confirmar pular/remover/revogar/substituir; mostrar código de pareamento somente ao admin, sem URL e com expiração. Não adicionar vídeo, votos ou reordenação no admin.
 
-Tela pública independente, sem link no Hub até TASK-058: consentimento explícito antes de busca/pedido, links de privacidade/YouTube e mensagens claras de pausa, offline, fila cheia e limite. Usar tokens existentes, coluna única a partir de 320 px, quebra de títulos longos, foco visível e controles de pelo menos 48 px. Não exigir conta do cliente. A TV reutiliza a superfície de vídeo e espera, com pareamento separado do admin; revogação, expiração, outra aba e reconexão têm estados técnicos explícitos. A gestão humana nunca aparece na TV. O contrato de produção está em `docs/MUSIC_PRODUCTION.md`.
+Tela pública independente, inicialmente sem link no Hub na TASK-055. A TASK-058 registra o ensaio autorizado com link para Relica's, ainda sem aceite de lançamento. Contrato visual: consentimento explícito antes de busca/pedido, links de privacidade/YouTube e mensagens claras de pausa, offline, fila cheia e limite. Usar tokens existentes, coluna única a partir de 320 px, quebra de títulos longos, foco visível e controles de pelo menos 48 px. Não exigir conta do cliente. A TV reutiliza a superfície de vídeo e espera, com pareamento separado do admin; revogação, expiração, outra aba e reconexão têm estados técnicos explícitos. A gestão humana nunca aparece na TV. O contrato de produção está em `docs/MUSIC_PRODUCTION.md`.
 
 ## 51. Site institucional — Rock Editorial Minimal
 - Ordem: Header/Hero, Agenda, Drinks e petiscos, A Casa, Galeria, Localização, Footer.

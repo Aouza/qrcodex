@@ -3,6 +3,8 @@
 Institutional website evolution of the existing mobile-first menu, Hub, Agenda and unified admin. The initial home at `/` presents the institutional navigation. The full site and its integrated routes are tracked in the incremental plan.
 
 ## Source of truth
+Start at [Documentation by platform and product](docs/README.md). It maps Site, Card?pio, Agenda, Hub, M?sica and Admin to their authoritative contracts, code and tasks. [Documentation governance](docs/GOVERNANCE.md) defines what to update with each change; `node scripts/check-docs.mjs` checks links, coverage and task consistency.
+
 - Product: `docs/PRD.md`
 - Agent workflow: `AGENTS.md`
 - Current work: `tasks/CURRENT.md`

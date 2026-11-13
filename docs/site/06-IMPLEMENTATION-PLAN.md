@@ -5,7 +5,7 @@
 **Goal:** entregar a homepage institucional e integrar menu/Agenda/admin existentes sem interromper acesso ou perder dados.
 **Architecture:** uma aplicação Next.js e um Supabase, apresentação `(site)`, contexto por host aprovado e reutilização de domínios. As rotas por slug permanecem.
 **Tech Stack:** Next.js App Router, React, TypeScript strict, Tailwind/CSS Modules, Supabase, Zod, node:test e Vercel existentes.
-**Spec:** [00-PRODUCT-SPEC.md](00-PRODUCT-SPEC.md), [arquitetura](01-ARCHITECTURE.md), [ADR-020](../DECISIONS.md). Estado: preparação documental, implementação planejada.
+**Spec:** [00-PRODUCT-SPEC.md](00-PRODUCT-SPEC.md), [arquitetura](01-ARCHITECTURE.md), [ADR-020](../DECISIONS.md). Plano de destino incremental; linha de base e navegação inicial têm evidências próprias. Estado de execução pertence a CURRENT/BACKLOG e às tarefas.
 
 ## Restrições gerais
 - Manter uma aplicação e um admin; sem novo CMS/API/catálogo/CRUD paralelo ou rebuild.

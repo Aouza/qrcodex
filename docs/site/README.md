@@ -3,7 +3,9 @@
 A raiz já apresenta a navegação e a abertura institucional do Relica’s. A home completa, os destinos institucionais e o conteúdo editorial seguem no plano incremental.
 
 ## Leitura e precedência
-Começar pelo `AGENTS.md` da raiz e `tasks/CURRENT.md`. O PRD, arquitetura, banco, design system e decisões da raiz de `docs/` continuam canônicos para toda a aplicação. Os arquivos desta pasta detalham o site e estão conciliados com ADR-020.
+Esta pasta responde pelo produto Site. O mapa da plataforma e dos demais produtos está em [docs/README](../README.md); as regras de atualização estão em [GOVERNANCE](../GOVERNANCE.md).
+
+Começar pelo `AGENTS.md` da raiz e `tasks/CURRENT.md`. O PRD define visão e limites globais; arquitetura, banco, design system e decisões da raiz de `docs/` cuidam dos contratos compartilhados. Os arquivos desta pasta detalham somente o site, conciliados com ADR-020. Menu, Agenda, Hub e Música mantêm seus próprios contratos.
 
 | Documento | Responsabilidade |
 |---|---|

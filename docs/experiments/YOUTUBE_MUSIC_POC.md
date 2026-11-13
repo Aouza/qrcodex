@@ -7,6 +7,8 @@
 **Hub visibility:** No
 
 ## Context
+**Leitura atual:** contrato experimental da POC 1, não arquitetura de produção. Endpoints hosted são fechados pelo contrato posterior; instruções de setup abaixo não autorizam reabertura nem novas escritas remotas. Veja [índice de experimentos](README.md).
+
 Relica's currently uses YouTube as the music source in the bar. The responsible person chooses videos on a phone and plays them on the establishment TV.
 
 This experiment validates whether a customer can search YouTube from an experimental Relica's page, choose a video and have the backend add that video to a YouTube playlist controlled by the bar.
