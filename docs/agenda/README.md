@@ -25,10 +25,12 @@ RLS controla publicação/tenant, não expiração por data. URLs de mídia em b
 
 A TASK-065 valida calendário e horário literais no formulário antes da conversão existente `-03:00`. Início/fim impossíveis são rejeitados; anos bissextos, fim igual ao início e término na madrugada seguinte permanecem aceitos. A correção local não altera dados existentes.
 
+A TASK-066 protege as operações de flyer: remoção confirma rascunho sem imagem antes do Storage, compensação não republica e substituição mantém a nova mídia quando a limpeza anterior falha. Erro de confirmação do vínculo preserva o upload para revisão. Falhas parciais não são sucesso; objetos órfãos exigem recuperação operacional autorizada conforme [DATABASE](../DATABASE.md#event-media-recovery--local-task-066).
+
 ## Código e evidência
 
 `src/lib/agenda/`, `src/lib/hub/`, `src/app/[slug]/agenda/`, `src/app/admin/(protected)/events/`, `src/lib/validation/event.ts`, migrations de eventos/mídia e testes SQL `011`/`012`. Regressão pública e de validação está em `tests/load-public-agenda.test.mjs`, `load-public-hub.test.mjs`, `event-validation.test.mjs` e `event-image-validation.test.mjs`.
 
 ## Andamento e pendências
 
-[BACKLOG](../../tasks/BACKLOG.md), epic Agenda, registra TASK-048–052. A seleção temporal foi corrigida na [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md) e o calendário na [TASK-065](../../tasks/completed/TASK-065-site-event-calendar-validation.md). Próximas correções e integração estão em [TASK-066](../../tasks/active/TASK-066-site-event-media-recovery.md), [TASK-069](../../tasks/planned/TASK-069-site-agenda-route.md) e [TASK-072](../../tasks/planned/TASK-072-site-home-agenda.md). Embora cadastradas no epic Site, 064–066 corrigem o domínio compartilhado. O nome do epic não restringe os consumidores que devem ser verificados.
+[BACKLOG](../../tasks/BACKLOG.md), epic Agenda, registra TASK-048–052. A seleção temporal, o calendário e a recuperação de mídia estão nas [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md), [TASK-065](../../tasks/completed/TASK-065-site-event-calendar-validation.md) e [TASK-066](../../tasks/completed/TASK-066-site-event-media-recovery.md). A integração continua nas [TASK-067](../../tasks/active/TASK-067-site-public-context.md), [TASK-069](../../tasks/planned/TASK-069-site-agenda-route.md) e [TASK-072](../../tasks/planned/TASK-072-site-home-agenda.md). Embora cadastradas no epic Site, 064–066 corrigem o domínio compartilhado. O nome do epic não restringe os consumidores que devem ser verificados.

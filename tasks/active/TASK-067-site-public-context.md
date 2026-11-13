@@ -1,7 +1,7 @@
 # TASK-067 — Definir contexto institucional e navegação
 
 **Epic:** Institutional Site
-**Status:** PLANNED
+**Status:** READY
 **Dependencies:** TASK-066
 **Migration fronts:** 2, 3
 

@@ -13,6 +13,15 @@ Decisões registram contexto e alcance; seus checkpoints não são estado operac
 
 **Compatibility/rollback:** preservar caminhos, ZIP, materiais de origem, evidências e alterações locais preexistentes. A organização pode ser ajustada sem migração de dados, deploy ou mudança nas rotas.
 
+## ADR-022 — Prefer a recoverable draft over publication after uncertain media removal
+**Status:** Accepted local recovery behavior for TASK-066, 2026-11-13.
+
+**Context:** Postgres and Storage cannot participate in one application transaction; Storage ownership requires the event row. The old delete sequence could leave a published event pointing at a removed flyer. Replacement rollback could fail while cleanup removed the newly linked file.
+
+**Decision:** confirm a tenant/resource-scoped draft with null media before destructive cleanup, retain the row through Storage authorization and check every affected-row result. A Storage failure may restore only a draft reference, never automatically republish. Retain a committed new flyer if old-version cleanup fails; report partial completion rather than discard a referenced file. Invalidate current consumers on partial state changes. Cleanup may target only the exact tenant/event media folder.
+
+**Consequences/recovery:** some failures retain a draft and/or orphaned media. A link UPDATE error may hide a committed write: retain that upload and revalidate, cleaning it only after a confirmed zero-row response or authorized state inspection. Surface an error, require a verified flyer before manual publication and let a trusted, specifically authorized operator review unreferenced files. No new privileged editorial client, relaxed RLS, automatic collector, generic workflow or atomicity guarantee. See DATABASE's event recovery section. Schema and existing publication constraint remain unchanged.
+
 ## ADR-020 — Evolve the existing app into the institutional site
 **Status:** Accepted direction for documentation and incremental site backlog, 2026-11-10. No production/schema rollout authorized by this update.
 
