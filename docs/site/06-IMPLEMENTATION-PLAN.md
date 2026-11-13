@@ -44,11 +44,11 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 ## Fila de incrementos
 [TASK-062](../../tasks/completed/TASK-062-reconcile-site-documentation.md) concluiu a sincronização documental. A TASK-080 antecipou a navbar da TASK-071 a pedido do usuário. A TASK-071 reaproveita esse header na composição definitiva. Consultar [CURRENT](../../tasks/CURRENT.md) e [BACKLOG](../../tasks/BACKLOG.md) para o estado operacional. Ao mover uma tarefa, sincronizar seu link no índice.
 
-| Tarefa | Entrega | Depende de | Inicial |
+| Tarefa | Entrega | Depende de | Estado |
 |---|---|---|---|
 | [TASK-063](../../tasks/completed/TASK-063-site-baseline-and-recovery.md) | Proteger e registrar a linha de base do site | TASK-062 | DONE |
-| [TASK-064](../../tasks/active/TASK-064-site-event-selection.md) | Corrigir seleção temporal de eventos | TASK-063 | READY |
-| [TASK-065](../../tasks/planned/TASK-065-site-event-calendar-validation.md) | Rejeitar datas inexistentes de eventos | TASK-064 | PLANNED |
+| [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md) | Corrigir seleção temporal de eventos | TASK-063 | DONE |
+| [TASK-065](../../tasks/active/TASK-065-site-event-calendar-validation.md) | Rejeitar datas inexistentes de eventos | TASK-064 | READY |
 | [TASK-066](../../tasks/planned/TASK-066-site-event-media-recovery.md) | Proteger exclusão e recuperação de mídia de eventos | TASK-065 | PLANNED |
 | [TASK-067](../../tasks/planned/TASK-067-site-public-context.md) | Definir contexto institucional e navegação | TASK-066 | PLANNED |
 | [TASK-068](../../tasks/planned/TASK-068-site-menu-route.md) | Adicionar cardápio institucional compartilhado | TASK-067 | PLANNED |

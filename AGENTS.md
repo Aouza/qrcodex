@@ -55,6 +55,7 @@ Do NOT implement unless a task explicitly adds them: cart, table ordering, payme
 - Começar pelo resultado ou próximo passo e pelo benefício concreto para o usuário ou negócio. Evitar jargões, detalhes internos desnecessários, repetição e linguagem promocional.
 - Ao planejar, dizer brevemente o que será feito e para quê. Ao entregar, dizer o que mudou, como foi verificado e se existe alguma pendência ou impacto relevante.
 - Aplicar a mesma regra a títulos e descrições de PRs: deixar claro o problema resolvido, o resultado e a validação, com o mínimo de texto necessário.
+- Sempre que um commit/push for solicitado, concluir também a abertura de um PR para a branch enviada, sem exigir um pedido separado. Se já houver PR aberto para essa branch, atualizar o existente e informar seu link. Respeitar a base do trabalho e nunca fazer merge ou deploy por inferência. Esta regra não autoriza commit/push sem solicitação nem supera uma instrução explícita para não abrir PR.
 - Incluir detalhes técnicos apenas quando ajudarem a revisar uma decisão, entender um risco ou verificar a entrega. Não omitir limitações relevantes nem apresentar trabalho planejado como concluído.
 
 ## Definition of Done

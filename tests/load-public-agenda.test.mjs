@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { resolvePublicAgendaResult } from "../src/lib/agenda/resolve-public-agenda-result.ts";
+import { eventLoaderFixture, loadPublicAgenda, resolvePublicAgendaResult } from "./fixtures/public-event-loaders.mjs";
 
 const establishment = { id: "tenant", name: "Relica's", slug: "relicas", logo_url: null };
 const now = new Date("2026-09-24T12:00:00.000Z");
@@ -45,4 +45,31 @@ test("returns null for unknown establishments and fails safely on query errors",
     () => resolvePublicAgendaResult({ data: establishment, error: null }, { data: null, error: { details: "secret" } }, now),
     { message: "Failed to load the public Agenda." },
   );
+});
+
+test("Agenda query excludes historical events while preserving inclusive ongoing and no-end boundaries", async () => {
+  const event = (id, starts_at, ends_at = null, extra = {}) => ({
+    id, establishment_id: establishment.id, active: true, title: id, description: null,
+    starts_at, ends_at, image_url: "https://example.test/flyer.webp", external_url: null, ...extra,
+  });
+  const fixture = eventLoaderFixture(establishment, [
+    event("future-b", "2026-10-02T22:00:00.000Z"),
+    event("past", "2026-09-20T22:00:00.000Z"),
+    event("ongoing", "2026-09-24T10:00:00.000Z", "2026-09-24T13:00:00.000Z"),
+    event("ends-now", "2026-09-24T11:00:00.000Z", now.toISOString()),
+    event("ended", "2026-09-24T11:00:00.000Z", "2026-09-24T11:59:59.999Z"),
+    event("starts-now", now.toISOString()),
+    event("future-a", "2026-10-02T22:00:00.000Z"),
+    event("no-media", "2026-10-01T22:00:00.000Z", null, { image_url: null }),
+    event("draft", "2026-10-01T22:00:00.000Z", null, { active: false }),
+    event("other-tenant", "2026-10-01T22:00:00.000Z", null, { establishment_id: "other" }),
+  ]);
+
+  const result = await loadPublicAgenda(establishment.slug, now);
+  assert.deepEqual(result.events.map(event => event.id), ["ongoing", "ends-now", "starts-now", "future-a", "future-b"]);
+  const params = fixture.eventRequest().searchParams;
+  assert.ok(params.has("or"), "Expired history must be filtered in the database query");
+  assert.equal(params.get("establishment_id"), `eq.${establishment.id}`);
+  assert.equal(params.get("active"), "eq.true");
+  assert.equal(params.get("order"), "starts_at.asc,id.asc");
 });

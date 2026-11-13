@@ -20,7 +20,7 @@ Evidência histórica da auditoria documental TASK-062, anterior à linha de bas
 Preservar: schema/IDs/menu, RLS/Auth, rotas, Music e migrations. Reutilizar: loaders, componentes menu, shell/admin e upload. Adaptar: navegação/contexto, homepage, settings e SEO. Refatorar: problemas concretos de eventos e invalidação. Remover: starter/assets sem uso somente quando substituídos e referências verificadas; nunca migrations ou POCs por preferência.
 
 ## Riscos constatados e tarefas
-- TASK-064: Hub limita primeiros 24 eventos antes de descartar antigos; cenário com 24 passados e um futuro foi reproduzido em memória. Agenda lê histórico completo.
+- TASK-064 (corrigido localmente): regressão do Hub com 24 passados e um futuro reproduzida no loader antes da correção. Hub/Agenda agora filtram relevância na consulta; o limite de 24 do Hub ocorre depois. Regra compartilhada inclui eventos em andamento, igualdade no fim/início e ausência de término. Não é evidência de deploy.
 - TASK-065: `2026-02-31T22:00` passa e normaliza para março; validação verifica parse/formato, não calendário.
 - TASK-066: exclusão remove flyer antes da linha; falha na segunda operação pode deixar publicado quebrado. Requer teste de falha, não simples inversão de ordem.
 - TASK-072: ações de eventos não invalidam futura home; Agenda opcional pode derrubar o Hub atual. Isolar na composição institucional.

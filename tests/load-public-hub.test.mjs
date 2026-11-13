@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { hasPublicMusic, resolvePublicHubResult } from "../src/lib/hub/resolve-public-hub-result.ts";
+import { eventLoaderFixture, hasPublicMusic, loadPublicHub, resolvePublicHubResult } from "./fixtures/public-event-loaders.mjs";
 
 test("Music Hub link requires global and tenant enablement; failure is closed", () => {
   assert.equal(hasPublicMusic(false, {enabled:true}), false);
@@ -80,4 +80,35 @@ test("fails safely when the Agenda availability read fails", () => {
       }),
     { message: "Failed to load the public Hub." },
   );
+});
+
+test("Hub still finds a future event after 24 historical events", async () => {
+  const now = new Date("2026-09-29T12:00:00.000Z");
+  const past = Array.from({ length: 24 }, (_, index) => ({
+    id: `past-${index}`, establishment_id: establishment.id, active: true,
+    starts_at: "2026-09-20T20:00:00.000Z", ends_at: null, image_url: "https://example.test/past.webp",
+  }));
+  const fixture = eventLoaderFixture(establishment, [...past, {
+    id: "future", establishment_id: establishment.id, active: true,
+    starts_at: "2026-10-02T20:00:00.000Z", ends_at: null, image_url: "https://example.test/future.webp",
+  }]);
+
+  assert.equal((await loadPublicHub(establishment.slug, now)).hasPublicAgenda, true);
+  assert.equal(fixture.eventRequest().searchParams.get("establishment_id"), `eq.${establishment.id}`);
+  assert.equal(fixture.eventRequest().searchParams.get("active"), "eq.true");
+  assert.equal(fixture.eventRequest().searchParams.get("limit"), "24");
+});
+
+test("Hub preserves ongoing events and the inclusive end boundary", async () => {
+  const now = new Date("2026-09-29T12:00:00.000Z");
+  for (const [ends_at, expected] of [
+    ["2026-09-29T13:00:00.000Z", true], [now.toISOString(), true],
+    ["2026-09-29T11:59:59.999Z", false], [null, false],
+  ]) {
+    eventLoaderFixture(establishment, [{
+      id: "ongoing", establishment_id: establishment.id, active: true,
+      starts_at: "2026-09-29T10:00:00.000Z", ends_at, image_url: "https://example.test/flyer.webp",
+    }]);
+    assert.equal((await loadPublicHub(establishment.slug, now)).hasPublicAgenda, expected);
+  }
 });
