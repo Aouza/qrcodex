@@ -8,6 +8,8 @@ Implementado: menu em `/[slug]/cardapio`, Hub em `/[slug]`, Agenda pública/admi
 
 Destino: `/` institucional nos hosts aprovados; `/cardapio` e `/agenda` compartilham dados e apresentação dos domínios existentes. Preservar URLs antigas e demais tenants. Domínio definitivo ainda requer confirmação operacional.
 
+A TASK-067 entrega localmente os contratos de contexto por host aprovado e navegação por site/slug. São helpers testados; sua integração nas páginas, as novas rotas e a home completa continuam nas tarefas seguintes. Nenhum host foi configurado ou publicado por esta entrega.
+
 ## Homepage
 | Ordem | Seção | Contrato |
 |---|---|---|

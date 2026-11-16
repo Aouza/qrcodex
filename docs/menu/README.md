@@ -12,7 +12,7 @@ Permitir ao cliente consultar produtos, preços e disponibilidade rapidamente no
 | Loaders e composição pública/admin | [Arquitetura](../ARCHITECTURE.md) |
 | Produtos, categorias, centavos e buckets | [Banco](../DATABASE.md) |
 | UI de consulta, busca e estados | [Design system](../DESIGN_SYSTEM.md), §§1–32 e 34–46 |
-| Integração institucional | [Contrato de integração](../site/04-QRCODEX-INTEGRATION.md) e [TASK-068](../../tasks/planned/TASK-068-site-menu-route.md) |
+| Integração institucional | [Contrato de integração](../site/04-QRCODEX-INTEGRATION.md) e [TASK-068](../../tasks/active/TASK-068-site-menu-route.md) |
 
 ## Capacidade existente e limites
 

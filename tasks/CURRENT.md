@@ -2,9 +2,9 @@
 
 ## Próxima implementação
 
-TASK-067 — Definir contexto institucional e navegação — **READY**. [Tarefa](active/TASK-067-site-public-context.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site institucional em `/` segue como prioridade confirmada. [TASK-066](completed/TASK-066-site-event-media-recovery.md) concluiu localmente a proteção dos flyers, com testes de falhas parciais e revisão. O próximo incremento define contexto e links; `/cardapio` e `/agenda` serão integrados nas tarefas seguintes, preservando os destinos por slug.
+TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site institucional em `/` segue como prioridade. A [TASK-067](completed/TASK-067-site-public-context.md) entregou helpers de contexto/links; o próximo incremento integra o catálogo existente em `/cardapio`, preservando os destinos por slug e verificando o gate de inventário antes de rotas estáticas.
 
-TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e o contexto de host ainda são planejados.
+TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e a integração do contexto às páginas seguem planejados. A configuração real de hosts e o inventário de slugs ainda precisam ser confirmados; a TASK-067 não os presume.
 
 ## Aceites e bloqueios independentes
 

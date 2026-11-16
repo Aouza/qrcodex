@@ -23,6 +23,8 @@ Os caminhos novos são propostas de implementação. Não manter duas páginas q
 ## Contexto e segurança
 Configuração server-only mapeia hosts normalizados explicitamente aprovados para Relica's. Inspecionar headers confiáveis reais da hospedagem; não confiar em host arbitrário enviado em formulário ou X-Forwarded-Host não validado. Local/Preview precisa de configuração explícita; não aceitar todo `*.vercel.app` como tenant por conveniência. Host desconhecido não resolve a superfície institucional. Shared slug continua com resolução atual. Colisões de slugs reservados são gate da TASK-067.
 
+Contrato local implementado na TASK-067: `public-context.ts` lê a allowlist `SITE_ALLOWED_HOSTS` somente no servidor; o adaptador usa apenas `Host` da requisição. `public-paths.ts` diferencia links de site (`/`, `/cardapio`, `/agenda`) dos links por slug. Configuração vazia/inválida não resolve contexto; não há fallback automático Vercel ou troca de tenant por input do browser. A normalização, origem do header e limites ficam em [ARCHITECTURE](../ARCHITECTURE.md#public-site-context-and-navigation--local-task-067). Rotas/consumidores ainda serão conectados nas TASK-068/069/071; esta entrega não altera a raiz existente nem configura hosts reais.
+
 Menu/Agenda públicos usam cliente anônimo sem cookie administrativo. Admin usa `getAdminAccess`, membership e RLS. Nenhuma nova service-role editorial. Music mantém sua exceção server-only restrita.
 
 ## Dados e atualização

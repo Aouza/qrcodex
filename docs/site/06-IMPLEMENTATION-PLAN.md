@@ -50,8 +50,8 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 | [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md) | Corrigir seleção temporal de eventos | TASK-063 | DONE |
 | [TASK-065](../../tasks/completed/TASK-065-site-event-calendar-validation.md) | Rejeitar datas inexistentes de eventos | TASK-064 | DONE |
 | [TASK-066](../../tasks/completed/TASK-066-site-event-media-recovery.md) | Proteger exclusão e recuperação de mídia de eventos | TASK-065 | DONE |
-| [TASK-067](../../tasks/active/TASK-067-site-public-context.md) | Definir contexto institucional e navegação | TASK-066 | READY |
-| [TASK-068](../../tasks/planned/TASK-068-site-menu-route.md) | Adicionar cardápio institucional compartilhado | TASK-067 | PLANNED |
+| [TASK-067](../../tasks/completed/TASK-067-site-public-context.md) | Definir contexto institucional e navegação | TASK-066 | DONE |
+| [TASK-068](../../tasks/active/TASK-068-site-menu-route.md) | Adicionar cardápio institucional compartilhado | TASK-067 | READY |
 | [TASK-069](../../tasks/planned/TASK-069-site-agenda-route.md) | Adicionar Agenda institucional compartilhada | TASK-068 | PLANNED |
 | [TASK-070](../../tasks/planned/TASK-070-site-design-foundation.md) | Integrar tokens e inventário de assets | TASK-063 | PLANNED |
 | [TASK-071](../../tasks/planned/TASK-071-site-home-shell.md) | Implementar Header Hero e Footer na raiz | TASK-069, TASK-070 | PLANNED |

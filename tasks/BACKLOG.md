@@ -116,8 +116,8 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-064 | Corrigir seleção temporal de eventos | DONE | TASK-063 |
 | TASK-065 | Rejeitar datas inexistentes de eventos | DONE | TASK-064 |
 | TASK-066 | Proteger exclusão e recuperação de mídia de eventos | DONE | TASK-065 |
-| TASK-067 | Definir contexto institucional e navegação | READY | TASK-066 |
-| TASK-068 | Adicionar cardápio institucional compartilhado | PLANNED | TASK-067 |
+| TASK-067 | Definir contexto institucional e navegação | DONE | TASK-066 |
+| TASK-068 | Adicionar cardápio institucional compartilhado | READY | TASK-067 |
 | TASK-069 | Adicionar Agenda institucional compartilhada | PLANNED | TASK-068 |
 | TASK-070 | Integrar tokens e inventário de assets | PLANNED | TASK-063 |
 | TASK-071 | Implementar Header Hero e Footer na raiz | PLANNED | TASK-069, TASK-070 |
@@ -131,7 +131,7 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-079 | Preparar Preview e release institucional | PLANNED | TASK-078 |
 | TASK-080 | Navegação institucional da home | BLOCKED | TASK-063; código e checks concluídos, revisão em navegador pendente |
 
-See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). The institutional site at `/` remains the user's confirmed priority. TASK-064–066 corrected local event selection, calendar and media recovery; TASK-067 is the next READY increment for institutional context/navigation. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
+See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). The institutional site at `/` remains the user's confirmed priority. TASK-064–066 corrected local event selection, calendar and media recovery; TASK-067 delivered context/navigation helpers. TASK-068 is the next READY increment, with the host/reserved-slug inventory gate recorded before static routes. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
 
 Media follow-up: product and category upload/replacement are implemented. A future scoped task must define how an approved establishment editorial image replaces the temporary illustrated menu hero; do not reinterpret completed TASK-025 as an active uploader requirement.
 

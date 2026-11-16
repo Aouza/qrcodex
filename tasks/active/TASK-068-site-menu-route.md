@@ -1,7 +1,7 @@
 # TASK-068 — Adicionar cardápio institucional compartilhado
 
 **Epic:** Institutional Site
-**Status:** PLANNED
+**Status:** READY
 **Dependencies:** TASK-067
 **Migration fronts:** 3, 4
 
@@ -35,6 +35,7 @@ Comandos separados, sem cadeia de comandos que esconda falhas. Para bugs, reprod
 
 ## Dependências externas, riscos e limites
 Recolorir MenuCatalog ou duplicar consultas muda contrato; não redirecionar aliases antigos.
+O [gate da TASK-067](../../docs/site/04-QRCODEX-INTEGRATION.md#contexto-de-acesso-e-gate-de-rotas--task-067) ainda exige inventário de slugs ativos/inativos e links/QR antes de introduzir rotas estáticas. Hosts reais não foram configurados pela tarefa anterior. Não tratar helpers concluídos como prova de domínio ou ausência de colisões.
 Sem commit/push/deploy, migrations remotas ou dados de produção sob autorização documental. Preservar mudanças locais e pendências de Música.
 
 ## Entrega
