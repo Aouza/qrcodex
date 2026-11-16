@@ -1286,6 +1286,7 @@ Tela pública independente, inicialmente sem link no Hub na TASK-055. A TASK-058
 ## 51. Site institucional — Rock Editorial Minimal
 - Ordem: Header/Hero, Agenda, Drinks e petiscos, A Casa, Galeria, Localização, Footer.
 - Hero: texto HTML, foto autorizada, CTA primário `Ver agenda` e secundário `Ver cardápio`.
+- Incremento TASK-082: hero usa Barlow Condensed 600/800, título itálico em quatro linhas e composição escura/vermelha; fonte e CSS restritos à home. Fundo `public/images/hero/hero.png` fornecido e selecionado pelo usuário, substituindo o conceito inicial. Não apresentar essa seleção como prova de fotografia documental do bar ou de release concluído.
 - Tema escuro editorial com vermelho contido; papel claro e rasgado somente na Agenda.
 - Tokens propostos no escopo `.institutional-site`: fundo `#101012`, superfície `#19191C`, texto `#F0EDE7`, secundário `#A9A5A3`, destaque `#C52D32`, papel `#E9E3D9`, tinta `#171719`, borda `#353438`. Verificar contraste por uso; não substituir `:root` dourado.
 - Display condensado (família a selecionar na TASK-070), corpo legível, pesos limitados e fallback estável. Não adicionar fontes ao admin/TV sem necessidade.

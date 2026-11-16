@@ -10,6 +10,8 @@ Destino: `/` institucional nos hosts aprovados; `/cardapio` e `/agenda` comparti
 
 A TASK-067 entrega localmente os contratos de contexto por host aprovado e navegação por site/slug. São helpers testados; sua integração nas páginas, as novas rotas e a home completa continuam nas tarefas seguintes. Nenhum host foi configurado ou publicado por esta entrega.
 
+A TASK-082 antecipa somente a hero da referência a pedido do usuário: título HTML e links funcionais para `/relicas/agenda` e `/relicas/cardapio`, até os aliases estarem disponíveis. O usuário forneceu e selecionou `public/images/hero/hero.png` para a hero, substituindo o conceito anterior e seu seletor de ambiente. Não presumir que seja fotografia documental do estabelecimento. A home completa e os demais gates da TASK-071 permanecem.
+
 ## Homepage
 | Ordem | Seção | Contrato |
 |---|---|---|

@@ -2,6 +2,8 @@
 
 ## Próxima implementação
 
+TASK-068 continua **READY** como próximo incremento. A prioridade visual solicitada em 2026-11-16, [TASK-082 — Hero institucional conforme referência](active/TASK-082-site-home-hero.md), está **BLOCKED** no aceite final de build/rota real. Hero implementada e revisada em fixture de navegador; falhas de leitura/caminho no Turbopack e erros preexistentes de CSS no diagnóstico Webpack impediram concluir o build. Sem aliases, publicação ou alteração de dados. Não confundir a prévia visual com release.
+
 TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site institucional em `/` segue como prioridade. A [TASK-067](completed/TASK-067-site-public-context.md) entregou helpers de contexto/links; o próximo incremento integra o catálogo existente em `/cardapio`, preservando os destinos por slug e verificando o gate de inventário antes de rotas estáticas.
 
 TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e a integração do contexto às páginas seguem planejados. A configuração real de hosts e o inventário de slugs ainda precisam ser confirmados; a TASK-067 não os presume.

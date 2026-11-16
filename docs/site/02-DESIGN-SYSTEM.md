@@ -22,7 +22,9 @@ A navbar usa fundo escuro, marca à esquerda e links claros. Início recebe o tr
 Aplicar via CSS Module/escopo `.institutional-site`, nunca substituir globalmente o dourado de `:root`. Verificar contraste de cada combinação; vermelho pequeno não é automaticamente acessível.
 
 ## Tipografia e composição
-Display condensado (Barlow Condensed ou Oswald como candidatos) e sans legível; seleção/necessidade de fonte adicional é da TASK-070, não decisão de instalar ambas. Pesos limitados, fallback estável, português completo e fontes restritas ao site. Títulos com `clamp`, texto HTML sobre imagem, sem UI embutida no bitmap.
+Hero antecipada na TASK-082 a pedido do usuário: Barlow Condensed auto-hospedada (600 normal/800 itálico), com uso restrito à hero via CSS Module, título em quatro linhas branco/vermelho e CTAs de Agenda/Cardápio. Fundo com `public/images/hero/hero.png`, selecionado pelo usuário em substituição ao conceito anterior; sem aviso de conceito ou seletor por ambiente. Sem carrossel ou indicadores sem função. O restante da fundação visual da TASK-070 continua planejado.
+
+Barlow Condensed na hero e sans legível no corpo. A TASK-070 deve avaliar a extensão dessa fonte às demais seções, sem instalar outra família condensada por padrão. Pesos limitados, fallback estável, português completo e fontes restritas ao site. Títulos com `clamp`, texto HTML sobre imagem, sem UI embutida no bitmap.
 
 Container de 1200–1280 px; padding aproximado 20/32/48 px mobile/tablet/desktop. Escala 4/8/12/16/24/32/48/64/96. Mínimo 320 px; alvos de 44 px, foco visível, landmarks e heading hierarchy. Transições discretas 150–250 ms com redução de movimento.
 

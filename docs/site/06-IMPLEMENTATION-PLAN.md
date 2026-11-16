@@ -64,6 +64,7 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 | [TASK-078](../../tasks/planned/TASK-078-site-regression-acceptance.md) | Validar regressão integrada e acessibilidade | TASK-077 | PLANNED |
 | [TASK-079](../../tasks/planned/TASK-079-site-release-readiness.md) | Preparar Preview e release institucional | TASK-078 | PLANNED |
 | [TASK-080](../../tasks/active/TASK-080-site-home-navigation.md) | Navegação institucional da home | TASK-063 | BLOCKED: revisão em navegador |
+| [TASK-082](../../tasks/active/TASK-082-site-home-hero.md) | Hero da referência, antecipada a pedido do usuário | TASK-067; header TASK-080 | BLOCKED: build/rota real pendentes; fixture visual revisada |
 
 ## Ciclo de execução por tarefa
 - [ ] Conferir CURRENT/AGENTS e dependências; registrar os arquivos afetados e preservar alterações locais.
