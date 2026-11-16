@@ -2,6 +2,8 @@
 
 A raiz já apresenta a navegação e a abertura institucional do Relica’s. A home completa, os destinos institucionais e o conteúdo editorial seguem no plano incremental.
 
+A [TASK-082](../../tasks/active/TASK-082-site-home-hero.md) antecipa a hero do screenshot solicitado, com título HTML, acesso à Agenda/Cardápio e a imagem `public/images/hero/hero.png` fornecida e selecionada pelo usuário. Substitui o conceito de revisão inicial; não representa a home completa ou aceite de publicação.
+
 ## Leitura e precedência
 Esta pasta responde pelo produto Site. O mapa da plataforma e dos demais produtos está em [docs/README](../README.md); as regras de atualização estão em [GOVERNANCE](../GOVERNANCE.md).
 

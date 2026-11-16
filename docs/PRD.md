@@ -10,6 +10,8 @@ Evolve the current app into the institutional website of Relica's Rock Bar. Targ
 
 The institutional direction is delivered incrementally: initial root navigation exists (TASK-080, browser acceptance pending) and public context/path helpers are implemented locally (TASK-067). Wiring that context into pages, the full home, institutional aliases and editorial schema remain planned. This specification is not deployment evidence. See [site requirements](site/00-PRODUCT-SPEC.md) and [delivery plan](site/06-IMPLEMENTATION-PLAN.md). Original ZIP assumptions are superseded where audited contracts differ.
 
+TASK-082 anticipates only the reference-led hero: HTML headline and existing slug Agenda/menu links. The user supplied and selected `public/images/hero/hero.png` for this surface, replacing the earlier review concept and its environment gate. This asset selection does not establish documentary provenance or complete the home, TASK-070/071 or institutional aliases.
+
 ## Product boundaries and documentation
 The shared platform supports distinct domains in one application: [Site](site/README.md) for venue discovery, [Menu](menu/README.md) for catalog consultation, [Agenda](agenda/README.md) for events, [Hub](hub/README.md) for slug/QR entry and [Music](music/README.md) for requests/playback. [Admin](admin/README.md) is the unified management surface; [Platform](platform/README.md) owns shared tenancy/security/operations. These are not separate backends.
 
