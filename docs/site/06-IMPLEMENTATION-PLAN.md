@@ -55,7 +55,7 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 | [TASK-069](../../tasks/planned/TASK-069-site-agenda-route.md) | Adicionar Agenda institucional compartilhada | TASK-068 | PLANNED |
 | [TASK-070](../../tasks/planned/TASK-070-site-design-foundation.md) | Integrar tokens e inventário de assets | TASK-063 | PLANNED |
 | [TASK-071](../../tasks/planned/TASK-071-site-home-shell.md) | Implementar Header Hero e Footer na raiz | TASK-069, TASK-070 | PLANNED |
-| [TASK-072](../../tasks/planned/TASK-072-site-home-agenda.md) | Integrar eventos reais à homepage | TASK-064, TASK-065, TASK-066, TASK-069, TASK-071 | PLANNED |
+| [TASK-072](../../tasks/completed/TASK-072-site-home-agenda.md) | Integrar eventos reais à homepage | TASK-064–066, TASK-082; antecipada sem alias | DONE |
 | [TASK-073](../../tasks/planned/TASK-073-site-editorial-schema.md) | Definir e migrar conteúdo institucional tipado | TASK-067 | PLANNED |
 | [TASK-074](../../tasks/planned/TASK-074-site-editorial-admin.md) | Editar conteúdo institucional no admin | TASK-073, TASK-072 | PLANNED |
 | [TASK-075](../../tasks/planned/TASK-075-site-drinks-and-venue.md) | Implementar Drinks e petiscos e A Casa | TASK-070, TASK-074 | PLANNED |
@@ -64,7 +64,7 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 | [TASK-078](../../tasks/planned/TASK-078-site-regression-acceptance.md) | Validar regressão integrada e acessibilidade | TASK-077 | PLANNED |
 | [TASK-079](../../tasks/planned/TASK-079-site-release-readiness.md) | Preparar Preview e release institucional | TASK-078 | PLANNED |
 | [TASK-080](../../tasks/active/TASK-080-site-home-navigation.md) | Navegação institucional da home | TASK-063 | BLOCKED: revisão em navegador |
-| [TASK-082](../../tasks/active/TASK-082-site-home-hero.md) | Hero da referência, antecipada a pedido do usuário | TASK-067; header TASK-080 | BLOCKED: build/rota real pendentes; fixture visual revisada |
+| [TASK-082](../../tasks/completed/TASK-082-site-home-hero.md) | Hero da referência, antecipada a pedido do usuário | TASK-067; header TASK-080 | DONE: build/start e revisão combinada na TASK-072 |
 
 ## Ciclo de execução por tarefa
 - [ ] Conferir CURRENT/AGENTS e dependências; registrar os arquivos afetados e preservar alterações locais.

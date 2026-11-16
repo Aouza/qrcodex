@@ -164,6 +164,9 @@ Expected validation/auth failures should produce user-friendly UI. Unexpected fa
 
 The Hub and menu loaders intentionally remain separate: Hub reads must stay lightweight as Agenda and Music destinations are added, while the menu loader owns catalog composition.
 
+## Institutional home Agenda (TASK-072)
+The dynamic root composes a streamed Server Component below the hero, reusing `loadPublicAgenda` with an internal four-row limit and a shared two-second abort signal. The existing public temporal/published/tenant predicates run before the limit; persisted media remains required. The home adapter maps errors/empty results to section states without exposing infrastructure details. Dates display in America/Sao_Paulo; the complete Agenda link remains `/relicas/agenda` until its institutional alias exists. Public event mutations and settings revalidate `/` only for Relica's. No schema, authorization or persistent-cache change. Fresh requests reflect changes; existing open tabs do not auto-refresh.
+
 ## Experimental Music TV player (TASK-061)
 **Historical experimental boundary:** the following describes the POC, not hosted production authentication. TASK-055 closes hosted POC endpoints and later migrations revoke legacy RPCs. Use [production Music](MUSIC_PRODUCTION.md) for current operation; do not replay POC setup against production.
 

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { HomeAgenda } from "@/components/site/home-agenda";
+import { HomeAgendaSection } from "@/components/site/home-agenda-section";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteHero } from "@/components/site/site-hero";
 import { loadSiteContacts } from "@/lib/site/load-site-contacts";
@@ -26,6 +29,9 @@ export default async function Home() {
       <SiteHeader reservationHref={reservationHref} />
       <main>
         <SiteHero imageSrc="/images/hero/hero.png" />
+        <Suspense fallback={<HomeAgenda result={{ status: "loading", events: [] }} />}>
+          <HomeAgendaSection />
+        </Suspense>
         <section className={styles.section} id="a-casa" aria-labelledby="a-casa-titulo" tabIndex={-1}>
           <h2 id="a-casa-titulo">A Casa</h2>
           <p>Um ponto de encontro para quem gosta de rock. Confira os próximos shows na <Link href="/relicas/agenda">agenda da casa</Link>.</p>

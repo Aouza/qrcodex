@@ -1294,5 +1294,6 @@ Tela pública independente, inicialmente sem link no Hub na TASK-055. A TASK-058
 - Funcionar desde 320 px; foco/teclado, alvos mínimos de 44 px, redução de movimento e contraste WCAG AA.
 - Fotografias reais aprovadas para lançamento; conceitos somente em revisão identificada. Imagens decorativas sem anúncio; fotos informativas com alt.
 - Agenda: até quatro eventos, flyer real obrigatório para publicado, datas São Paulo, fallback de seção sem quebrar a página. Lista vertical inicial; sem carrossel automático.
+- Resumo na home (TASK-072): eventos publicados com mídia continuam obrigatórios, mas a faixa apresenta somente data, título e descrição opcional; não duplica os flyers da Agenda legada. Papel fornecido como decoração, colunas no desktop, lista no celular e CTA para a Agenda completa. Estados loading/vazio/erro preservam a navegação.
 - Galeria limitada, imagens abaixo da dobra sob demanda; localização com direções externas antes de mapa incorporado.
 - Compartilhar dados e componentes sem alterar silenciosamente densidade do menu, shell claro do admin ou reprodução da TV.

@@ -13,6 +13,8 @@ The institutional direction is delivered incrementally: initial root navigation 
 TASK-082 anticipates only the reference-led hero: HTML headline and existing slug Agenda/menu links. The user supplied and selected `public/images/hero/hero.png` for this surface, replacing the earlier review concept and its environment gate. This asset selection does not establish documentary provenance or complete the home, TASK-070/071 or institutional aliases.
 
 ## Product boundaries and documentation
+TASK-072 integrates real published Agenda events below the hero, up to four current/upcoming results with Sao Paulo dates. Reuses the public loader and existing slug destination; no fictional shows, new event schema or institutional alias. Loading/empty/error states preserve the page and navigation. The supplied paper asset is decorative. Fresh requests reflect administrative changes; no automatic refresh of already-open tabs is promised.
+
 The shared platform supports distinct domains in one application: [Site](site/README.md) for venue discovery, [Menu](menu/README.md) for catalog consultation, [Agenda](agenda/README.md) for events, [Hub](hub/README.md) for slug/QR entry and [Music](music/README.md) for requests/playback. [Admin](admin/README.md) is the unified management surface; [Platform](platform/README.md) owns shared tenancy/security/operations. These are not separate backends.
 
 Use [documentation ownership](GOVERNANCE.md) for updates and [tasks/CURRENT](../tasks/CURRENT.md) for execution. Planned behavior, locally implemented code, recorded production rehearsal and accepted launch must be distinguished. Historical proposals do not expand scope.

@@ -19,5 +19,6 @@ export async function updateEstablishmentSettings(_state: EstablishmentSettingsS
   if (error) return { formError: "Não foi possível atualizar as configurações agora." };
   if (!data) return { formError: "Estabelecimento não encontrado para esta conta." };
   revalidatePath("/admin"); revalidatePath("/admin/settings"); revalidatePath(`/${access.establishment.slug}`); revalidatePath(`/${access.establishment.slug}/cardapio`);
+  if (access.establishment.slug === "relicas") revalidatePath("/");
   return { success: "Configurações atualizadas com sucesso." };
 }

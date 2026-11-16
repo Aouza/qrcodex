@@ -1,6 +1,8 @@
 # Assets — inventário e entrega
 
 ## Materiais encontrados
+Papel da Agenda: `public/images/agenda.png`, 2172 × 724 px, 2.308.291 bytes, com transparência; fornecido e selecionado pelo usuário em 2026-11-16. Original preservado. Derivado `public/images/agenda-paper.webp`, mesmas dimensões/alpha, 325.584 bytes, usado como decoração por `border-image` no CSS Module da seção. O fatiamento conserva bordas rasgadas enquanto o centro acompanha o conteúdo no celular. Não contém texto nem dados de eventos; não recebe alt ou foco. Substitui a necessidade de criar A03/A04 para este incremento.
+
 Imagem atual da hero: `public/images/hero/hero.png`, 1774 × 887 px, 2.064.560 bytes. Fornecida e selecionada pelo usuário em 2026-11-16 para substituir o conceito gerado. Original preservado; usada por `next/image` com `fill`, `sizes` e preload, permitindo otimização responsiva pelo pipeline existente. Guitarrista à direita e área escura à esquerda para texto HTML. Alt vazio por ser fundo decorativo. Seleção para uso na hero não comprova fotografia documental da casa; procedência não informada. Sem seletor de ambiente ou aviso do conceito antigo.
 
 `public/images/logo/logo-site.png` é o logo horizontal fornecido para a navbar institucional, com 1774 × 887 px.

@@ -15,6 +15,7 @@ type OwnedEvent = NonNullable<Awaited<ReturnType<typeof loadOwnedEvent>>>;
 
 export function revalidateEventPaths(slug: string, eventId: string) {
   for (const path of ["/admin/events", `/admin/events/${eventId}`, `/${slug}`, `/${slug}/agenda`]) revalidatePath(path);
+  if (slug === "relicas") revalidatePath("/");
 }
 
 export async function detachEventImage(owned: OwnedEvent) {
