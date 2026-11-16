@@ -1,7 +1,7 @@
 # TASK-082 — Hero institucional conforme referência
 
 **Epic:** Institutional Site
-**Status:** BLOCKED
+**Status:** DONE
 **Dependencies:** TASK-067, TASK-080 (header existente)
 
 ## Objetivo e desenho aprovado
@@ -21,12 +21,14 @@ Arquivos: `src/components/site/site-hero.tsx`, `site-hero.module.css`, `src/app/
 - [x] Hero reproduz a hierarquia/composição, com título HTML e dois destinos reais por slug.
 - [x] Hero usa o asset fornecido e selecionado pelo usuário; conceito anterior não é mais referenciado.
 - [x] Componente validado em fixture de navegador em 320/360/768/1440 px, foco, smoke de zoom e movimento reduzido, sem tema global. Aceite da rota completa depende do build abaixo.
-- [ ] Testes, lint/typecheck/build e documentação verificados; limites registrados.
+- [x] Testes, lint/typecheck/build e documentação verificados; limites registrados.
 
 ## Limites
 Sem commit/push/deploy, migrations, edição de env ou dados remotos. Não concluir TASK-070/071/080. A nova prioridade visual foi solicitada explicitamente; TASK-068 permanece READY e será retomada depois deste incremento.
 
 ## Notas de conclusão
+Fechamento local durante TASK-072 em 2026-11-16: o build Turbopack final passou; o smoke do servidor compilado validou `/` com a hero atual e os links existentes, sem chamadas externas reais. A revisão visual combinada de hero/Agenda usa o PNG selecionado pelo usuário em 320/360/768/1440 px (evidência na TASK-072). Resolve os bloqueios técnicos descritos historicamente abaixo, sem publicar ou alterar o PR #6 automaticamente. As capturas antigas desta tarefa permanecem históricas; conteúdo real e aceite de release global continuam separados.
+
 Atualização posterior em 2026-11-16: usuário forneceu e selecionou `public/images/hero/hero.png` (1774 × 887 px) para a hero. A página agora usa esse arquivo com `next/image`, sem seletor de ambiente nem aviso de conceito. `hero-media.ts` removido por não ter mais função. Teste de render atualizado: falhou primeiro pela presença do aviso antigo e passou após a substituição; testes de hero/navegação passaram (3/3). A seleção do usuário autoriza o uso deste asset na hero, sem presumir que documente uma apresentação real no bar. Evidências abaixo preservam a etapa anterior; capturas existentes mostram o conceito substituído. Bloqueio de build/rota real permanece, sem nova tentativa de build nesta troca de asset.
 
 Implementada localmente em 2026-11-16 na branch `feat/site-home-hero`, sem commit/push/deploy. Server Component com título HTML, SVGs decorativos e links existentes para Agenda/Cardápio. CSS Module próprio, fonte Barlow Condensed oficial auto-hospedada com licença OFL, imagem WebP de 67.164 bytes e recorte mobile. Sem carrossel ou fatos locais não confirmados. Admin, Menu, TV e autorização não foram alterados.

@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const sourceRoot = new URL("../../src/", import.meta.url);
 const stubs = new Map([
+  ["server-only", ""],
   ["@/lib/supabase/public", "export const createPublicClient = () => globalThis.publicEventTestClient;"],
   ["@/lib/music/runtime", "export const productionMusicEnabled = () => false;"],
   ["@/lib/music/database", "export const musicAvailability = () => { throw Error('Unexpected Music read'); };"],
@@ -71,6 +72,7 @@ export function eventLoaderFixture(establishment, rows) {
         let data = url.pathname.endsWith("/establishments") ? [{ ...establishment, active: true }] : [...rows];
         for (const [field, expression] of url.searchParams) {
           if (expression.startsWith("eq.")) data = data.filter(row => matches(row, `${field}.${expression}`));
+          if (expression === "not.is.null") data = data.filter(row => row[field] !== null);
         }
         const or = url.searchParams.get("or");
         if (or) data = data.filter(row => matches(row, `or${or}`));

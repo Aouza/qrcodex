@@ -28,6 +28,8 @@ Contrato local implementado na TASK-067: `public-context.ts` lê a allowlist `SI
 Menu/Agenda públicos usam cliente anônimo sem cookie administrativo. Admin usa `getAdminAccess`, membership e RLS. Nenhuma nova service-role editorial. Music mantém sua exceção server-only restrita.
 
 ## Dados e atualização
+Integração local TASK-072: `load-home-events.ts` chama o loader canônico `loadPublicAgenda` para Relica's com limite de quatro e sinal de timeout de 2 segundos compartilhado pelas duas consultas. Publicação, tenant, relevância e ordenação continuam no domínio Agenda; limite só depois do filtro temporal e de mídia. O adaptador converte vazio/falha em estado de seção. `HomeAgendaSection` é Server Component sob Suspense na raiz dinâmica; `HomeAgenda` só apresenta dados. Mutações existentes de eventos e settings invalidam `/` somente para Relica's. Sem serviço/API ou cache persistente novos.
+
 Loaders existentes são a fonte comum; não criar API/HTTP de integração interna só para compartilhar dados. Páginas carregam e compõem; componentes recebem dados e destinos de navegação. Limitar eventos depois do filtro temporal e preservar os em andamento. Reutilizar regra central entre home/Agenda/Hub sem duplicar o predicado.
 
 Leitura dinâmica inicial, com teste em build/start. Centralizar caminhos consumidores de publicação/edição/exclusão e settings; testar nova navegação e histórico do navegador. Não prometer atualização instantânea em uma aba já aberta sem mecanismo específico. Futuro cache persistente depende de tenant, invalidação e expiração temporal, não apenas mutações.

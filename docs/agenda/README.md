@@ -2,7 +2,7 @@
 
 ## Propósito
 
-Publicar shows/eventos reais de cada estabelecimento e permitir consulta cronológica. A mesma fonte alimenta a Agenda pública, a disponibilidade no Hub e a futura seção do site. Não usar produtos como eventos nem criar outra agenda editorial.
+Publicar shows/eventos reais de cada estabelecimento e permitir consulta cronológica. A mesma fonte alimenta a Agenda pública, a disponibilidade no Hub e a seção da homepage (TASK-072). Não usar produtos como eventos nem criar outra agenda editorial.
 
 ## Fontes responsáveis
 
@@ -33,4 +33,4 @@ A TASK-066 protege as operações de flyer: remoção confirma rascunho sem imag
 
 ## Andamento e pendências
 
-[BACKLOG](../../tasks/BACKLOG.md), epic Agenda, registra TASK-048–052. A seleção temporal, o calendário e a recuperação de mídia estão nas [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md), [TASK-065](../../tasks/completed/TASK-065-site-event-calendar-validation.md) e [TASK-066](../../tasks/completed/TASK-066-site-event-media-recovery.md). O contexto/links está na [TASK-067](../../tasks/completed/TASK-067-site-public-context.md); a integração continua nas [TASK-069](../../tasks/planned/TASK-069-site-agenda-route.md) e [TASK-072](../../tasks/planned/TASK-072-site-home-agenda.md). Embora cadastradas no epic Site, 064–066 corrigem o domínio compartilhado. O nome do epic não restringe os consumidores que devem ser verificados.
+[BACKLOG](../../tasks/BACKLOG.md), epic Agenda, registra TASK-048–052. A seleção temporal, o calendário e a recuperação de mídia estão nas [TASK-064](../../tasks/completed/TASK-064-site-event-selection.md), [TASK-065](../../tasks/completed/TASK-065-site-event-calendar-validation.md) e [TASK-066](../../tasks/completed/TASK-066-site-event-media-recovery.md). O contexto/links está na [TASK-067](../../tasks/completed/TASK-067-site-public-context.md); a integração continua nas [TASK-069](../../tasks/planned/TASK-069-site-agenda-route.md) e [TASK-072](../../tasks/completed/TASK-072-site-home-agenda.md). Embora cadastradas no epic Site, 064–066 corrigem o domínio compartilhado. O nome do epic não restringe os consumidores que devem ser verificados.

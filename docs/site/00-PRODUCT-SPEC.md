@@ -13,6 +13,8 @@ A TASK-067 entrega localmente os contratos de contexto por host aprovado e naveg
 A TASK-082 antecipa somente a hero da referência a pedido do usuário: título HTML e links funcionais para `/relicas/agenda` e `/relicas/cardapio`, até os aliases estarem disponíveis. O usuário forneceu e selecionou `public/images/hero/hero.png` para a hero, substituindo o conceito anterior e seu seletor de ambiente. Não presumir que seja fotografia documental do estabelecimento. A home completa e os demais gates da TASK-071 permanecem.
 
 ## Homepage
+A seção de Agenda da TASK-072 foi antecipada para a raiz existente, abaixo da hero: até quatro eventos públicos relevantes do Relica's, com título/data e descrição opcional sobre o papel fornecido. O link completo usa `/relicas/agenda` até TASK-069 entregar o alias. Sem eventos inventados, preços ou tributos inferidos. Falha/vazio preservam a seção e o acesso à Agenda, sem derrubar a home.
+
 | Ordem | Seção | Contrato |
 |---|---|---|
 | 1 | Header/Hero | Marca, foto autorizada e título HTML. Menu com Início, Agenda, Cardápio, A Casa, Galeria e Contato. CTA de atendimento `Reserve sua mesa` via WhatsApp cadastrado |

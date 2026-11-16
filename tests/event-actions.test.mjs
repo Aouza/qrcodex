@@ -18,6 +18,16 @@ registerHooks({
 });
 const { deleteEvent, updateEvent } = await import("../src/app/admin/(protected)/events/[id]/actions.ts");
 const { uploadEventImage, removeEventImage } = await import("../src/app/admin/(protected)/events/[id]/image-actions.ts");
+const { revalidateEventPaths } = await import("../src/lib/admin/event-media-recovery.ts");
+
+test("event invalidation refreshes the institutional home only for Relica's", () => {
+  globalThis.eventActionTest = { paths: [] };
+  revalidateEventPaths("other", "event");
+  assert.ok(!globalThis.eventActionTest.paths.includes("/"));
+  revalidateEventPaths("relicas", "event");
+  assert.ok(globalThis.eventActionTest.paths.includes("/"));
+  assert.ok(globalThis.eventActionTest.paths.includes("/relicas/agenda"));
+});
 
 const tenant = "56000000-0000-4000-8000-000000000011";
 const id = "56000000-0000-4000-8000-000000000021";

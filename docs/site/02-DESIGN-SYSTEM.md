@@ -29,6 +29,7 @@ Barlow Condensed na hero e sans legível no corpo. A TASK-070 deve avaliar a ext
 Container de 1200–1280 px; padding aproximado 20/32/48 px mobile/tablet/desktop. Escala 4/8/12/16/24/32/48/64/96. Mínimo 320 px; alvos de 44 px, foco visível, landmarks e heading hierarchy. Transições discretas 150–250 ms com redução de movimento.
 
 ## Seções e comportamento
+- Agenda da home (TASK-072): papel fornecido pelo usuário, título HTML à esquerda, até quatro resumos em colunas no desktop e CTA para a Agenda existente à direita. Em telas menores, título/CTA e lista vertical. Datas em São Paulo, texto preto e vermelho escuro sobre papel; nomes longos quebram sem esconder eventos. Sem cards clicáveis fictícios, flyers embutidos ou carrossel. A Agenda legada mantém sua apresentação com flyers.
 - Hero cinematográfico com área de texto legível e recorte próprio mobile quando necessário.
 - Papel rasgado somente na Agenda, SVG/CSS decorativo, sem capturar foco ou eventos.
 - Agenda começa em lista vertical; não presumir carrossel. Não tornar card inteiro clicável sem destino real; CTA externo quando fornecido.

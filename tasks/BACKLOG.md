@@ -121,7 +121,7 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-069 | Adicionar Agenda institucional compartilhada | PLANNED | TASK-068 |
 | TASK-070 | Integrar tokens e inventário de assets | PLANNED | TASK-063 |
 | TASK-071 | Implementar Header Hero e Footer na raiz | PLANNED | TASK-069, TASK-070 |
-| TASK-072 | Integrar eventos reais à homepage | PLANNED | TASK-064, TASK-065, TASK-066, TASK-069, TASK-071 |
+| TASK-072 | Integrar eventos reais à homepage | DONE | TASK-064–066, TASK-082; aliases/home completa pendentes |
 | TASK-073 | Definir e migrar conteúdo institucional tipado | PLANNED | TASK-067 |
 | TASK-074 | Editar conteúdo institucional no admin | PLANNED | TASK-073, TASK-072 |
 | TASK-075 | Implementar Drinks e petiscos e A Casa | PLANNED | TASK-070, TASK-074 |
@@ -130,7 +130,7 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-078 | Validar regressão integrada e acessibilidade | PLANNED | TASK-077 |
 | TASK-079 | Preparar Preview e release institucional | PLANNED | TASK-078 |
 | TASK-080 | Navegação institucional da home | BLOCKED | TASK-063; código e checks concluídos, revisão em navegador pendente |
-| TASK-082 | Hero institucional conforme referência | BLOCKED | TASK-067; hero implementada/revisada em fixture, build/rota real pendentes |
+| TASK-082 | Hero institucional conforme referência | DONE | TASK-067; build/start e revisão combinada concluídos na TASK-072 |
 
 See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). The institutional site at `/` remains the user's confirmed priority. TASK-064–066 corrected local event selection, calendar and media recovery; TASK-067 delivered context/navigation helpers. TASK-068 is the next READY increment, with the host/reserved-slug inventory gate recorded before static routes. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
 
