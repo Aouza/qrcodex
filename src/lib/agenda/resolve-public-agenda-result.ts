@@ -1,3 +1,5 @@
+import { isCurrentOrUpcomingEvent } from "@/lib/agenda/public-event-time";
+
 export type PublicAgendaEvent = {
   id: string;
   title: string;
@@ -32,12 +34,10 @@ export function resolvePublicAgendaResult(
   }
   if (!establishmentResult.data) return null;
 
-  const nowTime = now.getTime();
   const events = (eventResult?.data ?? [])
     .filter((event): event is EventRow & { image_url: string } => {
       if (!event.image_url) return false;
-      const lastRelevantTime = new Date(event.ends_at ?? event.starts_at).getTime();
-      return Number.isFinite(lastRelevantTime) && lastRelevantTime >= nowTime;
+      return isCurrentOrUpcomingEvent(event, now);
     })
     .map((event) => ({ ...event, external_url: safeExternalUrl(event.external_url) }))
     .sort((left, right) => left.starts_at.localeCompare(right.starts_at) || left.id.localeCompare(right.id));

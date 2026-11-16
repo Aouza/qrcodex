@@ -12,6 +12,8 @@ Code\
 
 ## 0. Purpose of this document
 
+> **HISTÓRICO — não executar este roadmap.** A proposta abaixo preserva a origem do Hub; não é o PRD vigente. Votos/agregação, flyer opcional, domínio presumido, redirects e IDs/estados antigos foram substituídos pelos [contratos atuais](README.md), [PRD](PRD.md), decisões e backlog. A raiz alvo agora é institucional (ADR-020), sem remover o Hub por slug.
+
 This document supersedes the product framing of **"QR Code → digital
 menu"** with **"QR Code → establishment hub"** without discarding the
 menu, admin, tenant isolation, security model, production deployment or

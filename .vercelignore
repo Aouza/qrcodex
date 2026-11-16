@@ -1,0 +1,5 @@
+.env*
+.release-backups/
+.claude/
+.git/
+.next/

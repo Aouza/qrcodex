@@ -1,22 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { getAdminAccess } from "@/lib/auth/get-admin-access";
-import { createClient } from "@/lib/supabase/server";
-import { EVENT_IMAGE_BUCKET, getEventImagePath, validateEventImage } from "@/lib/validation/event-image";
+import { detachEventImage, loadOwnedEvent, restoreDraftImage, revalidateEventPaths } from "@/lib/admin/event-media-recovery";
+import { EVENT_IMAGE_BUCKET, getOwnedEventImagePath, validateEventImage } from "@/lib/validation/event-image";
 
 export type EventImageState = { status: "idle" | "success" | "error"; message?: string };
 const failure = (message: string): EventImageState => ({ status: "error", message });
-
-async function loadOwnedEvent(eventId: string) {
-  const access = await getAdminAccess();
-  if (access.status !== "authorized") return null;
-  const supabase = await createClient();
-  const { data, error } = await supabase.from("events").select("id, image_url, active").eq("id", eventId).eq("establishment_id", access.establishment.id).maybeSingle();
-  return error || !data ? null : { access, supabase, event: data };
-}
-
-function revalidateEventPaths(slug: string, eventId: string) { revalidatePath("/admin/events"); revalidatePath(`/admin/events/${eventId}`); revalidatePath(`/${slug}/agenda`); }
 
 export async function uploadEventImage(eventId: string, _state: EventImageState, formData: FormData): Promise<EventImageState> {
   void _state;
@@ -31,13 +19,22 @@ export async function uploadEventImage(eventId: string, _state: EventImageState,
   if (uploadError) return failure("Não foi possível enviar o flyer agora.");
   const { data: publicData } = owned.supabase.storage.from(EVENT_IMAGE_BUCKET).getPublicUrl(path);
   const { data, error } = await owned.supabase.from("events").update({ image_url: publicData.publicUrl }).eq("id", eventId).eq("establishment_id", owned.access.establishment.id).select("id").maybeSingle();
-  if (error || !data) { await owned.supabase.storage.from(EVENT_IMAGE_BUCKET).remove([path]); return failure("Não foi possível vincular o flyer ao evento."); }
-  const previousPath = getEventImagePath(owned.event.image_url, process.env.NEXT_PUBLIC_SUPABASE_URL ?? "");
-  if (previousPath) {
-    const { error: removeError } = await owned.supabase.storage.from(EVENT_IMAGE_BUCKET).remove([previousPath]);
-    if (removeError) { await owned.supabase.from("events").update({ image_url: owned.event.image_url }).eq("id", eventId).eq("establishment_id", owned.access.establishment.id); await owned.supabase.storage.from(EVENT_IMAGE_BUCKET).remove([path]); return failure("Não foi possível substituir o flyer anterior."); }
+  if (error) {
+    // The write may have committed before its response failed. Never remove a
+    // possibly referenced upload; let an authorized recovery inspect its state.
+    revalidateEventPaths(owned.access.establishment.slug, eventId);
+    return failure("Não foi possível confirmar o vínculo do flyer. Atualize a página para conferir o evento; o envio foi preservado para revisão.");
+  }
+  if (!data) {
+    const { error: cleanupError } = await owned.supabase.storage.from(EVENT_IMAGE_BUCKET).remove([path]);
+    return failure(cleanupError ? "O flyer não foi vinculado e a limpeza do envio precisa de revisão." : "Não foi possível vincular o flyer ao evento.");
   }
   revalidateEventPaths(owned.access.establishment.slug, eventId);
+  const previousPath = getOwnedEventImagePath(owned.event.image_url, process.env.NEXT_PUBLIC_SUPABASE_URL ?? "", owned.access.establishment.id, eventId);
+  if (previousPath) {
+    const { error: removeError } = await owned.supabase.storage.from(EVENT_IMAGE_BUCKET).remove([previousPath]);
+    if (removeError) return failure("O novo flyer foi salvo, mas a limpeza do anterior precisa de revisão.");
+  }
   return { status: "success", message: "Flyer atualizado com sucesso." };
 }
 
@@ -46,12 +43,16 @@ export async function removeEventImage(eventId: string, _state: EventImageState)
   const owned = await loadOwnedEvent(eventId);
   if (!owned) return failure("Evento não encontrado para esta conta.");
   if (!owned.event.image_url) return { status: "success", message: "O evento já está sem flyer." };
-  const path = getEventImagePath(owned.event.image_url, process.env.NEXT_PUBLIC_SUPABASE_URL ?? "");
+  const path = getOwnedEventImagePath(owned.event.image_url, process.env.NEXT_PUBLIC_SUPABASE_URL ?? "", owned.access.establishment.id, eventId);
   if (!path) return failure("O flyer atual não pertence ao armazenamento configurado.");
-  const { error: updateError } = await owned.supabase.from("events").update({ image_url: null, active: false }).eq("id", eventId).eq("establishment_id", owned.access.establishment.id);
-  if (updateError) return failure("Não foi possível remover o flyer do evento.");
+  if (!await detachEventImage(owned)) return failure("Não foi possível remover o flyer do evento. Atualize a página e tente novamente.");
   const { error } = await owned.supabase.storage.from(EVENT_IMAGE_BUCKET).remove([path]);
-  if (error) { await owned.supabase.from("events").update({ image_url: owned.event.image_url, active: owned.event.active }).eq("id", eventId).eq("establishment_id", owned.access.establishment.id); return failure("Não foi possível remover o arquivo do flyer."); }
+  if (error) {
+    const restored = await restoreDraftImage(owned);
+    return failure(restored
+      ? "Não foi possível remover o arquivo. O evento ficou como rascunho; confira a imagem antes de publicar novamente."
+      : "A remoção não foi concluída. O evento ficou em rascunho sem flyer; a recuperação precisa de revisão.");
+  }
   revalidateEventPaths(owned.access.establishment.slug, eventId);
   return { status: "success", message: "Flyer removido e evento salvo como rascunho." };
 }

@@ -5,6 +5,8 @@ const storageOrigin = supabaseUrl ? new URL(supabaseUrl) : null;
 
 const nextConfig: NextConfig = {
   agentRules: false,
+  // Explicitly allow the trusted TV computer's LAN origin for phone testing.
+  allowedDevOrigins: ["192.168.1.7"],
   images: {
     remotePatterns: storageOrigin
       ? [{

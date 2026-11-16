@@ -1,4 +1,5 @@
 import { resolvePublicAgendaResult } from "@/lib/agenda/resolve-public-agenda-result";
+import { publicEventTimeFilter } from "@/lib/agenda/public-event-time";
 import { createPublicClient } from "@/lib/supabase/public";
 
 export async function loadPublicAgenda(slug: string, now = new Date()) {
@@ -19,6 +20,7 @@ export async function loadPublicAgenda(slug: string, now = new Date()) {
     .select("id, title, description, starts_at, ends_at, image_url, external_url")
     .eq("establishment_id", establishmentResult.data.id)
     .eq("active", true)
+    .or(publicEventTimeFilter(now))
     .order("starts_at")
     .order("id");
 

@@ -1,3 +1,5 @@
+import { isCurrentOrUpcomingEvent } from "@/lib/agenda/public-event-time";
+
 export type PublicHubEstablishment = {
   id: string;
   name: string;
@@ -6,9 +8,10 @@ export type PublicHubEstablishment = {
   instagram: string | null;
   whatsapp: string | null;
   hasPublicAgenda: boolean;
+  hasPublicMusic?: boolean;
 };
 
-type EstablishmentRow = Omit<PublicHubEstablishment, "hasPublicAgenda">;
+type EstablishmentRow = Omit<PublicHubEstablishment, "hasPublicAgenda" | "hasPublicMusic">;
 
 type PublicHubEstablishmentResult = {
   data: EstablishmentRow | null;
@@ -32,14 +35,15 @@ type PublicHubResult = {
   agendaResult: PublicHubAgendaResult | null;
 };
 
-function hasCurrentOrUpcomingEvent(events: PublicHubAgendaEvent[] | null, now: Date) {
-  const nowTime = now.getTime();
+export function hasPublicMusic(featureEnabled: boolean, availability: { enabled: boolean } | null) {
+  return featureEnabled && availability?.enabled === true;
+}
 
+function hasCurrentOrUpcomingEvent(events: PublicHubAgendaEvent[] | null, now: Date) {
   return (events ?? []).some((event) => {
     if (!event.image_url) return false;
 
-    const lastRelevantTime = new Date(event.ends_at ?? event.starts_at).getTime();
-    return Number.isFinite(lastRelevantTime) && lastRelevantTime >= nowTime;
+    return isCurrentOrUpcomingEvent(event, now);
   });
 }
 

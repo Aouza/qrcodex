@@ -1,5 +1,46 @@
 # Decisions Log
 
+Decisões registram contexto e alcance; seus checkpoints não são estado operacional atual. Use [CURRENT](../tasks/CURRENT.md) e tarefas para execução/aceite. [Governança documental](GOVERNANCE.md) define como registrar substituições.
+
+## ADR-021 — Documentação por plataforma e produto
+**Status:** Accepted, 2026-11-13 — manutenção documental solicitada pelo usuário (TASK-081). Sem mudança de arquitetura de execução.
+
+**Context:** contratos globais acumulavam regras por domínio e checkpoints antigos conflitavam com ensaios posteriores. Site já tinha pasta própria, enquanto outros domínios não tinham entrada de leitura.
+
+**Decision:** manter os caminhos dos contratos existentes e adicionar índices para Plataforma, Site, Cardápio, Agenda, Hub, Música, Admin, experimentos e histórico. docs/README.md é o mapa; docs/GOVERNANCE.md define responsabilidade e atualização. Estado/aceite vive nas tarefas, BACKLOG e CURRENT; evidências antigas ficam datadas e identificadas. Verificador documental local detecta problemas estruturais.
+
+**Consequences:** não há novos aplicativos, schemas ou backlogs por produto. Regras específicas continuam nas fontes indicadas; referências usam links. Revisão semântica ainda é necessária, pois um link válido não prova conteúdo correto.
+
+**Compatibility/rollback:** preservar caminhos, ZIP, materiais de origem, evidências e alterações locais preexistentes. A organização pode ser ajustada sem migração de dados, deploy ou mudança nas rotas.
+
+## ADR-022 — Prefer a recoverable draft over publication after uncertain media removal
+**Status:** Accepted local recovery behavior for TASK-066, 2026-11-13.
+
+**Context:** Postgres and Storage cannot participate in one application transaction; Storage ownership requires the event row. The old delete sequence could leave a published event pointing at a removed flyer. Replacement rollback could fail while cleanup removed the newly linked file.
+
+**Decision:** confirm a tenant/resource-scoped draft with null media before destructive cleanup, retain the row through Storage authorization and check every affected-row result. A Storage failure may restore only a draft reference, never automatically republish. Retain a committed new flyer if old-version cleanup fails; report partial completion rather than discard a referenced file. Invalidate current consumers on partial state changes. Cleanup may target only the exact tenant/event media folder.
+
+**Consequences/recovery:** some failures retain a draft and/or orphaned media. A link UPDATE error may hide a committed write: retain that upload and revalidate, cleaning it only after a confirmed zero-row response or authorized state inspection. Surface an error, require a verified flyer before manual publication and let a trusted, specifically authorized operator review unreferenced files. No new privileged editorial client, relaxed RLS, automatic collector, generic workflow or atomicity guarantee. See DATABASE's event recovery section. Schema and existing publication constraint remain unchanged.
+
+## ADR-020 — Evolve the existing app into the institutional site
+**Status:** Accepted direction for documentation and incremental site backlog, 2026-11-10. No production/schema rollout authorized by this update.
+
+**Context:** the user requests an institutional `/`, integrated menu/Agenda and manageable content. Audit confirms Hub/Menu/Agenda/admin already exist; root remains starter. The ZIP is a proposed baseline and its separate-app recommendation is not implemented.
+
+**Options:** separate site with external menu link is initially simple but duplicates deployment and fragments navigation; proxy/shared external API adds routing/auth/cache contracts; extending this app reuses actual domains and security with less infrastructure.
+
+**Decision:** one Next.js app, one root layout, `(site)` presentation, existing domain loaders, one membership-scoped admin. `/` becomes institutional on approved hosts; `/cardapio` and `/agenda` reuse existing data/UI. Retain `[slug]`, admin/API and Music URLs. Explicit server allowlisted host resolution; no new domain CMS, no arbitrary browser tenant IDs. Site red/paper tokens are scoped; legacy surfaces remain stable.
+
+**Consequences:** shared release requires regression across modules. Correct audited event issues through separate tasks. Extend only approved typed institutional settings, using additive migrations and RLS; gallery admin and event cancellation/pricing/details remain scope decisions. No new ordering/payments/reservations or generic builder.
+
+**Compatibility:** additive routes first, no blanket/permanent redirects. Check reserved slugs and printed QR inventory; confirm canonical domain before SEO cutover/new QR. Music host changes need origin/cookie/pairing tests. New permanent QR targets verified institutional root, superseding ADR-016 root-as-Hub target and TASK-028's old menu wording; existing QR destinations stay supported.
+
+**Rollback:** revert compatible app presentation while retaining legacy routes/data and additive schema. No destructive restore as routine rollback; no reopening Music POC endpoints. Full recovery planning includes Storage/Auth exclusions in existing scoped backup.
+
+**Execution (checkpoint histórico):** TASK-062 documentation completed only after verification; TASK-063 was the next READY work at that point. Follow CURRENT for the next task today. TASK-058/TASK-061 retain pending manual evidence. Current site authorization supersedes the old blanket STOP for unrelated product preparation, not Music release gates. Original ZIP/extracted references remain historical; reconciled requirements live directly under `docs/site/`.
+
+TASK-058 owner-approved TV usability correction (2026-09-30): replace the long manual pairing code with 8 unambiguous base32 characters, displayed XXXX-XXXX (40 bits). This deliberately supersedes the production contract's 128-bit pairing-code minimum, not the 256-bit internal device token. Keep ten-minute expiry, single use, tenant binding, hash-only storage, persistent network/tenant/global attempt caps and authenticated-only issuance. Shorter entropy is accepted for human entry under these bounded online limits; existing paired sessions/queue remain untouched. Migration 00007 changes only issuance; server accepts old outstanding ten-minute codes for rollout compatibility.
+
 ## ADR-001 — Prepare tenant boundary from day one
 **Status:** Accepted  
 All tenant-owned resources reference `establishment_id`. This keeps the Relica's MVP simple while avoiding a database redesign for a second bar. SaaS billing/onboarding remains out of scope.
@@ -10,7 +51,7 @@ Active but unavailable products appear in the public menu with `Esgotado` instea
 
 ## ADR-003 — No ordering/payment in MVP
 **Status:** Accepted  
-The MVP is menu presentation and administration only. Cart, table orders, payment and operational restaurant flows are explicitly excluded.
+The initial MVP centered on menu presentation and administration; later accepted Hub/Agenda/Music/site phases extend that scope without introducing restaurant ordering. Cart, table orders, payment and operational restaurant flows remain explicitly excluded.
 
 ## ADR-004 — QR contains a permanent URL only
 **Status:** Accepted  
@@ -61,9 +102,35 @@ Category images use nullable `categories.image_url` and public CDN delivery from
 Use the approved local Relica's logo only when the `relicas` establishment has no persisted `logo_url`. Uploaded logos use a public Storage bucket with membership-protected writes and take precedence over the fallback. Other establishments receive no Relica's branding and can add their own logo through protected settings.
 
 ## ADR-016 — Make the establishment Hub the permanent QR destination
-**Status:** Accepted
+**Status:** Partially superseded by ADR-020. Shared-host Hub/menu compatibility remains accepted; root-as-Hub and the presumed canonical domain below are historical targets, replaced by the verified institutional root requirement.
 The menu becomes the first and primary module of a broader establishment Hub. Before custom-domain cutover, the shared host uses `/[slug]` for the Hub and `/[slug]/cardapio` for the menu. After `relicas.com.br` is acquired and verified, `/` and `/cardapio` become canonical for Relica's while shared-host slug routes remain controlled fallbacks. Domain acquisition blocks only cutover and permanent QR generation. Agenda and Music are concrete later phases; do not build a generic module engine.
 
 ## ADR-017 — Use one modular Admin shell
 **Status:** Accepted
 Use one authenticated Admin and one server-resolved establishment context for Menu, Agenda, Music, Establishment and Account. Separate these capabilities into domain-specific routes, loaders, actions, tables and RLS policies; do not combine them into one management screen or create separate admin applications/logins. The overview is summaries plus shortcuts. Navigation exposes a module only after it is implemented. Shared code is limited to the shell, UI primitives, access resolution and common conventions; do not introduce a generic module engine or page builder.
+
+## ADR-018 — POC-only playback terminal boundary
+**Status:** Accepted for TASK-061 only
+The TV is a playback terminal, not an admin client. Supabase owns queue ordering/state; server-only lifecycle RPCs serialize on the active establishment and validate current-request technical events. Restrict direct authenticated UPDATE and browser lifecycle execution. Use a server-validated POC key to issue a tenant-bound HttpOnly cookie; it grants only playback-state/event capabilities and never admin access.
+
+A server-only service-role Supabase client is permitted for this experiment's scoped RPC boundary; never send its credential to the TV. Anonymous Realtime receives only empty wake-up broadcasts on opaque, server-issued tenant topics. This avoids exposing queue records or giving the TV an admin/JWT role. An exposed/forged wake-up alone cannot transition anything. Initial IFrame activation may need one gesture; reuse the IFrame between tracks. No fallback music or human queue controls are included. This is not the final production device-auth design; the canonical specification and mandatory manual success scenario remain in `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`.
+
+## ADR-019 — Promote the Music queue through explicit production gates
+TASK-057 hardening: sign the random HttpOnly TV token with the independent Music secret and tenant context to reject forged cookies before database traffic. The stored random-token digest and authoritative device/lease checks stay unchanged. Body reads are bounded by size and time. These are boundary refinements, not new admin/TV capabilities; local evidence does not establish hosted/commercial release readiness.
+
+TASK-056 implementation note: admin uses publishable/session clients and an authenticated-only snapshot RPC, not private-table SELECT grants or service-role admin operations. Snapshot privacy and atomic consistency preserve the existing tenant/lifecycle boundary. This does not authorize a production rollout.
+
+**Status:** Accepted contract for TASK-053 through TASK-058; authorized Production/Hub owner rehearsal subsequently recorded below. Accepted public launch and manual/commercial gates remain pending. The following follow-ups describe their original checkpoints.
+On 2026-09-30 the user authorized advancing toward production after reporting working playback. Reuse the FIFO queue and playback-only terminal; do not introduce voting/aggregation or treat a working POC as full release evidence. `docs/MUSIC_PRODUCTION.md` owns the first production contract and configurable operational defaults.
+
+Replace shared POC authorization with tenant-scoped single-use pairing, revocable device sessions and one fenced playback lease. Validate playback generation as well as current request to reject stale events after refresh. Server-only privileged Music RPC calls are permitted only behind this narrow boundary; no other module gains service-role access. Administrative human controls use existing membership authentication and narrow membership-checked RPCs, never the TV. Revoke public POC admission and disable hosted legacy mutation/setup endpoints before activation; durable limits cannot be bypassed through direct Supabase RPC access.
+
+Default Music/admission OFF. Only TASK-058 may enable a reviewed deployment after security, privacy/retention, hosted/manual playback, actual API quota and commercial-use review. Preview may mutate production data if configured to use that database; explicit target selection and deployment approval remain required. TASK-061 retains its own incomplete manual checklist rather than being marked successful retroactively.
+
+TASK-054 follow-up: local migrations implement this boundary; no remote application occurred. Also revoke direct service-role queue writes and legacy service RPC execution, keeping owner-only reuse of the POC claim mechanism. Pairing attempts count successes as well as failures so a failed attempt cannot be rolled back by an error return. Quota configuration distinguishes search/video buckets according to current API guidance and defaults both OFF. These defaults are conservative production gates, not automatic configuration of the live POC. New schema must deploy with the compatible TASK-055 application, never alone.
+
+TASK-055 follow-up: production uses an independent consent/signing secret and read-only YouTube API key, configured-origin validation, provider-trusted network HMAC and HttpOnly pairing. Web Locks prevent cloned tabs sharing one instance; unsupported/non-secure TV contexts fail closed. Local POC stays available only in development; all built/hosted POC endpoints are closed regardless of their old key. Hourly cleanup uses conservative 29-day/23-hour thresholds. Monitoring, quota budgets, actual HTTPS browser behavior and commercial/privacy review remain release gates.
+
+TASK-058 scheduler decision (2026-09-30, user-approved): use Supabase Cron rather than Vercel hourly cron or a paid-plan upgrade. Cleanup runs directly in the database through one trusted-owner job, not in a TV/browser session. Closing/crashing the TV does not delete queue/history; lease expiry and retention are distinct. Keep protected HTTP cleanup only as an optional manual fallback. Verify backup/restore before enabling the integration/job, then verify successful runs and failure monitoring before release. No Hub activation or commercial acceptance is implied.
+
+TASK-058 controlled production rehearsal: user explicitly authorized deploying the feature branch to Production and exposing Music in Relica's Hub for an imminent owner test, while the product is under construction and not yet publicly launched. This supersedes the earlier no-Production/no-Hub restriction for this tenant only. No main merge, commercial acceptance, POC SUCCESS or TASK completion is inferred. The production URL is accessible to anyone with the link; not a private Preview. Initial app caps: 80 searches/day (reserve against observed Google limit 100) and 100 metadata calls/day (Google general quota 10,000); costs remain one per respective bucket, existing usage is not reset. Trusted operator initializes these budgets/tenant flags once; subsequent human controls remain membership-authenticated admin RPCs, never the TV. Other tenants remain OFF; retain pending physical/endurance, rights/privacy and monitoring gates before public launch.
