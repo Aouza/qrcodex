@@ -1,42 +1,25 @@
-# Design institucional — Rock Editorial Minimal
+# Design institucional — layout aprovado
 
-Complementa `../DESIGN_SYSTEM.md`, seção 51. A primeira aplicação do tema está na navbar e na abertura da home.
+## Fonte e substituição
+`reference/layout-aprovado.png` é a referência única desde 2026-11-17 (TASK-084 / ADR-022). Substitui papel da Agenda, hero anterior, galeria provisória e depoimentos com estrelas. Preservar assets e notas anteriores como histórico, sem reproduzir duas direções visuais concorrentes.
 
-## Navbar da home
-A navbar usa fundo escuro, marca à esquerda e links claros. Início recebe o traço vermelho da referência. A ordem é Início, Agenda, Cardápio, A Casa, Galeria e Contato. O PNG da marca mantém proporção 2:1, com 144 px no desktop e 120 px no menu compacto.
+## Identidade
+Fundo quase preto `#0b0b0a`, texto creme `#f0eae1`, secundário `#b8ad9f`, vermelho `#c52a2d`, bordas bronze `#514438`/`#b49d80`. Vermelho em títulos grandes/acentos; texto pequeno claro. Textura de grão discreta, sem animação. Fontes Barlow Condensed 600 normal/800 itálico já disponíveis localmente; corpo sans legível. Nenhum token global dourado de Menu/admin/TV é alterado.
 
-`Reserve sua mesa` aparece em destaque vermelho com borda irregular e ícone do WhatsApp. No desktop, fica à direita dos seis links. Abaixo de 960 px, fica no menu recolhível, com alvos de 44 px e foco visível. O botão abre uma conversa com o WhatsApp cadastrado. Quando o número está indisponível, leva à seção Contato.
+A fundação vive em `src/app/page.module.css`, com variáveis restritas ao wrapper. `site-ui.module.css` compartilha títulos, pequenos marcadores /// e botões de borda fina. Header/hero/Agenda/features/depoimentos/visit/footer têm CSS Modules próprios. Container de até 1280 px, padding responsivo 20–72 px.
 
-## Tokens no wrapper institucional
-| Papel | Valor inicial |
-|---|---|
-| Fundo | `#101012` |
-| Superfície | `#19191C` |
-| Texto | `#F0EDE7` |
-| Secundário | `#A9A5A3` |
-| Destaque | `#C52D32` |
-| Papel da Agenda | `#E9E3D9` |
-| Tinta sobre papel | `#171719` |
-| Borda | `#353438` |
+## Composição
+- Header integrado à hero, logo à esquerda, seis destinos e reserva em contorno à direita; Início marcado por traço vermelho. Abaixo de 960 px, menu nativo details/summary com Escape, fechamento em navegação e foco visível.
+- Hero: guitarrista à direita, título em três linhas “Mais que um bar, / uma casa do / rock.”, rock grande/vermelho. CTAs reserva vermelho e Agenda em contorno. No celular, imagem permanece reconhecível e camada escura protege o texto.
+- Agenda escura: introdução/microfone à esquerda; eventos em linhas à direita, com coluna de data, título/descrição/horário, flyer cadastrado e contato opcional. Tipos de show/couvert não são inferidos. No celular introdução sobre lista; nomes longos quebram, botão acompanha o conteúdo.
+- Drinks & Petiscos: cena panorâmica única fornecida na TASK-085, com cerveja/petiscos à esquerda e título/cópia/link em HTML à direita. Correção TASK-086: faixa compacta de cerca de 280 px no desktop, arte contida no mesmo limite central de 1280 px do texto; não ampliar a foto pela largura total de monitores grandes ou cortar o copo com cover. A altura pode crescer para acomodar texto ampliado. No celular, foto com foco à esquerda sobre o texto. A Casa mantém a composição anterior. Microfone PNG transparente fica limitado a 260 px de altura no desktop e 160 px no celular, sem desbotamento e sem crescer com a lista de shows.
+- Depoimentos após A Casa: título à esquerda e três citações, aspas vermelhas e divisórias. Sem estrelas ou nota agregada. Revisão temporária identificada, ausente em produção.
+- A Casa (TASK-087): imagem pequena do pacote é limitada a 480 px, preservando a proporção original 363:219 e a cena completa, sem cover/zoom. No celular acompanha o texto com 20 px de margem. Não esticar a foto para preencher toda a coluna: uso maior/nítido depende de novo asset em alta resolução.
+- Playlist/localização: vinil decorativo, identidade musical, texto de localização e mapa leve; dados não confirmados permanecem explicitamente pendentes. Sem embeds/links fictícios.
+- Footer compacto com marca, navegação e contatos efetivos. Não mostrar ícones com destinos inventados.
 
-Aplicar via CSS Module/escopo `.institutional-site`, nunca substituir globalmente o dourado de `:root`. Verificar contraste de cada combinação; vermelho pequeno não é automaticamente acessível.
+## Acessibilidade e desempenho
+Texto em HTML, h1 único e h2 de seção, imagens decorativas com alt vazio. Skip link, alvos >=44 px, foco visível e ausência de motion decorativo. Sem carrossel, autoplay, mapa interativo obrigatório ou novas bibliotecas/fontes. Hero otimizada por next/image e preload; demais imagens lazy/sizes e espaço reservado. Funcionar desde 320 px, sem overflow ou corte de textos.
 
-## Tipografia e composição
-Hero antecipada na TASK-082 a pedido do usuário: Barlow Condensed auto-hospedada (600 normal/800 itálico), com uso restrito à hero via CSS Module, título em quatro linhas branco/vermelho e CTAs de Agenda/Cardápio. Fundo com `public/images/hero/hero.png`, selecionado pelo usuário em substituição ao conceito anterior; sem aviso de conceito ou seletor por ambiente. Sem carrossel ou indicadores sem função. O restante da fundação visual da TASK-070 continua planejado.
-
-Barlow Condensed na hero e sans legível no corpo. A TASK-070 deve avaliar a extensão dessa fonte às demais seções, sem instalar outra família condensada por padrão. Pesos limitados, fallback estável, português completo e fontes restritas ao site. Títulos com `clamp`, texto HTML sobre imagem, sem UI embutida no bitmap.
-
-Container de 1200–1280 px; padding aproximado 20/32/48 px mobile/tablet/desktop. Escala 4/8/12/16/24/32/48/64/96. Mínimo 320 px; alvos de 44 px, foco visível, landmarks e heading hierarchy. Transições discretas 150–250 ms com redução de movimento.
-
-## Seções e comportamento
-- Agenda da home (TASK-072): papel fornecido pelo usuário, título HTML à esquerda, até quatro resumos em colunas no desktop e CTA para a Agenda existente à direita. Em telas menores, título/CTA e lista vertical. Datas em São Paulo, texto preto e vermelho escuro sobre papel; nomes longos quebram sem esconder eventos. Sem cards clicáveis fictícios, flyers embutidos ou carrossel. A Agenda legada mantém sua apresentação com flyers.
-- Hero cinematográfico com área de texto legível e recorte próprio mobile quando necessário.
-- Papel rasgado somente na Agenda, SVG/CSS decorativo, sem capturar foco ou eventos.
-- Agenda começa em lista vertical; não presumir carrossel. Não tornar card inteiro clicável sem destino real; CTA externo quando fornecido.
-- Drinks/A Casa: uma foto principal por seção; galeria limitada pode variar a composição.
-- Navegação mobile com botão semântico, estado expandido, teclado e retorno de foco.
-- Sem autoplay/carrosséis automáticos, mapa pesado obrigatório ou bibliotecas de animação por padrão.
-- O CTA de reserva encaminha uma conversa para o bar. Disponibilidade e confirmação ficam com o atendimento.
-
-## QA
-Verificar 320/360/768/1440 px, texto longo, zoom, contraste, fallback sem imagem/fontes, teclado e movimento reduzido. Comparar menu legado/admin/TV para detectar vazamento de tema. Registrar evidência visual, não apenas assertions de CSS.
+## Conteúdo e QA
+Mídia fornecida é conceitual até comprovação: somente revisão local/Preview identificada. Testar 320/360/768/1440 px, zoom, nomes longos, estados vazio/erro, teclado/Escape e redução de movimento. Comparar com referência completa, além de verificar HTML/CSS. Registros e capturas pertencem à tarefa; não são prova de produção.

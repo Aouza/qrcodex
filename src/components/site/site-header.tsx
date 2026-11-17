@@ -3,16 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { KeyboardEvent, MouseEvent } from "react";
+import { siteNavigation } from "@/lib/site/navigation";
+import { SiteIcon } from "./site-icon";
+import ui from "./site-ui.module.css";
 import styles from "./site-header.module.css";
-
-const links = [
-  { href: "/", label: "Início", current: true },
-  { href: "/relicas/agenda", label: "Agenda" },
-  { href: "/relicas/cardapio", label: "Cardápio" },
-  { href: "#a-casa", label: "A Casa" },
-  { href: "#galeria", label: "Galeria" },
-  { href: "#contato", label: "Contato" },
-] as const;
 
 function closeOnEscape(event: KeyboardEvent<HTMLDetailsElement>) {
   const menu = event.currentTarget;
@@ -31,7 +25,7 @@ function closeOnNavigation(event: MouseEvent<HTMLAnchorElement>) {
 function NavigationLinks() {
   return (
     <ul className={styles.links}>
-      {links.map((link) => (
+      {siteNavigation.map((link) => (
         <li key={link.href}>
           <Link
             href={link.href}
@@ -53,13 +47,12 @@ function ReservationLink({ href }: { href?: string | null }) {
       href={href ?? "#contato"}
       target={href ? "_blank" : undefined}
       rel={href ? "noopener noreferrer" : undefined}
-      className={styles.reservation}
+      className={`${ui.button} ${styles.reservation}`}
       onClick={closeOnNavigation}
     >
-      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.3c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.3 8.3 0 1 1 12 20.3Zm4.6-6.2c-.3-.2-1.5-.8-1.8-.8-.2-.1-.4-.1-.5.1l-.8 1c-.2.1-.3.2-.6 0-1.5-.7-2.5-1.5-3.3-2.9-.2-.3 0-.4.1-.5l.6-.7c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.4-.3-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.7 4.3 3.8 1.6.7 2.3.8 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.2-.3-.3-.5-.4Z" />
-      </svg>
+      <SiteIcon name="calendar" />
       Reserve sua mesa
+      <SiteIcon name="arrow" size={18} />
     </a>
   );
 }
@@ -72,9 +65,9 @@ export function SiteHeader({ reservationHref }: { reservationHref?: string | nul
           <Image
             src="/images/logo/logo-site.png"
             alt="Relica’s Rock Bar — Início"
-            width={144}
-            height={72}
-            sizes="(max-width: 959px) 120px, 144px"
+            width={128}
+            height={64}
+            sizes="128px"
           />
         </Link>
         <nav className={styles.desktop} aria-label="Navegação principal">

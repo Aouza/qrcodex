@@ -10,10 +10,10 @@ Evolve the current app into the institutional website of Relica's Rock Bar. Targ
 
 The institutional direction is delivered incrementally: initial root navigation exists (TASK-080, browser acceptance pending) and public context/path helpers are implemented locally (TASK-067). Wiring that context into pages, the full home, institutional aliases and editorial schema remain planned. This specification is not deployment evidence. See [site requirements](site/00-PRODUCT-SPEC.md) and [delivery plan](site/06-IMPLEMENTATION-PLAN.md). Original ZIP assumptions are superseded where audited contracts differ.
 
-TASK-082 anticipates only the reference-led hero: HTML headline and existing slug Agenda/menu links. The user supplied and selected `public/images/hero/hero.png` for this surface, replacing the earlier review concept and its environment gate. This asset selection does not establish documentary provenance or complete the home, TASK-070/071 or institutional aliases.
+TASK-084 supersedes the earlier homepage presentation: `docs/site/reference/layout-aprovado.png` is the sole current visual reference, explicitly approved on 2026-11-17. Header/hero, dark Agenda rows, Drinks & Petiscos, A Casa, compact testimonials, playlist/location and footer replace the earlier paper/gallery composition. Existing slug menu/Agenda, data/admin/Music and routing gates remain intact. Supplied concept media and sample endorsements are identified in development/Preview and excluded from production until factual/content approval. No provider links, address, event types or ticket prices are inferred from the screenshot.
 
 ## Product boundaries and documentation
-TASK-072 integrates real published Agenda events below the hero, up to four current/upcoming results with Sao Paulo dates. Reuses the public loader and existing slug destination; no fictional shows, new event schema or institutional alias. Loading/empty/error states preserve the page and navigation. The supplied paper asset is decorative. Fresh requests reflect administrative changes; no automatic refresh of already-open tabs is promised.
+TASK-072 integrates real published Agenda events below the hero, up to four current/upcoming results with Sao Paulo dates. Reuses the public loader and existing slug destination; no fictional shows, new event schema or institutional alias. Loading/empty/error states preserve the page and navigation. TASK-084 replaces the original paper presentation with dark rows containing real flyers, date/time and a WhatsApp contact action when configured. Fresh requests reflect administrative changes; no automatic refresh of already-open tabs is promised.
 
 The shared platform supports distinct domains in one application: [Site](site/README.md) for venue discovery, [Menu](menu/README.md) for catalog consultation, [Agenda](agenda/README.md) for events, [Hub](hub/README.md) for slug/QR entry and [Music](music/README.md) for requests/playback. [Admin](admin/README.md) is the unified management surface; [Platform](platform/README.md) owns shared tenancy/security/operations. These are not separate backends.
 
@@ -34,12 +34,12 @@ Phases A–C retain Hub/Menu/Agenda/Music history and contracts. The current del
 
 ### Phase D — Institutional site (current direction; planned implementation)
 - one existing Next.js app, `(site)` routes and shared domain loaders;
-- section order: Header/Hero, Agenda, Drinks e petiscos, A Casa, Galeria, Localização, Footer;
-- Hero links `Ver agenda` and `Ver cardápio`. The navbar offers `Reserve sua mesa` through the public WhatsApp configured for Relica’s, with the contact section as fallback;
+- section order: Header/Hero, Agenda, Drinks & Petiscos, A Casa, Depoimentos (revisão temporária), Playlist/Localização, Footer. Gallery is not part of the approved homepage;
+- Hero links `Reserve sua mesa` and `Ver a agenda`. Navbar/hero reservation opens the configured public WhatsApp with contact fallback; Drinks & Petiscos opens the existing menu;
 - up to four relevant published events; empty state and isolated section failure;
 - `/cardapio` and `/agenda` with all existing slug URLs preserved;
 - approved institutional fields editable in existing settings; gallery editing is conditional scope;
-- scoped dark editorial/red/paper theme and approved real media before release;
+- scoped dark editorial/red/cream/bronze theme and approved real media before release;
 - small verifiable tasks across ten fronts in `docs/site/06-IMPLEMENTATION-PLAN.md`;
 - domain/content/assets gate publication, not isolated local work.
 
@@ -203,10 +203,12 @@ Analytics, happy-hour automation, promotions, polls, quizzes, Wi-Fi helper, now-
 TASK-061 is an unlinked POC, not production Phase C activation. Its canonical contract is `docs/experiments/YOUTUBE_MUSIC_QUEUE_POC.md`: the backend/Supabase owns an ephemeral FIFO queue and `/{slug}/musicas/player` is a playback-only TV terminal without an admin session. It uses YouTube IFrame playback and restricted technical-event reporting, waits when empty and adds no fallback music, human queue controls or production Hub link. The multi-phone/TV manual scenario must pass before POC success is declared; automated checks alone do not establish success.
 
 ## 18. Institutional acceptance scenario
-1. `/` on an approved host identifies Relica's and follows the seven-section order.
+1. `/` on an approved host identifies Relica's and follows the institutional section order.
 2. Agenda and menu are reachable in one action.
 3. Current/future published events are consistent across home and Agenda; drafts stay hidden.
 4. Maurício edits approved menu/event/institutional content in one admin; tested public refresh needs no deployment.
 5. Existing slug routes, tenant isolation, image-free product layouts and Music boundaries remain functional.
 6. Record mobile/320px/keyboard, loading/empty/error, SEO and performance evidence.
 7. Publish only verified venue facts/assets, after domain, compatibility and recovery gates pass.
+
+TASK-083 originally added temporary testimonials below Agenda; TASK-084 supersedes its position and presentation using the newly approved layout: compact quotations after A Casa, without rating stars. The user authorized screenshot names/texts only as temporary illustrative examples. Show an explicit review notice and omit the strip in production until approved replacements are provided. No review provider, aggregate rating, review structured data, public submission or admin editing is added.

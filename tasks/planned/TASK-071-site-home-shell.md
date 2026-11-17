@@ -10,6 +10,8 @@ Substituir o starter por entrada institucional acessível.
 
 A TASK-080 já substituiu o starter por uma abertura com navbar. Reutilizar `SiteHeader` e integrar Hero e Footer ao grupo institucional, com os destinos já entregues.
 
+Escopo reconciliado em 2026-11-17: TASK-084 entrega a composição visual completa na raiz existente, incluindo header/hero/footer conforme layout aprovado. Esta tarefa passa a integrar esse trabalho ao contexto/aliases quando seus gates forem resolvidos; não reconstruir componentes nem restaurar a direção visual anterior. CTA atual da hero é reserva/Agenda; Menu aparece na navbar e em Drinks & Petiscos. Histórico e aceites anteriores permanecem abaixo como base a adaptar na execução.
+
 ## Arquivos ou módulos impactados
 - `src/app/page.tsx (substituir pela rota agrupada)`
 - `src/app/(site)/page.tsx (novo)`
@@ -25,7 +27,7 @@ A TASK-080 já substituiu o starter por uma abertura com navbar. Reutilizar `Sit
 
 ## Passos e critérios de aceite
 - [ ] Uma única página resolve / e um root layout; nav/Footer não aparecem em TV/admin.
-- [ ] CTAs Ver agenda e Ver cardápio corretos; disclosure mobile com expanded, Escape e foco.
+- [ ] CTAs reserva/Agenda na hero e Menu em navbar/Drinks corretos; disclosure mobile com expanded, Escape e foco.
 - [ ] Título HTML legível com recorte mobile; sem reserva/ingresso/data de show inventados.
 - [ ] Não remover starter assets antes de conferir referências; aliases/hosts desconhecidos mantêm contratos.
 - [ ] Conteúdo/asset provisório claramente identificado em local/Preview; bloqueio de publicação registrado.

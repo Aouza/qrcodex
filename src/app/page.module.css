@@ -1,56 +1,13 @@
+﻿@font-face { font-family:"Relicas Site"; src:url("/assets/fonts/barlow-condensed-semibold.ttf") format("truetype"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"Relicas Site"; src:url("/assets/fonts/barlow-condensed-extra-bold-italic.ttf") format("truetype"); font-weight:800; font-style:italic; font-display:swap; }
 .site {
-  --site-bg: #101012;
-  --site-text: #f0ede7;
-  --site-muted: #a9a5a3;
-  --site-accent: #c52d32;
-  --site-border: #353438;
-
-  flex: 1;
-  color-scheme: dark;
-  background: var(--site-bg);
-  color: var(--site-text);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+ --site-bg:#0b0b0a; --site-text:#f0eae1; --site-muted:#b8ad9f; --site-accent:#c52a2d; --site-border:#514438; --font-site-display:"Relicas Site";
+ position:relative; isolation:isolate; flex:1; overflow:clip; color-scheme:dark; color:var(--site-text); background:var(--site-bg); font-family:var(--font-geist-sans),Arial,sans-serif;
 }
-
-.section {
-  width: min(100%, 1280px);
-  margin-inline: auto;
-  padding: clamp(28px, 5vw, 60px) clamp(20px, 4vw, 48px);
-  border-top: 1px solid var(--site-border);
-}
-
-.section h2 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-}
-
-.section p {
-  margin-top: 10px;
-  color: var(--site-muted);
-  line-height: 1.6;
-}
-
-.section a {
-  color: var(--site-text);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.section a:focus-visible {
-  outline: 2px solid var(--site-text);
-  outline-offset: 4px;
-}
-
-.contactLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.contactLinks a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-}
+.site::after { position:absolute; z-index:30; inset:0; background:url("/assets/textures/site-grain.svg") repeat; opacity:.13; pointer-events:none; content:""; }
+.site :where(a,summary):focus-visible { outline:2px solid #f2d7b3; outline-offset:4px; border-radius:3px; }
+.site :where(main,section,footer):focus { outline:none; }
+.site svg { flex-shrink:0; }
+.reviewNotice { position:relative; z-index:31; padding:5px 20px; border-bottom:1px solid #554736; background:#181512; color:#d3bfa7; font-size:.65rem; line-height:1.4; text-align:center; }
+.skipLink { position:absolute; z-index:50; top:8px; left:20px; padding:12px 18px; transform:translateY(-200%); background:#f0eae1; color:#14120f; }
+.skipLink:focus { transform:none; }

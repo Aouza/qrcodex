@@ -1,42 +1,34 @@
-# Site institucional — requisitos conciliados
+﻿# Site institucional — requisitos conciliados
 
-## Objetivo
-Evoluir QRCodex para o site público do Relica's, com descoberta de shows, cardápio, ambiente e localização. Maurício mantém menu/eventos e campos institucionais aprovados no mesmo admin. Reutilizar o que funciona; sem reconstrução.
+## Referência vigente
+Em 2026-11-17 o usuário aprovou `reference/layout-aprovado.png` como única direção visual e autorizou substituir a apresentação anterior. [ADR-022](../DECISIONS.md#adr-022--layout-aprovado-como-referência-visual-única) registra alcance e limites. Referências antigas e tarefas concluídas preservam evidência histórica, sem prevalecer sobre este desenho.
 
-## Estado versus destino
-Implementado: menu em `/[slug]/cardapio`, Hub em `/[slug]`, Agenda pública/admin, uploads, autenticação e tenancy. Música possui implementação e ensaio de produção registrados, com aceite físico/comercial pendente. A raiz tem abertura e navbar que apontam para Agenda e cardápio existentes. As rotas institucionais `/cardapio` e `/agenda` seguem planejadas.
+## Objetivo e fronteiras
+Descoberta de shows, cardápio, casa e contato dentro do Next existente. Menu em `/[slug]/cardapio`, Agenda e admin seguem como fonte única. Sem reconstrução, backend paralelo ou mudança de Música. `/cardapio` e `/agenda` institucionais continuam sujeitos ao inventário de slugs/hosts; a home usa `/relicas/cardapio` e `/relicas/agenda` enquanto os aliases não forem implementados.
 
-Destino: `/` institucional nos hosts aprovados; `/cardapio` e `/agenda` compartilham dados e apresentação dos domínios existentes. Preservar URLs antigas e demais tenants. Domínio definitivo ainda requer confirmação operacional.
-
-A TASK-067 entrega localmente os contratos de contexto por host aprovado e navegação por site/slug. São helpers testados; sua integração nas páginas, as novas rotas e a home completa continuam nas tarefas seguintes. Nenhum host foi configurado ou publicado por esta entrega.
-
-A TASK-082 antecipa somente a hero da referência a pedido do usuário: título HTML e links funcionais para `/relicas/agenda` e `/relicas/cardapio`, até os aliases estarem disponíveis. O usuário forneceu e selecionou `public/images/hero/hero.png` para a hero, substituindo o conceito anterior e seu seletor de ambiente. Não presumir que seja fotografia documental do estabelecimento. A home completa e os demais gates da TASK-071 permanecem.
-
-## Homepage
-A seção de Agenda da TASK-072 foi antecipada para a raiz existente, abaixo da hero: até quatro eventos públicos relevantes do Relica's, com título/data e descrição opcional sobre o papel fornecido. O link completo usa `/relicas/agenda` até TASK-069 entregar o alias. Sem eventos inventados, preços ou tributos inferidos. Falha/vazio preservam a seção e o acesso à Agenda, sem derrubar a home.
-
+## Composição da homepage
 | Ordem | Seção | Contrato |
 |---|---|---|
-| 1 | Header/Hero | Marca, foto autorizada e título HTML. Menu com Início, Agenda, Cardápio, A Casa, Galeria e Contato. CTA de atendimento `Reserve sua mesa` via WhatsApp cadastrado |
-| 2 | Agenda | Até quatro publicados relevantes, ordem cronológica, flyer real, data/hora São Paulo; vazio/erro independentes; link completo |
-| 3 | Drinks e petiscos | Foto real, texto aprovado e acesso ao catálogo; sem catálogo/preços paralelos |
-| 4 | A Casa | Texto/foto e características confirmadas |
-| 5 | Galeria | Seleção limitada de fotos autorizadas; administração depende de aprovação específica |
-| 6 | Localização | Endereço/horários/contato verificados e direções externas |
-| 7 | Footer | Identidade, navegação e links reais |
+| 1 | Header/Hero | Marca, Início, Agenda, Cardápio, A Casa, Localização e Contato. Header sobre hero escura, título HTML creme/vermelho; CTAs Reserve sua mesa e Ver a agenda |
+| 2 | Agenda | Até quatro eventos reais publicados/relevantes, datas/horários São Paulo, flyer cadastrado e linhas escuras. Contato de reserva apenas com WhatsApp cadastrado. Vazio/erro/loading independentes |
+| 3 | Drinks & Petiscos | Composição visual de cerveja/petiscos e acesso ao catálogo existente, sem preços ou catálogo paralelo |
+| 4 | A Casa | Texto e imagem editorial; link Conhecer a casa leva à localização na própria página |
+| 5 | Depoimentos | Faixa compacta após A Casa, três citações sem estrelas; exemplos apenas em revisão identificada |
+| 6 | Playlist/Localização | Vinil, identidade musical, endereço/direções somente confirmados e mapa ilustrativo identificado. Sem embed externo obrigatório |
+| 7 | Footer/Contato | Marca, navegação e contatos reais cadastrados. Ausência de links comunica indisponibilidade |
+
+Galeria e papel rasgado não integram o novo layout. Não incluir seção CTA adicional só por haver asset no ZIP. RSVP, venda de ingressos e gestão de reservas não são funções deste site: botões de reserva abrem conversa com WhatsApp cadastrado e têm fallback em Contato.
+
+## Conteúdo de revisão e produção
+Aprovação de layout não comprova fotografia documental, endereço, horários, depoimentos, playlist ou redes. `isSiteReview()` habilita mídia conceitual fornecida e exemplos em desenvolvimento ou Vercel Preview, com identificação visível. Produção usa a composição sem essas imagens/depoimentos até aprovação e tarefa de ativação. Nunca fabricar shows ou usar as bandas da referência como dados reais.
+
+Playlist sem URL oficial mostra “Link oficial em breve”. Sem endereço confirmado, consultar a casa pelo contato disponível; sem dados confirmados não criar botão de mapa externo. Instagram/WhatsApp vêm do cadastro existente. Spotify/Facebook/YouTube não ganham URLs por inferência. Texto informativo não é controle desabilitado.
 
 ## Administração
-Preservar login, membership/RLS, shell, CRUD de menu e eventos. Adicionar campos institucionais tipados na extensão de settings; não deixar conteúdo que Maurício precisa editar somente em código. Campos exatos e schema são definidos na TASK-073. Não duplicar Agenda nem usar produtos como conteúdo genérico.
-
-Agenda inicial preserva rascunho/publicado (`active`), título, descrição, datas, flyer e link externo. Slug, detalhe, cancelamento, couvert, prévia e reordenação manual não são requisitos aprovados automaticamente; registrar decisão antes de implementação. Sem término, a regra atual expira na hora de início; explicar isso ao proprietário e não inventar duração.
+Preservar login, membership/RLS, shell, CRUD de menu/eventos. Schema editorial e edição no admin continuam nas TASK-073/074; não são concluídos por esta apresentação. Conteúdo estático de revisão não substitui a autonomia planejada. Galeria administrável depende de escopo futuro.
 
 ## Aceite
-- Site funciona desde 320 px, com teclado/foco, contraste e movimento reduzido.
-- Menu/Agenda em um toque; rotas antigas e outro tenant continuam corretos.
-- Alterações administrativas refletem publicamente segundo política testada, sem deploy.
-- Rascunhos ocultos; falha de Agenda não derruba navegação/menu.
-- Fotografias e informações reais aprovadas antes do release; nada de agenda fictícia em produção.
-- Checks, regressão de browser, SEO e recuperação registrados.
+320 px, teclado/foco, menu mobile com Escape, conteúdo legível sem login, movimento reduzido e CSS restrito ao site. Agenda reflete publicação/tempo/tenant com falha isolada; Menu/Hub/admin/TV mantêm contratos. Hero priorizada; mídia inferior lazy e dimensões reservadas. Checks e browser/build/start documentados, sem inferir produção ou publicação de conceitos.
 
 ## Fora de escopo
-Carrinho, pedidos, pagamentos, gestão de reservas, venda de ingressos, contas de visitantes, newsletter, fidelidade, analytics, billing/onboarding SaaS, CMS/page builder genérico e expansão de Música. O CTA de reserva abre o atendimento do estabelecimento no WhatsApp.
+Carrinho, pagamentos, pedidos, contas de visitantes, reservas operacionais, CMS genérico, novos provedores de reviews, newsletter, analytics, integrações especulativas e expansão de Música.

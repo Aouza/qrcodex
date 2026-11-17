@@ -1,0 +1,12 @@
+﻿.footer { padding-bottom:20px; scroll-margin-top:20px; }
+.inner { display:grid; grid-template-columns:128px minmax(0,1fr) auto; gap:35px; align-items:center; width:min(100%,1280px); margin-inline:auto; padding:20px clamp(20px,5vw,72px); }
+.brand { display:inline-flex; min-height:44px; align-items:center; }
+.brand img { width:128px; height:auto; }
+.navigation { display:flex; flex-wrap:wrap; justify-content:center; gap:4px 30px; padding-inline:24px; border-inline:1px solid #685944; }
+.navigation a,.contact a { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; min-width:44px; font-family:var(--font-site-display),sans-serif; font-size:1rem; }
+.contact { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.copyright { text-align:center; font-size:.65rem; color:#b2a799; }
+.copyright span { margin-inline:8px; }
+@media(max-width:959px) { .inner { grid-template-columns:128px 1fr; gap:20px; } .contact { grid-column:1/-1; justify-content:center; } .navigation { border-right:0; gap:0 20px; } }
+@media(max-width:479px) { .inner { grid-template-columns:1fr; justify-items:center; } .navigation { border:0; padding:0; gap:0 20px; } .contact { grid-column:auto; } }
+

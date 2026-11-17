@@ -2,6 +2,15 @@
 
 Decisões registram contexto e alcance; seus checkpoints não são estado operacional atual. Use [CURRENT](../tasks/CURRENT.md) e tarefas para execução/aceite. [Governança documental](GOVERNANCE.md) define como registrar substituições.
 
+## ADR-022 — Layout aprovado como referência visual única
+**Status:** Accepted, 2026-11-17 — solicitação explícita do usuário (TASK-084).
+
+**Contexto:** hero, papel da Agenda e depoimentos haviam sido implementados a partir de referências parciais. O usuário forneceu um layout completo e autorizou desconsiderar o desenho anterior.
+
+**Decisão:** `docs/site/reference/layout-aprovado.png` substitui a direção visual anterior da home e as partes conflitantes de TASK-080/082/072/083. Ordem vigente: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. Sem papel, estrelas ou galeria na composição atual. Preservar dados, loaders, menu/Agenda por slug, admin, Música e limites de ADR-020. Não introduzir aliases com inventário desconhecido.
+
+**Conteúdo:** pacote fornecido inclui mídia explicitamente conceitual. Revisão local/Preview identificada usa esses assets; produção os omite até aprovação factual. Referência visual não confirma endereço, avaliações, playlist, redes ou tipos/preços de shows. Links ausentes recebem texto honesto ou contato real, nunca URLs inventadas. Não implica publicação, novos campos editoriais ou conclusão das tarefas de aliases/admin/release.
+
 ## ADR-021 — Documentação por plataforma e produto
 **Status:** Accepted, 2026-11-13 — manutenção documental solicitada pelo usuário (TASK-081). Sem mudança de arquitetura de execução.
 

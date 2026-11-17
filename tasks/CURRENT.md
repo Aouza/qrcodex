@@ -2,13 +2,19 @@
 
 ## Próxima implementação
 
-TASK-068 é o próximo incremento **READY**. A [TASK-072 — seção de Agenda na homepage](completed/TASK-072-site-home-agenda.md) foi concluída localmente a pedido do usuário, usando o papel fornecido, eventos reais e destino `/relicas/agenda`. Build/start isolado e revisão de componentes passaram; não implementa o alias nem conclui a home completa.
+TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). Integra o catálogo existente em `/cardapio`, preservando destinos por slug e verificando o inventário de hosts/slugs antes de rotas estáticas. A TASK-067 entregou helpers; os aliases institucionais e a configuração real dos hosts ainda não foram concluídos.
 
-A [TASK-082 — Hero institucional conforme referência](completed/TASK-082-site-home-hero.md) também foi fechada localmente: os checks de build/start da TASK-072 resolveram a pendência técnica anterior e a revisão combinada usa a imagem fornecida pelo usuário. Sem aliases, publicação ou alteração de dados. O histórico das falhas anteriores permanece na tarefa.
+A [TASK-084 — layout aprovado](completed/TASK-084-site-approved-layout.md) concluiu localmente a apresentação completa da home em 2026-11-17. `docs/site/reference/layout-aprovado.png` é a única referência visual: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. Substitui as apresentações anteriores das TASK-080/082/072/083; mantém dados/rotas/admin/Música. 151 testes, lint, tipos, build/start e browser em cinco larguras passaram. Sem commit/push/deploy ou dados remotos.
 
-TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site institucional em `/` segue como prioridade. A [TASK-067](completed/TASK-067-site-public-context.md) entregou helpers de contexto/links; o próximo incremento integra o catálogo existente em `/cardapio`, preservando os destinos por slug e verificando o gate de inventário antes de rotas estáticas.
+A [TASK-085](completed/TASK-085-site-feature-assets.md) substituiu a montagem de comidas e o microfone por PNGs fornecidos pelo usuário. Texto HTML, layout aprovado e gate de revisão preservados; conferência no servidor local em quatro larguras, tipos/lint/testes direcionados passaram. Sem commit/push/deploy; não modifica dados ou loaders da Agenda.
 
-TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e a integração do contexto às páginas seguem planejados. A configuração real de hosts e o inventário de slugs ainda precisam ser confirmados; a TASK-067 não os presume.
+A [TASK-086](completed/TASK-086-site-image-scale.md) corrigiu a ampliação em monitores largos: foto limitada a 1280 px, faixa compacta de cerca de 280 px no desktop e microfone com altura limitada. Revisão em seis larguras, incluindo 2535/1920 px, texto ampliado, tipos/lint/testes direcionados passaram. Sem publicação ou alteração de dados.
+
+A [TASK-087](completed/TASK-087-site-house-image.md) reduziu a ampliação da foto de A Casa, limitada a 480 px com proporção/cena inteira e mobile ajustado. Sete larguras, tipos/lint/testes pertinentes passaram. Uso amplo nítido depende de imagem maior que a fonte atual de 363 × 219 px. Sem publicação ou geração de imagem.
+
+O usuário autorizou commit e envio para PR em 2026-11-17. As notas “sem commit/push/deploy” acima preservam os checkpoints locais anteriores a essa autorização. O envio para revisão inclui o layout já commitado e os ajustes 085–087; não autoriza merge ou deploy, nem incorpora as alterações locais de skills/Claude.
+
+Conceitos/depoimentos são identificados somente em desenvolvimento/Preview; produção não renderiza essa mídia. Publicação exige conteúdo real, autorizações e links oficiais; endereço/playlist não foram presumidos do screenshot. TASK-071/075/076 reconhecem a apresentação antecipada e continuam responsáveis pela integração/conteúdo real. Aceites históricos independentes permanecem abaixo.
 
 ## Aceites e bloqueios independentes
 

@@ -1,4 +1,4 @@
-# Relica's --- Design System & UI/UX Specification
+﻿# Relica's --- Design System & UI/UX Specification
 
 **Atualização 2026-11-10:** este documento preserva as regras do cardápio/Hub/admin/TV. Para a nova homepage institucional, aplicar a seção 51 e [design do site](site/02-DESIGN-SYSTEM.md). A prioridade institucional não transforma o catálogo em experiência de compra e não recolore globalmente os módulos existentes. A implementação visual ainda depende das tarefas do site.
 
@@ -1283,17 +1283,15 @@ Admin Música (TASK-056) integra a navegação existente. Apresentar operação/
 
 Tela pública independente, inicialmente sem link no Hub na TASK-055. A TASK-058 registra o ensaio autorizado com link para Relica's, ainda sem aceite de lançamento. Contrato visual: consentimento explícito antes de busca/pedido, links de privacidade/YouTube e mensagens claras de pausa, offline, fila cheia e limite. Usar tokens existentes, coluna única a partir de 320 px, quebra de títulos longos, foco visível e controles de pelo menos 48 px. Não exigir conta do cliente. A TV reutiliza a superfície de vídeo e espera, com pareamento separado do admin; revogação, expiração, outra aba e reconexão têm estados técnicos explícitos. A gestão humana nunca aparece na TV. O contrato de produção está em `docs/MUSIC_PRODUCTION.md`.
 
-## 51. Site institucional — Rock Editorial Minimal
-- Ordem: Header/Hero, Agenda, Drinks e petiscos, A Casa, Galeria, Localização, Footer.
-- Hero: texto HTML, foto autorizada, CTA primário `Ver agenda` e secundário `Ver cardápio`.
-- Incremento TASK-082: hero usa Barlow Condensed 600/800, título itálico em quatro linhas e composição escura/vermelha; fonte e CSS restritos à home. Fundo `public/images/hero/hero.png` fornecido e selecionado pelo usuário, substituindo o conceito inicial. Não apresentar essa seleção como prova de fotografia documental do bar ou de release concluído.
-- Tema escuro editorial com vermelho contido; papel claro e rasgado somente na Agenda.
-- Tokens propostos no escopo `.institutional-site`: fundo `#101012`, superfície `#19191C`, texto `#F0EDE7`, secundário `#A9A5A3`, destaque `#C52D32`, papel `#E9E3D9`, tinta `#171719`, borda `#353438`. Verificar contraste por uso; não substituir `:root` dourado.
-- Display condensado (família a selecionar na TASK-070), corpo legível, pesos limitados e fallback estável. Não adicionar fontes ao admin/TV sem necessidade.
-- Container 1200–1280 px; padding responsivo aproximado 20/32/48 px; escala 4/8/12/16/24/32/48/64/96.
-- Funcionar desde 320 px; foco/teclado, alvos mínimos de 44 px, redução de movimento e contraste WCAG AA.
-- Fotografias reais aprovadas para lançamento; conceitos somente em revisão identificada. Imagens decorativas sem anúncio; fotos informativas com alt.
-- Agenda: até quatro eventos, flyer real obrigatório para publicado, datas São Paulo, fallback de seção sem quebrar a página. Lista vertical inicial; sem carrossel automático.
-- Resumo na home (TASK-072): eventos publicados com mídia continuam obrigatórios, mas a faixa apresenta somente data, título e descrição opcional; não duplica os flyers da Agenda legada. Papel fornecido como decoração, colunas no desktop, lista no celular e CTA para a Agenda completa. Estados loading/vazio/erro preservam a navegação.
-- Galeria limitada, imagens abaixo da dobra sob demanda; localização com direções externas antes de mapa incorporado.
-- Compartilhar dados e componentes sem alterar silenciosamente densidade do menu, shell claro do admin ou reprodução da TV.
+## 51. Site institucional — layout aprovado
+A TASK-084 / ADR-022 substitui a apresentação das TASK-080/082/072/083 por `docs/site/reference/layout-aprovado.png`, única referência visual aprovada em 2026-11-17. As notas anteriores dessas tarefas são históricas.
+
+- Ordem: Header/Hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização, footer. Sem papel da Agenda, estrelas de avaliação ou galeria provisória.
+- Header integrado à hero; navbar com Início, Agenda, Cardápio, A Casa, Localização e Contato. Reserva em contorno na navbar e vermelha na hero; ambas abrem WhatsApp cadastrado ou levam ao contato. Segundo CTA da hero abre Agenda; seção Drinks abre Menu.
+- Barlow Condensed 600 normal/800 itálico local, creme/vermelho/preto com bordas bronze; título em três linhas e rock ampliado. Corpo sans legível. Fundação em CSS Module do site, sem recolorir Menu/admin/TV.
+- Container até 1280 px e padding 20–72 px. Alvos >=44 px, skip link, foco visível, menu mobile com Escape/retorno de foco, sem carrosséis/autoplay/motion decorativo.
+- Fotos decorativas de faixas compactas seguem o limite de 1280 px do conteúdo, sem zoom pelo viewport em monitores largos. Drinks & Petiscos usa cerca de 280 px de altura normal no desktop, com texto ampliado livre para crescer; testar também 1920/2535 px para não repetir a regressão de escala da TASK-086.
+- Agenda mantém até quatro resultados reais relevantes, publicação/tenant/mídia e data/hora São Paulo. Linhas com flyer, título e contato de reserva opcional; não inferir tributo, preço ou link de ingresso.
+- Features em composições alternadas imagem/texto. Conceitos identificados em revisão local/Preview; produção não os apresenta como fotos documentais. Hero priorizada e demais imagens lazy, com sizes e espaço reservado.
+- Depoimentos compactos após A Casa, somente exemplos identificados em revisão; sem estrelas ou nota agregada. Playlist/redes/endereço exigem links e dados reais antes de habilitar destinos externos.
+- Verificar 320/360/768/1440 px, texto longo, estados loading/vazio/erro, teclado/zoom e regressão das superfícies existentes. Detalhes canônicos em `docs/site/02-DESIGN-SYSTEM.md`.
