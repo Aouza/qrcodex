@@ -1,43 +1,27 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
+import { SiteIcon } from "./site-icon";
+import ui from "./site-ui.module.css";
 import styles from "./site-hero.module.css";
 
-export function SiteHero({ imageSrc }: { imageSrc: string | null }) {
+export function SiteHero({ imageSrc, reservationHref }: { imageSrc: string | null; reservationHref?: string | null }) {
   return (
     <section className={styles.hero} aria-labelledby="inicio-titulo">
-      {imageSrc && (
-        <Image
-          className={styles.photograph}
-          src={imageSrc}
-          alt=""
-          fill
-          sizes="100vw"
-          preload
-        />
-      )}
+      {imageSrc && <Image className={styles.photograph} src={imageSrc} alt="" fill sizes="100vw" preload />}
       <div className={styles.inner}>
         <div className={styles.copy}>
           <p className={styles.eyebrow}>Rock ao vivo<span aria-hidden="true" /></p>
           <h1 id="inicio-titulo" className={styles.title}>
-            <span>Mais que</span>{" "}
-            <span>um bar,</span>{" "}
-            <span className={styles.red}>uma casa</span>{" "}
-            <span className={styles.red}>do rock.</span>
+            <span>Mais que um bar,</span>{" "}
+            <span>uma casa do</span>{" "}
+            <span className={styles.rock}>rock.</span>
           </h1>
-          <p className={styles.description}>Música, encontros e bons momentos.<br />Conheça o Relica’s Rock Bar.</p>
+          <p className={styles.description}>Shows, boa bebida, petiscos e a energia<br className={styles.desktopBreak} /> do rock em um ambiente autêntico.</p>
           <div className={styles.actions}>
-            <Link href="/relicas/agenda" className={styles.primary}>
-              <svg aria-hidden="true" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18M7 15h2m3 0h2m3 0h.01M7 18h2m3 0h2" />
-              </svg>
-              Ver agenda
-            </Link>
-            <Link href="/relicas/cardapio" className={styles.secondary}>
-              <svg aria-hidden="true" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 4h10l-1.5 16h-7L7 4Zm.5 4h9M10 11l.5 6m3.5-6-.5 6M9 20h6" /><ellipse cx="12" cy="4" rx="5" ry="2" />
-              </svg>
-              Ver cardápio
-            </Link>
+            <a href={reservationHref ?? "#contato"} target={reservationHref ? "_blank" : undefined} rel={reservationHref ? "noopener noreferrer" : undefined} className={`${ui.button} ${ui.primary}`}>
+              <SiteIcon name="calendar" />Reserve sua mesa<SiteIcon name="arrow" size={18} />
+            </a>
+            <Link href="/relicas/agenda" className={ui.button}><SiteIcon name="play" size={18} />Ver a agenda</Link>
           </div>
         </div>
       </div>

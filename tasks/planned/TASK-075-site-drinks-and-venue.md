@@ -8,6 +8,8 @@
 ## Objetivo
 Apresentar oferta e ambiente com conteúdo real e acesso ao menu.
 
+TASK-084 antecipou a apresentação de Drinks & Petiscos/A Casa em `src/components/site/home-features.tsx`, com conceitos de revisão identificados e CTA para o Menu existente. Esta tarefa finaliza campos/autonomia e mídia real aprovada; reutilizar a composição do layout aprovado e não recriar outra direção visual. Não está concluída pela revisão conceitual.
+
 ## Arquivos ou módulos impactados
 - `src/components/site/drinks-section.tsx (novo)`
 - `src/components/site/venue-section.tsx (novo)`

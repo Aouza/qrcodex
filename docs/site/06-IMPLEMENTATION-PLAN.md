@@ -34,7 +34,7 @@
 | 4. Cardápio | Preservar catálogo e conectá-lo ao site | `components/menu`, `lib/menu`, rotas menu, actions products/categories | 2/3; contrato e contexto registrados | TASK-068: busca, preço, Esgotado, foto ausente e atualização nas duas URLs |
 | 5. Admin | Permitir edição institucional no mesmo painel | `admin/(protected)/settings`, componentes admin, validação, migrations/RLS | 1/2; campos aprovados, schema antes da UI | TASK-066/073/074: mutation membership-scoped e save->public |
 | 6. Agenda gerenciável | Reusar CRUD e publicar consistentemente | `lib/agenda`, `lib/hub`, events/actions, validação, cards | 2/3; correções data/seleção/mídia, contrato flyer | TASK-064–066/069/072: publicação, tempo, mídia e erro isolado |
-| 7. Site institucional | Entregar sete seções e navegação útil | `app/(site)`, `components/site`, `lib/site`, assets | 3–6 e base da 8 por incremento; conteúdo/asset para release | TASK-071/072/074–077: CTAs, conteúdos reais, 320px/teclado |
+| 7. Site institucional | Entregar composição aprovada e navegação útil | `app/(site)`, `components/site`, `lib/site`, assets | 3–6 e base da 8 por incremento; conteúdo/asset para release | TASK-084 antecipou apresentação; TASK-071/072/074–077 finalizam contexto e conteúdo real |
 | 8. Design system e assets | Aplicar identidade institucional sem vazamento | CSS local, fontes, `public/assets`, DESIGN_SYSTEM/ASSETS | 2; inventário e autorizações | TASK-070 antes da home; TASK-075–077 completam mídia/QA |
 | 9. Regressão | Provar preservação e isolamento | `tests`, `supabase/tests`, fixtures isoladas, browser se necessário | baseline 1; acompanha 2–8 | TASK-064–066/078: unit/integração/browser/SQL e evidência |
 | 10. Validação e deploy | Preparar candidato revisável e recuperável | metadata/sitemap/robots, env/Vercel, migrations, RELEASE | 1–9, aprovação de conteúdo, domínio e recovery | TASK-077/079: pacote, Preview se autorizado, smoke/rollback; produção futura separada |
@@ -59,7 +59,7 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 | [TASK-073](../../tasks/planned/TASK-073-site-editorial-schema.md) | Definir e migrar conteúdo institucional tipado | TASK-067 | PLANNED |
 | [TASK-074](../../tasks/planned/TASK-074-site-editorial-admin.md) | Editar conteúdo institucional no admin | TASK-073, TASK-072 | PLANNED |
 | [TASK-075](../../tasks/planned/TASK-075-site-drinks-and-venue.md) | Implementar Drinks e petiscos e A Casa | TASK-070, TASK-074 | PLANNED |
-| [TASK-076](../../tasks/planned/TASK-076-site-gallery-and-location.md) | Implementar Galeria e Localização | TASK-075 | PLANNED |
+| [TASK-076](../../tasks/planned/TASK-076-site-gallery-and-location.md) | Finalizar Localização e conteúdo público; Galeria retirada pela ADR-022 | TASK-075 | PLANNED |
 | [TASK-077](../../tasks/planned/TASK-077-site-seo-and-performance.md) | Preparar SEO e desempenho institucional | TASK-076 | PLANNED |
 | [TASK-078](../../tasks/planned/TASK-078-site-regression-acceptance.md) | Validar regressão integrada e acessibilidade | TASK-077 | PLANNED |
 | [TASK-079](../../tasks/planned/TASK-079-site-release-readiness.md) | Preparar Preview e release institucional | TASK-078 | PLANNED |
@@ -67,6 +67,10 @@ As frentes não são dez PRs obrigatoriamente sequenciais. Preparar design (8) a
 | [TASK-082](../../tasks/completed/TASK-082-site-home-hero.md) | Hero da referência, antecipada a pedido do usuário | TASK-067; header TASK-080 | DONE: build/start e revisão combinada na TASK-072 |
 
 ## Ciclo de execução por tarefa
+Direção visual anterior substituída por solicitação explícita em 2026-11-17: [TASK-084](../../tasks/completed/TASK-084-site-approved-layout.md) aplica `reference/layout-aprovado.png` à composição completa da home. Preserva as tarefas canônicas de aliases, conteúdo/admin e release; o incremento visual não as conclui por inferência.
+
+Incremento antecipado por solicitação explícita: [TASK-083](../../tasks/completed/TASK-083-site-home-testimonials.md), faixa de depoimentos de revisão abaixo da Agenda. Não antecipa schema/admin editorial ou publicação de exemplos.
+
 - [ ] Conferir CURRENT/AGENTS e dependências; registrar os arquivos afetados e preservar alterações locais.
 - [ ] Para correção, adicionar teste com o cenário exato da tarefa e observar falha antes do código; para rota/UI, fixar jornada/contrato verificável.
 - [ ] Implementar somente o incremento. Em tarefa documental, revisar consistência e links; não inventar testes de produto.

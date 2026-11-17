@@ -2,13 +2,11 @@
 
 ## Próxima implementação
 
-TASK-068 é o próximo incremento **READY**. A [TASK-072 — seção de Agenda na homepage](completed/TASK-072-site-home-agenda.md) foi concluída localmente a pedido do usuário, usando o papel fornecido, eventos reais e destino `/relicas/agenda`. Build/start isolado e revisão de componentes passaram; não implementa o alias nem conclui a home completa.
+TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). Integra o catálogo existente em `/cardapio`, preservando destinos por slug e verificando o inventário de hosts/slugs antes de rotas estáticas. A TASK-067 entregou helpers; os aliases institucionais e a configuração real dos hosts ainda não foram concluídos.
 
-A [TASK-082 — Hero institucional conforme referência](completed/TASK-082-site-home-hero.md) também foi fechada localmente: os checks de build/start da TASK-072 resolveram a pendência técnica anterior e a revisão combinada usa a imagem fornecida pelo usuário. Sem aliases, publicação ou alteração de dados. O histórico das falhas anteriores permanece na tarefa.
+A [TASK-084 — layout aprovado](completed/TASK-084-site-approved-layout.md) concluiu localmente a apresentação completa da home em 2026-11-17. `docs/site/reference/layout-aprovado.png` é a única referência visual: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. Substitui as apresentações anteriores das TASK-080/082/072/083; mantém dados/rotas/admin/Música. 151 testes, lint, tipos, build/start e browser em cinco larguras passaram. Sem commit/push/deploy ou dados remotos.
 
-TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). A criação do site institucional em `/` segue como prioridade. A [TASK-067](completed/TASK-067-site-public-context.md) entregou helpers de contexto/links; o próximo incremento integra o catálogo existente em `/cardapio`, preservando os destinos por slug e verificando o gate de inventário antes de rotas estáticas.
-
-TASK-063 registrou a linha de base local. TASK-080 antecipou a navbar e abertura de /; TASK-071 reutiliza o header na home completa. Os aliases institucionais /cardapio e /agenda e a integração do contexto às páginas seguem planejados. A configuração real de hosts e o inventário de slugs ainda precisam ser confirmados; a TASK-067 não os presume.
+Conceitos/depoimentos são identificados somente em desenvolvimento/Preview; produção não renderiza essa mídia. Publicação exige conteúdo real, autorizações e links oficiais; endereço/playlist não foram presumidos do screenshot. TASK-071/075/076 reconhecem a apresentação antecipada e continuam responsáveis pela integração/conteúdo real. Aceites históricos independentes permanecem abaixo.
 
 ## Aceites e bloqueios independentes
 

@@ -8,7 +8,7 @@ globalThis.fetch = async (input) => {
   if (state.fail) return Response.json({ message: "Fixture unavailable" }, { status: 503 });
   if (url.pathname === "/rest/v1/establishments") {
     return Response.json([{ id: "55000000-0000-4000-8000-000000000001", slug: "relicas", active: true,
-      name: "Fixture Bar", logo_url: null, whatsapp: null, instagram: null }]);
+      name: "Fixture Bar", logo_url: null, whatsapp: state.whatsapp ?? null, instagram: state.instagram ?? null }]);
   }
   if (url.pathname === "/rest/v1/events") {
     let events = state.events.filter(event => event.active && event.image_url &&

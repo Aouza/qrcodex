@@ -1,7 +1,7 @@
 # Decisões e pendências
 
 ## Direção consolidada
-ADR-020: evoluir a aplicação existente; homepage institucional, menu/Agenda reutilizados, admin único e compatibilidade aditiva. Tema escuro/vermelho/papel apenas no site, papel rasgado só na Agenda. Requisitos reconciliados substituem a proposta de scaffold/segundo app do ZIP. Não houve alteração de produto/schema/produção nesta atualização.
+ADR-020: evoluir a aplicação existente; homepage institucional, menu/Agenda reutilizados, admin único e compatibilidade aditiva. ADR-022 (2026-11-17) substitui a apresentação anterior por `reference/layout-aprovado.png`: preto/creme/vermelho/bronze, sem papel da Agenda ou Galeria. Requisitos reconciliados substituem scaffold/segundo app do ZIP. Aprovação visual não confirma conteúdo factual ou release.
 
 ## Escolhas técnicas delegadas às tarefas
 Route group e contexto server-side allowlisted; extração mínima de componentes; leitura dinâmica inicial; testes existentes preservados. Família tipográfica, nomes finais de helpers e schema institucional devem ser definidos pela tarefa responsável com critérios concretos e sem framework genérico. Não exigem nova confirmação para detalhes rotineiros dentro do escopo.
@@ -13,7 +13,7 @@ Route group e contexto server-side allowlisted; extração mínima de componente
 | Fotos reais e permissão, marca vetorial, Hero | bloqueia publicação visual; revisão pode usar conceito identificado |
 | Endereço, horários, contatos e destinatário | bloqueia conteúdo operacional de produção |
 | Campos institucionais exatos | definir na TASK-073; não executar migration com schema presumido |
-| Galeria editável no lançamento? | condicional; não prometer uploader já existente |
+| Galeria no lançamento? | retirada do layout vigente pela ADR-022; eventual retorno exige nova solicitação |
 | Cancelamento/couvert/prévia/detalhe/manual order | opcionais, sem migrations implícitas |
 | Recuperação completa e ambiente de ensaio | gate anterior a alterações remotas; backup Music exclui Auth/Storage |
 | QR/links distribuídos e colisões de slugs | verificar antes de rotas estáticas/redirecionamentos |

@@ -1,12 +1,12 @@
 # Relica's Rock Bar — documentação do site
 
-A raiz já apresenta a navegação e a abertura institucional do Relica’s. A home completa, os destinos institucionais e o conteúdo editorial seguem no plano incremental.
+A direção visual vigente é `reference/layout-aprovado.png`, aprovada em 2026-11-17 e aplicada na [TASK-084](../../tasks/completed/TASK-084-site-approved-layout.md). Composição: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. [ADR-022](../DECISIONS.md#adr-022--layout-aprovado-como-referência-visual-única) substitui as referências visuais anteriores, preservando dados, admin, rotas e Música.
 
-A [TASK-072](../../tasks/completed/TASK-072-site-home-agenda.md) acrescentou a faixa de próximos shows abaixo da hero, com eventos reais, papel fornecido pelo usuário e estados independentes de vazio/erro. Build/start isolado e revisão visual de componentes passaram; sem publicação ou alteração de dados remotos. O próximo incremento READY continua TASK-068.
-
-A [TASK-082](../../tasks/completed/TASK-082-site-home-hero.md) antecipa a hero do screenshot solicitado, com título HTML, acesso à Agenda/Cardápio e a imagem `public/images/hero/hero.png` fornecida e selecionada pelo usuário. Substitui o conceito de revisão inicial; não representa a home completa ou aceite de publicação.
+A Agenda reutiliza a fonte pública real; conceitos/depoimentos aparecem somente em revisão local/Preview identificada. Conteúdo real, links oficiais, aliases, schema/admin editorial e gates de release permanecem nas tarefas canônicas. O próximo incremento READY continua TASK-068 após esta tarefa.
 
 ## Leitura e precedência
+A [TASK-083](../../tasks/completed/TASK-083-site-home-testimonials.md) preserva a entrega histórica de depoimentos; a TASK-084 os reposiciona após A Casa e retira estrelas. Exemplos continuam restritos à revisão até substituição aprovada.
+
 Esta pasta responde pelo produto Site. O mapa da plataforma e dos demais produtos está em [docs/README](../README.md); as regras de atualização estão em [GOVERNANCE](../GOVERNANCE.md).
 
 Começar pelo `AGENTS.md` da raiz e `tasks/CURRENT.md`. O PRD define visão e limites globais; arquitetura, banco, design system e decisões da raiz de `docs/` cuidam dos contratos compartilhados. Os arquivos desta pasta detalham somente o site, conciliados com ADR-020. Menu, Agenda, Hub e Música mantêm seus próprios contratos.

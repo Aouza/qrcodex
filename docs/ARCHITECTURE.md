@@ -165,6 +165,8 @@ Expected validation/auth failures should produce user-friendly UI. Unexpected fa
 The Hub and menu loaders intentionally remain separate: Hub reads must stay lightweight as Agenda and Music destinations are added, while the menu loader owns catalog composition.
 
 ## Institutional home Agenda (TASK-072)
+Presentation updated by TASK-084: shared dark rows show date/time and actual published flyers; optional reservation contact is derived from existing public WhatsApp settings, with no ticketing/reservation service. Root composition adds presentational feature/visit/footer components. `review-content.ts` centralizes the development/Vercel Preview gate for supplied concept media and sample testimonials. Production does not render those media/endorsements. No new data source, route or authorization boundary.
+
 The dynamic root composes a streamed Server Component below the hero, reusing `loadPublicAgenda` with an internal four-row limit and a shared two-second abort signal. The existing public temporal/published/tenant predicates run before the limit; persisted media remains required. The home adapter maps errors/empty results to section states without exposing infrastructure details. Dates display in America/Sao_Paulo; the complete Agenda link remains `/relicas/agenda` until its institutional alias exists. Public event mutations and settings revalidate `/` only for Relica's. No schema, authorization or persistent-cache change. Fresh requests reflect changes; existing open tabs do not auto-refresh.
 
 ## Experimental Music TV player (TASK-061)

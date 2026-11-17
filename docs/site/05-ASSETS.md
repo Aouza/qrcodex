@@ -1,6 +1,27 @@
 # Assets — inventário e entrega
 
 ## Materiais encontrados
+### Pacote visual vigente — TASK-084
+Fonte aprovada para direção visual: `docs/site/reference/layout-aprovado.png`, com hero `hero-relicas.webp` e três ZIPs fornecidos pelo usuário. `02-agenda-e-cardapio.zip` e `03-casa-e-complementos.zip` foram extraídos com validação dos destinos para `public/assets/site-review/`; `04-referencias.zip` permanece preservado sem duplicar a imagem aprovada. São arquivos conceituais para revisão identificada local/Preview, não prova de foto documental. Produção não renderiza essa mídia. Nenhuma imagem foi gerada nesta tarefa.
+
+| Asset em `public/assets/site-review/` | Uso | Bytes |
+|---|---|---|
+| `hero-relicas.webp` | Hero decorativa, preload/sizes, 1672 × 941 | 47030 |
+| `agenda/microfone.webp` | Decoração da Agenda | 8010 |
+| `agenda/show-vocalista.webp`, `show-guitarrista.webp`, `show-plateia.webp` | Referências preservadas; não substituem flyers cadastrados no app | 8058 / 6542 / 11216 |
+| `cardapio/cerveja.webp`, `petiscos.webp` | Composição Drinks & Petiscos | 18866 / 15172 |
+| `casa/ambiente-conceitual.webp` | A Casa, decorativa | 19196 |
+| `spotify/vinil-decorativo.webp` | Vinil decorativo, sem link de playlist presumido | 4962 |
+| `mapa/mapa-ilustrativo.webp` | Mapa explicitamente ilustrativo, sem direções fictícias | 6344 |
+| `cta/plateia-vermelho.webp` | Preservado, não utilizado: seção CTA extra ausente do layout | 11318 |
+
+`public/assets/textures/site-grain.svg` é ruído vetorial criado em código, decorativo e restrito ao wrapper do site. Texto permanece em HTML; imagens inferiores usam next/image/lazy e alt vazio por serem conceitos decorativos. Nenhum bitmap do layout inteiro é usado na página.
+
+### Inventário histórico — apresentação anterior substituída
+Os itens abaixo preservam origem/evidência das TASK-072/082/083; papel, hero antiga e mão de depoimentos não são usados na composição da TASK-084. Arquivos do usuário foram mantidos.
+
+Decoração de depoimentos (TASK-083): `public/assets/textures/testimonials.svg`, canvas 1440 × 320, criada em código a partir da direção visual da referência: ruído, traços vermelhos e mão estilizada. Vetor decorativo, sem fotografia ou texto embutido; aplicado por CSS somente à faixa de revisão. Não copia o screenshot nem representa foto da casa.
+
 Papel da Agenda: `public/images/agenda.png`, 2172 × 724 px, 2.308.291 bytes, com transparência; fornecido e selecionado pelo usuário em 2026-11-16. Original preservado. Derivado `public/images/agenda-paper.webp`, mesmas dimensões/alpha, 325.584 bytes, usado como decoração por `border-image` no CSS Module da seção. O fatiamento conserva bordas rasgadas enquanto o centro acompanha o conteúdo no celular. Não contém texto nem dados de eventos; não recebe alt ou foco. Substitui a necessidade de criar A03/A04 para este incremento.
 
 Imagem atual da hero: `public/images/hero/hero.png`, 1774 × 887 px, 2.064.560 bytes. Fornecida e selecionada pelo usuário em 2026-11-16 para substituir o conceito gerado. Original preservado; usada por `next/image` com `fill`, `sizes` e preload, permitindo otimização responsiva pelo pipeline existente. Guitarrista à direita e área escura à esquerda para texto HTML. Alt vazio por ser fundo decorativo. Seleção para uso na hero não comprova fotografia documental da casa; procedência não informada. Sem seletor de ambiente ou aviso do conceito antigo.
