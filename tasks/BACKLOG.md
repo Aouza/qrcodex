@@ -133,6 +133,9 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-082 | Hero institucional conforme referência | DONE | TASK-067; build/start e revisão combinada concluídos na TASK-072 |
 | TASK-083 | Depoimentos abaixo da Agenda para revisão | DONE | TASK-072; exemplos temporários, ocultos em produção |
 | TASK-084 | Aplicar layout aprovado ao site institucional | DONE | TASK-072, TASK-083; revisão local completa, publicação/conteúdo real pendentes |
+| TASK-085 | Substituir imagens do Cardápio e da Agenda | DONE | TASK-084; imagens fornecidas pelo usuário |
+| TASK-086 | Corrigir escala das imagens em telas largas | DONE | TASK-085; regressão reproduzida e corrigida em 2535 px |
+| TASK-087 | Corrigir enquadramento da imagem de A Casa | DONE | TASK-084; proporção preservada, fonte pequena limitada |
 
 See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). The institutional site at `/` remains the user's confirmed priority. TASK-064–066 corrected local event selection, calendar and media recovery; TASK-067 delivered context/navigation helpers. TASK-068 is the next READY increment, with the host/reserved-slug inventory gate recorded before static routes. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
 

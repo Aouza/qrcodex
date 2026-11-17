@@ -4,6 +4,10 @@ A direção visual vigente é `reference/layout-aprovado.png`, aprovada em 2026-
 
 A Agenda reutiliza a fonte pública real; conceitos/depoimentos aparecem somente em revisão local/Preview identificada. Conteúdo real, links oficiais, aliases, schema/admin editorial e gates de release permanecem nas tarefas canônicas. O próximo incremento READY continua TASK-068 após esta tarefa.
 
+A [TASK-085](../../tasks/completed/TASK-085-site-feature-assets.md) substitui o microfone e a montagem de comidas pelos PNGs fornecidos pelo usuário, preservando o layout aprovado e a fronteira de revisão.
+
+A [TASK-086](../../tasks/completed/TASK-086-site-image-scale.md) limita a escala desses assets ao container de conteúdo e à faixa compacta da referência, com QA adicional em monitores de 1920/2535 px.
+
 ## Leitura e precedência
 A [TASK-083](../../tasks/completed/TASK-083-site-home-testimonials.md) preserva a entrega histórica de depoimentos; a TASK-084 os reposiciona após A Casa e retira estrelas. Exemplos continuam restritos à revisão até substituição aprovada.
 

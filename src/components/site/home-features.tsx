@@ -8,13 +8,12 @@ export function HomeFeatures({ review }: { review: boolean }) {
   return (
     <>
       <section className={styles.menu} aria-labelledby="cardapio-titulo">
-        <div className={styles.menuInner}>
+        {review && (
           <div className={styles.menuArtwork}>
-            {review && <>
-              <Image className={styles.snacks} src="/assets/site-review/cardapio/petiscos.webp" alt="" fill sizes="(max-width: 767px) 100vw, 650px" />
-              <Image className={styles.beer} src="/assets/site-review/cardapio/cerveja.webp" alt="" fill sizes="(max-width: 767px) 180px, 300px" />
-            </>}
+            <Image className={styles.menuImage} src="/images/comidas-cardapio-section.png" alt="" fill sizes="(max-width: 1280px) 100vw, 1280px" />
           </div>
+        )}
+        <div className={styles.menuInner}>
           <div className={styles.menuCopy}>
             <p className={ui.eyebrow}>Cardápio</p>
             <h2 className={ui.heading} id="cardapio-titulo">Drinks &amp; petiscos</h2>
@@ -32,7 +31,7 @@ export function HomeFeatures({ review }: { review: boolean }) {
             <a className={ui.button} href="#localizacao">Conhecer a casa<SiteIcon name="arrow" size={18} /></a>
           </div>
           <div className={styles.houseArtwork}>
-            {review && <Image src="/assets/site-review/casa/ambiente-conceitual.webp" alt="" fill sizes="(max-width: 767px) 100vw, 800px" />}
+            {review && <Image src="/assets/site-review/casa/ambiente-conceitual.webp" alt="" fill sizes="(max-width: 520px) calc(100vw - 40px), 480px" />}
           </div>
         </div>
       </section>

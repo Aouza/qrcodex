@@ -16,7 +16,7 @@ export function HomeAgenda({ result, reservationHref, review = false }: { result
     <section className={styles.band} id="agenda" aria-labelledby="home-agenda-title">
       <div className={styles.inner}>
         <div className={styles.heading}>
-          {review && <Image className={styles.microphone} src="/assets/site-review/agenda/microfone.webp" alt="" fill sizes="240px" />}
+          {review && <Image className={styles.microphone} src="/images/microfone-agenda.png" alt="" fill sizes="(max-width: 767px) 150px, 180px" />}
           <div className={styles.headingCopy}>
             <p className={ui.eyebrow}>Agenda</p>
             <h2 className={ui.heading} id="home-agenda-title">Próximos<br />shows</h2>

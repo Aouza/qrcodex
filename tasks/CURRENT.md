@@ -6,6 +6,14 @@ TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tar
 
 A [TASK-084 — layout aprovado](completed/TASK-084-site-approved-layout.md) concluiu localmente a apresentação completa da home em 2026-11-17. `docs/site/reference/layout-aprovado.png` é a única referência visual: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. Substitui as apresentações anteriores das TASK-080/082/072/083; mantém dados/rotas/admin/Música. 151 testes, lint, tipos, build/start e browser em cinco larguras passaram. Sem commit/push/deploy ou dados remotos.
 
+A [TASK-085](completed/TASK-085-site-feature-assets.md) substituiu a montagem de comidas e o microfone por PNGs fornecidos pelo usuário. Texto HTML, layout aprovado e gate de revisão preservados; conferência no servidor local em quatro larguras, tipos/lint/testes direcionados passaram. Sem commit/push/deploy; não modifica dados ou loaders da Agenda.
+
+A [TASK-086](completed/TASK-086-site-image-scale.md) corrigiu a ampliação em monitores largos: foto limitada a 1280 px, faixa compacta de cerca de 280 px no desktop e microfone com altura limitada. Revisão em seis larguras, incluindo 2535/1920 px, texto ampliado, tipos/lint/testes direcionados passaram. Sem publicação ou alteração de dados.
+
+A [TASK-087](completed/TASK-087-site-house-image.md) reduziu a ampliação da foto de A Casa, limitada a 480 px com proporção/cena inteira e mobile ajustado. Sete larguras, tipos/lint/testes pertinentes passaram. Uso amplo nítido depende de imagem maior que a fonte atual de 363 × 219 px. Sem publicação ou geração de imagem.
+
+O usuário autorizou commit e envio para PR em 2026-11-17. As notas “sem commit/push/deploy” acima preservam os checkpoints locais anteriores a essa autorização. O envio para revisão inclui o layout já commitado e os ajustes 085–087; não autoriza merge ou deploy, nem incorpora as alterações locais de skills/Claude.
+
 Conceitos/depoimentos são identificados somente em desenvolvimento/Preview; produção não renderiza essa mídia. Publicação exige conteúdo real, autorizações e links oficiais; endereço/playlist não foram presumidos do screenshot. TASK-071/075/076 reconhecem a apresentação antecipada e continuam responsáveis pela integração/conteúdo real. Aceites históricos independentes permanecem abaixo.
 
 ## Aceites e bloqueios independentes
