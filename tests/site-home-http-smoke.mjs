@@ -4,12 +4,13 @@ import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
+import { getSiteWeekRange } from "../src/lib/site/week-range.ts";
 
 const directory = mkdtempSync(join(tmpdir(),"relicas-site-smoke-"));
 const statePath = join(directory,"state.json");
 const tenant = "55000000-0000-4000-8000-000000000001";
 const event = { id: tenant, establishment_id: tenant, active: true, title: "Fixture show initial",
-  description: null, starts_at: new Date(Date.now()+86400000).toISOString(), ends_at: null,
+  description: null, starts_at: new Date().toISOString(), ends_at: new Date(Date.now()+3600000).toISOString(),
   image_url: "https://fixture.invalid/flyer.webp", external_url: null };
 const save = state => writeFileSync(statePath,JSON.stringify(state));
 save({events:[event]});
@@ -41,20 +42,27 @@ try {
   assert.match(page,/Drinks &amp;.*petiscos/);
   assert.match(page,/id="localizacao"/);
   assert.doesNotMatch(page,/agenda-paper\.webp|id="galeria"/);
-  assert.match(page,/Próximos/);
+  assert.match(page,/Shows da/);
+  for (const asset of ["hero-relicas.webp", "microfone-agenda.png", "comidas-cardapio-section.png", "ambiente-conceitual.webp", "vinil-decorativo.webp", "mapa-ilustrativo.webp"]) assert.match(page, new RegExp(`<img[^>]*${asset}`));
+  for (const author of ["Gilson Amorim", "Karol Paixão", "Jéssica Castro"]) assert.ok(page.includes(author));
+  assert.doesNotMatch(page, /Marcos T\.|Juliana S\.|Rodrigo M\.|há 8 meses|há 1 ano|há 3 meses/);
+  assert(page.indexOf('id="a-casa-titulo"') < page.indexOf('id="depoimentos-titulo"'));
   assert.match(page,/\/relicas\/agenda/);
   if (process.env.VERCEL_ENV === "preview") {
-    assert.match(page,/Depoimentos ilustrativos/);
-    assert.match(page,/Marcos T\./);
     assert.match(page,/hero-relicas.webp/);
     assert.match(page,/Prévia de layout/);
     assert(page.indexOf('id="a-casa-titulo"') < page.indexOf('id="depoimentos-titulo"'));
   } else {
-    assert.doesNotMatch(page,/Depoimentos ilustrativos|Marcos T\./);
-    // Ignore Next's serialized module metadata: actual concept image markup must be absent.
-    assert.doesNotMatch(page,/<img[^>]*(?:site-review|hero-relicas)/);
+    assert.doesNotMatch(page,/Prévia de layout/);
   }
   assert.match(await html("/relicas/agenda"),/Fixture show initial/);
+  save({events:[event,{...event,id:"55000000-0000-4000-8000-000000000002",title:"Fixture second show"},{...event,id:"55000000-0000-4000-8000-000000000003",title:"Fixture third show"}]});
+  page=await html("/");assert.match(page,/Fixture second show/);assert.doesNotMatch(page,/Fixture third show/);
+  assert.match(await html("/relicas/agenda"),/Fixture third show/);
+  const nextWeek = getSiteWeekRange(new Date()).before;
+  save({events:[{...event,title:"Fixture next week",starts_at:nextWeek,ends_at:null}]});
+  page=await html("/");assert.match(page,/Nenhum show anunciado para esta semana/);assert.doesNotMatch(page,/Fixture next week/);
+  assert.match(await html("/relicas/agenda"),/Fixture next week/);
   save({events:[{...event,active:false}]});
   page=await html("/");assert.match(page,/Nenhum show anunciado/);assert.doesNotMatch(page,/Fixture show initial/);
   save({events:[{...event,title:"Fixture show published"}]});

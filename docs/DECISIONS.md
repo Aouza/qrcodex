@@ -2,6 +2,13 @@
 
 Decisões registram contexto e alcance; seus checkpoints não são estado operacional atual. Use [CURRENT](../tasks/CURRENT.md) e tarefas para execução/aceite. [Governança documental](GOVERNANCE.md) define como registrar substituições.
 
+## ADR-023 — Agenda semanal e liberação das imagens selecionadas
+**Status:** Accepted, 2026-11-17 — solicitação explícita do usuário (TASK-089).
+
+**Decisão:** a home mostra até dois shows da semana civil atual, segunda a domingo no fuso de São Paulo. A consulta aplica intervalo de início inclusivo/exclusivo antes do limite, junto das regras existentes de publicação, mídia, tenant e relevância. Semana vazia não antecipa shows de outra semana; o restante continua na Agenda completa. Sexta/sábado são a frequência habitual informada, sem bloquear exceções cadastradas em outros dias.
+
+**Mídia:** o usuário autorizou exibir normalmente todas as imagens selecionadas também em produção durante o desenvolvimento. Remover o gate dessas imagens substitui essa parte da ADR-022; hero, microfone, comidas, A Casa, vinil e mapa renderizam em todos os ambientes. Isso não comprova fotografia documental, endereço ou link de playlist. Mapa continua ilustrativo e depoimentos fictícios continuam restritos a desenvolvimento/Preview. Nenhuma mudança de schema/RLS, deploy ou dado é inferida desta decisão.
+
 ## ADR-022 — Layout aprovado como referência visual única
 **Status:** Accepted, 2026-11-17 — solicitação explícita do usuário (TASK-084).
 

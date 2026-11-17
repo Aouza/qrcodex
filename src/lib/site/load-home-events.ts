@@ -1,6 +1,7 @@
 import "server-only";
 import { loadPublicAgenda } from "@/lib/agenda/load-public-agenda";
 import type { PublicAgendaEvent } from "@/lib/agenda/resolve-public-agenda-result";
+import { getSiteWeekRange } from "@/lib/site/week-range";
 
 export type HomeEventsResult = {
   status: "ready" | "empty" | "error" | "loading";
@@ -9,7 +10,9 @@ export type HomeEventsResult = {
 
 export async function loadHomeEvents(now = new Date()): Promise<HomeEventsResult> {
   try {
-    const agenda = await loadPublicAgenda("relicas", now, { limit: 4, signal: AbortSignal.timeout(2000) });
+    const agenda = await loadPublicAgenda("relicas", now, {
+      limit: 2, startsAtRange: getSiteWeekRange(now), signal: AbortSignal.timeout(2000),
+    });
     const events = agenda?.events ?? [];
     return { status: events.length ? "ready" : "empty", events };
   } catch {

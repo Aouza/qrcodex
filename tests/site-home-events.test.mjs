@@ -8,7 +8,7 @@ const establishment = { id: "tenant", name: "Relica's", slug: "relicas", logo_ur
 const event = (id, date, extra = {}) => ({ id, establishment_id: "tenant", active: true, title: id,
   description: null, starts_at: date, ends_at: null, image_url: "https://example.test/flyer.webp", external_url: null, ...extra });
 
-test("home reads the first four published, illustrated, current/upcoming events of Relica's", async () => {
+test("home reads at most two relevant published events from the current Sao Paulo week", async () => {
   const rows = [
     ...Array.from({length: 25}, (_,i) => event(`past-${i}`, "2026-11-01T21:00:00Z")),
     event("no-image", "2026-11-16T11:00:00Z", { ends_at: "2026-11-16T14:00:00Z", image_url: null }),
@@ -20,9 +20,29 @@ test("home reads the first four published, illustrated, current/upcoming events 
   const fixture = eventLoaderFixture(establishment, rows);
   const result = await loadHomeEvents(now);
   assert.equal(result.status, "ready");
-  assert.deepEqual(result.events.map(e=>e.id), ["ongoing","future-1","future-2","future-3"]);
-  assert.equal(fixture.eventRequest().searchParams.get("limit"), "4");
+  assert.deepEqual(result.events.map(e=>e.id), ["ongoing","future-1"]);
+  assert.equal(fixture.eventRequest().searchParams.get("limit"), "2");
+  assert.deepEqual(fixture.eventRequest().searchParams.getAll("starts_at"), ["gte.2026-11-16T03:00:00.000Z", "lt.2026-11-23T03:00:00.000Z"]);
   assert.equal(fixture.eventRequest().searchParams.get("establishment_id"), "eq.tenant");
+});
+
+test("empty week does not borrow next week's shows; complete Agenda still contains them", async () => {
+  eventLoaderFixture(establishment, [event("next-week", "2026-11-24T21:00:00Z")]);
+  assert.deepEqual(await loadHomeEvents(now), { status: "empty", events: [] });
+  const { loadPublicAgenda } = await import("../src/lib/agenda/load-public-agenda.ts");
+  assert.deepEqual((await loadPublicAgenda("relicas", now)).events.map(e => e.id), ["next-week"]);
+});
+
+test("weekly selection includes Sunday local time and switches exactly at Monday midnight", async () => {
+  const rows = [
+    event("previous-week-ongoing", "2026-11-15T22:00:00Z", { ends_at: "2026-11-23T06:00:00Z" }),
+    event("sunday-late", "2026-11-23T02:59:00Z", { ends_at: "2026-11-23T05:00:00Z" }),
+    event("monday", "2026-11-23T03:00:00Z"),
+  ];
+  eventLoaderFixture(establishment, rows);
+  assert.deepEqual((await loadHomeEvents(new Date("2026-11-22T22:00:00Z"))).events.map(e => e.id), ["sunday-late"]);
+  eventLoaderFixture(establishment, rows);
+  assert.deepEqual((await loadHomeEvents(new Date("2026-11-23T03:00:00Z"))).events.map(e => e.id), ["monday"]);
 });
 
 test("fresh home reads reflect publication, media removal and deletion", async () => {

@@ -4,15 +4,13 @@ import { SiteIcon } from "./site-icon";
 import ui from "./site-ui.module.css";
 import styles from "./home-features.module.css";
 
-export function HomeFeatures({ review }: { review: boolean }) {
+export function HomeFeatures() {
   return (
     <>
       <section className={styles.menu} aria-labelledby="cardapio-titulo">
-        {review && (
-          <div className={styles.menuArtwork}>
-            <Image className={styles.menuImage} src="/images/comidas-cardapio-section.png" alt="" fill sizes="(max-width: 1280px) 100vw, 1280px" />
-          </div>
-        )}
+        <div className={styles.menuArtwork}>
+          <Image className={styles.menuImage} src="/images/comidas-cardapio-section.png" alt="" fill sizes="(max-width: 1280px) 100vw, 1280px" />
+        </div>
         <div className={styles.menuInner}>
           <div className={styles.menuCopy}>
             <p className={ui.eyebrow}>Cardápio</p>
@@ -31,7 +29,7 @@ export function HomeFeatures({ review }: { review: boolean }) {
             <a className={ui.button} href="#localizacao">Conhecer a casa<SiteIcon name="arrow" size={18} /></a>
           </div>
           <div className={styles.houseArtwork}>
-            {review && <Image src="/assets/site-review/casa/ambiente-conceitual.webp" alt="" fill sizes="(max-width: 520px) calc(100vw - 40px), 480px" />}
+            <Image src="/assets/site-review/casa/ambiente-conceitual.webp" alt="" fill sizes="(max-width: 520px) calc(100vw - 40px), 480px" />
           </div>
         </div>
       </section>

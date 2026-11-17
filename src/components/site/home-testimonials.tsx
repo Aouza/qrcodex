@@ -1,28 +1,43 @@
-﻿import { isSiteReview } from "@/lib/site/review-content";
+﻿import { SiteIcon } from "./site-icon";
 import ui from "./site-ui.module.css";
 import styles from "./home-testimonials.module.css";
 
-const reviewTestimonials = [
-  { quote: "Ambiente incrível, som sempre alto na medida certa e uma galera que realmente vive o rock.", author: "Marcos T." },
-  { quote: "O melhor bar de rock da zona sul. Atendimento ótimo, cerveja gelada e shows pesados!", author: "Juliana S." },
-  { quote: "Sempre que quero ver um bom tributo e curtir com os amigos, acabo no Relica’s. Nunca decepciona.", author: "Rodrigo M." },
+const testimonials = [
+  {
+    quote: "Ótimo lugar para uma noite de rock, excelentes cantores. Bebida e comida com preços bons, sem absurdos e alguns dias tem caipirinha em dobro.",
+    author: "Gilson Amorim",
+  },
+  {
+    quote: "Achei o ambiente bacana, você ao longo da noite vai vendo a galera que cola sempre se encontrando em um clima de amizade.",
+    author: "Karol Paixão",
+  },
+  {
+    quote: "Bandas ótimas, preços muito bons e o principal: LGBT+ friendly! Os donos são uns amores, e tratam muito bem independente do gênero ou orientação sexual.",
+    author: "Jéssica Castro",
+  },
 ] as const;
 
-export function HomeTestimonials() {
-  if (!isSiteReview()) return null;
+export function HomeTestimonials({ reviewsHref }: { reviewsHref?: string | null } = {}) {
   return (
     <section className={styles.band} aria-labelledby="depoimentos-titulo">
       <div className={styles.inner}>
         <div className={styles.heading}>
-          <p className={ui.eyebrow}>O que</p>
-          <h2 id="depoimentos-titulo" className={ui.heading}>A galera diz</h2>
-          <p className={ui.notice}>Depoimentos ilustrativos</p>
+          <p className={ui.eyebrow}>Depoimentos</p>
+          <h2 id="depoimentos-titulo" className={ui.heading}>Quem vem,<br />faz parte.</h2>
+          <div className={styles.rating}>
+            <span className={styles.googleMark} aria-hidden="true"><span>G</span></span>
+            <div>
+              <p className={styles.score}>4,5 no Google</p>
+              <p className={styles.reviewCount}>776 avaliações</p>
+              {reviewsHref && <a href={reviewsHref} target="_blank" rel="noopener noreferrer" className={styles.reviewsLink}>Ver avaliações<SiteIcon name="arrow" size={18} /></a>}
+            </div>
+          </div>
         </div>
-        {reviewTestimonials.map(({ quote, author }) => (
+        {testimonials.map(({ quote, author }) => (
           <figure className={styles.testimonial} key={author}>
             <span className={styles.quoteMark} aria-hidden="true">“</span>
-            <blockquote><p>“{quote}”</p></blockquote>
-            <figcaption>— {author}</figcaption>
+            <blockquote><p>{quote}</p></blockquote>
+            <figcaption>{author}</figcaption>
           </figure>
         ))}
       </div>

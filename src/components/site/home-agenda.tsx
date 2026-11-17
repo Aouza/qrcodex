@@ -11,16 +11,16 @@ const weekday = new Intl.DateTimeFormat("pt-BR", { weekday: "short", timeZone: "
 const time = new Intl.DateTimeFormat("pt-BR", { hour: "2-digit", minute: "2-digit", timeZone: "America/Sao_Paulo" });
 const accessibleDate = new Intl.DateTimeFormat("pt-BR", { dateStyle: "full", timeStyle: "short", timeZone: "America/Sao_Paulo" });
 
-export function HomeAgenda({ result, reservationHref, review = false }: { result: HomeEventsResult; reservationHref?: string | null; review?: boolean }) {
+export function HomeAgenda({ result, reservationHref }: { result: HomeEventsResult; reservationHref?: string | null }) {
   return (
     <section className={styles.band} id="agenda" aria-labelledby="home-agenda-title">
       <div className={styles.inner}>
         <div className={styles.heading}>
-          {review && <Image className={styles.microphone} src="/images/microfone-agenda.png" alt="" fill sizes="(max-width: 767px) 150px, 180px" />}
+          <Image className={styles.microphone} src="/images/microfone-agenda.png" alt="" fill sizes="(max-width: 767px) 150px, 180px" />
           <div className={styles.headingCopy}>
             <p className={ui.eyebrow}>Agenda</p>
-            <h2 className={ui.heading} id="home-agenda-title">Próximos<br />shows</h2>
-            <p className={ui.copy}>Confira as próximas apresentações e garanta sua mesa.</p>
+            <h2 className={ui.heading} id="home-agenda-title">Shows da<br />semana</h2>
+            <p className={ui.copy}>Confira os shows desta semana e garanta sua mesa.</p>
             <span className={styles.underline} aria-hidden="true" />
           </div>
         </div>
@@ -51,7 +51,7 @@ export function HomeAgenda({ result, reservationHref, review = false }: { result
           ) : (
             <p className={styles.message} role={result.status === "loading" ? "status" : undefined}>
               {result.status === "error" ? "Não foi possível carregar os shows agora. Consulte a agenda completa ou tente novamente mais tarde."
-                : result.status === "loading" ? "Carregando próximos shows…" : "Nenhum show anunciado no momento. Novidades em breve."}
+                : result.status === "loading" ? "Carregando shows da semana…" : "Nenhum show anunciado para esta semana. Confira a agenda completa."}
             </p>
           )}
           <Link href="/relicas/agenda" className={styles.all}>Ver agenda completa<SiteIcon name="arrow" size={22} /></Link>

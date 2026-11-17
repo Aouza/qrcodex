@@ -1,11 +1,34 @@
-﻿.band { border-block:1px solid #51443880; }
-.inner { display:grid; grid-template-columns:1.05fr repeat(3,minmax(0,1fr)); gap:32px; width:min(100%,1280px); margin-inline:auto; padding:30px clamp(20px,5vw,72px); }
-.heading h2 { font-size:clamp(1.8rem,2.4vw,2.3rem); max-width:none; margin-top:4px; }
-.heading > p:last-child { margin-top:9px; }
-.testimonial { position:relative; min-width:0; margin:0; padding:14px 22px 0 0; font-size:.86rem; line-height:1.4; overflow-wrap:anywhere; }
-.testimonial + .testimonial { border-left:1px solid #51443880; padding-left:30px; }
-.quoteMark { position:absolute; top:-12px; color:#cf292d; font-family:Georgia,serif; font-size:3.5rem; line-height:1; }
-.testimonial blockquote { font-style:italic; }
-.testimonial figcaption { margin-top:11px; color:#d8d0c5; font-size:.8rem; }
-@media(max-width:767px) { .inner { grid-template-columns:1fr; gap:24px; } .heading h2 { max-width:none; } .testimonial,.testimonial + .testimonial { padding:18px 0 0; border:0; } .testimonial + .testimonial { border-top:1px solid #51443880; padding-top:30px; } .testimonial + .testimonial .quoteMark { top:0; } }
-
+﻿.band { border-block: 1px solid #51443880; }
+.inner {
+  display: grid;
+  grid-template-columns: 1.1fr repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  width: min(100%, 1280px);
+  margin-inline: auto;
+  padding: 30px clamp(20px, 5vw, 72px);
+}
+.heading { padding-right: 24px; border-right: 1px solid #b52329; }
+.heading h2 { margin-top: 7px; font-size: clamp(2rem, 2.8vw, 2.8rem); }
+.rating { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+.googleMark { display: flex; flex: 0 0 56px; align-items: center; justify-content: center; width: 56px; height: 56px; border: 1px solid #49483f; border-radius: 50%; }
+.googleMark > span { font: 700 42px/1 Arial, sans-serif; background: conic-gradient(#4285f4 0deg 115deg, #34a853 115deg 195deg, #fbbc05 195deg 245deg, #ea4335 245deg 315deg, #4285f4 315deg); background-clip: text; -webkit-text-fill-color: transparent; }
+.score { font-size: 1rem; font-weight: 700; line-height: 1.3; }
+.reviewCount { margin-top: 2px; color: #c3bbb0; font-size: .85rem; }
+.reviewsLink { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-top: 2px; font-size: .85rem; text-decoration: underline; text-underline-offset: 3px; }
+.testimonial { position: relative; min-width: 0; margin: 0; padding: 14px 0 0; font-size: .9rem; line-height: 1.45; overflow-wrap: anywhere; }
+.quoteMark { position: absolute; top: -12px; color: #cf292d; font-family: Georgia, serif; font-size: 3.5rem; line-height: 1; }
+.testimonial figcaption { margin-top: 14px; color: #e8e1d7; font-size: 1rem; font-weight: 700; }
+@media (min-width: 768px) and (max-width: 1000px) {
+  .inner { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .heading { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 24px; border-right: 0; border-bottom: 1px solid #b52329; padding: 0 0 20px; }
+  .heading > p { display: none; }
+  .heading h2 { margin: 0; }
+  .rating { margin-top: 0; }
+}
+@media (max-width: 767px) {
+  .inner { grid-template-columns: 1fr; gap: 28px; }
+  .heading { border-right: 0; border-bottom: 1px solid #b52329; padding: 0 0 24px; }
+  .testimonial { padding: 18px 0 0; }
+  .testimonial + .testimonial { border-top: 1px solid #51443880; padding-top: 30px; }
+  .testimonial + .testimonial .quoteMark { top: 0; }
+}

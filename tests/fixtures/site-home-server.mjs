@@ -15,6 +15,11 @@ globalThis.fetch = async (input) => {
       event.establishment_id === "55000000-0000-4000-8000-000000000001" &&
       Date.parse(event.ends_at ?? event.starts_at) >= Date.now());
     events.sort((a,b)=>a.starts_at.localeCompare(b.starts_at)||a.id.localeCompare(b.id));
+    for (const condition of url.searchParams.getAll("starts_at")) {
+      const value = Date.parse(condition.slice(condition.indexOf(".") + 1));
+      if (condition.startsWith("gte.")) events = events.filter(event => Date.parse(event.starts_at) >= value);
+      if (condition.startsWith("lt.")) events = events.filter(event => Date.parse(event.starts_at) < value);
+    }
     if (url.searchParams.has("limit")) events = events.slice(0,Number(url.searchParams.get("limit")));
     return Response.json(events);
   }
