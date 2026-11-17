@@ -4,33 +4,36 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { loadSiteComponent } from "./fixtures/site-components.mjs";
 
-test("illustrative testimonials are identified in development/Preview and absent in production", async () => {
-  const { HomeTestimonials } = await loadSiteComponent("src/components/site/home-testimonials.tsx");
+const { HomeTestimonials } = await loadSiteComponent("src/components/site/home-testimonials.tsx");
+
+test("user-supplied real testimonials render in every environment without dates or sample authors", () => {
   const original = { node: process.env.NODE_ENV, vercel: process.env.VERCEL_ENV };
   try {
-    for (const [node, vercel, visible] of [
-      ["development", undefined, true],
-      ["production", "preview", true],
-      ["production", "production", false],
-      ["production", undefined, false],
-    ]) {
+    for (const [node, vercel] of [["development", undefined], ["production", "preview"], ["production", "production"], ["production", undefined]]) {
       process.env.NODE_ENV = node;
-      if (vercel === undefined) delete process.env.VERCEL_ENV;
-      else process.env.VERCEL_ENV = vercel;
+      if (vercel === undefined) delete process.env.VERCEL_ENV; else process.env.VERCEL_ENV = vercel;
       const html = renderToStaticMarkup(createElement(HomeTestimonials));
-      if (!visible) { assert.equal(html, ""); continue; }
-      assert.match(html, /Depoimentos ilustrativos/);
       assert.equal((html.match(/<blockquote/g) ?? []).length, 3);
-      for (const name of ["Marcos T.", "Juliana S.", "Rodrigo M."]) assert.ok(html.includes(name));
-      assert.match(html, /A galera diz/);
-      assert.doesNotMatch(html, /estrelas|â˜…/);
-      assert.doesNotMatch(html, /application\/ld\+json|<script|<button/);
+      for (const name of ["Gilson Amorim", "Karol Paixão", "Jéssica Castro"]) assert.ok(html.includes(name));
+      assert.match(html, /Quem vem,/);
+      assert.match(html, /faz parte\./);
+      assert.match(html, /4,5 no Google/);
+      assert.match(html, /776 avaliações/);
+      assert.match(html, /Bebida e comida com preços bons, sem absurdos e alguns dias tem caipirinha em dobro\./);
+      assert.match(html, /LGBT\+ friendly!/);
+      assert.doesNotMatch(html, /Marcos T\.|Juliana S\.|Rodrigo M\.|ilustrativos|há [0-9]|meses|ano|<time|application\/ld\+json/);
+      assert.doesNotMatch(html, /<a\b/);
     }
   } finally {
     for (const [key, value] of [["NODE_ENV", original.node], ["VERCEL_ENV", original.vercel]]) {
-      if (value === undefined) delete process.env[key];
-      else process.env[key] = value;
+      if (value === undefined) delete process.env[key]; else process.env[key] = value;
     }
   }
 });
 
+test("reviews CTA only appears with a confirmed destination", () => {
+  const html = renderToStaticMarkup(createElement(HomeTestimonials, { reviewsHref: "https://maps.app.goo.gl/reviewFixture" }));
+  assert.match(html, /href="https:\/\/maps.app.goo.gl\/reviewFixture"/);
+  assert.match(html, /Ver avaliações/);
+  assert.match(html, /rel="noopener noreferrer"/);
+});

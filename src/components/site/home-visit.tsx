@@ -3,12 +3,12 @@ import { SiteIcon } from "./site-icon";
 import ui from "./site-ui.module.css";
 import styles from "./home-visit.module.css";
 
-export function HomeVisit({ review, reservationHref }: { review: boolean; reservationHref: string | null }) {
+export function HomeVisit({ reservationHref }: { reservationHref: string | null }) {
   return (
     <section className={styles.band} id="localizacao" aria-labelledby="localizacao-titulo" tabIndex={-1}>
       <div className={styles.inner}>
         <div className={styles.playlist}>
-          {review && <Image className={styles.vinyl} src="/assets/site-review/spotify/vinil-decorativo.webp" alt="" fill sizes="220px" />}
+          <Image className={styles.vinyl} src="/assets/site-review/spotify/vinil-decorativo.webp" alt="" fill sizes="220px" />
           <div className={styles.playlistCopy}>
             <div className={styles.label}><SiteIcon name="music" size={32} /><h2>Nossa playlist</h2></div>
             <p className={ui.copy}>A trilha sonora do Relica’s<br />para você curtir onde estiver.</p>
@@ -21,7 +21,8 @@ export function HomeVisit({ review, reservationHref }: { review: boolean; reserv
           <a className={ui.button} href={reservationHref ?? "#contato"} target={reservationHref ? "_blank" : undefined} rel={reservationHref ? "noopener noreferrer" : undefined}>Consultar localização<SiteIcon name="arrow" size={18} /></a>
         </div>
         <div className={styles.map}>
-          {review ? <><Image src="/assets/site-review/mapa/mapa-ilustrativo.webp" alt="" fill sizes="(max-width: 767px) 100vw, 340px" /><p className={ui.notice}>Mapa ilustrativo • localização a confirmar</p></> : <SiteIcon name="pin" size={54} />}
+          <Image src="/assets/site-review/mapa/mapa-ilustrativo.webp" alt="" fill sizes="(max-width: 767px) 100vw, 340px" />
+          <p className={ui.notice}>Mapa ilustrativo • localização a confirmar</p>
         </div>
       </div>
     </section>

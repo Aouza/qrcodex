@@ -53,11 +53,12 @@ function matches(row, expression) {
     const terms = splitTerms(group[2]);
     return group[1] === "and" ? terms.every(term => matches(row, term)) : terms.some(term => matches(row, term));
   }
-  const condition = /^([a-z_]+)\.(eq|is|gte)\.(.*)$/.exec(expression);
+  const condition = /^([a-z_]+)\.(eq|is|gte|lt)\.(.*)$/.exec(expression);
   assert.ok(condition, `Unsupported fixture predicate: ${expression}`);
   const [, field, operator, value] = condition;
   if (operator === "is") return value === "null" && row[field] === null;
   if (operator === "gte") return row[field] !== null && Date.parse(row[field]) >= Date.parse(value);
+  if (operator === "lt") return row[field] !== null && Date.parse(row[field]) < Date.parse(value);
   return String(row[field]) === value;
 }
 
@@ -71,7 +72,7 @@ export function eventLoaderFixture(establishment, rows) {
         requests.push(url);
         let data = url.pathname.endsWith("/establishments") ? [{ ...establishment, active: true }] : [...rows];
         for (const [field, expression] of url.searchParams) {
-          if (expression.startsWith("eq.")) data = data.filter(row => matches(row, `${field}.${expression}`));
+          if (/^(eq|gte|lt)\./.test(expression)) data = data.filter(row => matches(row, `${field}.${expression}`));
           if (expression === "not.is.null") data = data.filter(row => row[field] !== null);
         }
         const or = url.searchParams.get("or");

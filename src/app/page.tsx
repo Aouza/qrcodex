@@ -31,16 +31,16 @@ export default async function Home() {
   return (
     <div className={styles.site}>
       <a className={styles.skipLink} href="#conteudo">Pular para o conteúdo</a>
-      {review && <p className={styles.reviewNotice}>Prévia de layout · imagens e depoimentos ilustrativos</p>}
+      {review && <p className={styles.reviewNotice}>Prévia de layout · imagens ilustrativas</p>}
       <SiteHeader reservationHref={reservationHref} />
       <main id="conteudo" tabIndex={-1}>
-        <SiteHero imageSrc={review ? "/assets/site-review/hero-relicas.webp" : null} reservationHref={reservationHref} />
-        <Suspense fallback={<HomeAgenda result={{ status: "loading", events: [] }} review={review} reservationHref={reservationHref} />}>
-          <HomeAgendaSection reservationHref={reservationHref} review={review} />
+        <SiteHero imageSrc="/assets/site-review/hero-relicas.webp" reservationHref={reservationHref} />
+        <Suspense fallback={<HomeAgenda result={{ status: "loading", events: [] }} reservationHref={reservationHref} />}>
+          <HomeAgendaSection reservationHref={reservationHref} />
         </Suspense>
-        <HomeFeatures review={review} />
+        <HomeFeatures />
         <HomeTestimonials />
-        <HomeVisit review={review} reservationHref={reservationHref} />
+        <HomeVisit reservationHref={reservationHref} />
       </main>
       <SiteFooter reservationHref={reservationHref} instagramHref={instagramHref} />
     </div>

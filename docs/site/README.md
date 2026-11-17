@@ -2,7 +2,7 @@
 
 A direção visual vigente é `reference/layout-aprovado.png`, aprovada em 2026-11-17 e aplicada na [TASK-084](../../tasks/completed/TASK-084-site-approved-layout.md). Composição: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. [ADR-022](../DECISIONS.md#adr-022--layout-aprovado-como-referência-visual-única) substitui as referências visuais anteriores, preservando dados, admin, rotas e Música.
 
-A Agenda reutiliza a fonte pública real; conceitos/depoimentos aparecem somente em revisão local/Preview identificada. Conteúdo real, links oficiais, aliases, schema/admin editorial e gates de release permanecem nas tarefas canônicas. O próximo incremento READY continua TASK-068 após esta tarefa.
+A Agenda reutiliza a fonte pública real, com até dois shows da semana de São Paulo (TASK-089). Imagens selecionadas foram autorizadas em todos os ambientes; apenas depoimentos fictícios seguem restritos à revisão local/Preview. Conteúdo real, links oficiais, aliases, schema/admin editorial e gates de release permanecem nas tarefas canônicas. O próximo incremento READY continua TASK-068 após esta tarefa.
 
 A [TASK-085](../../tasks/completed/TASK-085-site-feature-assets.md) substitui o microfone e a montagem de comidas pelos PNGs fornecidos pelo usuário, preservando o layout aprovado e a fronteira de revisão.
 

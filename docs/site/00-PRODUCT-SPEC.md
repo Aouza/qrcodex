@@ -10,7 +10,7 @@ Descoberta de shows, cardápio, casa e contato dentro do Next existente. Menu em
 | Ordem | Seção | Contrato |
 |---|---|---|
 | 1 | Header/Hero | Marca, Início, Agenda, Cardápio, A Casa, Localização e Contato. Header sobre hero escura, título HTML creme/vermelho; CTAs Reserve sua mesa e Ver a agenda |
-| 2 | Agenda | Até quatro eventos reais publicados/relevantes, datas/horários São Paulo, flyer cadastrado e linhas escuras. Contato de reserva apenas com WhatsApp cadastrado. Vazio/erro/loading independentes |
+| 2 | Agenda | Até dois eventos publicados/relevantes com início na semana atual, segunda a domingo, São Paulo. Intervalo antes do limite, flyer cadastrado e linhas escuras. Contato de reserva somente com WhatsApp cadastrado. Semana vazia não puxa shows futuros; link abre Agenda completa sem esse recorte |
 | 3 | Drinks & Petiscos | Composição visual de cerveja/petiscos e acesso ao catálogo existente, sem preços ou catálogo paralelo |
 | 4 | A Casa | Texto e imagem editorial; link Conhecer a casa leva à localização na própria página |
 | 5 | Depoimentos | Faixa compacta após A Casa, três citações sem estrelas; exemplos apenas em revisão identificada |
@@ -20,7 +20,7 @@ Descoberta de shows, cardápio, casa e contato dentro do Next existente. Menu em
 Galeria e papel rasgado não integram o novo layout. Não incluir seção CTA adicional só por haver asset no ZIP. RSVP, venda de ingressos e gestão de reservas não são funções deste site: botões de reserva abrem conversa com WhatsApp cadastrado e têm fallback em Contato.
 
 ## Conteúdo de revisão e produção
-Aprovação de layout não comprova fotografia documental, endereço, horários, depoimentos, playlist ou redes. `isSiteReview()` habilita mídia conceitual fornecida e exemplos em desenvolvimento ou Vercel Preview, com identificação visível. Produção usa a composição sem essas imagens/depoimentos até aprovação e tarefa de ativação. Nunca fabricar shows ou usar as bandas da referência como dados reais.
+Aprovação de layout não comprova fotografia documental, endereço, horários, depoimentos, playlist ou redes. Na TASK-089 o usuário autorizou exibir as imagens selecionadas em todos os ambientes, inclusive produção: não há mais gate por ambiente nas imagens. `isSiteReview()` permanece somente para o aviso de revisão e depoimentos fictícios; estes continuam ocultos em produção. O mapa mantém identificação ilustrativa. Não usar as bandas da referência como shows confirmados; a TASK-088 registra a autorização específica dos três eventos temporários identificados como TESTE.
 
 Playlist sem URL oficial mostra “Link oficial em breve”. Sem endereço confirmado, consultar a casa pelo contato disponível; sem dados confirmados não criar botão de mapa externo. Instagram/WhatsApp vêm do cadastro existente. Spotify/Facebook/YouTube não ganham URLs por inferência. Texto informativo não é controle desabilitado.
 

@@ -2,7 +2,11 @@ import { resolvePublicAgendaResult } from "@/lib/agenda/resolve-public-agenda-re
 import { publicEventTimeFilter } from "@/lib/agenda/public-event-time";
 import { createPublicClient } from "@/lib/supabase/public";
 
-export async function loadPublicAgenda(slug: string, now = new Date(), options: { limit?: number; signal?: AbortSignal } = {}) {
+export async function loadPublicAgenda(slug: string, now = new Date(), options: {
+  limit?: number;
+  signal?: AbortSignal;
+  startsAtRange?: { from: string; before: string };
+} = {}) {
   const supabase = createPublicClient();
   const establishmentQuery = supabase
     .from("establishments")
@@ -24,6 +28,7 @@ export async function loadPublicAgenda(slug: string, now = new Date(), options: 
     .or(publicEventTimeFilter(now))
     .order("starts_at")
     .order("id");
+  if (options.startsAtRange) eventQuery.gte("starts_at", options.startsAtRange.from).lt("starts_at", options.startsAtRange.before);
   if (options.limit !== undefined) eventQuery.not("image_url", "is", null).limit(options.limit);
   if (options.signal) eventQuery.abortSignal(options.signal);
   const eventResult = await eventQuery;
