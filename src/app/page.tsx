@@ -10,7 +10,6 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SiteHero } from "@/components/site/site-hero";
 import { loadSiteContacts } from "@/lib/site/load-site-contacts";
 import { getReservationHref } from "@/lib/site/reservation-link";
-import { isSiteReview } from "@/lib/site/review-content";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -26,15 +25,13 @@ export default async function Home() {
   const instagram = contacts?.instagram;
   const instagramHref = instagram && /^[a-zA-Z0-9._]{1,30}$/.test(instagram)
     ? `https://instagram.com/${instagram}` : null;
-  const review = isSiteReview();
 
   return (
     <div className={styles.site}>
       <a className={styles.skipLink} href="#conteudo">Pular para o conteúdo</a>
-      {review && <p className={styles.reviewNotice}>Prévia de layout · imagens ilustrativas</p>}
       <SiteHeader reservationHref={reservationHref} />
       <main id="conteudo" tabIndex={-1}>
-        <SiteHero imageSrc="/assets/site-review/hero-relicas.webp" reservationHref={reservationHref} />
+        <SiteHero imageSrc="/images/hero/hero-relicas.png" reservationHref={reservationHref} />
         <Suspense fallback={<HomeAgenda result={{ status: "loading", events: [] }} reservationHref={reservationHref} />}>
           <HomeAgendaSection reservationHref={reservationHref} />
         </Suspense>

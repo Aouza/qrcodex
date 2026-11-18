@@ -8,6 +8,5 @@
 .site :where(a,summary):focus-visible { outline:2px solid #f2d7b3; outline-offset:4px; border-radius:3px; }
 .site :where(main,section,footer):focus { outline:none; }
 .site svg { flex-shrink:0; }
-.reviewNotice { position:relative; z-index:31; padding:5px 20px; border-bottom:1px solid #554736; background:#181512; color:#d3bfa7; font-size:.65rem; line-height:1.4; text-align:center; }
 .skipLink { position:absolute; z-index:50; top:8px; left:20px; padding:12px 18px; transform:translateY(-200%); background:#f0eae1; color:#14120f; }
 .skipLink:focus { transform:none; }

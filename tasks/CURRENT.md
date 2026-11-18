@@ -1,5 +1,11 @@
 # Current Development
 
+## Último ajuste solicitado
+
+[TASK-091](completed/TASK-091-site-hero-image.md) — **DONE**. Nova imagem do palco fornecida pelo usuário aplicada à hero em 2026-11-18, preservando layout, texto e botões. 157 testes, lint/tipos/build e browser em seis larguras passaram; hero mais alta, cena centralizada com bordas suaves e aviso de prévia removido. Sem commit/push/deploy; TASK-068 continua READY como próximo incremento.
+
+[TASK-092](completed/TASK-092-site-hero-copy.md) — **DONE**. Texto da nova referência aplicado à hero, com título creme e descrição completos. Testes do hero, lint, tipos e revisão em cinco larguras passaram. Imagem, enquadramento e botões preservados; sem commit/push/deploy.
+
 ## Próxima implementação
 
 TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). Integra o catálogo existente em `/cardapio`, preservando destinos por slug e verificando o inventário de hosts/slugs antes de rotas estáticas. A TASK-067 entregou helpers; os aliases institucionais e a configuração real dos hosts ainda não foram concluídos.
@@ -42,3 +48,5 @@ TASK-058/061 conservam IN_PROGRESS histórico como trilhas de aceite; não repre
 ## Limites
 
 Preservar rotas por slug, Menu/Agenda/admin/TV, tenant e dados. Não fazer commit/push/deploy, migrations remotas ou mutações de produção por autorização documental. Permissões específicas anteriores de Música não se estendem ao site. Não concluir aceites manuais por evidência automatizada.
+
+Em 2026-11-18, o usuário autorizou commit e envio das TASK-091/092 para PR, sem nova confirmação conversacional para commits/PRs. Os checkpoints anteriores sem commit/push/deploy permanecem históricos. Esta autorização não inclui merge ou deploy.
