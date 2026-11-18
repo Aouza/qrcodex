@@ -2,8 +2,6 @@
 
 ## Próxima implementação
 
-TASK-090 — Exibir depoimentos reais sem datas — **IN_PROGRESS**, screenshot legível fornecido pelo usuário. [Tarefa](active/TASK-090-site-real-testimonials.md). Substituir exemplos e exibir os três depoimentos em produção; sem mês/ano ou URL inventada. TASK-068 segue READY após o incremento.
-
 TASK-068 — Adicionar cardápio institucional compartilhado — **READY**. [Tarefa](active/TASK-068-site-menu-route.md) · [Site](../docs/site/README.md) · [Plano incremental](../docs/site/06-IMPLEMENTATION-PLAN.md). Integra o catálogo existente em `/cardapio`, preservando destinos por slug e verificando o inventário de hosts/slugs antes de rotas estáticas. A TASK-067 entregou helpers; os aliases institucionais e a configuração real dos hosts ainda não foram concluídos.
 
 A [TASK-084 — layout aprovado](completed/TASK-084-site-approved-layout.md) concluiu localmente a apresentação completa da home em 2026-11-17. `docs/site/reference/layout-aprovado.png` é a única referência visual: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. Substitui as apresentações anteriores das TASK-080/082/072/083; mantém dados/rotas/admin/Música. 151 testes, lint, tipos, build/start e browser em cinco larguras passaram. Sem commit/push/deploy ou dados remotos.
@@ -19,6 +17,8 @@ O usuário autorizou commit e envio para PR em 2026-11-17. As notas “sem commi
 A [TASK-088](completed/TASK-088-agenda-production-test-events.md) criou em produção, por autorização explícita, três eventos TESTE da referência com mídia: Creed Experience (20/11 20h), Stone Garden (21/11 21h) e System of a Down (22/11 21h), São Paulo. Leitura anônima e carregador real da home em configuração de produção confirmaram os três. Outro Creed Experience já presente foi preservado. Remover/despublicar os testes após validar. O ambiente local ainda aponta ao projeto antigo indisponível; sua conexão não foi alterada. Sem novo deploy/commit/push.
 
 A [TASK-089](completed/TASK-089-site-weekly-agenda-and-media.md) limita a home a dois shows da semana atual (segunda a domingo em São Paulo), mantendo os demais na Agenda completa. Por autorização explícita, todas as imagens selecionadas renderizam também em produção; apenas depoimentos fictícios continuam restritos ao modo de revisão. 156 testes, lint/tipos/build, smoke compilado production/preview e browser passaram. Alterações locais, sem novo commit/push/deploy; produção hospedada depende de publicação posterior.
+
+A [TASK-090](completed/TASK-090-site-real-testimonials.md) substituiu os exemplos por três avaliações reais fornecidas pelo usuário, com autores, sem mês/ano e exibidas em todos os ambientes. Nota Google 4,5/776 é snapshot fornecido, sem API. O botão aguarda link real; usuário autorizou seguir com o conteúdo. 157 testes, lint/tipos/build, smoke production/preview e browser em cinco larguras passaram. Código no commit `8ec7ebb`, integrado pelo PR #9; usuário autorizou em 2026-11-18 commitar e enviar o fechamento documental para novo PR, sem merge ou deploy inferido.
 
 Autorização de imagens não confirma fotografia documental, endereço ou links oficiais. TASK-071/075/076 continuam responsáveis pela integração/conteúdo real. Aceites históricos independentes permanecem abaixo.
 

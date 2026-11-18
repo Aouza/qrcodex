@@ -13,14 +13,14 @@ Descoberta de shows, cardápio, casa e contato dentro do Next existente. Menu em
 | 2 | Agenda | Até dois eventos publicados/relevantes com início na semana atual, segunda a domingo, São Paulo. Intervalo antes do limite, flyer cadastrado e linhas escuras. Contato de reserva somente com WhatsApp cadastrado. Semana vazia não puxa shows futuros; link abre Agenda completa sem esse recorte |
 | 3 | Drinks & Petiscos | Composição visual de cerveja/petiscos e acesso ao catálogo existente, sem preços ou catálogo paralelo |
 | 4 | A Casa | Texto e imagem editorial; link Conhecer a casa leva à localização na própria página |
-| 5 | Depoimentos | Faixa compacta após A Casa, três citações sem estrelas; exemplos apenas em revisão identificada |
+| 5 | Depoimentos | Três avaliações reais fornecidas/autorizadas pelo usuário na TASK-090, com autores e sem datas. Quem vem, faz parte; nota Google 4,5/776 avaliações é snapshot manual informado, sem API ou structured data. Exibição em todos os ambientes; link somente quando confirmado |
 | 6 | Playlist/Localização | Vinil, identidade musical, endereço/direções somente confirmados e mapa ilustrativo identificado. Sem embed externo obrigatório |
 | 7 | Footer/Contato | Marca, navegação e contatos reais cadastrados. Ausência de links comunica indisponibilidade |
 
 Galeria e papel rasgado não integram o novo layout. Não incluir seção CTA adicional só por haver asset no ZIP. RSVP, venda de ingressos e gestão de reservas não são funções deste site: botões de reserva abrem conversa com WhatsApp cadastrado e têm fallback em Contato.
 
 ## Conteúdo de revisão e produção
-Aprovação de layout não comprova fotografia documental, endereço, horários, depoimentos, playlist ou redes. Na TASK-089 o usuário autorizou exibir as imagens selecionadas em todos os ambientes, inclusive produção: não há mais gate por ambiente nas imagens. `isSiteReview()` permanece somente para o aviso de revisão e depoimentos fictícios; estes continuam ocultos em produção. O mapa mantém identificação ilustrativa. Não usar as bandas da referência como shows confirmados; a TASK-088 registra a autorização específica dos três eventos temporários identificados como TESTE.
+Aprovação de layout não comprova fotografia documental, endereço, horários, playlist ou redes. Na TASK-089 o usuário autorizou as imagens selecionadas em todos os ambientes. Na TASK-090 confirmou e forneceu três depoimentos reais para substituir os exemplos, também em todos os ambientes e sem mês/ano. `isSiteReview()` permanece somente no aviso visual de revisão; não condiciona conteúdo autorizado. O mapa mantém identificação ilustrativa. Não usar as bandas da referência como shows confirmados; a TASK-088 registra a autorização específica dos três eventos temporários identificados como TESTE.
 
 Playlist sem URL oficial mostra “Link oficial em breve”. Sem endereço confirmado, consultar a casa pelo contato disponível; sem dados confirmados não criar botão de mapa externo. Instagram/WhatsApp vêm do cadastro existente. Spotify/Facebook/YouTube não ganham URLs por inferência. Texto informativo não é controle desabilitado.
 

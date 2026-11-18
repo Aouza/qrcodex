@@ -10,6 +10,8 @@ Decisões registram contexto e alcance; seus checkpoints não são estado operac
 **Mídia:** o usuário autorizou exibir normalmente todas as imagens selecionadas também em produção durante o desenvolvimento. Remover o gate dessas imagens substitui essa parte da ADR-022; hero, microfone, comidas, A Casa, vinil e mapa renderizam em todos os ambientes. Isso não comprova fotografia documental, endereço ou link de playlist. Mapa continua ilustrativo e depoimentos fictícios continuam restritos a desenvolvimento/Preview. Nenhuma mudança de schema/RLS, deploy ou dado é inferida desta decisão.
 
 ## ADR-022 — Layout aprovado como referência visual única
+Atualização editorial TASK-090: o usuário forneceu e confirmou três avaliações reais, substituindo os exemplos anteriores. Essas avaliações e a nota/quantidade informadas podem ser exibidas em todos os ambientes, sem datas. `isSiteReview()` passa a condicionar apenas o aviso visual de revisão. Não há consulta automática ao Google nem structured data de avaliações; URL de avaliações não é presumida.
+
 **Status:** Accepted, 2026-11-17 — solicitação explícita do usuário (TASK-084).
 
 **Contexto:** hero, papel da Agenda e depoimentos haviam sido implementados a partir de referências parciais. O usuário forneceu um layout completo e autorizou desconsiderar o desenho anterior.

@@ -1,4 +1,4 @@
-﻿# Relica's --- Design System & UI/UX Specification
+# Relica's --- Design System & UI/UX Specification
 
 **Atualização 2026-11-10:** este documento preserva as regras do cardápio/Hub/admin/TV. Para a nova homepage institucional, aplicar a seção 51 e [design do site](site/02-DESIGN-SYSTEM.md). A prioridade institucional não transforma o catálogo em experiência de compra e não recolore globalmente os módulos existentes. A implementação visual ainda depende das tarefas do site.
 
@@ -1292,6 +1292,6 @@ A TASK-084 / ADR-022 substitui a apresentação das TASK-080/082/072/083 por `do
 - Container até 1280 px e padding 20–72 px. Alvos >=44 px, skip link, foco visível, menu mobile com Escape/retorno de foco, sem carrosséis/autoplay/motion decorativo.
 - Fotos decorativas de faixas compactas seguem o limite de 1280 px do conteúdo, sem zoom pelo viewport em monitores largos. Drinks & Petiscos usa cerca de 280 px de altura normal no desktop, com texto ampliado livre para crescer; testar também 1920/2535 px para não repetir a regressão de escala da TASK-086.
 - Agenda da home mostra até dois resultados da semana atual de São Paulo, com publicação/tenant/mídia e relevância preservados. Título “Shows da semana”; vazio explícito da semana, com acesso à Agenda completa. Linhas com flyer, título e contato de reserva opcional; não inferir tributo, preço ou link de ingresso.
-- Features em composições alternadas imagem/texto. Imagens selecionadas exibidas também em produção por autorização da TASK-089/ADR-023, sem afirmar fotografia documental; depoimentos fictícios mantêm gate separado. Hero priorizada e demais imagens lazy, com sizes e espaço reservado.
-- Depoimentos compactos após A Casa, somente exemplos identificados em revisão; sem estrelas ou nota agregada. Playlist/redes/endereço exigem links e dados reais antes de habilitar destinos externos.
+- Features em composições alternadas imagem/texto. Imagens selecionadas exibidas também em produção por autorização da TASK-089/ADR-023, sem afirmar fotografia documental; depoimentos reais fornecidos na TASK-090 também são públicos. Hero priorizada e demais imagens lazy, com sizes e espaço reservado.
+- Depoimentos após A Casa: avaliações reais fornecidas na TASK-090, autores sem datas e título Quem vem, faz parte. Nota 4,5/776 informada pelo usuário, não atualizada via API; sem estrelas individuais ou structured data. Exibir em todos os ambientes. Playlist/redes/endereço/avaliações exigem links reais confirmados antes de habilitar destinos externos.
 - Verificar 320/360/768/1440 px, texto longo, estados loading/vazio/erro, teclado/zoom e regressão das superfícies existentes. Detalhes canônicos em `docs/site/02-DESIGN-SYSTEM.md`.

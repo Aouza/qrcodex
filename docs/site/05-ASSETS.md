@@ -1,6 +1,9 @@
 # Assets — inventário e entrega
 
 ## Materiais encontrados
+### Referência editorial de depoimentos — TASK-090
+`docs/site/reference/testimonials-approved-2026-11-17.png`, screenshot fornecido pelo usuário e preservado sem alterações (537.122 bytes). Usuário confirmou os textos/autores como reais e pediu omitir mês/ano. Fonte da nota 4,5 e quantidade 776 no Google; snapshot manual, não API/verificação automática de atualidade. A imagem serve de referência e não é exibida como bitmap na página: depoimentos e resumo são HTML, com identidade gráfica decorativa em CSS. Link de avaliações depende de endereço confirmado.
+
 ### Substituições selecionadas pelo usuário — TASK-085
 Os arquivos abaixo substituem a montagem de cerveja/petiscos e o microfone do pacote inicial. Originais preservados, sem geração/edição de bitmap ou recompressão em disco. Servidos por next/image com otimização responsiva, lazy, sizes e alt vazio. Seleção para uso visual não comprova fotografia documental; a TASK-089/ADR-023 posteriormente autorizou sua exibição também em produção, sem comprovar procedência documental.
 
