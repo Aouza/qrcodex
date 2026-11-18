@@ -1,6 +1,9 @@
 # Assets — inventário e entrega
 
 ## Materiais encontrados
+### Hero selecionada — TASK-091
+`public/images/hero/hero-relicas.png`, 1672 × 941 px, 1.822.415 bytes. Fornecida e selecionada pelo usuário em 2026-11-18 para substituir a hero do pacote TASK-084. Palco/instrumentos à direita e espaço escuro à esquerda para o título HTML. Original preservado; next/image com fill, sizes e preload, alt vazio decorativo. Exibição em todos os ambientes, sem comprovar procedência documental. Arquivos anteriores permanecem como histórico.
+
 ### Referência editorial de depoimentos — TASK-090
 `docs/site/reference/testimonials-approved-2026-11-17.png`, screenshot fornecido pelo usuário e preservado sem alterações (537.122 bytes). Usuário confirmou os textos/autores como reais e pediu omitir mês/ano. Fonte da nota 4,5 e quantidade 776 no Google; snapshot manual, não API/verificação automática de atualidade. A imagem serve de referência e não é exibida como bitmap na página: depoimentos e resumo são HTML, com identidade gráfica decorativa em CSS. Link de avaliações depende de endereço confirmado.
 
@@ -17,7 +20,7 @@ Fonte aprovada para direção visual: `docs/site/reference/layout-aprovado.png`,
 
 | Asset em `public/assets/site-review/` | Uso | Bytes |
 |---|---|---|
-| `hero-relicas.webp` | Hero decorativa, preload/sizes, 1672 × 941 | 47030 |
+| `hero-relicas.webp` | Hero histórica; substituída pela TASK-091, 1672 × 941 | 47030 |
 | `agenda/microfone.webp` | Histórico; substituído na TASK-085 | 8010 |
 | `agenda/show-vocalista.webp`, `show-guitarrista.webp`, `show-plateia.webp` | Referências preservadas; não substituem flyers cadastrados no app | 8058 / 6542 / 11216 |
 | `cardapio/cerveja.webp`, `petiscos.webp` | Histórico; montagem substituída na TASK-085 | 18866 / 15172 |
@@ -35,7 +38,7 @@ Decoração de depoimentos (TASK-083): `public/assets/textures/testimonials.svg`
 
 Papel da Agenda: `public/images/agenda.png`, 2172 × 724 px, 2.308.291 bytes, com transparência; fornecido e selecionado pelo usuário em 2026-11-16. Original preservado. Derivado `public/images/agenda-paper.webp`, mesmas dimensões/alpha, 325.584 bytes, usado como decoração por `border-image` no CSS Module da seção. O fatiamento conserva bordas rasgadas enquanto o centro acompanha o conteúdo no celular. Não contém texto nem dados de eventos; não recebe alt ou foco. Substitui a necessidade de criar A03/A04 para este incremento.
 
-Imagem atual da hero: `public/images/hero/hero.png`, 1774 × 887 px, 2.064.560 bytes. Fornecida e selecionada pelo usuário em 2026-11-16 para substituir o conceito gerado. Original preservado; usada por `next/image` com `fill`, `sizes` e preload, permitindo otimização responsiva pelo pipeline existente. Guitarrista à direita e área escura à esquerda para texto HTML. Alt vazio por ser fundo decorativo. Seleção para uso na hero não comprova fotografia documental da casa; procedência não informada. Sem seletor de ambiente ou aviso do conceito antigo.
+Hero histórica da TASK-082: `public/images/hero/hero.png`, 1774 × 887 px, 2.064.560 bytes. Fornecida e selecionada pelo usuário em 2026-11-16 para substituir o conceito gerado. Original preservado; usada por `next/image` com `fill`, `sizes` e preload, permitindo otimização responsiva pelo pipeline existente. Guitarrista à direita e área escura à esquerda para texto HTML. Alt vazio por ser fundo decorativo. Seleção para uso na hero não comprova fotografia documental da casa; procedência não informada. Sem seletor de ambiente ou aviso do conceito antigo.
 
 `public/images/logo/logo-site.png` é o logo horizontal fornecido para a navbar institucional, com 1774 × 887 px.
 

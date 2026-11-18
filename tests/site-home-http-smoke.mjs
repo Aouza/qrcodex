@@ -43,18 +43,12 @@ try {
   assert.match(page,/id="localizacao"/);
   assert.doesNotMatch(page,/agenda-paper\.webp|id="galeria"/);
   assert.match(page,/Shows da/);
-  for (const asset of ["hero-relicas.webp", "microfone-agenda.png", "comidas-cardapio-section.png", "ambiente-conceitual.webp", "vinil-decorativo.webp", "mapa-ilustrativo.webp"]) assert.match(page, new RegExp(`<img[^>]*${asset}`));
+  for (const asset of ["hero-relicas.png", "microfone-agenda.png", "comidas-cardapio-section.png", "ambiente-conceitual.webp", "vinil-decorativo.webp", "mapa-ilustrativo.webp"]) assert.match(page, new RegExp(`<img[^>]*${asset}`));
   for (const author of ["Gilson Amorim", "Karol Paixão", "Jéssica Castro"]) assert.ok(page.includes(author));
   assert.doesNotMatch(page, /Marcos T\.|Juliana S\.|Rodrigo M\.|há 8 meses|há 1 ano|há 3 meses/);
   assert(page.indexOf('id="a-casa-titulo"') < page.indexOf('id="depoimentos-titulo"'));
   assert.match(page,/\/relicas\/agenda/);
-  if (process.env.VERCEL_ENV === "preview") {
-    assert.match(page,/hero-relicas.webp/);
-    assert.match(page,/Prévia de layout/);
-    assert(page.indexOf('id="a-casa-titulo"') < page.indexOf('id="depoimentos-titulo"'));
-  } else {
-    assert.doesNotMatch(page,/Prévia de layout/);
-  }
+  assert.doesNotMatch(page,/Prévia de layout/);
   assert.match(await html("/relicas/agenda"),/Fixture show initial/);
   save({events:[event,{...event,id:"55000000-0000-4000-8000-000000000002",title:"Fixture second show"},{...event,id:"55000000-0000-4000-8000-000000000003",title:"Fixture third show"}]});
   page=await html("/");assert.match(page,/Fixture second show/);assert.doesNotMatch(page,/Fixture third show/);
