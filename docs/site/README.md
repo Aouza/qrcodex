@@ -2,14 +2,14 @@
 
 A direção visual vigente é `reference/layout-aprovado.png`, aprovada em 2026-11-17 e aplicada na [TASK-084](../../tasks/completed/TASK-084-site-approved-layout.md). Composição: header/hero, Agenda escura, Drinks & Petiscos, A Casa, depoimentos, playlist/localização e footer. [ADR-022](../DECISIONS.md#adr-022--layout-aprovado-como-referência-visual-única) substitui as referências visuais anteriores, preservando dados, admin, rotas e Música.
 
-A Agenda reutiliza a fonte pública real, com até dois shows da semana de São Paulo (TASK-089). Imagens selecionadas foram autorizadas em todos os ambientes; apenas depoimentos fictícios seguem restritos à revisão local/Preview. Conteúdo real, links oficiais, aliases, schema/admin editorial e gates de release permanecem nas tarefas canônicas. O próximo incremento READY continua TASK-068 após esta tarefa.
+A Agenda reutiliza a fonte pública real, com até dois shows da semana de São Paulo (TASK-089). Imagens selecionadas foram autorizadas em todos os ambientes; a TASK-090 substitui os depoimentos fictícios por três avaliações reais fornecidas, sem datas e exibidas em todos os ambientes. Conteúdo real, links oficiais, aliases, schema/admin editorial e gates de release permanecem nas tarefas canônicas. O próximo incremento READY continua TASK-068 após esta tarefa.
 
 A [TASK-085](../../tasks/completed/TASK-085-site-feature-assets.md) substitui o microfone e a montagem de comidas pelos PNGs fornecidos pelo usuário, preservando o layout aprovado e a fronteira de revisão.
 
 A [TASK-086](../../tasks/completed/TASK-086-site-image-scale.md) limita a escala desses assets ao container de conteúdo e à faixa compacta da referência, com QA adicional em monitores de 1920/2535 px.
 
 ## Leitura e precedência
-A [TASK-083](../../tasks/completed/TASK-083-site-home-testimonials.md) preserva a entrega histórica de depoimentos; a TASK-084 os reposiciona após A Casa e retira estrelas. Exemplos continuam restritos à revisão até substituição aprovada.
+A [TASK-083](../../tasks/completed/TASK-083-site-home-testimonials.md) preserva a entrega histórica de depoimentos; a TASK-084 os reposiciona após A Casa e retira estrelas. A TASK-090 registra a substituição aprovada dos exemplos por depoimentos reais.
 
 Esta pasta responde pelo produto Site. O mapa da plataforma e dos demais produtos está em [docs/README](../README.md); as regras de atualização estão em [GOVERNANCE](../GOVERNANCE.md).
 
