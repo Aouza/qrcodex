@@ -1,6 +1,13 @@
 # Assets — inventário e entrega
 
 ## Materiais encontrados
+### Faixa informativa — TASK-094
+Screenshot fornecido preservado em `docs/site/reference/highlights-approved-2026-11-18.png`. Faixa implementada com texto HTML e ícones SVG do sistema local (estrela, cerveja, calendário, pessoas), sem bitmap da referência, novas fontes ou bibliotecas.
+
+### A Casa selecionada — TASK-093
+Referência fornecida preservada em `docs/site/reference/house-approved-2026-11-18.png` (1.127.324 bytes), sem alterações. É referência de composição; o screenshot inteiro não é renderizado na página.
+`public/images/a-casa.png`, 2172 × 724 px, 1.995.783 bytes. Fornecida e selecionada pelo usuário em 2026-11-18 para a nova referência de A Casa. Foto/cena com bordas rasgadas incorporadas ao bitmap; original preservado, sem gerar ou editar imagem. Substitui o pequeno asset do pacote inicial. next/image lazy, fill/sizes e alt vazio decorativo, com proporção reservada 3:1 e contain; texto permanece em HTML. Exibição autorizada em todos os ambientes pelo pedido de implementação; procedência documental não verificada.
+
 ### Hero selecionada — TASK-091
 `public/images/hero/hero-relicas.png`, 1672 × 941 px, 1.822.415 bytes. Fornecida e selecionada pelo usuário em 2026-11-18 para substituir a hero do pacote TASK-084. Palco/instrumentos à direita e espaço escuro à esquerda para o título HTML. Original preservado; next/image com fill, sizes e preload, alt vazio decorativo. Exibição em todos os ambientes, sem comprovar procedência documental. Arquivos anteriores permanecem como histórico.
 
@@ -24,7 +31,7 @@ Fonte aprovada para direção visual: `docs/site/reference/layout-aprovado.png`,
 | `agenda/microfone.webp` | Histórico; substituído na TASK-085 | 8010 |
 | `agenda/show-vocalista.webp`, `show-guitarrista.webp`, `show-plateia.webp` | Referências preservadas; não substituem flyers cadastrados no app | 8058 / 6542 / 11216 |
 | `cardapio/cerveja.webp`, `petiscos.webp` | Histórico; montagem substituída na TASK-085 | 18866 / 15172 |
-| `casa/ambiente-conceitual.webp` | A Casa, decorativa; fonte 363 × 219 px. TASK-087 limita apresentação a 480 px, com cena inteira; versão maior é necessária para uso amplo nítido | 19196 |
+| `casa/ambiente-conceitual.webp` | Histórico de A Casa; fonte 363 × 219 px, limitado pela TASK-087. Substituído na TASK-093 pela nova imagem fornecida | 19196 |
 | `spotify/vinil-decorativo.webp` | Vinil decorativo, sem link de playlist presumido | 4962 |
 | `mapa/mapa-ilustrativo.webp` | Mapa explicitamente ilustrativo, sem direções fictícias | 6344 |
 | `cta/plateia-vermelho.webp` | Preservado, não utilizado: seção CTA extra ausente do layout | 11318 |

@@ -1,5 +1,13 @@
 # Current Development
 
+## Último ajuste
+
+[TASK-094](completed/TASK-094-site-home-highlights.md) — **DONE**. Faixa aprovada entre hero e Agenda com avaliação Google, preço médio, dias de música ao vivo e ambiente acolhedor. 157 testes, lint/tipos/build, smoke HTTP e browser em seis larguras/zoom 200% passaram. Sem commit/push/deploy; TASK-068 continua READY.
+
+## Última entrega
+
+[TASK-093](completed/TASK-093-site-house-section.md) — **DONE**. A Casa atualizada com texto aprovado e imagem inteira com bordas rasgadas. 157 testes, lint/tipos/build, smoke HTTP e browser em seis larguras/zoom 200% passaram. Sem commit/push/deploy; TASK-068 continua READY.
+
 ## Último ajuste solicitado
 
 [TASK-091](completed/TASK-091-site-hero-image.md) — **DONE**. Nova imagem do palco fornecida pelo usuário aplicada à hero em 2026-11-18, preservando layout, texto e botões. 157 testes, lint/tipos/build e browser em seis larguras passaram; hero mais alta, cena centralizada com bordas suaves e aviso de prévia removido. Sem commit/push/deploy; TASK-068 continua READY como próximo incremento.
@@ -50,3 +58,5 @@ TASK-058/061 conservam IN_PROGRESS histórico como trilhas de aceite; não repre
 Preservar rotas por slug, Menu/Agenda/admin/TV, tenant e dados. Não fazer commit/push/deploy, migrations remotas ou mutações de produção por autorização documental. Permissões específicas anteriores de Música não se estendem ao site. Não concluir aceites manuais por evidência automatizada.
 
 Em 2026-11-18, o usuário autorizou commit e envio das TASK-091/092 para PR, sem nova confirmação conversacional para commits/PRs. Os checkpoints anteriores sem commit/push/deploy permanecem históricos. Esta autorização não inclui merge ou deploy.
+
+Em 2026-11-18, o usuário autorizou commit e envio das TASK-093/094 para PR sem nova confirmação. Os registros anteriores sem commit/push/deploy são checkpoints locais históricos; merge/deploy continuam fora desta autorização.

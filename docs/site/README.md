@@ -8,6 +8,8 @@ A [TASK-085](../../tasks/completed/TASK-085-site-feature-assets.md) substitui o 
 
 A [TASK-086](../../tasks/completed/TASK-086-site-image-scale.md) limita a escala desses assets ao container de conteúdo e à faixa compacta da referência, com QA adicional em monitores de 1920/2535 px.
 
+A [TASK-093](../../tasks/completed/TASK-093-site-house-section.md) aplica a nova referência de A Casa fornecida em 2026-11-18: texto HTML aprovado e imagem de alta resolução com bordas rasgadas, substituindo a foto pequena anterior.
+
 ## Leitura e precedência
 A [TASK-083](../../tasks/completed/TASK-083-site-home-testimonials.md) preserva a entrega histórica de depoimentos; a TASK-084 os reposiciona após A Casa e retira estrelas. A TASK-090 registra a substituição aprovada dos exemplos por depoimentos reais.
 

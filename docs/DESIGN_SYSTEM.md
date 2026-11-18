@@ -1295,3 +1295,7 @@ A TASK-084 / ADR-022 substitui a apresentação das TASK-080/082/072/083 por `do
 - Features em composições alternadas imagem/texto. Imagens selecionadas exibidas também em produção por autorização da TASK-089/ADR-023, sem afirmar fotografia documental; depoimentos reais fornecidos na TASK-090 também são públicos. Hero priorizada e demais imagens lazy, com sizes e espaço reservado.
 - Depoimentos após A Casa: avaliações reais fornecidas na TASK-090, autores sem datas e título Quem vem, faz parte. Nota 4,5/776 informada pelo usuário, não atualizada via API; sem estrelas individuais ou structured data. Exibir em todos os ambientes. Playlist/redes/endereço/avaliações exigem links reais confirmados antes de habilitar destinos externos.
 - Verificar 320/360/768/1440 px, texto longo, estados loading/vazio/erro, teclado/zoom e regressão das superfícies existentes. Detalhes canônicos em `docs/site/02-DESIGN-SYSTEM.md`.
+
+TASK-093 atualiza somente A Casa conforme nova referência fornecida: título e parágrafo HTML, foto inteira com bordas rasgadas do próprio asset, composição 40/60 no desktop e empilhada abaixo de 960 px. Sem CTA; especificação visual vigente em [design do site](site/02-DESIGN-SYSTEM.md). A limitação de 480 px da TASK-087 é histórica para o asset anterior.
+
+TASK-094 insere uma faixa informativa entre hero e Agenda, com quatro ícones/destaques no desktop e grade 2 × 2 no celular, sem controles ou novos tokens globais. Conteúdo e regras de quebra estão em [design do site](site/02-DESIGN-SYSTEM.md).

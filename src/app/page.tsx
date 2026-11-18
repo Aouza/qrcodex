@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { HomeAgenda } from "@/components/site/home-agenda";
 import { HomeAgendaSection } from "@/components/site/home-agenda-section";
 import { HomeFeatures } from "@/components/site/home-features";
+import { HomeHighlights } from "@/components/site/home-highlights";
 import { HomeTestimonials } from "@/components/site/home-testimonials";
 import { HomeVisit } from "@/components/site/home-visit";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -32,6 +33,7 @@ export default async function Home() {
       <SiteHeader reservationHref={reservationHref} />
       <main id="conteudo" tabIndex={-1}>
         <SiteHero imageSrc="/images/hero/hero-relicas.png" reservationHref={reservationHref} />
+        <HomeHighlights />
         <Suspense fallback={<HomeAgenda result={{ status: "loading", events: [] }} reservationHref={reservationHref} />}>
           <HomeAgendaSection reservationHref={reservationHref} />
         </Suspense>
