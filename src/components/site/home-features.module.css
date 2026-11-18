@@ -27,29 +27,34 @@
 .menuCopy h2 { margin-top: 7px; font-size: clamp(2rem, 3.5vw, 3.2rem); }
 .menuCopy > p:nth-of-type(2) { margin-top: 12px; max-width: 37ch; }
 .menuCopy > a { margin-top: 19px; }
-.house { scroll-margin-top:20px; }
-.houseInner { display:grid; grid-template-columns:40% minmax(0,1fr); width:min(100%,1280px); margin-inline:auto; min-height:265px; }
-.houseCopy { position:relative; z-index:1; padding:30px 10px 30px clamp(20px,5vw,72px); }
-.houseCopy h2 { margin-top:5px; }
-.houseCopy > p:nth-of-type(2) { max-width:34ch; margin-top:12px; }
-.houseCopy > a { margin-top:18px; }
+.house { scroll-margin-top:20px; border-bottom:1px solid #51443880; background:#0b0b0a; }
+.houseInner { display:grid; grid-template-columns:40% minmax(0,1fr); align-items:center; width:min(100%,1280px); margin-inline:auto; min-height:300px; }
+.houseCopy { position:relative; z-index:1; padding:30px 24px 30px clamp(20px,5vw,72px); }
+.houseCopy h2 { margin-top:8px; font-size:clamp(2rem,3.2vw,3rem); line-height:1.04; }
+.houseCopy h2 span { display:block; }
+.houseCopy > p:nth-of-type(2) { max-width:36ch; margin-top:16px; }
 .houseArtwork {
   position: relative;
   align-self: center;
   justify-self: center;
-  width: min(100%, 480px);
-  aspect-ratio: 363 / 219;
+  width: 100%;
+  aspect-ratio: 3 / 1;
 }
-.houseArtwork img { object-fit: contain; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.houseArtwork img { object-fit: contain; }
+@media (max-width: 959px) {
+  .houseInner { grid-template-columns:1fr; }
+  .houseCopy { padding:32px 20px 20px; }
+  .houseCopy h2 { font-size:clamp(2rem,5vw,3rem); }
+  .houseCopy > p:nth-of-type(2) { max-width:54ch; }
+  .houseArtwork { width:calc(100% - 40px); margin-block:4px 24px; }
+}
 @media (min-width: 768px) and (max-width: 1023px) {
   .menuCopy { padding-block: 28px; }
 }
 @media (max-width: 767px) {
-  .menuInner, .houseInner { grid-template-columns: 1fr; }
+  .menuInner { grid-template-columns: 1fr; }
   .menuInner { min-height: 0; }
   .menuArtwork { position: relative; z-index: 0; inset: auto; height: clamp(190px, 58vw, 300px); transform: none; mask-image: none; }
   .menuImage { object-fit: cover; object-position: left center; }
   .menuCopy { grid-column: 1; padding: 28px 20px 32px; }
-  .houseCopy { padding: 32px 20px 20px; }
-  .houseArtwork { width: min(calc(100% - 40px), 480px); margin-block: 12px 24px; }
 }

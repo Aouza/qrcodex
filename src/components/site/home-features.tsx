@@ -24,12 +24,11 @@ export function HomeFeatures() {
         <div className={styles.houseInner}>
           <div className={styles.houseCopy}>
             <p className={ui.eyebrow}>A Casa</p>
-            <h2 className={ui.heading} id="a-casa-titulo">O Relica’s</h2>
-            <p className={ui.copy}>Um bar feito por e para quem vive o rock. Um espaço para curtir shows ao vivo, encontrar amigos e celebrar a cultura do rock.</p>
-            <a className={ui.button} href="#localizacao">Conhecer a casa<SiteIcon name="arrow" size={18} /></a>
+            <h2 className={ui.heading} id="a-casa-titulo"><span>Mais que um bar,</span>{" "}<span>um refúgio do rock.</span></h2>
+            <p className={ui.copy}>Um bar simples, autêntico e feito por quem vive a música. Aqui, o rock rola solto, as bandas têm espaço e o público faz parte dessa história há anos.</p>
           </div>
           <div className={styles.houseArtwork}>
-            <Image src="/assets/site-review/casa/ambiente-conceitual.webp" alt="" fill sizes="(max-width: 520px) calc(100vw - 40px), 480px" />
+            <Image src="/images/a-casa.png" alt="" fill sizes="(max-width: 959px) calc(100vw - 40px), (max-width: 1280px) 60vw, 768px" />
           </div>
         </div>
       </section>

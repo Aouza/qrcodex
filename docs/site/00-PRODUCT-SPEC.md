@@ -10,14 +10,15 @@ Descoberta de shows, cardápio, casa e contato dentro do Next existente. Menu em
 | Ordem | Seção | Contrato |
 |---|---|---|
 | 1 | Header/Hero | Marca, Início, Agenda, Cardápio, A Casa, Localização e Contato. Header sobre hero escura, título HTML creme/vermelho; CTAs Reserve sua mesa e Ver a agenda |
+| 1a | Informações da casa | TASK-094: faixa abaixo da hero com avaliação Google 4,5/776, preço médio R$ 40 – 100, música ao vivo Sextas e Sábados e ambiente acolhedor/LGBT+ friendly. Conteúdo fornecido pelo usuário; sem API ou regra de calendário |
 | 2 | Agenda | Até dois eventos publicados/relevantes com início na semana atual, segunda a domingo, São Paulo. Intervalo antes do limite, flyer cadastrado e linhas escuras. Contato de reserva somente com WhatsApp cadastrado. Semana vazia não puxa shows futuros; link abre Agenda completa sem esse recorte |
 | 3 | Drinks & Petiscos | Composição visual de cerveja/petiscos e acesso ao catálogo existente, sem preços ou catálogo paralelo |
-| 4 | A Casa | Texto e imagem editorial; link Conhecer a casa leva à localização na própria página |
+| 4 | A Casa | TASK-093: título Mais que um bar, um refúgio do rock, parágrafo aprovado e imagem fornecida com bordas rasgadas; texto HTML à esquerda, foto inteira à direita, empilhados no celular. Sem CTA nesta referência |
 | 5 | Depoimentos | Três avaliações reais fornecidas/autorizadas pelo usuário na TASK-090, com autores e sem datas. Quem vem, faz parte; nota Google 4,5/776 avaliações é snapshot manual informado, sem API ou structured data. Exibição em todos os ambientes; link somente quando confirmado |
 | 6 | Playlist/Localização | Vinil, identidade musical, endereço/direções somente confirmados e mapa ilustrativo identificado. Sem embed externo obrigatório |
 | 7 | Footer/Contato | Marca, navegação e contatos reais cadastrados. Ausência de links comunica indisponibilidade |
 
-Galeria e papel rasgado não integram o novo layout. Não incluir seção CTA adicional só por haver asset no ZIP. RSVP, venda de ingressos e gestão de reservas não são funções deste site: botões de reserva abrem conversa com WhatsApp cadastrado e têm fallback em Contato.
+Galeria e papel rasgado da Agenda não integram o novo layout. A TASK-093 incorpora apenas as bordas rasgadas já presentes na imagem fornecida para A Casa. Não incluir seção CTA adicional só por haver asset no ZIP. RSVP, venda de ingressos e gestão de reservas não são funções deste site: botões de reserva abrem conversa com WhatsApp cadastrado e têm fallback em Contato.
 
 ## Conteúdo de revisão e produção
 Aprovação de layout não comprova fotografia documental, endereço, horários, playlist ou redes. Na TASK-089 o usuário autorizou as imagens selecionadas em todos os ambientes. Na TASK-090 confirmou e forneceu três depoimentos reais para substituir os exemplos, também em todos os ambientes e sem mês/ano. A TASK-091 remove o aviso visual de revisão por solicitação do usuário; conteúdo autorizado continua incondicional. O mapa mantém identificação ilustrativa. Não usar as bandas da referência como shows confirmados; a TASK-088 registra a autorização específica dos três eventos temporários identificados como TESTE.

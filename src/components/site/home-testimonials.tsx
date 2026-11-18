@@ -1,5 +1,6 @@
 ﻿import { SiteIcon } from "./site-icon";
 import ui from "./site-ui.module.css";
+import { googleReviewSummary } from "@/lib/site/public-content";
 import styles from "./home-testimonials.module.css";
 
 const testimonials = [
@@ -27,8 +28,8 @@ export function HomeTestimonials({ reviewsHref }: { reviewsHref?: string | null 
           <div className={styles.rating}>
             <span className={styles.googleMark} aria-hidden="true"><span>G</span></span>
             <div>
-              <p className={styles.score}>4,5 no Google</p>
-              <p className={styles.reviewCount}>776 avaliações</p>
+              <p className={styles.score}>{googleReviewSummary.score} no Google</p>
+              <p className={styles.reviewCount}>{googleReviewSummary.count} avaliações</p>
               {reviewsHref && <a href={reviewsHref} target="_blank" rel="noopener noreferrer" className={styles.reviewsLink}>Ver avaliações<SiteIcon name="arrow" size={18} /></a>}
             </div>
           </div>

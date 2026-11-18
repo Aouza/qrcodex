@@ -141,6 +141,8 @@ Production contract: `docs/MUSIC_PRODUCTION.md`. TASK-053–057 are DONE; TASK-0
 | TASK-090 | Exibir depoimentos reais sem datas | DONE | TASK-089; três textos/autores reais fornecidos, link Google pendente |
 | TASK-091 | Usar nova imagem do palco na hero | DONE | TASK-090; imagem fornecida pelo usuário |
 | TASK-092 | Aplicar texto aprovado à hero | DONE | TASK-091; título e descrição fornecidos pelo usuário |
+| TASK-093 | Aplicar nova referência de A Casa | DONE | TASK-092; texto e imagem fornecidos pelo usuário |
+| TASK-094 | Exibir destaques abaixo da hero | DONE | TASK-092; referência fornecida pelo usuário |
 
 See [institutional plan](../docs/site/06-IMPLEMENTATION-PLAN.md). The institutional site at `/` remains the user's confirmed priority. TASK-064–066 corrected local event selection, calendar and media recovery; TASK-067 delivered context/navigation helpers. TASK-068 is the next READY increment, with the host/reserved-slug inventory gate recorded before static routes. TASK-080 delivered the first home navigation increment and awaits browser review. TASK-071 will reuse its header. Optional gallery administration and extra event states require their own scoped tasks.
 
